@@ -1,0 +1,11 @@
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
+
+Billetterie-ejb/nbproject/*
+!Billetterie-ejb/nbproject/project.properties
+!Billetterie-ejb/nbproject/project.xml
+
+Billetterie-war/nbproject/*
+!Billetterie-war/nbproject/project.properties
+!Billetterie-war/nbproject/project.xml
