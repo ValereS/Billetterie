@@ -19,7 +19,7 @@ public class LigneCommande implements Serializable {
     private Long id;
     
     @Column(nullable = false)
-    private BigDecimal prix;
+    private BigDecimal prixUnitaireHt;
     @Column(nullable = false)
     private float tauxTva;
     @Column(nullable = false)
@@ -30,15 +30,12 @@ public class LigneCommande implements Serializable {
 //    @ManyToOne
 //    private Commande commande;
 
-    public LigneCommande() {
-    }
-    
-    public BigDecimal getPrix() {
-        return prix;
+    public BigDecimal getPrixUnitaireHt() {
+        return prixUnitaireHt;
     }
 
-    public void setPrix(BigDecimal prixUnitaireHt) {
-        this.prix = prixUnitaireHt;
+    public void setPrixUnitaireHt(BigDecimal prixUnitaireHt) {
+        this.prixUnitaireHt = prixUnitaireHt;
     }
 
     public float getTauxTva() {
