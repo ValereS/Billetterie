@@ -8,11 +8,15 @@ package entities;
 import enums.CiviliteClient;
 import enums.StatutClient;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -35,6 +39,16 @@ public class Client implements Serializable {
     private Date dateNaissance;
     private StatutClient statut;
     private String commentaire;
+
+    @ManyToOne
+    private Coordonnees coordonneesFacturation;
+
+    @ManyToMany
+    private Collection<Coordonnees> listeCoordonneesLivraison;
+
+    public Client() {
+        listeCoordonneesLivraison = new ArrayList<>();
+    }
 
     public Long getCode() {
         return code;
@@ -106,6 +120,22 @@ public class Client implements Serializable {
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
+    }
+
+    public Coordonnees getCoordonneesFacturation() {
+        return coordonneesFacturation;
+    }
+
+    public void setCoordonneesFacturation(Coordonnees coordonneesFacturation) {
+        this.coordonneesFacturation = coordonneesFacturation;
+    }
+
+    public Collection<Coordonnees> getListeCoordonneesLivraison() {
+        return listeCoordonneesLivraison;
+    }
+
+    public void setListeCoordonneesLivraison(Collection<Coordonnees> listeCoordonneesLivraison) {
+        this.listeCoordonneesLivraison = listeCoordonneesLivraison;
     }
 
     @Override
