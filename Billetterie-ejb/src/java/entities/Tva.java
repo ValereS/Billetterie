@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,11 +15,17 @@ public class Tva implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+    @Column(nullable = false)
     private float taux;
 //-----------------------------------------------------
-    @OneToMany
-    private Collection<Billet> billets;
+
+    public Tva() {
+    }
+
+    public Tva(float taux) {
+        this.taux = taux;
+    }
+    
     
     public Long getId() {
         return id;
@@ -34,14 +41,6 @@ public class Tva implements Serializable {
 
     public void setTaux(float taux) {
         this.taux = taux;
-    }
-
-    public Collection<Billet> getBillets() {
-        return billets;
-    }
-
-    public void setBillets(Collection<Billet> billets) {
-        this.billets = billets;
     }
     
     @Override
