@@ -9,10 +9,8 @@ import javax.persistence.Persistence;
 
 
 public class JeuEssaiValerian {
-    public static void main(String[] args) {
-        JeuValerian();
-    }
-    public static void JeuValerian() { 
+
+    public static void jeuValerian() { 
 
         EntityManagerFactory emf
         = Persistence.createEntityManagerFactory("Billetterie-ejbPU");
