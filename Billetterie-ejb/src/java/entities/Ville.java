@@ -23,7 +23,6 @@ public class Ville implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String nom;
-    @Id
     private String codePostal;
 
     @OneToMany(mappedBy = "ville")
