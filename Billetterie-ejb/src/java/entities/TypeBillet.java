@@ -12,13 +12,11 @@ import javax.persistence.Id;
 public class TypeBillet implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column(nullable = false)
     private String description;
 //-------------------------------------------------
-    private Collection<Billet> billets;
     
     public Integer getId() {
         return id;
@@ -35,15 +33,6 @@ public class TypeBillet implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Collection<Billet> getBillets() {
-        return billets;
-    }
-
-    public void setBillets(Collection<Billet> billets) {
-        this.billets = billets;
-    }
-    
 
     @Override
     public String toString() {

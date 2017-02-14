@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +15,8 @@ public class Billet implements Serializable {
     @Id
     private String numero;
 //--------------------------------------------------
-    @ManyToOne
-    private Tva tva;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private TVA tva;
     
     @ManyToOne
     private TypeBillet typeBillet;
@@ -31,6 +32,9 @@ public class Billet implements Serializable {
     
     @ManyToOne
     private LigneCommande ligneCommande;
+
+    public Billet() {
+    }
     
     public String getNumero() {
         return numero;
@@ -39,6 +43,39 @@ public class Billet implements Serializable {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+    public TVA getTva() {
+        return tva;
+    }
+
+    public void setTva(TVA tva) {
+        this.tva = tva;
+    }
+
+    public TypeBillet getTypeBillet() {
+        return typeBillet;
+    }
+
+    public void setTypeBillet(TypeBillet typeBillet) {
+        this.typeBillet = typeBillet;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public LigneCommande getLigneCommande() {
+        return ligneCommande;
+    }
+
+    public void setLigneCommande(LigneCommande ligneCommande) {
+        this.ligneCommande = ligneCommande;
+    }
+    
     
     @Override
     public String toString() {
