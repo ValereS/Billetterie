@@ -17,14 +17,19 @@ public class TestDataValere implements TestDataValereLocal {
         Tva tva01 = new Tva(0.055f);
         Tva tva02 = new Tva(0.021f);
         
+        TypeBillet tb01 = new TypeBillet();
+        tb01.setDescription("places numerotees");
+        
         Billet b01 = new Billet();
         b01.setTva(tva02);
-        b01.setNumero("toto");
+        b01.setNumero("tata");
+        b01.setTypeBillet(tb01);
         
-        TypeBillet tb01 = new TypeBillet();
+        
         
         em.persist(tva01);
         em.persist(tva02);
+        em.persist(tb01);
         em.persist(b01);
     }
 }
