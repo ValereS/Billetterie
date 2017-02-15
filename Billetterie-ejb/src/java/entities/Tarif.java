@@ -19,8 +19,16 @@ public class Tarif implements Serializable {
     private BigDecimal prix;
     private String nom;
 //--------------------------------------------------
-    @ManyToOne
+    @ManyToOne()
     private Categorie categorie;
+
+    public Tarif() {
+    }
+
+    public Tarif(BigDecimal prix, String nom) {
+        this.prix = prix;
+        this.nom = nom;
+    }
     
     public Long getId() {
         return id;

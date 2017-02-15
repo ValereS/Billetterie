@@ -19,7 +19,7 @@ public class LigneCommande implements Serializable {
     private Long id;
     
     @Column(nullable = false)
-    private BigDecimal prixUnitaireHt;
+    private BigDecimal prix;
     @Column(nullable = false)
     private float tauxTva;
     @Column(nullable = false)
@@ -27,15 +27,28 @@ public class LigneCommande implements Serializable {
     @Column(nullable = false)
     private int quantite;
 //--------------------------------------------------
-//    @ManyToOne
-//    private Commande commande;
+    
+    @ManyToOne
+    private Commande commande;
+    
+    @OneToMany(mappedBy = "ligneCommande")
+    private Collection<Billet> billets;
 
-    public BigDecimal getPrixUnitaireHt() {
-        return prixUnitaireHt;
+    public LigneCommande() {
     }
 
-    public void setPrixUnitaireHt(BigDecimal prixUnitaireHt) {
-        this.prixUnitaireHt = prixUnitaireHt;
+    public LigneCommande(BigDecimal prixUnitaireHt, float tauxTva, float tauxPromo) {
+        this.prix = prixUnitaireHt;
+        this.tauxTva = tauxTva;
+        this.tauxPromo = tauxPromo;
+    }
+
+    public BigDecimal getPrix() {
+        return prix;
+    }
+
+    public void setPrix(BigDecimal prix) {
+        this.prix = prix;
     }
 
     public float getTauxTva() {
@@ -62,13 +75,13 @@ public class LigneCommande implements Serializable {
         this.quantite = quantite;
     }
 
-//    public Commande getCommande() {
-//        return commande;
-//    }
-//
-//    public void setCommande(Commande commande) {
-//        this.commande = commande;
-//    }
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
 
     public Collection<Billet> getBillets() {
         return billets;
@@ -78,8 +91,6 @@ public class LigneCommande implements Serializable {
         this.billets = billets;
     }
     
-    @OneToMany
-    private Collection<Billet> billets;
     
     public Long getId() {
         return id;

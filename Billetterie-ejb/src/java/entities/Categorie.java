@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +20,26 @@ public class Categorie implements Serializable {
     @Column(nullable = false)
     private String nom;
 //--------------------------------------------------
+    
+    
     @ManyToMany
     private Collection<Zone> zones;
     
-    @OneToMany
+    @OneToMany(mappedBy = "categorie", cascade = CascadeType.PERSIST)
     private Collection<Tarif> tarifs;
     
     public Categorie() {
     }
+
+    public Categorie(String nom) {
+        this.nom = nom;
+    }
+
     
+    public Categorie(String nom, Collection<Tarif> tarifs) {
+        this.nom = nom;
+        this.tarifs = tarifs;
+    }
     
     public Long getId() {
         return id;
