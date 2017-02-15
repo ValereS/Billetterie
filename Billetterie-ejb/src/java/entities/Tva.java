@@ -40,7 +40,8 @@ public class Tva implements Serializable {
     }
 
     public void setTaux(float taux) {
-        this.taux = taux;
+        if (taux>=0)
+            this.taux = taux;
     }
     
     @Override

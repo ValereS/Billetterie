@@ -18,8 +18,6 @@ public class TypeBillet implements Serializable {
     @Column(nullable = false)
     private String description;
 //-------------------------------------------------
-    private Collection<Billet> billets;
-    
     public Integer getId() {
         return id;
     }
@@ -35,15 +33,6 @@ public class TypeBillet implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Collection<Billet> getBillets() {
-        return billets;
-    }
-
-    public void setBillets(Collection<Billet> billets) {
-        this.billets = billets;
-    }
-    
 
     @Override
     public String toString() {

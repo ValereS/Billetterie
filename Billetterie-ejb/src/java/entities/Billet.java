@@ -15,7 +15,7 @@ public class Billet implements Serializable {
     @Id
     private String numero;
 //--------------------------------------------------
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @ManyToOne
     private Tva tva;
     
     @ManyToOne
