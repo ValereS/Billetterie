@@ -2,10 +2,12 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Lieu implements Serializable {
@@ -17,12 +19,17 @@ public class Lieu implements Serializable {
     private String nom;
     private String salle;
     private String description;
+    
+    
+    @OneToMany(mappedBy = "lieu")
+    private Collection<Zone> zones;
+    
 
     public Lieu() {
     }
 
-    public Lieu(Long id, String nom, String salle, String description) {
-        this.id = id;
+    public Lieu(String nom, String salle, String description) {
+    
         this.nom = nom;
         this.salle = salle;
         this.description = description;

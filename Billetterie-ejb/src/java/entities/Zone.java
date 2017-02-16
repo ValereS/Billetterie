@@ -2,10 +2,13 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -17,12 +20,17 @@ public class Zone implements Serializable {
     private String nom;
     private String entree;
     private String description;
+    @ManyToOne
+    private Lieu lieu;
+    
+    @OneToMany(mappedBy = "zone")
+    private Collection<Place> places;
 
     public Zone() {
     }
 
-    public Zone(Long id, String nom, String entree, String description) {
-        this.id = id;
+    public Zone(String nom, String entree, String description) {
+        
         this.nom = nom;
         this.entree = entree;
         this.description = description;

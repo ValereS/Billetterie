@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -17,12 +18,17 @@ public class Place implements Serializable {
     private String numero;
     private String rang;
     private String description;
+    @ManyToOne
+    private Zone zone;
+    
+    
+    
 
     public Place() {
     }
 
-    public Place(Long id, String numero, String rang, String description) {
-        this.id = id;
+    public Place( String numero, String rang, String description) {
+
         this.numero = numero;
         this.rang = rang;
         this.description = description;

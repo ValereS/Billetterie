@@ -1,18 +1,29 @@
-
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Fonction implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     private String nom;
+    
+    // les assiociations de table
+    @ManyToOne
+    private Groupe groupe;
+    @ManyToMany
+    private Collection<Participant> participants;
+
 
     public Fonction() {
     }
@@ -29,10 +40,9 @@ public class Fonction implements Serializable {
         this.nom = nom;
     }
 
-
     @Override
     public String toString() {
         return "entities.Role[ nom=" + nom + " ]";
     }
-    
+
 }
