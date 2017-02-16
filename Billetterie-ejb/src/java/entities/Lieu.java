@@ -28,8 +28,8 @@ public class Lieu implements Serializable {
     public Lieu() {
     }
 
-    public Lieu(Long id, String nom, String salle, String description) {
-        this.id = id;
+    public Lieu(String nom, String salle, String description) {
+    
         this.nom = nom;
         this.salle = salle;
         this.description = description;

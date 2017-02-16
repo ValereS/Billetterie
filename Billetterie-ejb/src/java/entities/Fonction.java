@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Fonction implements Serializable {
     @ManyToOne
     private Groupe groupe;
     @ManyToMany
-    private List<Participant> participants;
+    private Collection<Participant> participants;
 
 
     public Fonction() {

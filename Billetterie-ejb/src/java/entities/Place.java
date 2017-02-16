@@ -27,8 +27,8 @@ public class Place implements Serializable {
     public Place() {
     }
 
-    public Place(Long id, String numero, String rang, String description) {
-        this.id = id;
+    public Place( String numero, String rang, String description) {
+
         this.numero = numero;
         this.rang = rang;
         this.description = description;

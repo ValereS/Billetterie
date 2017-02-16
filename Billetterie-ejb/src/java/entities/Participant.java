@@ -25,8 +25,8 @@ public class Participant implements Serializable {
     public Participant() {
     }
 
-    public Participant(Long id, String nom) {
-        this.id = id;
+    public Participant(String nom) {
+        
         this.nom = nom;
     }
 

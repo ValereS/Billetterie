@@ -26,8 +26,8 @@ public class Groupe implements Serializable {
     public Groupe() {
     }
 
-    public Groupe(Long id, String nom) {
-        this.id = id;
+    public Groupe(String nom) {
+     
         this.nom = nom;
     }
 
