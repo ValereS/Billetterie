@@ -1,20 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.ejb.EJB;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import service.TestData.TestDataValereLocal;
 
+/**
+ *
+ * @author cdi505
+ */
 public class FrontController extends HttpServlet {
+    private Map<String, SubControllerInterface> map;
 
-    @EJB
-    private TestDataValereLocal testDataValere;
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        map = new HashMap<>();
+        Enumeration<String> names = config.getInitParameterNames();
 
+        while (names.hasMoreElements()) {
+            String section = names.nextElement();
+            String value = config.getInitParameter(section);            
+
+            try {
+                SubControllerInterface sc = (SubControllerInterface) Class.forName(value).newInstance();
+                map.put(section, sc);
+            } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
+                System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
+            }
+        }
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,15 +54,21 @@ public class FrontController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-
-        HttpSession session = request.getSession();
-
+        String url;
         String section = request.getParameter("section");
-        String url = "/WEB-INF/home.jsp";
+        SubControllerInterface pc = map.get(section);
 
-        testDataValere.creerDonnees();
-        
+        if (pc != null) {
+            url = pc.execute(request, response);
+        } else {
+            url = "home";
+        }
+
+        url = String.format("/WEB-INF/%s.jsp", url);
         url = response.encodeURL(url);
+
+//        String url = "/WEB-INF/home.jsp";
+
         getServletContext().getRequestDispatcher(url).include(request, response);
     }
 

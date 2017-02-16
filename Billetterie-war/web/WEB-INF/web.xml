@@ -3,6 +3,14 @@
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controllers.FrontController</servlet-class>
+        <init-param>
+            <param-name>data</param-name>
+            <param-value>controllers.DataController</param-value>
+        </init-param>
+        <init-param>
+            <param-name>navigation</param-name>
+            <param-value>controllers.NavigationController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
