@@ -6,10 +6,16 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -21,7 +27,24 @@ public class Seance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Column()
+    private Date date;
+    private String description;
+//---------------------------------------------------
+    
+    @OneToMany(mappedBy = "seance")
+    private Collection<Billet> billets;
+    
+    
+    public Seance() {
+    }
 
+    public Seance(Date date, String description) {
+        this.date = date;
+        this.description = description;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -29,26 +52,8 @@ public class Seance implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Seance)) {
-            return false;
-        }
-        Seance other = (Seance) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+    
+    
 
     @Override
     public String toString() {

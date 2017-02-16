@@ -2,6 +2,9 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +28,7 @@ public class FrontController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
@@ -36,8 +39,8 @@ public class FrontController extends HttpServlet {
 
         testDataValere.creerDonnees();
         
-        url = response.encodeURL(url);
-        getServletContext().getRequestDispatcher(url).include(request, response);
+//        url = response.encodeURL(url);
+//        getServletContext().getRequestDispatcher(url).include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +55,11 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -66,7 +73,11 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
