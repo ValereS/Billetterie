@@ -5,22 +5,33 @@
  */
 package entities;
 
+import enums.StatutPointRetrait;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
- * @author cdi501
+ * @author cdi505
  */
 @Entity
-public class Image implements Serializable {
+public class PointRetrait implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nom;
+    private StatutPointRetrait statut;
+
+    @ManyToOne
+    private Coordonnees coordonnees;
+
+    public PointRetrait() {
+    }
 
     public Long getId() {
         return id;
@@ -28,6 +39,30 @@ public class Image implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public StatutPointRetrait getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutPointRetrait statut) {
+        this.statut = statut;
+    }
+
+    public Coordonnees getCoordonnees() {
+        return coordonnees;
+    }
+
+    public void setCoordonnees(Coordonnees coordonnees) {
+        this.coordonnees = coordonnees;
     }
 
     @Override
@@ -40,10 +75,10 @@ public class Image implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Image)) {
+        if (!(object instanceof PointRetrait)) {
             return false;
         }
-        Image other = (Image) object;
+        PointRetrait other = (PointRetrait) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -52,7 +87,7 @@ public class Image implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Image[ id=" + id + " ]";
+        return "entities.PointRetrait[ id=" + id + " ]";
     }
-    
+
 }
