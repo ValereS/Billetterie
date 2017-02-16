@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author cdi505
  */
 public class FrontController extends HttpServlet {
+
     private Map<String, SubControllerInterface> map;
 
     @Override
@@ -30,7 +31,7 @@ public class FrontController extends HttpServlet {
 
         while (names.hasMoreElements()) {
             String section = names.nextElement();
-            String value = config.getInitParameter(section);            
+            String value = config.getInitParameter(section);
 
             try {
                 SubControllerInterface sc = (SubControllerInterface) Class.forName(value).newInstance();
@@ -40,7 +41,7 @@ public class FrontController extends HttpServlet {
             }
         }
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -68,8 +69,8 @@ public class FrontController extends HttpServlet {
         url = response.encodeURL(url);
 
 //        String url = "/WEB-INF/home.jsp";
-
         getServletContext().getRequestDispatcher(url).include(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

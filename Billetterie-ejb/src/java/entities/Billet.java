@@ -15,22 +15,22 @@ public class Billet implements Serializable {
     @Id
     private String numero;
 //--------------------------------------------------
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Tva tva;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private TypeBillet typeBillet;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Seance seance;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Categorie categorie;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Place place;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private LigneCommande ligneCommande;
 
     public Billet() {
@@ -42,6 +42,15 @@ public class Billet implements Serializable {
         this.typeBillet = typeBillet;
         this.categorie = categorie;
     }
+
+    public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie) {
+        this.numero = numero;
+        this.tva = tva;
+        this.typeBillet = typeBillet;
+        this.seance = seance;
+        this.categorie = categorie;
+    }
+    
     
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place, LigneCommande ligneCommande) {
         this.numero = numero;
