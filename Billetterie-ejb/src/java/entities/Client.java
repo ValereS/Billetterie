@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,14 +41,29 @@ public class Client implements Serializable {
     private StatutClient statut;
     private String commentaire;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Coordonnees coordonneesFacturation;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private Collection<Coordonnees> listeCoordonneesLivraison;
 
     public Client() {
         listeCoordonneesLivraison = new ArrayList<>();
+    }
+
+    public Client(Long code, CiviliteClient civilite, String nom, String prenom, String email, String hashMotPasse, Date dateNaissance, StatutClient statut, String commentaire, Coordonnees coordonneesFacturation, Collection<Coordonnees> listeCoordonneesLivraison) {
+        this();
+        this.code = code;
+        this.civilite = civilite;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.hashMotPasse = hashMotPasse;
+        this.dateNaissance = dateNaissance;
+        this.statut = statut;
+        this.commentaire = commentaire;
+        this.coordonneesFacturation = coordonneesFacturation;
+        this.listeCoordonneesLivraison = listeCoordonneesLivraison;
     }
 
     public Long getCode() {

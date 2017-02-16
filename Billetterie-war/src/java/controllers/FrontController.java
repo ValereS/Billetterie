@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author cdi505
  */
 public class FrontController extends HttpServlet {
-
     private Map<String, SubControllerInterface> map;
 
     @Override

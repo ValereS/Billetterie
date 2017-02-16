@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -22,38 +23,32 @@ public class Ville implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    private String nom;
-    private String codePostal;
+    private VillePK pk;
 
-    @OneToMany(mappedBy = "ville")
+    @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL)
     private Collection<Coordonnees> coordonnees;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Region region;
 
     public Ville() {
         coordonnees = new ArrayList<>();
     }
 
-    public Ville(String nom, String codePostal) {
-        this();
-        this.nom = nom;
-        this.codePostal = codePostal;
+    public Ville(VillePK pk) {
+        this.pk = pk;
     }
 
-    public String getNom() {
-        return nom;
+    public Ville(VillePK pk, Region region) {
+        this.pk = pk;
+        this.region = region;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public VillePK getPK() {
+        return pk;
     }
 
-    public String getCodePostal() {
-        return codePostal;
-    }
-
-    public void setCodePostal(String codePostal) {
-        this.codePostal = codePostal;
+    public void setPK(VillePK pk) {
+        this.pk = pk;
     }
 
     public Collection<Coordonnees> getCoordonnees() {
@@ -70,11 +65,6 @@ public class Ville implements Serializable {
 
     public void setRegion(Region region) {
         this.region = region;
-    }
-
-    @Override
-    public String toString() {
-        return "entities.Ville[ id=" + nom + " ]";
     }
 
 }

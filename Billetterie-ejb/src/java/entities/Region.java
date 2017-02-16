@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -24,9 +25,9 @@ public class Region implements Serializable {
     @Id
     private String nom;
 
-    @OneToMany(mappedBy = "region")
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
     private Collection<Ville> villes;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Pays pays;
 
     public Region() {
@@ -36,6 +37,12 @@ public class Region implements Serializable {
     public Region(String nom) {
         this();
         this.nom = nom;
+    }
+
+    public Region(String nom, Pays pays) {
+        this();
+        this.nom = nom;
+        this.pays = pays;
     }
 
     public String getNom() {

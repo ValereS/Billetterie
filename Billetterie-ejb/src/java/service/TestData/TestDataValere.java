@@ -36,7 +36,7 @@ public class TestDataValere implements TestDataValereLocal {
         em.persist(tva03);
     }
     
-    public void creerDonnees2() {
+    public void creerDonneesNotWorking() {
         Tva tva01 = new Tva(0.055f);
         Tva tva02 = new Tva(0.021f);
         Tva tva03 = new Tva(0.1f);
@@ -46,7 +46,7 @@ public class TestDataValere implements TestDataValereLocal {
 
         Tarif tf01 = new Tarif(BigDecimal.valueOf(20d), "TARIF JEUNE");
         Tarif tf02 = new Tarif(BigDecimal.valueOf(15d), "TARIF ENFANT");
-        Tarif tf03 = new Tarif(BigDecimal.valueOf(25d), "TARIF NORMAL");
+        Tarif tf03 = new Tarif(new BigDecimal("25.99"), "TARIF NORMAL");
 
         ArrayList<Tarif> tarifNJE = new ArrayList<>();
         tarifNJE.add(tf01);

@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,10 +34,24 @@ public class Coordonnees implements Serializable {
     private String nomVoie;
     private String telephone;
     private String telephoneMobile;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Ville ville;
 
     public Coordonnees() {
+    }
+
+    public Coordonnees(Long id, String nom, String prenom, String entreprise, String numeroVoie, String typeVoie, String nomVoie, String telephone, String telephoneMobile, Ville ville) {
+        this();
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.entreprise = entreprise;
+        this.numeroVoie = numeroVoie;
+        this.typeVoie = typeVoie;
+        this.nomVoie = nomVoie;
+        this.telephone = telephone;
+        this.telephoneMobile = telephoneMobile;
+        this.ville = ville;
     }
 
     public Long getId() {
