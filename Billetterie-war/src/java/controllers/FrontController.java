@@ -1,27 +1,17 @@
 package controllers;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import service.TestData.TestDataValereLocal;
 
-/**
- *
- * @author cdi505
- */
-@WebServlet(urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
+
     @EJB
     private TestDataValereLocal testDataValere;
 
@@ -37,24 +27,17 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FrontController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FrontController at " + request.getContextPath() + "</h1>");
-            
-            testDataValere.creerDonnees();
-            out.println("<p>Valère !!!!</p>");
-            
-            
-            
-            out.println("</body>");
-            out.println("</html>");
-        }
+        request.setCharacterEncoding("UTF-8");
+
+        HttpSession session = request.getSession();
+
+        String section = request.getParameter("section");
+        String url = "/WEB-INF/home.jsp";
+
+        testDataValere.creerDonnees();
+        
+        url = response.encodeURL(url);
+        getServletContext().getRequestDispatcher(url).include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
