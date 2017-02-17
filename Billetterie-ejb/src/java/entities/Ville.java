@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -23,6 +24,7 @@ public class Ville implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @Embedded
     private VillePK pk;
 
     @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL)

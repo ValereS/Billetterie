@@ -27,10 +27,6 @@ public class Seance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    @Column()
-    private Date date;
-    private String description;
 //---------------------------------------------------
     
     @OneToMany(mappedBy = "seance")
@@ -40,11 +36,6 @@ public class Seance implements Serializable {
     public Seance() {
     }
 
-    public Seance(Date date, String description) {
-        this.date = date;
-        this.description = description;
-    }
-    
     public Long getId() {
         return id;
     }
@@ -53,8 +44,6 @@ public class Seance implements Serializable {
         this.id = id;
     }
     
-    
-
     @Override
     public String toString() {
         return "entities.Seance[ id=" + id + " ]";
