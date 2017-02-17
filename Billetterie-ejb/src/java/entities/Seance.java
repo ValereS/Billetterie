@@ -5,16 +5,11 @@ import enums.StatutSeance;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< HEAD (f95d8c2) - associations added
-=======
 import javax.persistence.OneToMany;
->>>>>>> origin/master (172b21c) - update Ville, 
 import javax.persistence.Temporal;
 
 
@@ -24,13 +19,11 @@ public class Seance implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-<<<<<<< HEAD (f95d8c2) - associations added
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
     private StatutSeance statut;
     
-=======
 //---------------------------------------------------
     
     @OneToMany(mappedBy = "seance")
@@ -39,7 +32,6 @@ public class Seance implements Serializable {
     
     public Seance() {
     }
->>>>>>> origin/master (172b21c) - update Ville, 
 
     public Long getId() {
         return id;
@@ -53,8 +45,6 @@ public class Seance implements Serializable {
         return "entities.Seance[ id=" + id + " ]" + "Date : " + date;
     }
 
-}
-<<<<<<< HEAD (f95d8c2) - associations added
 
        
     
@@ -94,6 +84,4 @@ public class Seance implements Serializable {
         return true;
     }
 
-=======
-    
->>>>>>> origin/master (172b21c) - update Ville, 
+}
