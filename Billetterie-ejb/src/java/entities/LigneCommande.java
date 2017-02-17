@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,9 +36,11 @@ public class LigneCommande implements Serializable {
     private Collection<Billet> billets;
 
     public LigneCommande() {
+        billets = new ArrayList<>();
     }
 
     public LigneCommande(BigDecimal prixUnitaireHt, float tauxTva, float tauxPromo) {
+        this();
         this.prix = prixUnitaireHt;
         this.tauxTva = tauxTva;
         this.tauxPromo = tauxPromo;

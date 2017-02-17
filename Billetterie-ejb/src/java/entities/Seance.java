@@ -3,6 +3,7 @@ package entities;
 
 import enums.StatutSeance;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -31,15 +32,18 @@ public class Seance implements Serializable {
 //------------------------------------------------------------------------------    
     
     public Seance() {
+        billets=new ArrayList<>();
     }
 
     public Seance(Date date, StatutSeance statut) {
+        this();
         this.date = date;
         this.statut = statut;
     }
     
 
     public Seance(Date date, StatutSeance statut, Collection<Billet> billets) {
+        this();
         this.date = date;
         this.statut = statut;
         this.billets = billets;

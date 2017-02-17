@@ -102,8 +102,25 @@ public class Billet implements Serializable {
         this.ligneCommande = ligneCommande;
     }
     
+    
     @Override
     public String toString() {
         return "entities.Billet[ id=" + numero + " ]";
+    }
+
+    public Seance getSeance() {
+        return seance;
+    }
+
+    public void setSeance(Seance seance) {
+        this.seance = seance;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }

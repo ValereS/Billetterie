@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Tarif implements Serializable {
     private BigDecimal prix;
     private String nom;
 //--------------------------------------------------
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Categorie categorie;
 
     public Tarif() {
