@@ -1,20 +1,33 @@
-
 package entities;
 
+import enums.StatutSpectacle;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Spectacle implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String titre;
+    private String description;
+    private StatutSpectacle statut;
+    
+//--------------------------------------------------------------------------------------
+
+    @ManyToOne
+    private Image image;
+    
+    
+//---------------------------------------------------------------------------------------
+            
     public Long getId() {
         return id;
     }
@@ -23,12 +36,41 @@ public class Spectacle implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public StatutSpectacle getStatut() {
+        return statut;
     }
+
+    public void setStatut(StatutSpectacle statut) {
+        this.statut = statut;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Spectacle() {
+    }
+
+    public Spectacle(Long id, String titre, String description, StatutSpectacle statut) {
+        this();
+        this.titre = titre;
+        this.description = description;
+        this.statut = statut;
+    }
+    
+    
 
     @Override
     public boolean equals(Object object) {
@@ -44,8 +86,15 @@ public class Spectacle implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "entities.Spectacle[ id=" + id + " ]";
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
-    
+
+    @Override
+    public String toString() {
+        return "entities.Spectacle[ id=" + id + " ]" + "titre : " + titre;
+    }
+
 }
