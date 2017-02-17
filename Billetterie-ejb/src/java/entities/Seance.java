@@ -24,14 +24,21 @@ public class Seance implements Serializable {
     private Date date;
     private StatutSeance statut;
     
-//---------------------------------------------------
+//------------------------------------------------------------------------------
     
     @OneToMany(mappedBy = "seance")
     private Collection<Billet> billets;
-    
+//------------------------------------------------------------------------------    
     
     public Seance() {
     }
+
+    public Seance(Date date, StatutSeance statut, Collection<Billet> billets) {
+        this.date = date;
+        this.statut = statut;
+        this.billets = billets;
+    }
+    
 
     public Long getId() {
         return id;
@@ -82,6 +89,14 @@ public class Seance implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public Collection<Billet> getBillets() {
+        return billets;
+    }
+
+    public void setBillets(Collection<Billet> billets) {
+        this.billets = billets;
     }
 
 }
