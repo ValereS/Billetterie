@@ -2,7 +2,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,10 +22,11 @@ public class Groupe implements Serializable {
     private String nom;
     
     
-    @OneToMany(mappedBy = "groupe")
+    @OneToMany(mappedBy = "groupe",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Collection<Fonction> fonctions;
 
     public Groupe() {
+        fonctions = new ArrayList<>();
     }
 
     public Groupe(String nom) {
@@ -47,11 +50,6 @@ public class Groupe implements Serializable {
         this.nom = nom;
     }
 
-    
-    
-    
-
-    
 
     @Override
     public String toString() {
