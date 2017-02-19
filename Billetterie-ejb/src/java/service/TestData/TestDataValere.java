@@ -191,8 +191,6 @@ public class TestDataValere implements TestDataValereLocal {
             Billet b20 = new Billet("01BT0A020", tva5v5p, tb02, cat03);
 
 //-----------------------[ PLACE ]----------------------------
-            em.persist(tb01);
-            em.persist(tb02);
 
 ////            em.persist(cat01);
 ////            em.persist(cat02);

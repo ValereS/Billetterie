@@ -16,7 +16,7 @@ public class Tarif implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable=false)
+    @Column(nullable=false, scale = 2, precision = 10)
     private BigDecimal prix;
     private String nom;
 //--------------------------------------------------
