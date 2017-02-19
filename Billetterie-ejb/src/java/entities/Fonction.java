@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Fonction implements Serializable {
     private String nom;
     
     // les assiociations de table
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}) //
     private Groupe groupe;
     @ManyToMany
     private Collection<Participant> participants;
