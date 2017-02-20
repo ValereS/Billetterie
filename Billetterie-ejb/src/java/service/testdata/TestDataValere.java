@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package service.testdata;
 
 import entities.Billet;
@@ -20,6 +25,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ *
+ * @author cdi515
+ */
 @Stateless
 public class TestDataValere implements TestDataValereLocal {
 
@@ -218,7 +227,7 @@ public class TestDataValere implements TestDataValereLocal {
 
             em.persist(lc01);
         } catch (ParseException ex) {
-            Logger.getLogger(TestDataValere.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(service.testdata.TestDataValere.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

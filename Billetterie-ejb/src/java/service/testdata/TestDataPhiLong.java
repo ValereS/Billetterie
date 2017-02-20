@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author cdi505
+ * @author cdi515
  */
 @Stateless
 public class TestDataPhiLong implements TestDataPhiLongLocal {
@@ -37,5 +37,4 @@ public class TestDataPhiLong implements TestDataPhiLongLocal {
         em.persist(paysFrance);
         em.persist(paysSuisse);
     }
-
 }

@@ -9,11 +9,9 @@ import javax.ejb.Local;
 
 /**
  *
- * @author cdi505
+ * @author cdi515
  */
 @Local
 public interface TestDataPhiLongLocal {
-
-    void create();
-    
+     void create();   
 }
