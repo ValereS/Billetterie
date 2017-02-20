@@ -132,9 +132,9 @@ public class JeuEssaiYo02 {
     f21.getParticipants().add(p07); // Jean- Marc
     f22.getParticipants().add(p07); // Jacqueline
     
-    // EDF DE FOOTBALL
+    // COUPE DE LA LIGUE 
     
-    f09.getParticipants().add(p08); // gardiens de but
+    f09.getParticipants().add(p08); // Gardiens de but
     f09.getParticipants().add(p09);
     f10.getParticipants().add(p10); // Defenseurs
     f10.getParticipants().add(p11);
@@ -153,12 +153,79 @@ public class JeuEssaiYo02 {
     f18.getParticipants().add(p22); // Sven
     f19.getParticipants().add(p23); // Hans
     f23.getParticipants().add(p24); // Participant 07
-    f23.getParticipants().add(p24); // Participant 07
+    f24.getParticipants().add(p24); // Participant 07
     
     
-    //================GROUPES/FONCTIONS=======================
+    //===================GROUPES/FONCTIONS====================
     
+    // Marroon 5
+    f01.setGroupe(g01);
+    f02.setGroupe(g01);
+    f03.setGroupe(g01);
+    f04.setGroupe(g01);
+    f05.setGroupe(g01);
+    f06.setGroupe(g01);
+    f07.setGroupe(g01);
     
+    // JEFF
+    
+    f20.setGroupe(g02);
+    f21.setGroupe(g02);
+    f22.setGroupe(g02);
+    
+    // CDL MONACO
+    f09.setGroupe(g03);
+    f10.setGroupe(g03);
+    f11.setGroupe(g03);
+    f12.setGroupe(g03);
+    f13.setGroupe(g03);
+    
+    // CDL PSG
+    f09.setGroupe(g04);
+    f10.setGroupe(g04);
+    f11.setGroupe(g04);
+    f12.setGroupe(g04);
+    f13.setGroupe(g04);
+    
+    //Disney
+    
+    f14.setGroupe(g05);
+    f15.setGroupe(g05);
+    f16.setGroupe(g05);
+    f17.setGroupe(g05);
+    f18.setGroupe(g05);
+    f19.setGroupe(g05);
+    f23.setGroupe(g05);
+    f24.setGroupe(g05);
+    
+    //===========================PERSISTANCE=======================
+    
+    // Persistance des fonction
+    
+    em.persist(f01);
+    em.persist(f02);
+    em.persist(f03);
+    em.persist(f04);
+    em.persist(f05);
+    em.persist(f06);
+    em.persist(f07);
+   // em.persist(f08);
+    em.persist(f09);
+    em.persist(f10);
+    em.persist(f11);
+    em.persist(f12);
+    em.persist(f13);
+    em.persist(f14);
+    em.persist(f15);
+    em.persist(f16);
+    em.persist(f17);
+    em.persist(f18);
+    em.persist(f19);
+    em.persist(f20);
+    em.persist(f21);
+    em.persist(f22);
+    em.persist(f23);
+    em.persist(f24);
     
     
     }

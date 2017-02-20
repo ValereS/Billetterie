@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -36,7 +37,7 @@ public class Client implements Serializable {
     private String prenom;
     private String email;
     private String hashMotPasse;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date dateNaissance;
     private StatutClient statut;
     private String commentaire;
@@ -51,9 +52,8 @@ public class Client implements Serializable {
         listeCoordonneesLivraison = new ArrayList<>();
     }
 
-    public Client(Long code, CiviliteClient civilite, String nom, String prenom, String email, String hashMotPasse, Date dateNaissance, StatutClient statut, String commentaire, Coordonnees coordonneesFacturation, Collection<Coordonnees> listeCoordonneesLivraison) {
+    public Client(CiviliteClient civilite, String nom, String prenom, String email, String hashMotPasse, Date dateNaissance, StatutClient statut, String commentaire) {
         this();
-        this.code = code;
         this.civilite = civilite;
         this.nom = nom;
         this.prenom = prenom;
@@ -62,8 +62,6 @@ public class Client implements Serializable {
         this.dateNaissance = dateNaissance;
         this.statut = statut;
         this.commentaire = commentaire;
-        this.coordonneesFacturation = coordonneesFacturation;
-        this.listeCoordonneesLivraison = listeCoordonneesLivraison;
     }
 
     public Long getCode() {
