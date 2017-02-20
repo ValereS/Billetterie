@@ -200,7 +200,7 @@ public class JeuEssaiYo02 {
     
     //===========================PERSISTANCE=======================
     
-    // Persistance des fonction
+    // Persistance des fonctions
     
     em.persist(f01);
     em.persist(f02);

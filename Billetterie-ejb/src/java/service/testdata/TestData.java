@@ -25,10 +25,15 @@ public class TestData implements TestDataLocal {
 
     @EJB
     private TestDataPhiLongLocal testDataPhiLong;
+    
+    @EJB
+    private TestDataYoanLocal testDataYoan;
+    
 
     @Override
     public void create() {
         testDataValere.creerDonnees();
         testDataPhiLong.create();
+        testDataYoan.create();
     }
 }
