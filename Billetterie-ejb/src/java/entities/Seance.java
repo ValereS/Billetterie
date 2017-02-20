@@ -6,10 +6,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -31,12 +33,19 @@ public class Seance implements Serializable {
     @OneToMany(mappedBy = "seance")
     private Collection<Billet> billets;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Spectacle spectacle;
+    
+    @ManyToMany(cascade = {})
+    private Collection<Categorie> categories;
+    
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Lieu lieu;
     
 //------------------------------------------------------------------------------    
     public Seance() {
         billets=new ArrayList<>();
+        categories=new ArrayList<>();
     }
 
     public Seance(Date date, StatutSeance statut) {
@@ -44,7 +53,6 @@ public class Seance implements Serializable {
         this.date = date;
         this.statut = statut;
     }
-    
 
     public Seance(Date date, StatutSeance statut, Collection<Billet> billets) {
         this();
@@ -52,7 +60,24 @@ public class Seance implements Serializable {
         this.statut = statut;
         this.billets = billets;
     }
-    
+
+    public Seance(Date date, StatutSeance statut, Collection<Billet> billets, Spectacle spectacle) {
+        this();
+        this.date = date;
+        this.statut = statut;
+        this.billets = billets;
+        this.spectacle = spectacle;
+    }
+
+    public Seance(Date date, StatutSeance statut, Collection<Billet> billets, Spectacle spectacle, Collection<Categorie> categories, Lieu lieu) {
+        this();
+        this.date = date;
+        this.statut = statut;
+        this.billets = billets;
+        this.spectacle = spectacle;
+        this.categories = categories;
+        this.lieu = lieu;
+    }
 
     public Long getId() {
         return id;
@@ -65,9 +90,6 @@ public class Seance implements Serializable {
     public String toString() {
         return "entities.Seance[ id=" + id + " ]" + "Date : " + date;
     }
-
-
-       
     
     public Date getDate() {
         return date;
@@ -84,26 +106,6 @@ public class Seance implements Serializable {
     public void setStatut(StatutSeance statut) {
         this.statut = statut;
     }
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Seance)) {
-            return false;
-        }
-        Seance other = (Seance) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
 
     public Collection<Billet> getBillets() {
         return billets;
@@ -113,4 +115,29 @@ public class Seance implements Serializable {
         this.billets = billets;
     }
 
+    public Spectacle getSpectacle() {
+        return spectacle;
+    }
+
+    public void setSpectacle(Spectacle spectacle) {
+        this.spectacle = spectacle;
+    }
+
+    public Collection<Categorie> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Collection<Categorie> categories) {
+        this.categories = categories;
+    }
+
+    public Lieu getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(Lieu lieu) {
+        this.lieu = lieu;
+    }
+    
+    
 }
