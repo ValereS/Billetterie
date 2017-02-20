@@ -22,7 +22,7 @@ public class Fonction implements Serializable {
     // les assiociations de table
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}) //
     private Groupe groupe;
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Collection<Participant> participants;
 
 
