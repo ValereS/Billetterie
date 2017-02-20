@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service.testdata;
 
 import entities.Billet;
 import entities.Categorie;
 import entities.LigneCommande;
 import entities.Seance;
+import entities.Spectacle;
 import entities.Tarif;
 import entities.Tva;
 import entities.TypeBillet;
@@ -25,10 +21,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author cdi515
- */
 @Stateless
 public class TestDataValere implements TestDataValereLocal {
 
@@ -89,25 +81,16 @@ public class TestDataValere implements TestDataValereLocal {
         Tarif tf02J = new Tarif(new BigDecimal("30"), "TARIF JEUNE");
         Tarif tf02E = new Tarif(new BigDecimal("20"), "TARIF ENFANT");
         Tarif tf02N = new Tarif(new BigDecimal("35.99"), "TARIF NORMAL");
-        
-        ArrayList<Tarif> tarifNJE = new ArrayList<>();
-        tarifNJE.add(tf02J);
-        tarifNJE.add(tf02E);
-        tarifNJE.add(tf02N);
-        ArrayList<Tarif> tarifN = new ArrayList<>();
-        tarifNJE.add(tf02N);
-        ArrayList<Tarif> tarifNE = new ArrayList<>();
-        tarifNJE.add(tf02E);
-        tarifNJE.add(tf02N);
+
+        Tarif tfParc01 = new Tarif(new BigDecimal("39.99"), "TARIF ENFANT");
+        Tarif tfParc02 = new Tarif(new BigDecimal("60"), "TARIF NORMAL");
         
 //-----------------------[ CATEGORIE ]----------------------------
         
         Categorie cat01 = new Categorie("A");
         Categorie cat02 = new Categorie("B");
         Categorie cat03 = new Categorie("C");
-        cat01.setTarifs(tarifN);
-        cat02.setTarifs(tarifNE);
-        cat03.setTarifs(tarifNJE);
+        Categorie catParcAttraction01 = new Categorie("AAA");
         
 //-------------------[ TARIF SET CATEGORIE ]------------------------
         tf01J.setCategorie(cat01);
@@ -116,6 +99,9 @@ public class TestDataValere implements TestDataValereLocal {
         tf02N.setCategorie(cat01);
         tf02E.setCategorie(cat02);
         tf02J.setCategorie(cat03);
+        
+        tfParc01.setCategorie(catParcAttraction01);
+        tfParc02.setCategorie(catParcAttraction01);
         
 //-----------------------[ TYPEBILLET ]----------------------------
         
@@ -160,7 +146,9 @@ public class TestDataValere implements TestDataValereLocal {
 
             Seance s01 = new Seance(d01, StatutSeance.ACTIF);
             Seance s02 = new Seance(d02, StatutSeance.ACTIF);
-            Seance s03 = new Seance(d03, StatutSeance.ACTIF);
+            
+            Seance s03 = new Seance(d10, StatutSeance.ACTIF);
+            
             Seance s04 = new Seance(d04, StatutSeance.ACTIF);
             Seance s05 = new Seance(d05, StatutSeance.ACTIF);
             Seance s06 = new Seance(d06, StatutSeance.ACTIF);
@@ -188,22 +176,27 @@ public class TestDataValere implements TestDataValereLocal {
             Billet b09 = new Billet("AA009", tva5v5p, tb02, s02, cat03);
             Billet b10 = new Billet("AA010", tva5v5p, tb02, s02, cat03);
 
-            Billet b11 = new Billet("01BT0A011", tva5v5p, tb02, cat03);
-            Billet b12 = new Billet("01BT0A012", tva5v5p, tb02, cat03);
-            Billet b13 = new Billet("01BT0A013", tva5v5p, tb02, cat03);
-            Billet b14 = new Billet("01BT0A014", tva5v5p, tb02, cat03);
-            Billet b15 = new Billet("01BT0A015", tva5v5p, tb02, cat03);
-            Billet b16 = new Billet("01BT0A016", tva5v5p, tb02, cat03);
+            Billet b11 = new Billet("01BT0A011", tva10p, tb02, s03, catParcAttraction01);
+            Billet b12 = new Billet("01BT0A012", tva10p, tb02, s03, catParcAttraction01);
+            Billet b13 = new Billet("01BT0A013", tva10p, tb02, s03, catParcAttraction01);
+            Billet b14 = new Billet("02BT0A014", tva10p, tb02, s03, catParcAttraction01);
+            Billet b15 = new Billet("02BT0A015", tva10p, tb02, s03, catParcAttraction01);
+            Billet b16 = new Billet("02BT0A016", tva10p, tb02, s03, catParcAttraction01);
+            
+            
             Billet b17 = new Billet("01BT0A017", tva5v5p, tb02, cat03);
             Billet b18 = new Billet("01BT0A018", tva5v5p, tb02, cat03);
             Billet b19 = new Billet("01BT0A019", tva5v5p, tb02, cat03);
             Billet b20 = new Billet("01BT0A020", tva5v5p, tb02, cat03);
 
 //-----------------------[ PLACE ]----------------------------
+            
+//-----------------------[ SPECTACLES ]----------------------------
 
-////            em.persist(cat01);
-////            em.persist(cat02);
-////            em.persist(cat03);
+            Spectacle spctPSGMonaco = new Spectacle();
+            Spectacle spctDisneyLand = new Spectacle();
+            Spectacle maroon5 = new Spectacle();
+            
             em.persist(b01);
             em.persist(b02);
             em.persist(b03);
@@ -227,7 +220,7 @@ public class TestDataValere implements TestDataValereLocal {
 
             em.persist(lc01);
         } catch (ParseException ex) {
-            Logger.getLogger(service.testdata.TestDataValere.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestDataValere.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

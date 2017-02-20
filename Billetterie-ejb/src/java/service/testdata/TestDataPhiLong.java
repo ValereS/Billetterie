@@ -32,7 +32,9 @@ public class TestDataPhiLong implements TestDataPhiLongLocal {
         Region regionPicardie = new Region("Picardie", paysFrance);
         Region regionProvenceAlpesCotedAzur = new Region("Provence-Alpes-Côte d'Azur", paysFrance);
         
-        Ville villeParis = new Ville(new VillePK("Paris", "75000"), regionIleDeFrance);
+        Ville villeParis = new Ville("Paris", "75000", regionIleDeFrance);
+        
+        em.persist(villeParis);
         
         em.persist(paysFrance);
         em.persist(paysSuisse);

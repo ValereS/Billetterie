@@ -26,18 +26,21 @@ public class Coordonnees implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nom;
+    
     private String prenom;
+    private String nom;
     private String entreprise;
     private String numeroVoie;
     private String typeVoie;
     private String nomVoie;
     private String telephone;
     private String telephoneMobile;
+    
+    
     @ManyToOne(cascade = CascadeType.ALL)
     private Ville ville;
 
-    public Coordonnees() {
+    public Coordonnees() {        
     }
 
     public Coordonnees(Long id, String nom, String prenom, String entreprise, String numeroVoie, String typeVoie, String nomVoie, String telephone, String telephoneMobile, Ville ville) {
