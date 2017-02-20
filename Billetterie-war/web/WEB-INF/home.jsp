@@ -9,16 +9,12 @@
         <title>Billetterie Fiante</title>
     </head>
     <body>
-
-
         <c:url value="FrontController?section=navigation" var="url02" />
         <c:import url="${url02}" />
-
-
         <hr />
         <div>
             <p>
-                Welcome to Billetterie.
+                Welcome to Billet Ti
             </p>
             <p>
                 ${message}

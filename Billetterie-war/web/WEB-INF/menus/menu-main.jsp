@@ -8,5 +8,9 @@
             <c:url value="FrontController?section=data&action=create" var="url01" />
             <a href="${url01}">Create test data</a> |
         </li>
+        <li>
+            <c:url value="FrontController?section=catalogue" var="url02" />
+            <a href="${url02}">Catalogue</a> |
+        </li>
     </ul>
 </nav>

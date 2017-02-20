@@ -233,7 +233,7 @@ public class TestDataValere implements TestDataValereLocal {
             Billet b44 = new Billet("HGD01", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
             Billet b45 = new Billet("HGD02", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
             Billet b46 = new Billet("HGD03", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
-            Billet b47 = new Billet("HGD01", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
+            Billet b47 = new Billet("HGD04", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
 
 //-----------------------[ PLACE ]----------------------------
             
