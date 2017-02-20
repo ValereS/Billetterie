@@ -27,12 +27,11 @@ public class TestDataValere implements TestDataValereLocal {
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
-
     public void creerDonneesNotWorking() {
         Tarif tf01 = new Tarif(new BigDecimal("20"), "TARIF JEUNE");
         Tarif tf02 = new Tarif(new BigDecimal("15"), "TARIF ENFANT");
         Tarif tf03 = new Tarif(new BigDecimal("25.99"), "TARIF NORMAL");
-        
+
         ArrayList<Tarif> tarifNJE = new ArrayList<>();
         tarifNJE.add(tf01);
         tarifNJE.add(tf02);
@@ -44,33 +43,32 @@ public class TestDataValere implements TestDataValereLocal {
         ArrayList<Tarif> tarifNE = new ArrayList<>();
         tarifNJE.add(tf02);
         tarifNJE.add(tf03);
-        
+
         Categorie cat01 = new Categorie("A");
         Categorie cat02 = new Categorie("B");
         Categorie cat03 = new Categorie("C");
         cat01.setTarifs(tarifN);
         cat02.setTarifs(tarifNE);
         cat03.setTarifs(tarifNJE);
-        
+
 //        tf01.setCategorie(cat01);
 //        tf02.setCategorie(cat02);
 //        tf03.setCategorie(cat03);
 //        tf02.setCategorie(cat02);
 //        tf01.setCategorie(cat01);
-        
-        
-        em.persist(cat01);em.persist(cat02);em.persist(cat03);
+        em.persist(cat01);
+        em.persist(cat02);
+        em.persist(cat03);
     }
 
     @Override
     public void creerDonnees() {
 
 //-----------------------[  TVA  ]----------------------------
-        
         Tva tva5v5p = new Tva(0.055f);
         Tva tva2v1p = new Tva(0.021f);
         Tva tva10p = new Tva(0.1f);
-        
+
 //-----------------------[ TARIF ]----------------------------
         BigDecimal bd01 = new BigDecimal(BigInteger.ONE);
 
@@ -84,14 +82,13 @@ public class TestDataValere implements TestDataValereLocal {
 
         Tarif tfParc01 = new Tarif(new BigDecimal("39.99"), "TARIF ENFANT");
         Tarif tfParc02 = new Tarif(new BigDecimal("60"), "TARIF NORMAL");
-        
+
 //-----------------------[ CATEGORIE ]----------------------------
-        
         Categorie cat01 = new Categorie("A");
         Categorie cat02 = new Categorie("B");
         Categorie cat03 = new Categorie("C");
         Categorie catParcAttraction01 = new Categorie("AAA");
-        
+
 //-------------------[ TARIF SET CATEGORIE ]------------------------
         tf01J.setCategorie(cat01);
         tf01N.setCategorie(cat02);
@@ -99,24 +96,27 @@ public class TestDataValere implements TestDataValereLocal {
         tf02N.setCategorie(cat01);
         tf02E.setCategorie(cat02);
         tf02J.setCategorie(cat03);
-        
-        em.persist(tf01J);em.persist(tf01E);em.persist(tf01N);em.persist(tf02J);em.persist(tf02N);em.persist(tf02E);
-        
+
+        em.persist(tf01J);
+        em.persist(tf01E);
+        em.persist(tf01N);
+        em.persist(tf02J);
+        em.persist(tf02N);
+        em.persist(tf02E);
+        em.persist(tfParc01);
+        em.persist(tfParc02);
         
         tfParc01.setCategorie(catParcAttraction01);
         tfParc02.setCategorie(catParcAttraction01);
-        
+
 //-----------------------[ TYPEBILLET ]----------------------------
-        
         TypeBillet tb01 = new TypeBillet("places numérotées");
         TypeBillet tb02 = new TypeBillet("places non-numérotées");
-        
+
 //-----------------------[ LIGNECOMMANDE ]----------------------------
-        
         LigneCommande lc01 = new LigneCommande();
         lc01.setPrix(tf02J.getPrix());
         lc01.setTauxTva(tva5v5p.getTaux());
-
 
 //-----------------------[ SEANCE ]----------------------------
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -149,9 +149,9 @@ public class TestDataValere implements TestDataValereLocal {
 
             Seance s01 = new Seance(d01, StatutSeance.ACTIF);
             Seance s02 = new Seance(d02, StatutSeance.ACTIF);
-            
+
             Seance s03 = new Seance(d10, StatutSeance.ACTIF);
-            
+
             Seance s04 = new Seance(d04, StatutSeance.ACTIF);
             Seance s05 = new Seance(d05, StatutSeance.ACTIF);
             Seance s06 = new Seance(d06, StatutSeance.ACTIF);
@@ -168,11 +168,11 @@ public class TestDataValere implements TestDataValereLocal {
 
 //-----------------------[ BILLET ]----------------------------
             Billet b01 = new Billet("AA001", tva5v5p, tb01, s01, cat01);
-            Billet b02 = new Billet("AA002", tva5v5p, tb01, s01,cat02);
-            Billet b03 = new Billet("AA003", tva5v5p, tb02, s01,cat03);
-            Billet b04 = new Billet("AA004", tva5v5p, tb01, s01,cat02);
-            Billet b05 = new Billet("AA005", tva5v5p, tb01, s01,cat01);
-            Billet b06 = new Billet("AA006", tva5v5p, tb02, s01,cat03);
+            Billet b02 = new Billet("AA002", tva5v5p, tb01, s01, cat02);
+            Billet b03 = new Billet("AA003", tva5v5p, tb02, s01, cat03);
+            Billet b04 = new Billet("AA004", tva5v5p, tb01, s01, cat02);
+            Billet b05 = new Billet("AA005", tva5v5p, tb01, s01, cat01);
+            Billet b06 = new Billet("AA006", tva5v5p, tb02, s01, cat03);
 
             Billet b07 = new Billet("AA007", tva5v5p, tb02, s02, cat03);
             Billet b08 = new Billet("AA008", tva5v5p, tb02, s02, cat03);
@@ -185,21 +185,18 @@ public class TestDataValere implements TestDataValereLocal {
             Billet b14 = new Billet("02BT0A014", tva10p, tb02, s03, catParcAttraction01);
             Billet b15 = new Billet("02BT0A015", tva10p, tb02, s03, catParcAttraction01);
             Billet b16 = new Billet("02BT0A016", tva10p, tb02, s03, catParcAttraction01);
-            
-            
+
             Billet b17 = new Billet("01BT0A017", tva5v5p, tb02, cat03);
             Billet b18 = new Billet("01BT0A018", tva5v5p, tb02, cat03);
             Billet b19 = new Billet("01BT0A019", tva5v5p, tb02, cat03);
             Billet b20 = new Billet("01BT0A020", tva5v5p, tb02, cat03);
 
 //-----------------------[ PLACE ]----------------------------
-            
 //-----------------------[ SPECTACLES ]----------------------------
-
             Spectacle spctPSGMonaco = new Spectacle();
             Spectacle spctDisneyLand = new Spectacle();
             Spectacle maroon5 = new Spectacle();
-            
+
             em.persist(b01);
             em.persist(b02);
             em.persist(b03);

@@ -24,8 +24,11 @@ public class Categorie implements Serializable {
     @ManyToMany
     private Collection<Zone> zones;
     
-    @OneToMany(mappedBy = "categorie", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToMany(mappedBy = "categorie")
     private Collection<Tarif> tarifs;
+    
+    @ManyToMany(mappedBy = "categories")
+    private Collection<Seance> Seances;
     
     public Categorie() {
         tarifs = new ArrayList<>();

@@ -3,6 +3,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,8 @@ public class Lieu implements Serializable {
     
     @OneToMany(mappedBy = "lieu")
     private Collection<Zone> zones;
+    @OneToMany(mappedBy = "lieu")
+    private List<Seance> seances;
     
 
     public Lieu() {
