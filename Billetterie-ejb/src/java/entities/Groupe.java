@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -24,6 +25,10 @@ public class Groupe implements Serializable {
     
     @OneToMany(mappedBy = "groupe",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Collection<Fonction> fonctions;
+    
+    
+    @ManyToOne()
+    private Spectacle spectacle;
 
     public Groupe() {
         fonctions = new ArrayList<>();

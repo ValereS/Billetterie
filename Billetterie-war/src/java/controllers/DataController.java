@@ -7,7 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.TestData.TestDataLocal;
+import service.testdata.TestDataLocal;
 
 public class DataController implements SubControllerInterface {
 
@@ -26,7 +26,7 @@ public class DataController implements SubControllerInterface {
     private TestDataLocal lookupTestDataLocal() {
         try {
             Context c = new InitialContext();
-            return (TestDataLocal) c.lookup("java:global/Billetterie/Billetterie-ejb/TestData!service.TestData.TestDataLocal");
+            return (TestDataLocal) c.lookup("java:global/Billetterie/Billetterie-ejb/TestData!service.testdata.TestDataLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
