@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author cdi505
+ * @author cdi515
  */
 @Stateless
 public class TestData implements TestDataLocal {

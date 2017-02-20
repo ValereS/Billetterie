@@ -9,7 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -24,10 +25,12 @@ public class Ville implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Embedded
-    private VillePK pk;
+    @Column(name = "VILLENOM")
+    private String nom;
+    @Id
+    private String codePostal;    
 
-    @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ville")
     private Collection<Coordonnees> coordonnees;
     @ManyToOne(cascade = CascadeType.ALL)
     private Region region;
@@ -36,21 +39,30 @@ public class Ville implements Serializable {
         coordonnees = new ArrayList<>();
     }
 
-    public Ville(VillePK pk) {
-        this.pk = pk;
+    public Ville(String nom, String codePostal) {
+        this.nom = nom;
+        this.codePostal = codePostal;
     }
 
-    public Ville(VillePK pk, Region region) {
-        this.pk = pk;
+    public Ville(String nom, String codePostal, Region region) {
+        this(nom, codePostal);
         this.region = region;
     }
 
-    public VillePK getPK() {
-        return pk;
+    public String getNom() {
+        return nom;
     }
 
-    public void setPK(VillePK pk) {
-        this.pk = pk;
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
     }
 
     public Collection<Coordonnees> getCoordonnees() {

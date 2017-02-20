@@ -14,20 +14,20 @@ public class Image implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private URL url;
+    private String url;
          
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(URL url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
     public Image() {
     }
 
-    public Image(URL url) {
+    public Image(String url) {
        
         this.url = url;
     }
