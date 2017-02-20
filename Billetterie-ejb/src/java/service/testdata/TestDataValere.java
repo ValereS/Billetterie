@@ -9,6 +9,7 @@ import entities.Tarif;
 import entities.Tva;
 import entities.TypeBillet;
 import enums.StatutSeance;
+import enums.StatutSpectacle;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
@@ -82,12 +83,17 @@ public class TestDataValere implements TestDataValereLocal {
 
         Tarif tfParc01 = new Tarif(new BigDecimal("39.99"), "TARIF ENFANT");
         Tarif tfParc02 = new Tarif(new BigDecimal("60"), "TARIF NORMAL");
+        
+        Tarif tfLaibachF = new Tarif(new BigDecimal("64"), "TARIF NORMAL");
+        Tarif tfLaibachD = new Tarif(new BigDecimal("90"), "TARIF NORMAL");
 
 //-----------------------[ CATEGORIE ]----------------------------
         Categorie cat01 = new Categorie("A");
         Categorie cat02 = new Categorie("B");
         Categorie cat03 = new Categorie("C");
         Categorie catParcAttraction01 = new Categorie("AAA");
+        Categorie catPlaceDebout = new Categorie("Fosse");
+        Categorie catPlaceAssise = new Categorie("Balcon");
 
 //-------------------[ TARIF SET CATEGORIE ]------------------------
         tf01J.setCategorie(cat01);
@@ -110,15 +116,15 @@ public class TestDataValere implements TestDataValereLocal {
         tfParc02.setCategorie(catParcAttraction01);
 
 //-----------------------[ TYPEBILLET ]----------------------------
-        TypeBillet tb01 = new TypeBillet("places numérotées");
-        TypeBillet tb02 = new TypeBillet("places non-numérotées");
+        TypeBillet tbPlacesNumerotees = new TypeBillet("places numérotées");
+        TypeBillet tbPlaceLibre = new TypeBillet("places non-numérotées");
 
 //-----------------------[ LIGNECOMMANDE ]----------------------------
         LigneCommande lc01 = new LigneCommande();
         lc01.setPrix(tf02J.getPrix());
         lc01.setTauxTva(tva5v5p.getTaux());
 
-//-----------------------[ SEANCE ]----------------------------
+//-----------------------[  DATE  ]----------------------------
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         sdf.setLenient(false);
         String s = "03/07/2017 21:00:00";
@@ -146,14 +152,23 @@ public class TestDataValere implements TestDataValereLocal {
             Date d18 = sdf.parse("18/07/2017 20:30:00");
             Date d19 = sdf.parse("19/07/2017 20:30:00");
             Date d20 = sdf.parse("20/07/2017 20:30:00");
+            
+//-----------------------[ SPECTACLES ]----------------------------
+            
+            Spectacle spctPSJMonaco = new Spectacle("PSJ - Monaco", "125ème représentation sportive", StatutSpectacle.ACTIF);
+            Spectacle spctDisneyLando = new Spectacle("DisneyLandoCadrissian", "", StatutSpectacle.ACTIF);
+            Spectacle spctmaroon6 = new Spectacle("Maroon 6", "", StatutSpectacle.ACTIF);
+            Spectacle spctlaibach = new Spectacle("Laibach", "", StatutSpectacle.ACTIF);
+            
+//-----------------------[ SEANCE ]----------------------------            
+            Seance s01 = new Seance(d01, StatutSeance.ACTIF, spctmaroon6);
+            Seance s02 = new Seance(d02, StatutSeance.ACTIF, spctmaroon6);
 
-            Seance s01 = new Seance(d01, StatutSeance.ACTIF);
-            Seance s02 = new Seance(d02, StatutSeance.ACTIF);
+            Seance s03 = new Seance(d10, StatutSeance.ACTIF, spctDisneyLando);
 
-            Seance s03 = new Seance(d10, StatutSeance.ACTIF);
-
-            Seance s04 = new Seance(d04, StatutSeance.ACTIF);
-            Seance s05 = new Seance(d05, StatutSeance.ACTIF);
+            Seance s04 = new Seance(d05, StatutSeance.ACTIF, spctlaibach);
+            
+            Seance s05 = new Seance(d05, StatutSeance.ACTIF, spctPSJMonaco);
             Seance s06 = new Seance(d06, StatutSeance.ACTIF);
             Seance s07 = new Seance(d07, StatutSeance.ACTIF);
             Seance s08 = new Seance(d08, StatutSeance.ACTIF);
@@ -167,36 +182,61 @@ public class TestDataValere implements TestDataValereLocal {
             Seance s16 = new Seance(d16, StatutSeance.ACTIF);
 
 //-----------------------[ BILLET ]----------------------------
-            Billet b01 = new Billet("AA001", tva5v5p, tb01, s01, cat01);
-            Billet b02 = new Billet("AA002", tva5v5p, tb01, s01, cat02);
-            Billet b03 = new Billet("AA003", tva5v5p, tb02, s01, cat03);
-            Billet b04 = new Billet("AA004", tva5v5p, tb01, s01, cat02);
-            Billet b05 = new Billet("AA005", tva5v5p, tb01, s01, cat01);
-            Billet b06 = new Billet("AA006", tva5v5p, tb02, s01, cat03);
+            Billet b01 = new Billet("AA001", tva5v5p, tbPlacesNumerotees, s01, cat01);
+            Billet b02 = new Billet("AA002", tva5v5p, tbPlacesNumerotees, s01, cat02);
+            Billet b03 = new Billet("AA003", tva5v5p, tbPlaceLibre, s01, cat03);
+            Billet b04 = new Billet("AA004", tva5v5p, tbPlacesNumerotees, s01, cat02);
+            Billet b05 = new Billet("AA005", tva5v5p, tbPlacesNumerotees, s01, cat01);
+            Billet b06 = new Billet("AA006", tva5v5p, tbPlaceLibre, s01, cat03);
 
-            Billet b07 = new Billet("AA007", tva5v5p, tb02, s02, cat03);
-            Billet b08 = new Billet("AA008", tva5v5p, tb02, s02, cat03);
-            Billet b09 = new Billet("AA009", tva5v5p, tb02, s02, cat03);
-            Billet b10 = new Billet("AA010", tva5v5p, tb02, s02, cat03);
+            Billet b07 = new Billet("AA007", tva5v5p, tbPlaceLibre, s02, cat03);
+            Billet b08 = new Billet("AA008", tva5v5p, tbPlaceLibre, s02, cat03);
+            Billet b09 = new Billet("AA009", tva5v5p, tbPlaceLibre, s02, cat03);
+            Billet b10 = new Billet("AA010", tva5v5p, tbPlaceLibre, s02, cat03);
 
-            Billet b11 = new Billet("01BT0A011", tva10p, tb02, s03, catParcAttraction01);
-            Billet b12 = new Billet("01BT0A012", tva10p, tb02, s03, catParcAttraction01);
-            Billet b13 = new Billet("01BT0A013", tva10p, tb02, s03, catParcAttraction01);
-            Billet b14 = new Billet("02BT0A014", tva10p, tb02, s03, catParcAttraction01);
-            Billet b15 = new Billet("02BT0A015", tva10p, tb02, s03, catParcAttraction01);
-            Billet b16 = new Billet("02BT0A016", tva10p, tb02, s03, catParcAttraction01);
+            Billet b11 = new Billet("01BT0A011", tva10p, tbPlaceLibre, s03, catParcAttraction01);
+            Billet b12 = new Billet("01BT0A012", tva10p, tbPlaceLibre, s03, catParcAttraction01);
+            Billet b13 = new Billet("01BT0A013", tva10p, tbPlaceLibre, s03, catParcAttraction01);
+            Billet b14 = new Billet("02BT0A014", tva10p, tbPlaceLibre, s03, catParcAttraction01);
+            Billet b15 = new Billet("02BT0A015", tva10p, tbPlaceLibre, s03, catParcAttraction01);
+            Billet b16 = new Billet("02BT0A016", tva10p, tbPlaceLibre, s03, catParcAttraction01);
 
-            Billet b17 = new Billet("01BT0A017", tva5v5p, tb02, cat03);
-            Billet b18 = new Billet("01BT0A018", tva5v5p, tb02, cat03);
-            Billet b19 = new Billet("01BT0A019", tva5v5p, tb02, cat03);
-            Billet b20 = new Billet("01BT0A020", tva5v5p, tb02, cat03);
+            Billet b17 = new Billet("01LGBT0A017", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b18 = new Billet("01LGBT0A018", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b19 = new Billet("01LGBT0A019", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b20 = new Billet("01LGBT0A020", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b21 = new Billet("01LGBT0A021", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b22 = new Billet("01LGBT0A022", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b23 = new Billet("01LGBT0A023", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b24 = new Billet("01LGBT0A024", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b25 = new Billet("01LGBT0A025", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b26 = new Billet("01LGBT0A026", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b27 = new Billet("01LGBT0A027", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b28 = new Billet("01LGBT0A028", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b29 = new Billet("01LGBT0A029", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b30 = new Billet("01LGBT0A030", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b31 = new Billet("01LGBT0A031", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b32 = new Billet("01LGBT0A032", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b33 = new Billet("01LGBT0A033", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b34 = new Billet("01LGBT0A034", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b35 = new Billet("01LGBT0A035", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b36 = new Billet("01LGBT0A036", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b37 = new Billet("01LGBT0A037", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            Billet b38 = new Billet("01LGBT0A038", tva5v5p, tbPlaceLibre, s04, catPlaceDebout);
+            
+            Billet b39 = new Billet("02LGBT0A001", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise);
+            Billet b40 = new Billet("02LGBT0A002", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise);
+            Billet b41 = new Billet("02LGBT0A003", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise);
+            Billet b42 = new Billet("02LGBT0A004", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise);
+            Billet b43 = new Billet("02LGBT0A005", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise);
+            
+            Billet b44 = new Billet("HGD01", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
+            Billet b45 = new Billet("HGD02", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
+            Billet b46 = new Billet("HGD03", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
+            Billet b47 = new Billet("HGD01", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise);
 
 //-----------------------[ PLACE ]----------------------------
-//-----------------------[ SPECTACLES ]----------------------------
-            Spectacle spctPSGMonaco = new Spectacle();
-            Spectacle spctDisneyLand = new Spectacle();
-            Spectacle maroon5 = new Spectacle();
-
+            
             em.persist(b01);
             em.persist(b02);
             em.persist(b03);
@@ -217,6 +257,33 @@ public class TestDataValere implements TestDataValereLocal {
             em.persist(b18);
             em.persist(b19);
             em.persist(b20);
+            em.persist(b21);
+            em.persist(b22);
+            em.persist(b23);
+            em.persist(b24);
+            em.persist(b25);
+            em.persist(b26);
+            em.persist(b27);
+            em.persist(b28);
+            em.persist(b29);
+            em.persist(b30);
+            em.persist(b31);
+            em.persist(b32);
+            em.persist(b33);
+            em.persist(b34);
+            em.persist(b35);
+            em.persist(b36);
+            em.persist(b37);
+            em.persist(b38);
+            em.persist(b39);
+            em.persist(b40);
+            em.persist(b41);
+            em.persist(b42);
+            em.persist(b43);
+            em.persist(b44);
+            em.persist(b45);
+            em.persist(b46);
+            em.persist(b47);
 
             em.persist(lc01);
         } catch (ParseException ex) {

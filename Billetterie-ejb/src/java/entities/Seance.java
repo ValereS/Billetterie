@@ -54,6 +54,14 @@ public class Seance implements Serializable {
         this.statut = statut;
     }
 
+    public Seance(Date date, StatutSeance statut, Spectacle spectacle) {
+        this();
+        this.date = date;
+        this.statut = statut;
+        this.spectacle = spectacle;
+    }
+    
+
     public Seance(Date date, StatutSeance statut, Collection<Billet> billets) {
         this();
         this.date = date;

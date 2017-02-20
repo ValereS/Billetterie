@@ -9,9 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name="entities.Spectacle.selectAll", query ="select p  from Produit p" ),
+})
 public class Spectacle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -87,7 +92,7 @@ public class Spectacle implements Serializable {
         this.seances = seances;
     }
 
-    public Spectacle(Long id, String titre, String description, StatutSpectacle statut) {
+    public Spectacle(String titre, String description, StatutSpectacle statut) {
         this();
         this.titre = titre;
         this.description = description;
