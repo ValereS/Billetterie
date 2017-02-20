@@ -100,6 +100,9 @@ public class TestDataValere implements TestDataValereLocal {
         tf02E.setCategorie(cat02);
         tf02J.setCategorie(cat03);
         
+        em.persist(tf01J);em.persist(tf01E);em.persist(tf01N);em.persist(tf02J);em.persist(tf02N);em.persist(tf02E);
+        
+        
         tfParc01.setCategorie(catParcAttraction01);
         tfParc02.setCategorie(catParcAttraction01);
         

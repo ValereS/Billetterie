@@ -8,7 +8,6 @@ package service.testdata;
 import entities.Pays;
 import entities.Region;
 import entities.Ville;
-import entities.VillePK;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

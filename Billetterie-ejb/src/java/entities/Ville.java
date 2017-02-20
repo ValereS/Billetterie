@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,10 +25,10 @@ public class Ville implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @Column(name = "VILLENOM")
     private String nom;
+    @Id
     private String codePostal;    
-//    @EmbeddedId
-//    private VillePK pk;
 
     @OneToMany(mappedBy = "ville")
     private Collection<Coordonnees> coordonnees;
@@ -39,7 +40,6 @@ public class Ville implements Serializable {
     }
 
     public Ville(String nom, String codePostal) {
-//        pk = new VillePK(nom, codePostal);
         this.nom = nom;
         this.codePostal = codePostal;
     }
@@ -51,22 +51,18 @@ public class Ville implements Serializable {
 
     public String getNom() {
         return nom;
-//        return pk.getNom();
     }
 
     public void setNom(String nom) {
         this.nom = nom;
-//        pk.setNom(nom);
     }
 
     public String getCodePostal() {
         return codePostal;
-//        return pk.getCodePostal();
     }
 
     public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
-//        pk.setCodePostal(codePostal);
     }
 
     public Collection<Coordonnees> getCoordonnees() {

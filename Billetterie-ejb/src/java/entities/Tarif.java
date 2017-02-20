@@ -20,7 +20,7 @@ public class Tarif implements Serializable {
     private BigDecimal prix;
     private String nom;
 //--------------------------------------------------
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Categorie categorie;
 
     public Tarif() {
