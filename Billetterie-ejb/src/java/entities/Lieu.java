@@ -24,6 +24,7 @@ public class Lieu implements Serializable {
     
     @OneToMany(mappedBy = "lieu")
     private Collection<Zone> zones;
+    
     @OneToMany(mappedBy = "lieu")
     private List<Seance> seances;
     
