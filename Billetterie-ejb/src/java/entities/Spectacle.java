@@ -2,11 +2,14 @@ package entities;
 
 import enums.StatutSpectacle;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Spectacle implements Serializable {
@@ -25,6 +28,17 @@ public class Spectacle implements Serializable {
     @ManyToOne
     private Image image;
     
+    @OneToMany(mappedBy = "spectacle")
+    private Collection<Seance> seances;
+    
+    @OneToMany(mappedBy = "spectacle")
+    private Collection<Groupe> groupes;
+    
+    @ManyToOne
+    private SousTheme soustheme;
+    
+    @ManyToOne
+    private Evenement evenement;
     
 //---------------------------------------------------------------------------------------
             
@@ -61,6 +75,16 @@ public class Spectacle implements Serializable {
     }
 
     public Spectacle() {
+        groupes = new ArrayList<>();
+        seances = new ArrayList<>();
+    }
+
+    public Spectacle(String titre, String description, StatutSpectacle statut, Collection<Seance> seances) {
+        this();
+        this.titre = titre;
+        this.description = description;
+        this.statut = statut;
+        this.seances = seances;
     }
 
     public Spectacle(Long id, String titre, String description, StatutSpectacle statut) {
@@ -69,29 +93,48 @@ public class Spectacle implements Serializable {
         this.description = description;
         this.statut = statut;
     }
-    
-    
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Spectacle)) {
-            return false;
-        }
-        Spectacle other = (Spectacle) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public Image getImage() {
+        return image;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
+    public Collection<Seance> getSeances() {
+        return seances;
+    }
+
+    public void setSeances(Collection<Seance> seances) {
+        this.seances = seances;
+    }
+
+    public Collection<Groupe> getGroupes() {
+        return groupes;
+    }
+
+    public void setGroupes(Collection<Groupe> groupes) {
+        this.groupes = groupes;
+    }
+
+    public SousTheme getSoustheme() {
+        return soustheme;
+    }
+
+    public void setSoustheme(SousTheme soustheme) {
+        this.soustheme = soustheme;
+    }
+
+    public Evenement getEvenement() {
+        return evenement;
+    }
+
+    public void setEvenement(Evenement evenement) {
+        this.evenement = evenement;
+    }
+    
+    
     @Override
     public String toString() {
         return "entities.Spectacle[ id=" + id + " ]" + "titre : " + titre;

@@ -4,6 +4,7 @@ import entities.Billet;
 import entities.Categorie;
 import entities.LigneCommande;
 import entities.Seance;
+import entities.Spectacle;
 import entities.Tarif;
 import entities.Tva;
 import entities.TypeBillet;
@@ -82,7 +83,7 @@ public class TestDataValere implements TestDataValereLocal {
         Tarif tf02N = new Tarif(new BigDecimal("35.99"), "TARIF NORMAL");
 
         Tarif tfParc01 = new Tarif(new BigDecimal("39.99"), "TARIF ENFANT");
-        Tarif tfParc02 = new Tarif(new BigDecimal("65"), "TARIF NORMAL");
+        Tarif tfParc02 = new Tarif(new BigDecimal("60"), "TARIF NORMAL");
         
 //-----------------------[ CATEGORIE ]----------------------------
         
@@ -175,12 +176,13 @@ public class TestDataValere implements TestDataValereLocal {
             Billet b09 = new Billet("AA009", tva5v5p, tb02, s02, cat03);
             Billet b10 = new Billet("AA010", tva5v5p, tb02, s02, cat03);
 
-            Billet b11 = new Billet("01BT0A011", tva2v1p, tb02, s03, catParcAttraction01);
-            Billet b12 = new Billet("01BT0A012", tva2v1p, tb02, s03, catParcAttraction01);
-            Billet b13 = new Billet("01BT0A013", tva2v1p, tb02, s03, catParcAttraction01);
-            Billet b14 = new Billet("02BT0A014", tva2v1p, tb02, s03, catParcAttraction01);
-            Billet b15 = new Billet("02BT0A015", tva2v1p, tb02, s03, catParcAttraction01);
-            Billet b16 = new Billet("02BT0A016", tva2v1p, tb02, s03, catParcAttraction01);
+            Billet b11 = new Billet("01BT0A011", tva10p, tb02, s03, catParcAttraction01);
+            Billet b12 = new Billet("01BT0A012", tva10p, tb02, s03, catParcAttraction01);
+            Billet b13 = new Billet("01BT0A013", tva10p, tb02, s03, catParcAttraction01);
+            Billet b14 = new Billet("02BT0A014", tva10p, tb02, s03, catParcAttraction01);
+            Billet b15 = new Billet("02BT0A015", tva10p, tb02, s03, catParcAttraction01);
+            Billet b16 = new Billet("02BT0A016", tva10p, tb02, s03, catParcAttraction01);
+            
             
             Billet b17 = new Billet("01BT0A017", tva5v5p, tb02, cat03);
             Billet b18 = new Billet("01BT0A018", tva5v5p, tb02, cat03);
@@ -188,7 +190,13 @@ public class TestDataValere implements TestDataValereLocal {
             Billet b20 = new Billet("01BT0A020", tva5v5p, tb02, cat03);
 
 //-----------------------[ PLACE ]----------------------------
+            
+//-----------------------[ SPECTACLES ]----------------------------
 
+            Spectacle spctPSGMonaco = new Spectacle();
+            Spectacle spctDisneyLand = new Spectacle();
+            Spectacle maroon5 = new Spectacle();
+            
             em.persist(b01);
             em.persist(b02);
             em.persist(b03);
