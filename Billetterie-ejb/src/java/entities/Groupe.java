@@ -34,6 +34,14 @@ public class Groupe implements Serializable {
         this.nom = nom;
     }
 
+    public Collection<Fonction> getFonctions() {
+        return fonctions;
+    }
+
+    public void setFonctions(Collection<Fonction> fonctions) {
+        this.fonctions = fonctions;
+    }
+
     public Long getId() {
         return id;
     }

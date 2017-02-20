@@ -4,12 +4,15 @@ package essais;
 import entities.Fonction;
 import entities.Groupe;
 import entities.Participant;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
 public class JeuEssaiYo02 {
+    
+    public void creationYo01(){
     
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("Billetterie-ejbPU");
     EntityManager em = emf.createEntityManager();
@@ -37,7 +40,7 @@ public class JeuEssaiYo02 {
     Fonction f05= new Fonction("choeur");
     Fonction f06= new Fonction("guitare rythmique");
     Fonction f07= new Fonction("batterie");
-    Fonction f08= new Fonction("percussions");
+    //Fonction f08= new Fonction("percussions");
     
     //------------------------------------------------------------------------
     Fonction f20 = new Fonction("Jeff");
@@ -60,6 +63,8 @@ public class JeuEssaiYo02 {
     Fonction f17 = new Fonction("Kristoff");
     Fonction f18 = new Fonction("Sven le renne");
     Fonction f19 = new Fonction("Hans le prince");
+    Fonction f23 = new Fonction("Figurant01");
+    Fonction f24 = new Fonction("Figurant02");
     
     //---------------------------- PARTICIPANT --------------------------------
     
@@ -107,7 +112,60 @@ public class JeuEssaiYo02 {
     Participant p24 = new Participant("participant07"); // /!\ On sait jamais!!
     
     
+    //================= ASSOCIATION FONCTIONS/PARTICIPANTS =====================
     
+    // MARROON 5 ;
+    
+    f01.getParticipants().add(p04); // mickey madden bassiste
+    f02.getParticipants().add(p02); // Adam Levine chant
+    f03.getParticipants().add(p01); // Jesse Carmichael clavier
+    f04.getParticipants().add(p03); // James Valentine guitare solo
+    f05.getParticipants().add(p01); // Jesse Carmichael Choeur
+    f05.getParticipants().add(p03); // James Valentine Choeur
+    f05.getParticipants().add(p05); // Sam Farrar Choeur
+    f06.getParticipants().add(p05); // Sam Farrar guitare rythmique
+    f07.getParticipants().add(p06); // Matt Flynn batterie
+    
+    // JEFF PANACLOC
+    
+    f20.getParticipants().add(p07); // JEFF PANACLOC
+    f21.getParticipants().add(p07); // Jean- Marc
+    f22.getParticipants().add(p07); // Jacqueline
+    
+    // EDF DE FOOTBALL
+    
+    f09.getParticipants().add(p08); // gardiens de but
+    f09.getParticipants().add(p09);
+    f10.getParticipants().add(p10); // Defenseurs
+    f10.getParticipants().add(p11);
+    f11.getParticipants().add(p12); // Millieu de terrain
+    f11.getParticipants().add(p13);
+    f12.getParticipants().add(p14); // Attaquants
+    f12.getParticipants().add(p15);
+    f13.getParticipants().add(p16); // Entraineurs
+    f13.getParticipants().add(p17);
+    
+    // Disney sur Glace
+    f14.getParticipants().add(p18); // Anna
+    f15.getParticipants().add(p19); // Elsa
+    f16.getParticipants().add(p20); // Olaf
+    f17.getParticipants().add(p21); // Kristoff
+    f18.getParticipants().add(p22); // Sven
+    f19.getParticipants().add(p23); // Hans
+    f23.getParticipants().add(p24); // Participant 07
+    f23.getParticipants().add(p24); // Participant 07
+    
+    
+    //================GROUPES/FONCTIONS=======================
+    
+    
+    
+    
+    }
+    
+      
+        
+      
     
     
     

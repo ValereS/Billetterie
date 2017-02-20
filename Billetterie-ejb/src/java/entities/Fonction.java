@@ -41,6 +41,23 @@ public class Fonction implements Serializable {
         this.nom = nom;
     }
 
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+
+    public Collection<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Collection<Participant> participants) {
+        this.participants = participants;
+    }
+
+    
     @Override
     public String toString() {
         return "entities.Role[ nom=" + nom + " ]";
