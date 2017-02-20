@@ -6,13 +6,11 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -43,9 +41,8 @@ public class Coordonnees implements Serializable {
     public Coordonnees() {        
     }
 
-    public Coordonnees(Long id, String nom, String prenom, String entreprise, String numeroVoie, String typeVoie, String nomVoie, String telephone, String telephoneMobile, Ville ville) {
+    public Coordonnees(String nom, String prenom, String entreprise, String numeroVoie, String typeVoie, String nomVoie, String telephone, String telephoneMobile, Ville ville) {
         this();
-        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.entreprise = entreprise;

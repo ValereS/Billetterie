@@ -7,6 +7,7 @@ package entities;
 
 import enums.StatutPointRetrait;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,10 +28,16 @@ public class PointRetrait implements Serializable {
     private String nom;
     private StatutPointRetrait statut;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Coordonnees coordonnees;
 
     public PointRetrait() {
+    }
+
+    public PointRetrait(String nom, StatutPointRetrait statut, Coordonnees coordonnees) {
+        this.nom = nom;
+        this.statut = statut;
+        this.coordonnees = coordonnees;
     }
 
     public Long getId() {
