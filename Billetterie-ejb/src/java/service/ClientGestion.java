@@ -5,9 +5,11 @@
  */
 package service;
 
+import entities.Client;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -18,12 +20,12 @@ public class ClientGestion implements ClientGestionLocal {
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
-    public void persist(Object object) {
-        em.persist(object);
+    public Client selectClientByEmail(String email, String mdp){
+        Query qr = em.createNamedQuery("entities.Client.selectClientByEmail");
+        qr.setParameter("paramEmail", email);
+        qr.setParameter("paramHashMotPasse", mdp);
+        Client c = (Client) qr.getSingleResult();
+        return c;
     }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
-    
+            
 }
