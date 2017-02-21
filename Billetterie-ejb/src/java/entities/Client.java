@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +42,7 @@ public class Client implements Serializable {
     private CiviliteClient civilite;
     private String nom;
     private String prenom;
+    @Column(unique = true, nullable = false)
     private String email;
     private String hashMotPasse;
     @Temporal(TemporalType.DATE)

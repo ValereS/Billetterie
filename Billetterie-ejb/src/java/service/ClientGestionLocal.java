@@ -5,6 +5,7 @@
  */
 package service;
 
+import entities.Client;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface ClientGestionLocal {
+
+    public Client selectClientByEmail(String email, String mdp);
     
 }
