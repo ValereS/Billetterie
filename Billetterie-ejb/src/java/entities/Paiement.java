@@ -4,6 +4,8 @@ import enums.ModePaiement;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,15 +20,15 @@ public class Paiement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+    @Column(nullable=false, scale = 2, precision = 10)
     private BigDecimal montant;
     
     private ModePaiement modePaiement;
     
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     
-    @ManyToOne
+    @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Commande commande;
 
     public Paiement() {

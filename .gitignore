@@ -9,3 +9,9 @@ Billetterie-ejb/nbproject/*
 Billetterie-war/nbproject/*
 !Billetterie-war/nbproject/project.properties
 !Billetterie-war/nbproject/project.xml
+/Billetterie-ejb/build/
+/dist/
+/build/
+/Billetterie-ejb/dist/
+/Billetterie-war/dist/
+/Billetterie-war/build/

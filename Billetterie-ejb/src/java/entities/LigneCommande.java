@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class LigneCommande implements Serializable {
     private int quantite;
 //--------------------------------------------------
     
-    @ManyToOne
+    @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Commande commande;
     
     @OneToMany(mappedBy = "ligneCommande")
