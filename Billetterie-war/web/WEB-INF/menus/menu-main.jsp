@@ -12,5 +12,13 @@
             <c:url value="FrontController?section=catalogue" var="url02" />
             <a href="${url02}">Catalogue</a> |
         </li>
+        <li>
+            <c:url value="FrontController?section=inscription" var="url03" />
+            <a href="${url02}">S'inscrire</a> |
+        </li>
+        <li>
+            <c:url value="FrontController?section=connexion" var="url03" />
+            <a href="${url02}">Client</a>
+        </li>
     </ul>
 </nav>

@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,6 +28,10 @@ import javax.persistence.TemporalType;
  * @author cdi505
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entities.Client.selectClientByEmail", query = "select c from Client c where c.email = :paramEmail and c.hashMotPasse = :paramHashMotPasse"),
+    @NamedQuery(name = "entities.Client.selectClientByCode", query = "select c from Client c where c.code = :paramCode")
+})
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
