@@ -1,7 +1,8 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 
 @Entity
 public class SousTheme implements Serializable {
@@ -21,11 +21,16 @@ public class SousTheme implements Serializable {
     
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Theme theme;
+    
+    @OneToMany(mappedBy = "soustheme")
+    private Collection<Spectacle> spectacles;
 
     public SousTheme() {
+       spectacles = new ArrayList<>();
     }
 
     public SousTheme(String nom) {
+        this();
         this.nom = nom;
     }
     

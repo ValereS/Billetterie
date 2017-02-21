@@ -10,6 +10,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface SpectacleGestionLocal {
-    public List<Spectacle> selectAllSpectacle();
+
+    public List<Spectacle> selectAll();
     
 }

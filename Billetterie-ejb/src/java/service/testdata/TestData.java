@@ -17,9 +17,6 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class TestData implements TestDataLocal {
 
-    @PersistenceContext(unitName = "Billetterie-ejbPU")
-    private EntityManager em;
-
     @EJB
     private TestDataValereLocal testDataValere;
 
@@ -29,11 +26,14 @@ public class TestData implements TestDataLocal {
     @EJB
     private TestDataYoanLocal testDataYoan;
     
+    @EJB
+    private TestDataInnaLocal testDataInna;
 
     @Override
     public void create() {
         testDataValere.creerDonnees();
         testDataPhiLong.create();
         testDataYoan.create();
+        testDataInna.create();
     }
 }
