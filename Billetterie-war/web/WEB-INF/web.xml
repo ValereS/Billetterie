@@ -11,6 +11,10 @@
             <param-name>navigation</param-name>
             <param-value>controllers.NavigationController</param-value>
         </init-param>
+        <init-param>
+            <param-name>search</param-name>
+            <param-value>controllers.SearchController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -26,5 +30,11 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.testdata.TestDataLocal</local>
         <ejb-link>Billetterie-ejb.jar#TestData</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>SpectacleGestion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.SpectacleGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#SpectacleGestion</ejb-link>
     </ejb-local-ref>
 </web-app>

@@ -9,13 +9,13 @@
         <title>Billet Ti - Catalogue</title>
     </head>
     <body>
-        <c:url value="ControleurMain?section=navigation" var="urul02" />
+        <c:url value="FrontController?section=navigation" var="urul02" />
         <c:import url="${urul02}" />
-        <c:url value="ControleurMain?section=search" var="url03" />
+        <c:url value="FrontController?section=search" var="url03" />
         <c:import url="${url03}" />
         <hr />
         <div>
-            <c:url value="ControleurMain?section=catalogue-display" var="url04" />
+            <c:url value="FrontController?section=catalogue-display" var="url04" />
             <c:import url="${url04}" />
         </div>
     </body>
