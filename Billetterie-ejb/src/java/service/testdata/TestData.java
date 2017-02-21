@@ -19,9 +19,6 @@ public class TestData implements TestDataLocal {
     @EJB
     private TestDataValerianLocal testDataValerian;
 
-    @PersistenceContext(unitName = "Billetterie-ejbPU")
-    private EntityManager em;
-
     @EJB
     private TestDataValereLocal testDataValere;
 
@@ -31,6 +28,9 @@ public class TestData implements TestDataLocal {
     @EJB
     private TestDataYoanLocal testDataYoan;
     
+    @EJB
+    private TestDataInnaLocal testDataInna;
+
     
     @Override
     public void create() {
@@ -38,5 +38,6 @@ public class TestData implements TestDataLocal {
         testDataPhiLong.create();
         testDataYoan.create();
         testDataValerian.jeuValerian();
+        testDataInna.create();
     }
 }

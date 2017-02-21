@@ -13,10 +13,12 @@ import javax.persistence.Query;
  */
 @Stateless
 public class SpectacleGestion implements SpectacleGestionLocal {
+
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
-    public List<Spectacle> selectAllSpectacle(){
+    @Override
+    public List<Spectacle> selectAll() {
         Query qr = em.createNamedQuery("entities.Spectacle.selectAll");
         return qr.getResultList();
     }
