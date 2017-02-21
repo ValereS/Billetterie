@@ -4,6 +4,10 @@
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controllers.FrontController</servlet-class>
         <init-param>
+            <param-name>catalogue</param-name>
+            <param-value>controllers.DefaultController</param-value>
+        </init-param>
+        <init-param>
             <param-name>data</param-name>
             <param-value>controllers.DataController</param-value>
         </init-param>
@@ -15,6 +19,10 @@
             <param-name>search</param-name>
             <param-value>controllers.SearchController</param-value>
         </init-param>
+        <init-param>
+            <param-name>catalogue-display</param-name>
+            <param-value>controllers.CatalogueDisplayController</param-value>
+        </init-param>    
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>

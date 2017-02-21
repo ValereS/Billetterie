@@ -26,17 +26,17 @@ public class CatalogueDisplayController implements SubControllerInterface {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String paramSearch = request.getParameter("paramSearch");
-        List<Spectacle> spectacles;
+        List<Spectacle> shows;
 
         if (paramSearch == null || paramSearch.trim().isEmpty()) {
-            spectacles = spectacleGestion.selectAll();
+            shows = spectacleGestion.selectAll();
         } else {
-            spectacles = spectacleGestion.selectAll();
+            shows = spectacleGestion.selectAll();
 //            spectacles = spectacleGestion.selectBySearch(paramSearch);
         }
 
-        request.setAttribute("spectacles", spectacles);
-        return "includes/magasin/catalogue-display";
+        request.setAttribute("shows", shows);
+        return "includes/store/catalogue-display";
     }
 
     private SpectacleGestionLocal lookupSpectacleGestionLocal() {
