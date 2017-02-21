@@ -1,5 +1,6 @@
 package service.testdata;
 
+import entities.Image;
 import entities.Lieu;
 import entities.Seance;
 import entities.Spectacle;
@@ -47,12 +48,18 @@ public class TestDataInna implements TestDataInnaLocal {
 
 //-----------------------[ SPECTACLES ]---------------------------------------
             Spectacle spctMozart = new Spectacle("REQUIEM DE MOZART", " WOLFGANG AMADEUS MOZART", StatutSpectacle.ACTIF);
+            spctMozart.setImage(new Image("http://lechoeurderiom.free.fr/Medias/affiches/requiem_mozart.JPG"));
             Spectacle spctBach = new Spectacle("PASSION SELON SAINT JEAN FRANCOIS DEJARDIN", "JOHANN SEBASTIAN BACH", StatutSpectacle.ACTIF);
+            spctBach.setImage(new Image("http://www.harmoniamundi.com/__media/document/1808/901748.49_G.jpg"));
             Spectacle spctFoot1 = new Spectacle("FINALE COUPE DE LA LIGUE DES JUSTICIERS", " COUPE DE LA LIGUE", StatutSpectacle.ACTIF);
+            spctFoot1.setImage(new Image("http://www.francebillet.com/static/0/visuel/600/347/FINALE-COUPE-DE-LA-LIGUE-2017_3476961719077401827.jpg?1478605101000"));
             Spectacle spctFoot2 = new Spectacle("OLYMPIQUE DE MARSEILLE / PSG", " PARIS SAINT-GERMAIN, OLYMPIQUE DE MARSEILLE", StatutSpectacle.ACTIF);
+            spctFoot2.setImage(new Image("http://france3-regions.francetvinfo.fr/auvergne-rhone-alpes/sites/regions_france3/files/styles/top_big/public/assets/images/2015/09/20/pronostic-om-ol.jpg?itok=b_iM2Y2C"));
             Spectacle spctCirque1 = new Spectacle("GRAND CIRQUE ST PETERSBOURG", "CIRQUE TRADITIONNEL", StatutSpectacle.ACTIF);
+            spctCirque1.setImage(new Image("http://static2.digitick.com/commun/images/upload/evenements/aff_Affiche2A4StPET_640.jpg"));
             Spectacle spctCirque2 = new Spectacle("GRAND CIRQUE MEDRANO", "CIRQUE TRADITIONNEL", StatutSpectacle.ACTIF);
-
+            spctCirque2.setImage(new Image("https://pbs.twimg.com/profile_images/524480611856044034/vpZ8iIFw.jpeg"));
+            
 //-----------------------[ LIEU ]------------------------------------------
             Lieu madelaine = new Lieu("Eglise de la Madeleine", null, "eglise catholique");
             Lieu stadeLyon = new Lieu("PARC OLYMPIQUE LYONNAIS", null, null);

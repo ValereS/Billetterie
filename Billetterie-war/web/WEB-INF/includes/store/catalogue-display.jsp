@@ -10,6 +10,6 @@ Catalogue display!!!
 
 <ul>
     <c:forEach var="show" items="${shows}">
-        <li>${show}</li>
-        </c:forEach>
+        <li><img src="${show.image.url}" width="100px"/>${show.titre}</li>
+    </c:forEach>
 </ul>

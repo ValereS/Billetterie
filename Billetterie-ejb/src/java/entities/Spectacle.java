@@ -4,6 +4,7 @@ import enums.StatutSpectacle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Spectacle implements Serializable {
     
 //--------------------------------------------------------------------------------------
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Image image;
     
     @OneToMany(mappedBy = "spectacle")
