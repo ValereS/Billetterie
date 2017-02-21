@@ -16,8 +16,8 @@
             <param-value>controllers.NavigationController</param-value>
         </init-param>
         <init-param>
-            <param-name>seConnecter</param-name>
-            <param-value>controllers.SeConnecterController</param-value>
+            <param-name>login</param-name>
+            <param-value>controllers.DefaultController</param-value>
         </init-param>
         <init-param>
             <param-name>search</param-name>
@@ -26,7 +26,11 @@
         <init-param>
             <param-name>catalogue-display</param-name>
             <param-value>controllers.CatalogueDisplayController</param-value>
-        </init-param>    
+        </init-param>
+        <init-param>
+            <param-name>client</param-name>
+            <param-value>controllers.ClientController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -51,6 +55,12 @@
     </ejb-local-ref>
     <ejb-local-ref>
         <ejb-ref-name>ClientGestion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.ClientGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#ClientGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>ClientGestion1</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.ClientGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#ClientGestion</ejb-link>

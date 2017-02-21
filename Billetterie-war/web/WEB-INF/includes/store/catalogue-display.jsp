@@ -11,5 +11,5 @@ Catalogue display!!!
 <ul>
     <c:forEach var="show" items="${shows}">
         <li>${show}</li>
-    </c:forEach>
+        </c:forEach>
 </ul>
