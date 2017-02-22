@@ -12,5 +12,9 @@ import javax.ejb.Local;
 public interface SpectacleGestionLocal {
 
     public List<Spectacle> selectAll();
+
+    List<Spectacle> select(int pageNumber, int maxResults);
+
+    long count();
     
 }

@@ -22,4 +22,20 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         Query qr = em.createNamedQuery("entities.Spectacle.selectAll");
         return qr.getResultList();
     }
+
+    @Override
+    public List<Spectacle> select(int pageNumber, int maxResults) {
+        Query qr = em.createNamedQuery("entities.Spectacle.selectAll");
+        int firstResult = (pageNumber - 1) * maxResults;
+        qr.setFirstResult(firstResult);
+        qr.setMaxResults(maxResults);
+        return qr.getResultList();
+    }
+
+    @Override
+    public long count() {
+        Query qr = em.createNamedQuery("entities.Spectacle.count");
+        return (long) qr.getSingleResult();
+    }
+
 }

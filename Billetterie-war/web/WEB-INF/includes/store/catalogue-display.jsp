@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<jsp:include page="pagination.jsp" />
+
 <ul>
     <c:forEach var="show" items="${shows}">
         <li>
@@ -13,3 +15,5 @@
         </li>
     </c:forEach>
 </ul>
+
+<jsp:include page="pagination.jsp" />

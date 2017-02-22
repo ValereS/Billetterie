@@ -16,7 +16,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="entities.Spectacle.selectAll", query ="select s from Spectacle s" )
+    @NamedQuery(name="entities.Spectacle.selectAll", query ="SELECT s FROM Spectacle s" ),
+    @NamedQuery(name="entities.Spectacle.count", query ="SELECT COUNT(s) FROM Spectacle s" )
 })
 public class Spectacle implements Serializable {
 
