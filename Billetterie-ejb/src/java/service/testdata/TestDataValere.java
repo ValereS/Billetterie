@@ -33,14 +33,7 @@ public class TestDataValere implements TestDataValereLocal {
 
     @Override
     public void creerDonnees() {
-        
-//-----------------------[ IMAGE ]----------------------------
-
-        Image imgDisneyLando = new Image("http://www.hellodisneyland.com/wp-content/uploads/2017/01/titreSOF.jpg");
-        Image imgMaroon5 = new Image("http://www.kiss985.com/sites/g/files/giy656/f/styles/delta__775x515/public/Events/Maroon5.jpg?itok=O2fZP3eD&c=a540186afedfbae631a6b24b5f8304d9");
-        Image imgLaibach = new Image("http://www.lagrosseradio.com/webzine/images/11215.jpg");
-        Image imgPsjMonaco = new Image("http://resize-football.ladmedia.fr/r/920,/crop/920,512/img/images/media/ligue-1/articles/rennes-monaco-les-notes/rennes-monaco-notes/5497562-1-fre-FR/rennes-monaco-notes.png");
-        
+          
 //-----------------------[  TVA  ]----------------------------
         Tva tva5v5p = new Tva(0.055f);
         Tva tva2v1p = new Tva(0.021f);
