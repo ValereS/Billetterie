@@ -8,6 +8,10 @@
             <param-value>controllers.DefaultController</param-value>
         </init-param>
         <init-param>
+            <param-name>show</param-name>
+            <param-value>controllers.DefaultController</param-value>
+        </init-param>
+        <init-param>
             <param-name>data</param-name>
             <param-value>controllers.DataController</param-value>
         </init-param>
@@ -26,6 +30,10 @@
         <init-param>
             <param-name>catalogue-display</param-name>
             <param-value>controllers.CatalogueDisplayController</param-value>
+        </init-param>
+        <init-param>
+            <param-name>show-display</param-name>
+            <param-value>controllers.ShowDisplayController</param-value>
         </init-param>
         <init-param>
             <param-name>client</param-name>
