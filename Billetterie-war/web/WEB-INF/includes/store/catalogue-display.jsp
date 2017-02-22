@@ -2,14 +2,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-Catalogue display!!!
-
-<p>
-    paramSearch = ${paramSearch}
-</p>
+<jsp:include page="pagination.jsp" />
 
 <ul>
     <c:forEach var="show" items="${shows}">
-        <li>${show}</li>
-        </c:forEach>
+        <li>
+            <c:url var="url" value="FrontController?section=show&id=${show.id}" />
+            <a href="${url}">
+                <img src="${show.image.url}" width="100" alt="${show.titre}" />
+                ${show.titre}
+            </a>
+        </li>
+    </c:forEach>
 </ul>
+
+<jsp:include page="pagination.jsp" />

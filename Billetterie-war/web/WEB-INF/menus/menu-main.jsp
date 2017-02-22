@@ -23,7 +23,7 @@
             </c:if>
             <c:if test="${not empty client}">
                 <c:url value="FrontController?section=client" var="url05" />
-                <a href="${url05}">Saluton ${client.nom} !</a>
+                <a href="${url05}">Saluton, ${client.nomComplet} !</a>
                 <c:url value="FrontController?section=client&action=logout" var="url06" />
                 <a href="${url06}">Malkonekti</a>
             </c:if>

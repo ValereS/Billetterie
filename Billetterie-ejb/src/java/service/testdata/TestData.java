@@ -16,6 +16,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class TestData implements TestDataLocal {
+    @EJB
+    private TestDataValerianLocal testDataValerian;
 
     @EJB
     private TestDataValereLocal testDataValere;
@@ -29,11 +31,13 @@ public class TestData implements TestDataLocal {
     @EJB
     private TestDataInnaLocal testDataInna;
 
+    
     @Override
     public void create() {
         testDataValere.creerDonnees();
         testDataPhiLong.create();
         testDataYoan.create();
+        testDataValerian.jeuValerian();
         testDataInna.create();
     }
 }

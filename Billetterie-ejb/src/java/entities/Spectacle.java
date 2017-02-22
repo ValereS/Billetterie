@@ -4,6 +4,7 @@ import enums.StatutSpectacle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,10 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="entities.Spectacle.selectAll", query ="select s from Spectacle s" )
+    @NamedQuery(name="entities.Spectacle.select", query ="SELECT s FROM Spectacle s"),
+    @NamedQuery(name="entities.Spectacle.count", query ="SELECT COUNT(s) FROM Spectacle s"),
+    @NamedQuery(name="entities.Spectacle.selectBySearch", query ="SELECT s FROM Spectacle s WHERE s.titre LIKE :paramSearch OR s.description LIKE :paramSearch"),
+    @NamedQuery(name="entities.Spectacle.countBySearch", query ="SELECT COUNT(s) FROM Spectacle s WHERE s.titre LIKE :paramSearch OR s.description LIKE :paramSearch")
 })
 public class Spectacle implements Serializable {
 
@@ -30,7 +34,7 @@ public class Spectacle implements Serializable {
     
 //--------------------------------------------------------------------------------------
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Image image;
     
     @OneToMany(mappedBy = "spectacle")

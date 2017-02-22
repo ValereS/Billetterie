@@ -9,27 +9,32 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 @Entity
 public class Commande implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private Long numero;  
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;  
     @Column(nullable=false, scale = 2, precision = 10)
     private BigDecimal frais;
     
     private StatutCommande statut;
     
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     
     @OneToMany(mappedBy = "commande")
     private Collection<Paiement> paiements;
+    
+    @OneToMany(mappedBy = "commande")
+    private Collection<LigneCommande> lignesCommandes;
     
     @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Client client;
@@ -45,24 +50,18 @@ public class Commande implements Serializable {
     private Coordonnees adresseLivraison;
     
     public Commande() {
-        paiements = new ArrayList<>();        
+        paiements = new ArrayList<>();   
+        lignesCommandes = new ArrayList<>();
     }
 
-    public Commande(Long numero, BigDecimal frais, StatutCommande statut, Date date) {
+    public Commande(BigDecimal frais, StatutCommande statut, Date date) {
         this();
-        this.numero = numero;
         this.frais = frais;
         this.statut = statut;
         this.date = date;
     }
 
-    public Long getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Long numero) {
-        this.numero = numero;
-    }
+ 
 
     public BigDecimal getFrais() {
         return frais;
@@ -114,6 +113,8 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "Commande{" + "numero=" + numero + ", frais=" + frais + ", statut=" + statut + ", date=" + date + '}';
+        return "Commande{" + "id=" + id + ", frais=" + frais + ", statut=" + statut + ", date=" + date + ", paiements=" + paiements + ", lignesCommandes=" + lignesCommandes + ", client=" + client + ", modeExpedition=" + modeExpedition + ", adresseFacturation=" + adresseFacturation + ", adresseLivraison=" + adresseLivraison + '}';
     }
+
+
 }
