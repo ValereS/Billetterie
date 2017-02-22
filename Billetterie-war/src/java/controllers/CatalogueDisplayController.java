@@ -53,7 +53,6 @@ public class CatalogueDisplayController implements SubControllerInterface {
         } else {
             count = spectacleGestion.countBySearch(paramSearch);
             shows = spectacleGestion.selectBySearch(pageNumber, maxResults, paramSearch);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + count);
         }
 
         long numPages = (long) Math.ceil((double) count / maxResults);
