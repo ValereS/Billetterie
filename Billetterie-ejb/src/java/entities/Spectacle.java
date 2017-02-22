@@ -16,8 +16,10 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="entities.Spectacle.selectAll", query ="SELECT s FROM Spectacle s" ),
-    @NamedQuery(name="entities.Spectacle.count", query ="SELECT COUNT(s) FROM Spectacle s" )
+    @NamedQuery(name="entities.Spectacle.select", query ="SELECT s FROM Spectacle s"),
+    @NamedQuery(name="entities.Spectacle.count", query ="SELECT COUNT(s) FROM Spectacle s"),
+    @NamedQuery(name="entities.Spectacle.selectBySearch", query ="SELECT s FROM Spectacle s WHERE s.titre LIKE :paramSearch OR s.description LIKE :paramSearch"),
+    @NamedQuery(name="entities.Spectacle.countBySearch", query ="SELECT COUNT(s) FROM Spectacle s WHERE s.titre LIKE :paramSearch OR s.description LIKE :paramSearch")
 })
 public class Spectacle implements Serializable {
 

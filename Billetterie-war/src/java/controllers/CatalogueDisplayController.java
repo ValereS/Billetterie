@@ -45,15 +45,17 @@ public class CatalogueDisplayController implements SubControllerInterface {
         }
 
         List<Spectacle> shows;
+        long count;
 
         if (paramSearch == null || paramSearch.trim().isEmpty()) {
+            count = spectacleGestion.count();
             shows = spectacleGestion.select(pageNumber, maxResults);
         } else {
-            shows = spectacleGestion.selectAll();
-//            spectacles = spectacleGestion.selectBySearch(paramSearch);
+            count = spectacleGestion.countBySearch(paramSearch);
+            shows = spectacleGestion.selectBySearch(pageNumber, maxResults, paramSearch);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + count);
         }
 
-        long count = spectacleGestion.count();
         long numPages = (long) Math.ceil((double) count / maxResults);
         List<Integer> pageNumbers = new ArrayList();
         for (int i = 1; i <= numPages; ++i) {
@@ -62,7 +64,9 @@ public class CatalogueDisplayController implements SubControllerInterface {
 
         request.setAttribute("shows", shows);
         request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("maxResults", maxResults);
         request.setAttribute("pageNumbers", pageNumbers);
+        request.setAttribute("paramSearch", paramSearch);
         return "includes/store/catalogue-display";
     }
 
