@@ -15,6 +15,10 @@ import javax.ejb.Local;
 @Local
 public interface ClientGestionLocal {
 
-    public Client selectClientByEmail(String email, String mdp);
+    public Client selectByEmailPwd(String email, String mdp);
+
+    Client selectByEmail(String email);
+
+    void create(Client client);
     
 }

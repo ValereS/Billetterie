@@ -43,7 +43,7 @@ public class Spectacle implements Serializable {
     @OneToMany(mappedBy = "spectacle")
     private Collection<Groupe> groupes;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private SousTheme soustheme;
     
     @ManyToOne

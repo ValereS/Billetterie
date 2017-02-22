@@ -22,9 +22,10 @@ public class ClientGestion implements ClientGestionLocal {
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
+    
     @Override
-    public Client selectClientByEmail(String email, String mdp) {
-        Query qr = em.createNamedQuery("entities.Client.selectClientByEmail");
+    public Client selectByEmailPwd(String email, String mdp) {
+        Query qr = em.createNamedQuery("entities.Client.selectByEmailPwd");
         qr.setParameter("paramEmail", email);
         qr.setParameter("paramHashMotPasse", mdp);
         try {
@@ -34,5 +35,23 @@ public class ClientGestion implements ClientGestionLocal {
             return null;
         }
     }
+
+    @Override
+    public Client selectByEmail(String email) {
+        Query qr = em.createNamedQuery("entities.Client.selectByEmail");
+        qr.setParameter("paramEmail", email);
+        try {
+            Client c = (Client) qr.getSingleResult();
+            return c;
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public void create(Client client) {
+        em.persist(client);
+    }
+    
 
 }

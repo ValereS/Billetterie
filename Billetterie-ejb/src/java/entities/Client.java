@@ -30,8 +30,9 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "entities.Client.selectClientByEmail", query = "select c from Client c where c.email = :paramEmail and c.hashMotPasse = :paramHashMotPasse"),
-    @NamedQuery(name = "entities.Client.selectClientByCode", query = "select c from Client c where c.code = :paramCode")
+    @NamedQuery(name = "entities.Client.selectByEmailPwd", query = "select c from Client c where c.email = :paramEmail and c.hashMotPasse = :paramHashMotPasse"),
+    @NamedQuery(name = "entities.Client.selectByCode", query = "select c from Client c where c.code = :paramCode"),
+    @NamedQuery(name = "entities.Client.selectByEmail", query = "select c from Client c where c.email = :paramEmail")
 })
 public class Client implements Serializable {
 
@@ -62,14 +63,14 @@ public class Client implements Serializable {
 
     public Client(CiviliteClient civilite, String nom, String prenom, String email, String hashMotPasse, Date dateNaissance, StatutClient statut, String commentaire) {
         this();
-        this.civilite = civilite;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.hashMotPasse = hashMotPasse;
-        this.dateNaissance = dateNaissance;
-        this.statut = statut;
-        this.commentaire = commentaire;
+        setCivilite(civilite);
+        setNom(nom);
+        setPrenom(prenom);
+        setEmail(email);
+        setHashMotPasse(hashMotPasse);
+        setDateNaissance(dateNaissance);
+        setStatut(statut);
+        setCommentaire(commentaire);
     }
 
     public Long getCode() {
@@ -84,7 +85,7 @@ public class Client implements Serializable {
         return civilite;
     }
 
-    public void setCivilite(CiviliteClient civilite) {
+    public final void setCivilite(CiviliteClient civilite) {
         this.civilite = civilite;
     }
 
@@ -92,7 +93,7 @@ public class Client implements Serializable {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public final void setNom(String nom) {
         this.nom = nom;
     }
 
@@ -100,7 +101,7 @@ public class Client implements Serializable {
         return prenom;
     }
 
-    public void setPrenom(String prenom) {
+    public final void setPrenom(String prenom) {
         this.prenom = prenom;
     }
     
@@ -112,7 +113,7 @@ public class Client implements Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
+    public final void setEmail(String email) {
         this.email = email;
     }
 
@@ -120,7 +121,7 @@ public class Client implements Serializable {
         return hashMotPasse;
     }
 
-    public void setHashMotPasse(String hashMotPasse) {
+    public final void setHashMotPasse(String hashMotPasse) {
         this.hashMotPasse = hashMotPasse;
     }
 
@@ -128,7 +129,7 @@ public class Client implements Serializable {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public final void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -136,7 +137,7 @@ public class Client implements Serializable {
         return statut;
     }
 
-    public void setStatut(StatutClient statut) {
+    public final void setStatut(StatutClient statut) {
         this.statut = statut;
     }
 
@@ -144,7 +145,7 @@ public class Client implements Serializable {
         return commentaire;
     }
 
-    public void setCommentaire(String commentaire) {
+    public final void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
 

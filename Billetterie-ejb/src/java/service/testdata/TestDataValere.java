@@ -108,11 +108,11 @@ public class TestDataValere implements TestDataValereLocal {
 
 //-----------------------[ SOUSTHEMES ]----------------------------
             
-            SousTheme football = new SousTheme("Football");
-            SousTheme famille = new SousTheme("Famille");
-            SousTheme cirque = new SousTheme("Cirque");
-            SousTheme parcAttr = new SousTheme("Parc d'Attraction");
-            SousTheme concert = new SousTheme("Concert");
+            SousTheme football = new SousTheme("Footeuball");
+            SousTheme famille = new SousTheme("Familly");
+            SousTheme cirque = new SousTheme("Cirques");
+            SousTheme parcAttr = new SousTheme("Parc d'Attractionos");
+            SousTheme concert = new SousTheme("Concertos");
             
             
 //-----------------------[  DATE  ]----------------------------
@@ -287,4 +287,6 @@ public class TestDataValere implements TestDataValereLocal {
             Logger.getLogger(TestDataValere.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
 }
