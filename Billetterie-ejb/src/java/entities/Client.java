@@ -103,6 +103,10 @@ public class Client implements Serializable {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+    
+    public String getNomComplet() {
+        return String.format("%s %s", prenom, nom);
+    }
 
     public String getEmail() {
         return email;
