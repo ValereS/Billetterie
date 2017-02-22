@@ -31,6 +31,10 @@
             <param-name>client</param-name>
             <param-value>controllers.ClientController</param-value>
         </init-param>
+        <init-param>
+            <param-name>signup</param-name>
+            <param-value>controllers.DefaultController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>

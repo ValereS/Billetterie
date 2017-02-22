@@ -2,8 +2,10 @@ package service.testdata;
 
 import entities.Billet;
 import entities.Categorie;
+import entities.Image;
 import entities.LigneCommande;
 import entities.Seance;
+import entities.SousTheme;
 import entities.Spectacle;
 import entities.Tarif;
 import entities.Tva;
@@ -28,40 +30,6 @@ public class TestDataValere implements TestDataValereLocal {
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
-    public void creerDonneesNotWorking() {
-        Tarif tf01 = new Tarif(new BigDecimal("20"), "TARIF JEUNE");
-        Tarif tf02 = new Tarif(new BigDecimal("15"), "TARIF ENFANT");
-        Tarif tf03 = new Tarif(new BigDecimal("25.99"), "TARIF NORMAL");
-
-        ArrayList<Tarif> tarifNJE = new ArrayList<>();
-        tarifNJE.add(tf01);
-        tarifNJE.add(tf02);
-        tarifNJE.add(tf03);
-
-        ArrayList<Tarif> tarifN = new ArrayList<>();
-        tarifNJE.add(tf03);
-
-        ArrayList<Tarif> tarifNE = new ArrayList<>();
-        tarifNJE.add(tf02);
-        tarifNJE.add(tf03);
-
-        Categorie cat01 = new Categorie("A");
-        Categorie cat02 = new Categorie("B");
-        Categorie cat03 = new Categorie("C");
-        cat01.setTarifs(tarifN);
-        cat02.setTarifs(tarifNE);
-        cat03.setTarifs(tarifNJE);
-
-//        tf01.setCategorie(cat01);
-//        tf02.setCategorie(cat02);
-//        tf03.setCategorie(cat03);
-//        tf02.setCategorie(cat02);
-//        tf01.setCategorie(cat01);
-        em.persist(cat01);
-        em.persist(cat02);
-        em.persist(cat03);
-    }
-
     @Override
     public void creerDonnees() {
 
@@ -71,7 +39,6 @@ public class TestDataValere implements TestDataValereLocal {
         Tva tva10p = new Tva(0.1f);
 
 //-----------------------[ TARIF ]----------------------------
-        BigDecimal bd01 = new BigDecimal(BigInteger.ONE);
 
         Tarif tf01J = new Tarif(new BigDecimal("20"), "TARIF JEUNE");
         Tarif tf01E = new Tarif(new BigDecimal("15"), "TARIF ENFANT");
@@ -86,6 +53,14 @@ public class TestDataValere implements TestDataValereLocal {
         
         Tarif tfLaibachF = new Tarif(new BigDecimal("64"), "TARIF NORMAL");
         Tarif tfLaibachD = new Tarif(new BigDecimal("90"), "TARIF NORMAL");
+        
+//-----------------------[ IMAGE ]----------------------------
+
+        Image imgDisneyLando = new Image("http://www.hellodisneyland.com/wp-content/uploads/2017/01/titreSOF.jpg");
+        Image imgMaroon5 = new Image("http://www.kiss985.com/sites/g/files/giy656/f/styles/delta__775x515/public/Events/Maroon5.jpg?itok=O2fZP3eD&c=a540186afedfbae631a6b24b5f8304d9");
+        Image imgLaibach = new Image("http://www.lagrosseradio.com/webzine/images/11215.jpg");
+        Image imgPsjMonaco = new Image("http://resize-football.ladmedia.fr/r/920,/crop/920,512/img/images/media/ligue-1/articles/rennes-monaco-les-notes/rennes-monaco-notes/5497562-1-fre-FR/rennes-monaco-notes.png");
+        
 
 //-----------------------[ CATEGORIE ]----------------------------
         Categorie cat01 = new Categorie("A");
@@ -102,6 +77,8 @@ public class TestDataValere implements TestDataValereLocal {
         tf02N.setCategorie(cat01);
         tf02E.setCategorie(cat02);
         tf02J.setCategorie(cat03);
+        tfLaibachD.setCategorie(catPlaceAssise);
+        tfLaibachF.setCategorie(catPlaceDebout);
 
         em.persist(tf01J);
         em.persist(tf01E);
@@ -112,6 +89,9 @@ public class TestDataValere implements TestDataValereLocal {
         em.persist(tfParc01);
         em.persist(tfParc02);
         
+        em.persist(tfLaibachD);
+        em.persist(tfLaibachF);
+        
         tfParc01.setCategorie(catParcAttraction01);
         tfParc02.setCategorie(catParcAttraction01);
 
@@ -119,11 +99,21 @@ public class TestDataValere implements TestDataValereLocal {
         TypeBillet tbPlacesNumerotees = new TypeBillet("places numérotées");
         TypeBillet tbPlaceLibre = new TypeBillet("places non-numérotées");
 
+            
 //-----------------------[ LIGNECOMMANDE ]----------------------------
         LigneCommande lc01 = new LigneCommande();
         lc01.setPrix(tf02J.getPrix());
         lc01.setTauxTva(tva5v5p.getTaux());
 
+//-----------------------[ SOUSTHEMES ]----------------------------
+            
+            SousTheme football = new SousTheme("Football");
+            SousTheme famille = new SousTheme("Famille");
+            SousTheme cirque = new SousTheme("Cirque");
+            SousTheme parcAttr = new SousTheme("Parc d'Attraction");
+            SousTheme concert = new SousTheme("Concert");
+            
+            
 //-----------------------[  DATE  ]----------------------------
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         sdf.setLenient(false);
@@ -152,14 +142,20 @@ public class TestDataValere implements TestDataValereLocal {
             Date d18 = sdf.parse("18/07/2017 20:30:00");
             Date d19 = sdf.parse("19/07/2017 20:30:00");
             Date d20 = sdf.parse("20/07/2017 20:30:00");
-            
 //-----------------------[ SPECTACLES ]----------------------------
             
             Spectacle spctPSJMonaco = new Spectacle("PSJ - Monaco", "125ème représentation sportive", StatutSpectacle.ACTIF);
+            spctPSJMonaco.setImage(imgPsjMonaco);
+            spctPSJMonaco.setSoustheme(football);
             Spectacle spctDisneyLando = new Spectacle("DisneyLandoCadrissian", "", StatutSpectacle.ACTIF);
+            spctDisneyLando.setImage(imgDisneyLando);
+            spctDisneyLando.setSoustheme(parcAttr);
             Spectacle spctmaroon6 = new Spectacle("Maroon 6", "", StatutSpectacle.ACTIF);
+            spctmaroon6.setImage(imgMaroon5);
+            spctmaroon6.setSoustheme(concert);
             Spectacle spctlaibach = new Spectacle("Laibach", "", StatutSpectacle.ACTIF);
-            
+            spctlaibach.setImage(imgLaibach);
+            spctlaibach.setSoustheme(concert);
 //-----------------------[ SEANCE ]----------------------------            
             Seance s01 = new Seance(d01, StatutSeance.ACTIF, spctmaroon6);
             Seance s02 = new Seance(d02, StatutSeance.ACTIF, spctmaroon6);
@@ -180,7 +176,7 @@ public class TestDataValere implements TestDataValereLocal {
             Seance s14 = new Seance(d14, StatutSeance.ACTIF);
             Seance s15 = new Seance(d15, StatutSeance.ACTIF);
             Seance s16 = new Seance(d16, StatutSeance.ACTIF);
-
+            
 //-----------------------[ BILLET ]----------------------------
             Billet b01 = new Billet("AA001", tva5v5p, tbPlacesNumerotees, s01, cat01);
             Billet b02 = new Billet("AA002", tva5v5p, tbPlacesNumerotees, s01, cat02);
