@@ -2,15 +2,19 @@ package service.testdata;
 
 import entities.Billet;
 import entities.Categorie;
+import entities.Coordonnees;
 import entities.Image;
+import entities.Lieu;
 import entities.LigneCommande;
 import entities.Place;
 import entities.Seance;
 import entities.SousTheme;
 import entities.Spectacle;
 import entities.Tarif;
+import entities.Theme;
 import entities.Tva;
 import entities.TypeBillet;
+import entities.Ville;
 import enums.StatutSeance;
 import enums.StatutSpectacle;
 import java.math.BigDecimal;
@@ -113,6 +117,8 @@ public class TestDataValere implements TestDataValereLocal {
             SousTheme cirque = new SousTheme("Cirque-valère");
             SousTheme parcAttr = new SousTheme("Parc d'Attraction-valère");
             SousTheme concert = new SousTheme("Concert-valère");
+            Theme t01 =new Theme("Musique-Valère");
+            concert.setTheme(t01);
             
             
 //-----------------------[  DATE  ]----------------------------
@@ -153,7 +159,7 @@ public class TestDataValere implements TestDataValereLocal {
  
             spctDisneyLando.setImage(imgDisneyLando);
             spctDisneyLando.setSousTheme(parcAttr);
-            Spectacle spctmaroon6 = new Spectacle("Maroon 6", "", StatutSpectacle.ACTIF);
+            Spectacle spctmaroon6 = new Spectacle("Maroon 6", "Maroon 5 est un groupe américain de pop rock, originaire de Los Angeles, en Californie.", StatutSpectacle.ACTIF);
             spctmaroon6.setImage(imgMaroon5);
             spctmaroon6.setSousTheme(concert);
             Spectacle spctlaibach = new Spectacle("Laibach", "", StatutSpectacle.ACTIF);
@@ -161,6 +167,13 @@ public class TestDataValere implements TestDataValereLocal {
             spctlaibach.setSousTheme(concert);
 //-----------------------[ SEANCE ]----------------------------            
             Seance s01 = new Seance(d01, StatutSeance.ACTIF, spctmaroon6);
+            // test valérian afficher un lieu pour une séance ( SHOWDISPLAY )
+            Lieu l01 = new Lieu("Grosse salle", "Carto", "Cette salle est grosse");
+            s01.setLieu(l01);
+            Ville hsm = new Ville("Hannogne saint martin", "08160");
+            Coordonnees testCo = new Coordonnees("", "", "v", "4", "rue", "de la cour", "03", "06", hsm);
+            l01.setCoordonnees(testCo);
+            
             Seance s02 = new Seance(d02, StatutSeance.ACTIF, spctmaroon6);
 
             Seance s03 = new Seance(d10, StatutSeance.ACTIF, spctDisneyLando);

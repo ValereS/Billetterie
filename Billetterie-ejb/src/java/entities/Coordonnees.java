@@ -133,6 +133,10 @@ public class Coordonnees implements Serializable {
     public void setVille(Ville ville) {
         this.ville = ville;
     }
+    
+    public String getAdresse() {
+        return String.format("%s %s %s, %s %s", getNumeroVoie(), getTypeVoie(), getNomVoie(), getVille().getCodePostal(), getVille().getNom());
+    }
 
     @Override
     public int hashCode() {

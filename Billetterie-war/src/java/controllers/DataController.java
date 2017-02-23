@@ -17,8 +17,12 @@ public class DataController implements SubControllerInterface {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
         if ("create".equalsIgnoreCase(action)) {
-            testData.create();
-            request.setAttribute("message", "Test data created!");
+            if (!testData.exists()) {
+                testData.create();
+                request.setAttribute("message", "Test data created!");
+            } else {
+                request.setAttribute("message", "Test data already created!");
+            }
         }
         return "home";
     }
