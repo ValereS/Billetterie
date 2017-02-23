@@ -6,15 +6,15 @@
     <ul id="menu-main">
         <li>
             <c:url value="FrontController?section=data&action=create" var="url01" />
-            <a href="${url01}">créer le jeu d'essai</a> |
+            <a href="${url01}" style='text-decoration:none;color:whitesmoke'>créer le jeu d'essai</a>
         </li>
         <li>
             <c:url value="FrontController?section=catalogue" var="url02" />
-            <a href="${url02}">Catalogue</a> |
+            <a href="${url02}">Catalogue</a>
         </li>
         <li>
             <c:url value="FrontController?section=signup" var="url03" />
-            <a href="${url03}">S'inscrire</a> |
+            <a href="${url03}">S'inscrire</a>
         </li>
         <li>
             <c:if test="${empty client}">

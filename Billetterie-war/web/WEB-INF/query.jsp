@@ -5,6 +5,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <c:url value="/bootstrap/css/bootstrap.min.css" var="urlBootstrap" />
+        <link href="${urlBootstrap}" rel="stylesheet" type="text/css"/>
         <title>Query</title>
     </head>
     <body>
