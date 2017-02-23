@@ -35,7 +35,7 @@ public class Groupe implements Serializable {
     }
 
     public Groupe(String nom) {
-     
+        this();
         this.nom = nom;
     }
 

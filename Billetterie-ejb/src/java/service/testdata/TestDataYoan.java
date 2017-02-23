@@ -18,7 +18,8 @@ public class TestDataYoan implements TestDataYoanLocal {
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
-    public void create0() {
+    @Override
+    public void create() {
         //------------------------- GROUPES -----------------------------------
         // MUSIQUE
         Groupe g01 = new Groupe("Maroon 5");
@@ -105,6 +106,7 @@ public class TestDataYoan implements TestDataYoanLocal {
 
         //================= ASSOCIATION FONCTIONS/PARTICIPANTS =====================
         // MARROON 5 ;
+
         f01.getParticipants().add(p04); // mickey madden bassiste
         f02.getParticipants().add(p02); // Adam Levine chant
         f03.getParticipants().add(p01); // Jesse Carmichael clavier
@@ -183,6 +185,9 @@ public class TestDataYoan implements TestDataYoanLocal {
 
         //===========================PERSISTANCE=======================
         // Persistance des fonctions
+     
+
+        em.persist(p01);
         em.persist(f01);
         em.persist(f02);
         em.persist(f03);
@@ -190,7 +195,7 @@ public class TestDataYoan implements TestDataYoanLocal {
         em.persist(f05);
         em.persist(f06);
         em.persist(f07);
-        // em.persist(f08);
+//        em.persist(f08);
         em.persist(f09);
         em.persist(f10);
         em.persist(f11);
@@ -207,28 +212,6 @@ public class TestDataYoan implements TestDataYoanLocal {
         em.persist(f22);
         em.persist(f23);
         em.persist(f24);
-    }
-
-    @Override
-    public void create() {  
-        //------------------------- GROUPES -----------------------------------
-        // MUSIQUE
-        Groupe g01 = new Groupe("Maroon 5");
-
-        //---------------------------- ROLES -----------------------------------
-        Fonction f01 = new Fonction("basse");
-        Fonction f02 = new Fonction("chant");
-        Fonction f03 = new Fonction("clavier");
-        Fonction f04 = new Fonction("guitare solo");
-        Fonction f05 = new Fonction("choeur");
-        Fonction f06 = new Fonction("guitare rythmique");
-        Fonction f07 = new Fonction("batterie");
-
-        f01.setGroupe(g01);
-        
-        em.persist(f01);
-
-
     }
 
 }

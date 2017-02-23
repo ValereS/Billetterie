@@ -2,6 +2,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,10 +24,11 @@ public class Participant implements Serializable {
     private Collection<Fonction> fonctions;
 
     public Participant() {
+        fonctions = new ArrayList<>();
     }
 
     public Participant(String nom) {
-        
+        this();
         this.nom = nom;
     }
 
