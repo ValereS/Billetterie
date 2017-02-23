@@ -6,19 +6,30 @@
     <br>
     ${show.titre}
     <br>
-    ${show.sousTheme}
+    ${show.sousTheme.theme.nom} ${show.sousTheme.nom}
     <br>
     ${show.description}
     <br>
     ${show.statut}
     <br>
-    <img src=${show.image.url} width="300" height="300"/>
+    <img src=${show.image.url} width="250" height="250"/>
 </p>    
 
 <ul>
     <c:forEach var="seance" items="${show.seances}" > 
     <li>
-        ${seance}
+        ${seance.statut} ${seance.date}
+        <ul>
+            <li>
+                ${seance.lieu.nom}
+            </li>
+            <li>
+                ${seance.lieu.salle}
+            </li>
+            <li>
+                ${seance.lieu.description}
+            </li>
+        </ul>
     </li>
     </c:forEach>
 </ul>    
