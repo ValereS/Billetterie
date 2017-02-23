@@ -57,15 +57,16 @@ public class ClientController implements SubControllerInterface {
                     String date = request.getParameter("dateNaissance");
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     sdf.setLenient(true);
+                    Date dateNaissance;
                     try {
-                        Date d = sdf.parse(date);
-                        client = new Client(cc, nom, prenom, email, mdp, d, StatutClient.ACTIF, null);
-                        clientGestion.create(client);
+                        dateNaissance = sdf.parse(date);
                     } catch (ParseException ex) {
-                        Logger.getLogger(ClientController.class.getName()).log(Level.SEVERE, null, ex);
+                        dateNaissance = null;
                     }
+                    client = new Client(cc, nom, prenom, email, mdp, dateNaissance, StatutClient.ACTIF, null);
+                    clientGestion.create(client);
                 } catch (IllegalArgumentException ex) {
-                    request.setAttribute("errorMessage", "mauvaise civilité !:"+  civilite);
+                    request.setAttribute("errorMessage", "mauvaise civilité !:" + civilite);
                     return "signup";
                 }
                 session.setAttribute("client", client);
