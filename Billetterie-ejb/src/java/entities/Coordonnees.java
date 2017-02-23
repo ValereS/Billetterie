@@ -134,6 +134,15 @@ public class Coordonnees implements Serializable {
         this.ville = ville;
     }
     
+    public String getGoogleLink() {
+        String link = "<a href=\"https://maps.google.fr/maps/place/"
+                + getAdresse()
+                + "\" target=\"_blank\">"
+                + getAdresse()
+                + "</a>";
+        return link;
+    }
+    
     public String getAdresse() {
         return String.format("%s %s %s, %s %s", getNumeroVoie(), getTypeVoie(), getNomVoie(), getVille().getCodePostal(), getVille().getNom());
     }
