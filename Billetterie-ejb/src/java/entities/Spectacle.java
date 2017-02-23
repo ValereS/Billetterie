@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
+    @NamedQuery(name="entities.Spectacle.selectAll", query ="select s from Spectacle s" ),
+    @NamedQuery(name = "entities.Spectacle.selectById", query = "select s from Spectacle s where s.id=:paramId"),        
+    @NamedQuery (name = "entities.Seance.selectByShow", query = "select s from Seance s where s.spectacle=:paramShow"),
     @NamedQuery(name="entities.Spectacle.select", query ="SELECT s FROM Spectacle s"),
     @NamedQuery(name="entities.Spectacle.count", query ="SELECT COUNT(s) FROM Spectacle s"),
     @NamedQuery(name="entities.Spectacle.selectBySearch", query ="SELECT s FROM Spectacle s WHERE s.titre LIKE :paramSearch OR s.description LIKE :paramSearch"),
@@ -44,9 +47,9 @@ public class Spectacle implements Serializable {
     private Collection<Groupe> groupes;
     
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    private SousTheme soustheme;
+    private SousTheme sousTheme;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Evenement evenement;
     
 //---------------------------------------------------------------------------------------
@@ -127,12 +130,12 @@ public class Spectacle implements Serializable {
         this.groupes = groupes;
     }
 
-    public SousTheme getSoustheme() {
-        return soustheme;
+    public SousTheme getSousTheme() {
+        return sousTheme;
     }
 
-    public void setSoustheme(SousTheme soustheme) {
-        this.soustheme = soustheme;
+    public void setSousTheme(SousTheme sousTheme) {
+        this.sousTheme = sousTheme;
     }
 
     public Evenement getEvenement() {

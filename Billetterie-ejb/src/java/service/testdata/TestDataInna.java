@@ -114,6 +114,7 @@ public class TestDataInna implements TestDataInnaLocal {
             Seance s23 = new Seance(d23, StatutSeance.ACTIF, spctCirque2);
             s23.setLieu(parc1);
 
+              
             em.persist(s06);
             em.persist(s07);
             em.persist(s08);

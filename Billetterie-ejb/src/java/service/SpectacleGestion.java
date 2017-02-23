@@ -7,10 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author cdi515
- */
 @Stateless
 public class SpectacleGestion implements SpectacleGestionLocal {
 
@@ -26,6 +22,17 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         return qr.getResultList();
     }
 
+    @Override
+    public Spectacle selectById(int id) {
+        Query qr = em.createNamedQuery("entities.Spectacle.selectById");
+        qr.setParameter("paramId", id);
+        Spectacle show = (Spectacle)qr.getSingleResult();
+        qr = em.createNamedQuery("entities.Seance.selectByShow");
+        qr.setParameter("paramShow", show);
+        show.setSeances(qr.getResultList());
+        return show;
+    }   
+    
     @Override
     public long count() {
         Query qr = em.createNamedQuery("entities.Spectacle.count");

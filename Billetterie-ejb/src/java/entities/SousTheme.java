@@ -22,7 +22,7 @@ public class SousTheme implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Theme theme;
     
-    @OneToMany(mappedBy = "soustheme")
+    @OneToMany(mappedBy = "sousTheme")
     private Collection<Spectacle> spectacles;
 
     public SousTheme() {

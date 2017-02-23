@@ -108,11 +108,11 @@ public class TestDataValere implements TestDataValereLocal {
 
 //-----------------------[ SOUSTHEMES ]----------------------------
             
-            SousTheme football = new SousTheme("Footeuball");
-            SousTheme famille = new SousTheme("Familly");
-            SousTheme cirque = new SousTheme("Cirques");
-            SousTheme parcAttr = new SousTheme("Parc d'Attractionos");
-            SousTheme concert = new SousTheme("Concertos");
+            SousTheme football = new SousTheme("Football-valère");
+            SousTheme famille = new SousTheme("Famille-valère");
+            SousTheme cirque = new SousTheme("Cirque-valère");
+            SousTheme parcAttr = new SousTheme("Parc d'Attraction-valère");
+            SousTheme concert = new SousTheme("Concert-valère");
             
             
 //-----------------------[  DATE  ]----------------------------
@@ -146,17 +146,19 @@ public class TestDataValere implements TestDataValereLocal {
 //-----------------------[ SPECTACLES ]----------------------------
             
             Spectacle spctPSJMonaco = new Spectacle("PSJ - Monaco", "125ème représentation sportive", StatutSpectacle.ACTIF);
+            spctPSJMonaco.setImage(imgLaibach);
+            Spectacle spctDisneyLando = new Spectacle("DisneyLandoCadrissian", "Il est ou mickey ?", StatutSpectacle.ACTIF);
             spctPSJMonaco.setImage(imgPsjMonaco);
-            spctPSJMonaco.setSoustheme(football);
-            Spectacle spctDisneyLando = new Spectacle("DisneyLandoCadrissian", "", StatutSpectacle.ACTIF);
+            spctPSJMonaco.setSousTheme(football);
+ 
             spctDisneyLando.setImage(imgDisneyLando);
-            spctDisneyLando.setSoustheme(parcAttr);
+            spctDisneyLando.setSousTheme(parcAttr);
             Spectacle spctmaroon6 = new Spectacle("Maroon 6", "", StatutSpectacle.ACTIF);
             spctmaroon6.setImage(imgMaroon5);
-            spctmaroon6.setSoustheme(concert);
+            spctmaroon6.setSousTheme(concert);
             Spectacle spctlaibach = new Spectacle("Laibach", "", StatutSpectacle.ACTIF);
             spctlaibach.setImage(imgLaibach);
-            spctlaibach.setSoustheme(concert);
+            spctlaibach.setSousTheme(concert);
 //-----------------------[ SEANCE ]----------------------------            
             Seance s01 = new Seance(d01, StatutSeance.ACTIF, spctmaroon6);
             Seance s02 = new Seance(d02, StatutSeance.ACTIF, spctmaroon6);
@@ -287,6 +289,4 @@ public class TestDataValere implements TestDataValereLocal {
             Logger.getLogger(TestDataValere.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 }

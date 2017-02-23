@@ -11,6 +11,9 @@ import javax.ejb.Local;
 @Local
 public interface SpectacleGestionLocal {
 
+
+    Spectacle selectById(int id);
+
     List<Spectacle> select(int pageNumber, int maxResults);
 
     long count();
@@ -18,5 +21,6 @@ public interface SpectacleGestionLocal {
     List<Spectacle> selectBySearch(int pageNumber, int maxResults, String paramSearch);
 
     long countBySearch(String paramSearch);
+
     
 }
