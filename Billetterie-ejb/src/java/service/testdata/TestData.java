@@ -5,11 +5,19 @@
  */
 package service.testdata;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateless
 public class TestData implements TestDataLocal {
+
+    @PersistenceContext(unitName = "Billetterie-ejbPU")
+    private EntityManager em;
+
     @EJB
     private TestDataValerianLocal testDataValerian;
 
@@ -18,14 +26,13 @@ public class TestData implements TestDataLocal {
 
     @EJB
     private TestDataPhiLongLocal testDataPhiLong;
-    
+
     @EJB
     private TestDataYoanLocal testDataYoan;
-    
+
     @EJB
     private TestDataInnaLocal testDataInna;
 
-    
     @Override
     public void create() {
         testDataValere.creerDonnees();
@@ -34,4 +41,12 @@ public class TestData implements TestDataLocal {
         testDataValerian.jeuValerian();
         testDataInna.create();
     }
+
+    @Override
+    public boolean exists() {
+        Query qr = em.createNamedQuery("entities.Spectacle.select");
+        List resultList = qr.getResultList();
+        return !resultList.isEmpty();
+    }
+
 }
