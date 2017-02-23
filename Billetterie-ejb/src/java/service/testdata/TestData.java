@@ -8,10 +8,6 @@ package service.testdata;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author cdi515
- */
 @Stateless
 public class TestData implements TestDataLocal {
     @EJB

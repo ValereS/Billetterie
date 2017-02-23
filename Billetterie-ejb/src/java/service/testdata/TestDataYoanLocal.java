@@ -15,5 +15,7 @@ import javax.ejb.Local;
 public interface TestDataYoanLocal {
 
     void create();
+
+
     
 }
