@@ -187,7 +187,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Client[ id=" + code + " ]";
+        return String.format("%s (%s)", getNomComplet(), getEmail());
     }
 
 }
