@@ -43,6 +43,10 @@
             <param-name>signup</param-name>
             <param-value>controllers.DefaultController</param-value>
         </init-param>
+        <init-param>
+            <param-name>query</param-name>
+            <param-value>controllers.QueryController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -82,5 +86,11 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.ClientGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#ClientGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>QueryGestion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.QueryGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#QueryGestion</ejb-link>
     </ejb-local-ref>
 </web-app>
