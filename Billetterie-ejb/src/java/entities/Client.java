@@ -85,7 +85,7 @@ public class Client implements Serializable {
         return civilite;
     }
 
-    public final void setCivilite(CiviliteClient civilite) {
+    public void setCivilite(CiviliteClient civilite) {
         this.civilite = civilite;
     }
 
@@ -93,7 +93,7 @@ public class Client implements Serializable {
         return nom;
     }
 
-    public final void setNom(String nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
@@ -101,7 +101,7 @@ public class Client implements Serializable {
         return prenom;
     }
 
-    public final void setPrenom(String prenom) {
+    public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
     
@@ -113,7 +113,7 @@ public class Client implements Serializable {
         return email;
     }
 
-    public final void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -121,7 +121,7 @@ public class Client implements Serializable {
         return hashMotPasse;
     }
 
-    public final void setHashMotPasse(String hashMotPasse) {
+    public void setHashMotPasse(String hashMotPasse) {
         this.hashMotPasse = hashMotPasse;
     }
 
@@ -129,7 +129,7 @@ public class Client implements Serializable {
         return dateNaissance;
     }
 
-    public final void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -137,7 +137,7 @@ public class Client implements Serializable {
         return statut;
     }
 
-    public final void setStatut(StatutClient statut) {
+    public void setStatut(StatutClient statut) {
         this.statut = statut;
     }
 
@@ -145,7 +145,7 @@ public class Client implements Serializable {
         return commentaire;
     }
 
-    public final void setCommentaire(String commentaire) {
+    public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
 

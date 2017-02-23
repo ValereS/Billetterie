@@ -11,7 +11,7 @@
     ${show.description}
     <br>
     ${show.statut}
-    <br>
+    <br> 
     <img src=${show.image.url} width="250" height="250"/>
 </p>    
 
@@ -29,8 +29,13 @@
             <li>
                 ${seance.lieu.description}
             </li>
+                <li>
+                    ${seance.lieu.coordonnees.adresse}
+                </li>
         </ul>
     </li>
     </c:forEach>
 </ul>    
+
+
 

@@ -6,7 +6,7 @@
     <ul id="menu-main">
         <li>
             <c:url value="FrontController?section=data&action=create" var="url01" />
-            <a href="${url01}">créer le jeu d'essai</a> |
+            <a href="${url01}">Créer le jeu d'essais</a> |
         </li>
         <li>
             <c:url value="FrontController?section=catalogue" var="url02" />
