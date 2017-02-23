@@ -12,28 +12,29 @@
     <br>
     ${show.statut}
     <br> 
-    <img src=${show.image.url} width="250" height="250"/>
+    <img src="${show.image.url}" width="250" height="250"/>
 </p>    
 
 <ul>
     <c:forEach var="seance" items="${show.seances}" > 
-    <li>
-        ${seance.statut} ${seance.date}
-        <ul>
-            <li>
-                ${seance.lieu.nom}
-            </li>
-            <li>
-                ${seance.lieu.salle}
-            </li>
-            <li>
-                ${seance.lieu.description}
-            </li>
+        <li>
+            ${seance.statut} ${seance.date}
+            <ul>
                 <li>
-                    ${seance.lieu.coordonnees.adresse}
+                    ${seance.lieu.nom}
                 </li>
-        </ul>
-    </li>
+                <li>
+                    ${seance.lieu.salle}
+                </li>
+                <li>
+                    ${seance.lieu.description}
+                </li>
+                <li>
+                    <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse}</a>
+                    <!-- valérian grosse merde -->
+                </li>
+            </ul>
+        </li>
     </c:forEach>
 </ul>    
 
