@@ -13,7 +13,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface TestDataLocal {
-        void create();
+
+    void create();
 
     boolean exists();
 }
