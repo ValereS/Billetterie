@@ -33,7 +33,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "entities.Client.selectByEmailPwd", query = "select c from Client c where c.email = :paramEmail and c.hashMotPasse = :paramHashMotPasse"),
     @NamedQuery(name = "entities.Client.selectByCode", query = "select c from Client c where c.code = :paramCode"),
     @NamedQuery(name = "entities.Client.selectByEmail", query = "select c from Client c where c.email = :paramEmail"),
-    @NamedQuery(name = "entities.Client.updateCompteClient", query ="")    
+    //@NamedQuery(name = "entities.Client.updateCompteClient", query ="")    
 })
 public class Client implements Serializable {
 

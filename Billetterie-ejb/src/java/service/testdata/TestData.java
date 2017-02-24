@@ -43,10 +43,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -60,9 +58,9 @@ public class TestData implements TestDataLocal {
 
     @Override
     public boolean exists() {
-        Query qr = em.createNamedQuery("entities.Spectacle.select");
-        List resultList = qr.getResultList();
-        return !resultList.isEmpty();
+        Query qr = em.createNamedQuery("entities.Spectacle.countAll");
+        long count = (long) qr.getSingleResult();
+        return count > 0;
     }
 
     @Override
