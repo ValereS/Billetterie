@@ -37,8 +37,8 @@ public class QueryGestion implements QueryGestionLocal {
     @Override
     public List<Object> execute(String query) {
         List<Object> resultList;
-        if (StringStartsWithIgnoreCase(query, "update")
-                || StringStartsWithIgnoreCase(query, "delete")) {
+        if (stringStartsWithIgnoreCase(query, "update")
+                || stringStartsWithIgnoreCase(query, "delete")) {
             resultList = Arrays.asList(executeUpdate(query));
         } else {
             resultList = getResultList(query);
@@ -46,7 +46,7 @@ public class QueryGestion implements QueryGestionLocal {
         return resultList;
     }
 
-    private static boolean StringStartsWithIgnoreCase(String string,
+    private static boolean stringStartsWithIgnoreCase(String string,
             String prefix) {
         return string.substring(0, prefix.length()).equalsIgnoreCase(prefix);
     }
