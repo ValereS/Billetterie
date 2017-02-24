@@ -76,7 +76,23 @@ public class ClientController implements SubControllerInterface {
                 return "signup";
             }
         }
+
+        if ("manage".equalsIgnoreCase(action)) {
+            Client client = (Client) session.getAttribute("client");
+            if (client == null) {
+                return "login";
+            }
+            String doIt = request.getParameter("doIt");
+            if (doIt != null) {
+                 
+                request.setAttribute("message","Modification de compte valider !");
+            } else {
+                
+            }
+            return "client";
+        }
         return "login";
+
     }
 
     private ClientGestionLocal lookupClientGestionLocal() {

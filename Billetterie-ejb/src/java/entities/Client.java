@@ -188,7 +188,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s (%s)", getNomComplet(), getEmail());
+        return String.format("%s (%s), code client = %d", getNomComplet(), getEmail(), getCode());
     }
 
 }
