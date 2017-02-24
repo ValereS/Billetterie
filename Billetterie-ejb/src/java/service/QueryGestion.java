@@ -5,6 +5,7 @@
  */
 package service;
 
+import java.util.Arrays;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,9 +23,32 @@ public class QueryGestion implements QueryGestionLocal {
     private EntityManager em;
 
     @Override
-    public List<Object> execute(final String query) {
+    public List<Object> getResultList(String query) {
         Query qr = em.createQuery(query);
         return qr.getResultList();
+    }
+
+    @Override
+    public int executeUpdate(String query) {
+        Query qr = em.createQuery(query);
+        return qr.executeUpdate();
+    }
+
+    @Override
+    public List<Object> execute(String query) {
+        List<Object> resultList;
+        if (StringStartsWithIgnoreCase(query, "update")
+                || StringStartsWithIgnoreCase(query, "delete")) {
+            resultList = Arrays.asList(executeUpdate(query));
+        } else {
+            resultList = getResultList(query);
+        }
+        return resultList;
+    }
+
+    private static boolean StringStartsWithIgnoreCase(String string,
+            String prefix) {
+        return string.substring(0, prefix.length()).equalsIgnoreCase(prefix);
     }
 
 }

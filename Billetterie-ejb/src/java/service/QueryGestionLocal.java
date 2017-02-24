@@ -15,6 +15,10 @@ import javax.ejb.Local;
 @Local
 public interface QueryGestionLocal {
 
-    List<Object> execute(final String query);
+    List<Object> getResultList(String query);
+
+    int executeUpdate(String query);
+
+    List<Object> execute(String query);
 
 }
