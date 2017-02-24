@@ -6,11 +6,15 @@
     <ul id="menu-main">
         <li>
             <c:url value="FrontController?section=data&action=create" var="url01" />
-            <a href="${url01}" style='text-decoration:none;color:graytext'>Créer le jeu d'essais</a>
+            <a href="${url01}" style='text-decoration:none;color:graytext'>Créer le jeu d’essais</a>
         </li>|
         <li>
-            <c:url value="FrontController?section=query" var="urlQueries" />
-            <a href="${urlQueries}" style='text-decoration:none;color:graytext'>Exécuter des requêtes</a>
+            <c:url value="FrontController?section=query" var="urlQuery" />
+            <a href="${urlQuery}" style='text-decoration:none;color:graytext'>Exécuter des requêtes</a>
+        </li>|
+        <li>
+            <c:url value="FrontController?section=home" var="urlHome" />
+            <a href="${urlHome}">Accueil</a>
         </li>|
         <li>
             <c:url value="FrontController?section=catalogue" var="url02" />
