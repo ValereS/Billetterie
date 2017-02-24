@@ -1,6 +1,7 @@
 package service;
 
 import entities.Spectacle;
+import enums.StatutSpectacle;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     @Override
     public List<Spectacle> select(int pageNumber, int maxResults) {
         Query qr = em.createNamedQuery("entities.Spectacle.select");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
         int firstResult = (pageNumber - 1) * maxResults;
         qr.setFirstResult(firstResult);
         qr.setMaxResults(maxResults);
@@ -36,12 +38,14 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     @Override
     public long count() {
         Query qr = em.createNamedQuery("entities.Spectacle.count");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
         return (long) qr.getSingleResult();
     }
 
     @Override
     public List<Spectacle> selectBySearch(int pageNumber, int maxResults, String paramSearch) {
         Query qr = em.createNamedQuery("entities.Spectacle.selectBySearch");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
         qr.setParameter("paramSearch", "%" + paramSearch + "%");
         int firstResult = (pageNumber - 1) * maxResults;
         qr.setFirstResult(firstResult);
@@ -52,6 +56,7 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     @Override
     public long countBySearch(String paramSearch) {
         Query qr = em.createNamedQuery("entities.Spectacle.countBySearch");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
         qr.setParameter("paramSearch", "%" + paramSearch + "%");
         return (long) qr.getSingleResult();
     }
