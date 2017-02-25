@@ -37,6 +37,7 @@ public class QueryGestion implements QueryGestionLocal {
     @Override
     public List<Object> execute(String query) {
         List<Object> resultList;
+        query = query.trim();
         if (stringStartsWithIgnoreCase(query, "update")
                 || stringStartsWithIgnoreCase(query, "delete")) {
             resultList = Arrays.asList(executeUpdate(query));
