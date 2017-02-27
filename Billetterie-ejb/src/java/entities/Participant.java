@@ -51,7 +51,7 @@ public class Participant implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Participant[ id=" + id + " ], nom =" + getNom();
+        return "entities.Participant[ id=" + id + " ], nom = " + getNom();
     }
     
 }
