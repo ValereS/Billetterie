@@ -2,9 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <p>
-    ${show.id} 
-    <br>
-    ${show.titre}
+    <h1>${show.titre}</h1>
     <br>
     ${show.sousTheme.theme.nom} ${show.sousTheme.nom}
     <br>
@@ -12,6 +10,14 @@
     <br>
     ${show.statut}
     <br> 
+    <ul>
+        <c:forEach var="groupe" items="${show.groupes}">   
+            <li>
+                ${show.groupe.nom}
+            </li>
+        </c:forEach>
+    </ul>    
+    <br>
     <img src="${show.image.url}" width="250" height="250"/>
 </p>    
 
@@ -30,8 +36,7 @@
                     ${seance.lieu.description}
                 </li>
                 <li>
-                    <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse}</a>
-                    <!-- valérian grosse merde -->
+                   <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target=\"_blank">${seance.lieu.coordonnees.adresse} </a>
                 </li>
             </ul>
         </li>
