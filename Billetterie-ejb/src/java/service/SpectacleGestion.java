@@ -5,6 +5,7 @@ import enums.StatutSpectacle;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -28,13 +29,17 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     public Spectacle selectById(int id) {
         Query qr = em.createNamedQuery("entities.Spectacle.selectById");
         qr.setParameter("paramId", id);
-        Spectacle show = (Spectacle)qr.getSingleResult();
-        qr = em.createNamedQuery("entities.Spectacle.selectSeancesBySpectacle");
-        qr.setParameter("paramSpectacle", show);
-        show.setSeances(qr.getResultList());
-        return show;
-    }   
-    
+        try {
+            Spectacle show = (Spectacle) qr.getSingleResult();
+            qr = em.createNamedQuery("entities.Spectacle.selectSeancesBySpectacle");
+            qr.setParameter("paramSpectacle", show);
+            show.setSeances(qr.getResultList());
+            return show;
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
+
     @Override
     public long count() {
         Query qr = em.createNamedQuery("entities.Spectacle.count");
