@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -63,6 +62,13 @@ public class Groupe implements Serializable {
         this.nom = nom;
     }
 
+    public Spectacle getSpectacle() {
+        return spectacle;
+    }
+
+    public void setSpectacle(Spectacle spectacle) {
+        this.spectacle = spectacle;
+    }
 
     @Override
     public String toString() {
