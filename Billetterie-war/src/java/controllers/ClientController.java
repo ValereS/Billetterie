@@ -84,10 +84,26 @@ public class ClientController implements SubControllerInterface {
             }
             String doIt = request.getParameter("doIt");
             if (doIt != null) {
-                 
-                request.setAttribute("message","Modification de compte valider !");
+
+                client.setNom(request.getParameter("nom"));
+                client.setPrenom(request.getParameter("prenom"));
+                client.setEmail(request.getParameter("mail"));
+                client.setMotPasse(request.getParameter("motDePasse"));
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date d = null;
+                try {
+                    d = sdf.parse(request.getParameter("dateNaissance"));
+                } catch (ParseException ex) {
+                    Logger.getLogger(ClientController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                client.setDateNaissance(d);
+
+                Client newClient = clientGestion.updateClient(client);
+                //session.setAttribute("client", newClient);
+                request.setAttribute("message", "Modification de compte valider !");
             } else {
-                
+
             }
             return "client";
         }
