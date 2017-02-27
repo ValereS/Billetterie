@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entities;
 
 import enums.CiviliteClient;
@@ -23,17 +19,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author cdi505
- */
+
 @Entity
 @NamedQueries({
     @NamedQuery(name = "entities.Client.selectByEmailPwd", query = "select c from Client c where c.email = :paramEmail and c.hashMotPasse = :paramHashMotPasse"),
     @NamedQuery(name = "entities.Client.selectByCode", query = "select c from Client c where c.code = :paramCode"),
     @NamedQuery(name = "entities.Client.selectByEmail", query = "select c from Client c where c.email = :paramEmail"),
-    //@NamedQuery(name = "entities.Client.updateCompteClient", query ="")    
+      
 })
 public class Client implements Serializable {
 
@@ -122,8 +116,12 @@ public class Client implements Serializable {
         return hashMotPasse;
     }
 
-    public void setHashMotPasse(String hashMotPasse) {
+    private void setHashMotPasse(String hashMotPasse) {
         this.hashMotPasse = hashMotPasse;
+    }
+    
+    public void setMotPasse(String motPasse) {
+        setHashMotPasse(BCrypt.hashpw(motPasse, BCrypt.gensalt()));
     }
 
     public Date getDateNaissance() {

@@ -93,4 +93,28 @@
         <local>service.QueryGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#QueryGestion</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>clientGestion1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.ClientGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#ClientGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>ClientGestion3</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.ClientGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#ClientGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>clientGestion11</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.ClientGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#ClientGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>clientGestion12</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.ClientGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#ClientGestion</ejb-link>
+    </ejb-local-ref>
 </web-app>
