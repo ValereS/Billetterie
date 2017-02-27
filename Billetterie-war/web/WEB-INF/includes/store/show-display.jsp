@@ -13,7 +13,7 @@
     <ul>
         <c:forEach var="groupe" items="${show.groupes}">   
             <li>
-                ${show.groupe.nom}
+                ${groupe.nom}
             </li>
         </c:forEach>
     </ul>    
