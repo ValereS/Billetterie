@@ -93,4 +93,10 @@
         <local>service.QueryGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#QueryGestion</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>ThemeGestion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.ThemeGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#ThemeGestion</ejb-link>
+    </ejb-local-ref>
 </web-app>
