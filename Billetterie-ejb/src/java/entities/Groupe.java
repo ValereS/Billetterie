@@ -63,6 +63,13 @@ public class Groupe implements Serializable {
         this.nom = nom;
     }
 
+    public Spectacle getSpectacle() {
+        return spectacle;
+    }
+
+    public void setSpectacle(Spectacle spectacle) {
+        this.spectacle = spectacle;
+    }
 
     @Override
     public String toString() {
