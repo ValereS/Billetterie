@@ -32,6 +32,9 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         qr = em.createNamedQuery("entities.Spectacle.selectSeancesBySpectacle");
         qr.setParameter("paramSpectacle", show);
         show.setSeances(qr.getResultList());
+        qr = em.createNamedQuery("entities.Spectacle.selectGroupeBySpectacle");
+        qr.setParameter("paramSpectacle", show);
+        show.setGroupes(qr.getResultList());
         return show;
     }   
     
