@@ -65,91 +65,92 @@ public class TestData implements TestDataLocal {
 
     @Override
     public void create() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        sdf.setLenient(false);
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            sdf.setLenient(false);
 
-        /////////////////////////////// start Valère !!!!
+            /////////////////////////////// start Valère !!!!
 //-----------------------[  TVA  ]----------------------------
-        Tva tva5v5p = new Tva(0.055f);
-        Tva tva2v1p = new Tva(0.021f);
-        Tva tva10p = new Tva(0.1f);
+            Tva tva5v5p = new Tva(0.055f);
+            Tva tva2v1p = new Tva(0.021f);
+            Tva tva10p = new Tva(0.1f);
 
 //-----------------------[ TARIF ]----------------------------
-        Tarif tf01J = new Tarif(new BigDecimal("20"), "TARIF JEUNE");
-        Tarif tf01E = new Tarif(new BigDecimal("15"), "TARIF ENFANT");
-        Tarif tf01N = new Tarif(new BigDecimal("25.99"), "TARIF NORMAL");
+            Tarif tf01J = new Tarif(new BigDecimal("20"), "TARIF JEUNE");
+            Tarif tf01E = new Tarif(new BigDecimal("15"), "TARIF ENFANT");
+            Tarif tf01N = new Tarif(new BigDecimal("25.99"), "TARIF NORMAL");
 
-        Tarif tf02J = new Tarif(new BigDecimal("30"), "TARIF JEUNE");
-        Tarif tf02E = new Tarif(new BigDecimal("20"), "TARIF ENFANT");
-        Tarif tf02N = new Tarif(new BigDecimal("35.99"), "TARIF NORMAL");
+            Tarif tf02J = new Tarif(new BigDecimal("30"), "TARIF JEUNE");
+            Tarif tf02E = new Tarif(new BigDecimal("20"), "TARIF ENFANT");
+            Tarif tf02N = new Tarif(new BigDecimal("35.99"), "TARIF NORMAL");
 
-        Tarif tfParc01 = new Tarif(new BigDecimal("39.99"), "TARIF ENFANT");
-        Tarif tfParc02 = new Tarif(new BigDecimal("60"), "TARIF NORMAL");
+            Tarif tfParc01 = new Tarif(new BigDecimal("39.99"), "TARIF ENFANT");
+            Tarif tfParc02 = new Tarif(new BigDecimal("60"), "TARIF NORMAL");
 
-        Tarif tfLaibachF = new Tarif(new BigDecimal("64"), "TARIF NORMAL");
-        Tarif tfLaibachD = new Tarif(new BigDecimal("90"), "TARIF NORMAL");
+            Tarif tfLaibachF = new Tarif(new BigDecimal("64"), "TARIF NORMAL");
+            Tarif tfLaibachD = new Tarif(new BigDecimal("90"), "TARIF NORMAL");
 
 //-----------------------[ IMAGE ]----------------------------
-        Image imgDisneyLando = new Image("http://www.hellodisneyland.com/wp-content/uploads/2017/01/titreSOF.jpg");
-        Image imgMaroon5 = new Image("http://www.kiss985.com/sites/g/files/giy656/f/styles/delta__775x515/public/Events/Maroon5.jpg?itok=O2fZP3eD&c=a540186afedfbae631a6b24b5f8304d9");
-        Image imgLaibach = new Image("http://www.lagrosseradio.com/webzine/images/11215.jpg");
-        Image imgPsjMonaco = new Image("http://resize-football.ladmedia.fr/r/920,/crop/920,512/img/images/media/ligue-1/articles/rennes-monaco-les-notes/rennes-monaco-notes/5497562-1-fre-FR/rennes-monaco-notes.png");
+            Image imgDisneyLando = new Image("http://www.hellodisneyland.com/wp-content/uploads/2017/01/titreSOF.jpg");
+            Image imgMaroon5 = new Image("http://www.kiss985.com/sites/g/files/giy656/f/styles/delta__775x515/public/Events/Maroon5.jpg?itok=O2fZP3eD&c=a540186afedfbae631a6b24b5f8304d9");
+            Image imgLaibach = new Image("http://www.lagrosseradio.com/webzine/images/11215.jpg");
+            Image imgPsjMonaco = new Image("http://resize-football.ladmedia.fr/r/920,/crop/920,512/img/images/media/ligue-1/articles/rennes-monaco-les-notes/rennes-monaco-notes/5497562-1-fre-FR/rennes-monaco-notes.png");
 
 //-----------------------[ CATEGORIE ]----------------------------
-        Categorie cat01 = new Categorie("A");
-        Categorie cat02 = new Categorie("B");
-        Categorie cat03 = new Categorie("C");
-        Categorie catParcAttraction01 = new Categorie("AAA");
-        Categorie catPlaceDebout = new Categorie("Fosse");
-        Categorie catPlaceAssise = new Categorie("Balcon");
+            Categorie cat01 = new Categorie("A");
+            Categorie cat02 = new Categorie("B");
+            Categorie cat03 = new Categorie("C");
+            Categorie catParcAttraction01 = new Categorie("AAA");
+            Categorie catPlaceDebout = new Categorie("Fosse");
+            Categorie catPlaceAssise = new Categorie("Balcon");
 
 //-------------------[ TARIF SET CATEGORIE ]------------------------
-        tf01J.setCategorie(cat01);
-        tf01N.setCategorie(cat02);
-        tf01E.setCategorie(cat03);
-        tf02N.setCategorie(cat01);
-        tf02E.setCategorie(cat02);
-        tf02J.setCategorie(cat03);
-        tfLaibachD.setCategorie(catPlaceAssise);
-        tfLaibachF.setCategorie(catPlaceDebout);
+            tf01J.setCategorie(cat01);
+            tf01N.setCategorie(cat02);
+            tf01E.setCategorie(cat03);
+            tf02N.setCategorie(cat01);
+            tf02E.setCategorie(cat02);
+            tf02J.setCategorie(cat03);
+            tfLaibachD.setCategorie(catPlaceAssise);
+            tfLaibachF.setCategorie(catPlaceDebout);
 
-        em.persist(tf01J);
-        em.persist(tf01E);
-        em.persist(tf01N);
-        em.persist(tf02J);
-        em.persist(tf02N);
-        em.persist(tf02E);
-        em.persist(tfParc01);
-        em.persist(tfParc02);
+            em.persist(tf01J);
+            em.persist(tf01E);
+            em.persist(tf01N);
+            em.persist(tf02J);
+            em.persist(tf02N);
+            em.persist(tf02E);
+            em.persist(tfParc01);
+            em.persist(tfParc02);
 
-        em.persist(tfLaibachD);
-        em.persist(tfLaibachF);
+            em.persist(tfLaibachD);
+            em.persist(tfLaibachF);
 
-        tfParc01.setCategorie(catParcAttraction01);
-        tfParc02.setCategorie(catParcAttraction01);
+            tfParc01.setCategorie(catParcAttraction01);
+            tfParc02.setCategorie(catParcAttraction01);
 
 //-----------------------[ TYPEBILLET ]----------------------------
-        TypeBillet tbPlacesNumerotees = new TypeBillet("places numérotées");
-        TypeBillet tbPlaceLibre = new TypeBillet("places non-numérotées");
+            TypeBillet tbPlacesNumerotees = new TypeBillet("places numérotées");
+            TypeBillet tbPlaceLibre = new TypeBillet("places non-numérotées");
 
 //-----------------------[ LIGNECOMMANDE ]----------------------------
-        LigneCommande lc01 = new LigneCommande();
-        lc01.setPrix(tf02J.getPrix());
-        lc01.setTauxTva(tva5v5p.getTaux());
+            LigneCommande lc01 = new LigneCommande();
+            lc01.setPrix(tf02J.getPrix());
+            lc01.setTauxTva(tva5v5p.getTaux());
 
 //-----------------------[ SOUSTHEMES ]----------------------------
-        SousTheme football = new SousTheme("Football");
-        SousTheme famille = new SousTheme("Famille");
-        SousTheme cirque = new SousTheme("Cirque");
-        SousTheme parcAttr = new SousTheme("Parc d'Attraction");
-        SousTheme concert = new SousTheme("Concert");
-        Theme t01 = new Theme("Musique");
-        concert.setTheme(t01);
+            SousTheme football = new SousTheme("Football");
+            SousTheme famille = new SousTheme("Famille");
+            SousTheme cirque = new SousTheme("Cirque");
+            SousTheme parcAttr = new SousTheme("Parc d'Attraction");
+            SousTheme concert = new SousTheme("Concert");
+            Theme t01 = new Theme("Musique");
+            concert.setTheme(t01);
 
 //-----------------------[  DATE  ]----------------------------
-        String s = "03/07/2017 21:00:00";
-        Date d01;
-        try {
+            String s = "03/07/2017 21:00:00";
+            Date d01;
+            Spectacle spctmaroon6;
             d01 = sdf.parse(s);
             Date d02 = sdf.parse("03/07/2017 18:00:00");
             Date d03 = sdf.parse("03/07/2017 21:00:00");
@@ -182,12 +183,13 @@ public class TestData implements TestDataLocal {
 
             spctDisneyLando.setImage(imgDisneyLando);
             spctDisneyLando.setSousTheme(parcAttr);
-            Spectacle spctmaroon6 = new Spectacle("Maroon 6", "Maroon 5 est un groupe américain de pop rock, originaire de Los Angeles, en Californie.", StatutSpectacle.ACTIF);
+            spctmaroon6 = new Spectacle("Maroon 6", "Maroon 5 est un groupe américain de pop rock, originaire de Los Angeles, en Californie.", StatutSpectacle.ACTIF);
             spctmaroon6.setImage(imgMaroon5);
             spctmaroon6.setSousTheme(concert);
             Spectacle spctlaibach = new Spectacle("Laibach", "", StatutSpectacle.ACTIF);
             spctlaibach.setImage(imgLaibach);
             spctlaibach.setSousTheme(concert);
+
 //-----------------------[ SEANCE ]----------------------------            
             Seance s01 = new Seance(d01, StatutSeance.ACTIF, spctmaroon6);
             // test valérian afficher un lieu pour une séance ( SHOWDISPLAY )
@@ -320,420 +322,418 @@ public class TestData implements TestDataLocal {
             em.persist(b47);
 
             em.persist(lc01);
-        } catch (ParseException ex) {
-            Logger.getLogger(TestData.class.getName()).log(Level.SEVERE, null, ex);
-        }
         /////////////////////////////// stop Valère !!!!
 
+            // Phi-Long
+            Pays paysFrance = new Pays("France");
+            Pays paysSuisse = new Pays("Suisse");
+
+            Region regionIleDeFrance = new Region("Île-de-France", paysFrance);
+            Region regionPicardie = new Region("Picardie", paysFrance);
+            Region regionProvenceAlpesCotedAzur = new Region("Provence-Alpes-Côte d'Azur", paysFrance);
+            Region cantonDeGeneve = new Region("Canton de Genève", paysSuisse);
+
+            Ville villeParis = new Ville("Paris 12e", "75012", regionIleDeFrance);
+            Ville villeAmiens = new Ville("Amiens", "80000", regionPicardie);
+            Ville villeMarseille = new Ville("Marseille 2er", "13002", regionProvenceAlpesCotedAzur);
+            Ville villeGeneve = new Ville("Genève", "1200", cantonDeGeneve);
+
+            Coordonnees coord01 = new Coordonnees("VU", "Jean", null, "30 bis", "rue", "Victor Hugo", "+33149302017", null, villeParis);
+            Coordonnees coord02 = new Coordonnees("DUROND", "Olivier", null, "8", "rue", "de Paris", "+33345159498", null, villeAmiens);
+            Coordonnees coord03 = new Coordonnees("LEGENDRE", "Yoann", null, "33", "rue", "du Marché", "+33445159498", null, villeMarseille);
+            Coordonnees coord04 = new Coordonnees("MARIE", "Stéphanie", null, "8", "rue", "Voltaire", "+4145649548", null, villeGeneve);
+            Coordonnees coordPointRetrait = new Coordonnees(null, null, "Billetterie", "6-8", "rue", "Georges et Maï Politzer", "+33174564894", null, villeParis);
+
+            Client client01 = new Client(CiviliteClient.M, "VU", "Jean", "jean.vu@gmail.com", "toto", new GregorianCalendar(1980, 9, 22).getTime(), StatutClient.ACTIF, "");
+            client01.setCoordonneesFacturation(coord01);
+
+            Client client02 = new Client(CiviliteClient.M, "DUROND", "Olivier", "olivier.durond@gmail.com", "toto", new GregorianCalendar(1981, 0, 1).getTime(), StatutClient.ACTIF, "");
+            client02.setCoordonneesFacturation(coord02);
+            client02.getListeCoordonneesLivraison().add(coord03);
+            client02.getListeCoordonneesLivraison().add(coord04);
+
+            PointRetrait pointRetrait = new PointRetrait("Point Retrait 1", StatutPointRetrait.ACTIF, coordPointRetrait);
+
+            em.persist(client01);
+            em.persist(client02);
+            em.persist(pointRetrait);
         // Phi-Long
-        Pays paysFrance = new Pays("France");
-        Pays paysSuisse = new Pays("Suisse");
 
-        Region regionIleDeFrance = new Region("Île-de-France", paysFrance);
-        Region regionPicardie = new Region("Picardie", paysFrance);
-        Region regionProvenceAlpesCotedAzur = new Region("Provence-Alpes-Côte d'Azur", paysFrance);
-        Region cantonDeGeneve = new Region("Canton de Genève", paysSuisse);
+            // Yoan
+            //------------------------- GROUPES -----------------------------------
+            // MUSIQUE
+            Groupe g01 = new Groupe("Maroon 5");
+            // ARTS & SPECTACLES
+            Groupe g02 = new Groupe("Jeff Panacloc");
+            // SPORT ( FINALE DE LA COUPE DE LA LIGUE)
+            Groupe g03 = new Groupe("AS Monaco");
+            Groupe g04 = new Groupe("Paris Saint-Germain");
+            //FAMILLE & LOISIRS
+            Groupe g05 = new Groupe("Disney sur glace");
 
-        Ville villeParis = new Ville("Paris 12e", "75012", regionIleDeFrance);
-        Ville villeAmiens = new Ville("Amiens", "80000", regionPicardie);
-        Ville villeMarseille = new Ville("Marseille 2er", "13002", regionProvenceAlpesCotedAzur);
-        Ville villeGeneve = new Ville("Genève", "1200", cantonDeGeneve);
-
-        Coordonnees coord01 = new Coordonnees("VU", "Jean", null, "30 bis", "rue", "Victor Hugo", "+33149302017", null, villeParis);
-        Coordonnees coord02 = new Coordonnees("DUROND", "Olivier", null, "8", "rue", "de Paris", "+33345159498", null, villeAmiens);
-        Coordonnees coord03 = new Coordonnees("LEGENDRE", "Yoann", null, "33", "rue", "du Marché", "+33445159498", null, villeMarseille);
-        Coordonnees coord04 = new Coordonnees("MARIE", "Stéphanie", null, "8", "rue", "Voltaire", "+4145649548", null, villeGeneve);
-        Coordonnees coordPointRetrait = new Coordonnees(null, null, "Billetterie", "6-8", "rue", "Georges et Maï Politzer", "+33174564894", null, villeParis);
-
-        Client client01 = new Client(CiviliteClient.M, "VU", "Jean", "jean.vu@gmail.com", "toto", new GregorianCalendar(1980, 9, 22).getTime(), StatutClient.ACTIF, "");
-        client01.setCoordonneesFacturation(coord01);
-
-        Client client02 = new Client(CiviliteClient.M, "DUROND", "Olivier", "olivier.durond@gmail.com", "toto", new GregorianCalendar(1981, 0, 1).getTime(), StatutClient.ACTIF, "");
-        client02.setCoordonneesFacturation(coord02);
-        client02.getListeCoordonneesLivraison().add(coord03);
-        client02.getListeCoordonneesLivraison().add(coord04);
-
-        PointRetrait pointRetrait = new PointRetrait("Point Retrait 1", StatutPointRetrait.ACTIF, coordPointRetrait);
-
-        em.persist(client01);
-        em.persist(client02);
-        em.persist(pointRetrait);
-        // Phi-Long
-
-        // Yoan
-        //------------------------- GROUPES -----------------------------------
-        // MUSIQUE
-        Groupe g01 = new Groupe("Maroon 5");
-        // ARTS & SPECTACLES
-        Groupe g02 = new Groupe("Jeff Panacloc");
-        // SPORT ( FINALE DE LA COUPE DE LA LIGUE)
-        Groupe g03 = new Groupe("AS Monaco");
-        Groupe g04 = new Groupe("Paris Saint-Germain");
-        //FAMILLE & LOISIRS
-        Groupe g05 = new Groupe("Disney sur glace");
-
-        //---------------------------- ROLES -----------------------------------
-        Fonction f01 = new Fonction("basse");
-        Fonction f02 = new Fonction("chant");
-        Fonction f03 = new Fonction("clavier");
-        Fonction f04 = new Fonction("guitare solo");
-        Fonction f05 = new Fonction("choeur");
-        Fonction f06 = new Fonction("guitare rythmique");
-        Fonction f07 = new Fonction("batterie");
+            //---------------------------- ROLES -----------------------------------
+            Fonction f01 = new Fonction("basse");
+            Fonction f02 = new Fonction("chant");
+            Fonction f03 = new Fonction("clavier");
+            Fonction f04 = new Fonction("guitare solo");
+            Fonction f05 = new Fonction("choeur");
+            Fonction f06 = new Fonction("guitare rythmique");
+            Fonction f07 = new Fonction("batterie");
     //Fonction f08= new Fonction("percussions");
 
-        //------------------------------------------------------------------------
-        Fonction f20 = new Fonction("Jeff");
-        Fonction f21 = new Fonction("Jean-Marc");
-        Fonction f22 = new Fonction("Jacqueline"); // A voir    
+            //------------------------------------------------------------------------
+            Fonction f20 = new Fonction("Jeff");
+            Fonction f21 = new Fonction("Jean-Marc");
+            Fonction f22 = new Fonction("Jacqueline"); // A voir    
 
-        //------------------------------------------------------------------------
-        Fonction f09 = new Fonction("Gardien de but");
-        Fonction f10 = new Fonction("Defenseur");
-        Fonction f11 = new Fonction("Milieu de terrain");
-        Fonction f12 = new Fonction("Attaquant");
-        Fonction f13 = new Fonction("Entraineur");
+            //------------------------------------------------------------------------
+            Fonction f09 = new Fonction("Gardien de but");
+            Fonction f10 = new Fonction("Defenseur");
+            Fonction f11 = new Fonction("Milieu de terrain");
+            Fonction f12 = new Fonction("Attaquant");
+            Fonction f13 = new Fonction("Entraineur");
 
-        //---------------------------------------------------------------------
-        Fonction f14 = new Fonction("Anna");
-        Fonction f15 = new Fonction("Elsa");
-        Fonction f16 = new Fonction("Olaf le bonhomme de neige");
-        Fonction f17 = new Fonction("Kristoff");
-        Fonction f18 = new Fonction("Sven le renne");
-        Fonction f19 = new Fonction("Hans le prince");
-        Fonction f23 = new Fonction("Figurant01");
-        Fonction f24 = new Fonction("Figurant02");
+            //---------------------------------------------------------------------
+            Fonction f14 = new Fonction("Anna");
+            Fonction f15 = new Fonction("Elsa");
+            Fonction f16 = new Fonction("Olaf le bonhomme de neige");
+            Fonction f17 = new Fonction("Kristoff");
+            Fonction f18 = new Fonction("Sven le renne");
+            Fonction f19 = new Fonction("Hans le prince");
+            Fonction f23 = new Fonction("Figurant01");
+            Fonction f24 = new Fonction("Figurant02");
 
-        //---------------------------- PARTICIPANT --------------------------------
-        Participant p01 = new Participant("Jesse Carmichael");
-        Participant p02 = new Participant("Adam Levine");
-        Participant p03 = new Participant("James Valentine");
-        Participant p04 = new Participant("Mickey Madden");
-        Participant p05 = new Participant("Sam Farrar");
-        Participant p06 = new Participant("Matt Flynn");
+            //---------------------------- PARTICIPANT --------------------------------
+            Participant p01 = new Participant("Jesse Carmichael");
+            Participant p02 = new Participant("Adam Levine");
+            Participant p03 = new Participant("James Valentine");
+            Participant p04 = new Participant("Mickey Madden");
+            Participant p05 = new Participant("Sam Farrar");
+            Participant p06 = new Participant("Matt Flynn");
 
-        //----------------------------------------------------------------------------
-        Participant p07 = new Participant("Jeff Panacloc");
+            //----------------------------------------------------------------------------
+            Participant p07 = new Participant("Jeff Panacloc");
 
-        //----------------------------------------------------------------------------
-        // Gardien
-        Participant p08 = new Participant("Kevin Trapp");
-        Participant p09 = new Participant("Danijel Subasic");
+            //----------------------------------------------------------------------------
+            // Gardien
+            Participant p08 = new Participant("Kevin Trapp");
+            Participant p09 = new Participant("Danijel Subasic");
 
-        // DEF
-        Participant p10 = new Participant("Thiago Silva");
-        Participant p11 = new Participant("Djibril Sidibé");
+            // DEF
+            Participant p10 = new Participant("Thiago Silva");
+            Participant p11 = new Participant("Djibril Sidibé");
 
-        // MIL
-        Participant p12 = new Participant("Marco Verratti");
-        Participant p13 = new Participant("Thomas Lemar");
+            // MIL
+            Participant p12 = new Participant("Marco Verratti");
+            Participant p13 = new Participant("Thomas Lemar");
 
-        // ATT
-        Participant p14 = new Participant("Edinson Cavani");
-        Participant p15 = new Participant("Radamel Falcao");
+            // ATT
+            Participant p14 = new Participant("Edinson Cavani");
+            Participant p15 = new Participant("Radamel Falcao");
 
-        // COACH
-        Participant p16 = new Participant("Unai Emery");
-        Participant p17 = new Participant("Leonardo Jardim");
+            // COACH
+            Participant p16 = new Participant("Unai Emery");
+            Participant p17 = new Participant("Leonardo Jardim");
 
-        //---------------------------------------------------------------
-        Participant p18 = new Participant("participant01");
-        Participant p19 = new Participant("participant02");
-        Participant p20 = new Participant("participant03");
-        Participant p21 = new Participant("participant04");
-        Participant p22 = new Participant("participant05");
-        Participant p23 = new Participant("participant06");
-        Participant p24 = new Participant("participant07"); // /!\ On sait jamais!!
+            //---------------------------------------------------------------
+            Participant p18 = new Participant("participant01");
+            Participant p19 = new Participant("participant02");
+            Participant p20 = new Participant("participant03");
+            Participant p21 = new Participant("participant04");
+            Participant p22 = new Participant("participant05");
+            Participant p23 = new Participant("participant06");
+            Participant p24 = new Participant("participant07"); // /!\ On sait jamais!!
 
-        //================= ASSOCIATION FONCTIONS/PARTICIPANTS =====================
-        // MARROON 5 ;
-        f01.getParticipants().add(p04); // mickey madden bassiste
-        f02.getParticipants().add(p02); // Adam Levine chant
-        f03.getParticipants().add(p01); // Jesse Carmichael clavier
-        f04.getParticipants().add(p03); // James Valentine guitare solo
-        f05.getParticipants().add(p01); // Jesse Carmichael Choeur
-        f05.getParticipants().add(p03); // James Valentine Choeur
-        f05.getParticipants().add(p05); // Sam Farrar Choeur
-        f06.getParticipants().add(p05); // Sam Farrar guitare rythmique
-        f07.getParticipants().add(p06); // Matt Flynn batterie
+            //================= ASSOCIATION FONCTIONS/PARTICIPANTS =====================
+            // MARROON 5 ;
+            f01.getParticipants().add(p04); // mickey madden bassiste
+            f02.getParticipants().add(p02); // Adam Levine chant
+            f03.getParticipants().add(p01); // Jesse Carmichael clavier
+            f04.getParticipants().add(p03); // James Valentine guitare solo
+            f05.getParticipants().add(p01); // Jesse Carmichael Choeur
+            f05.getParticipants().add(p03); // James Valentine Choeur
+            f05.getParticipants().add(p05); // Sam Farrar Choeur
+            f06.getParticipants().add(p05); // Sam Farrar guitare rythmique
+            f07.getParticipants().add(p06); // Matt Flynn batterie
 
-        // JEFF PANACLOC
-        f20.getParticipants().add(p07); // JEFF PANACLOC
-        f21.getParticipants().add(p07); // Jean- Marc
-        f22.getParticipants().add(p07); // Jacqueline
+            // JEFF PANACLOC
+            f20.getParticipants().add(p07); // JEFF PANACLOC
+            f21.getParticipants().add(p07); // Jean- Marc
+            f22.getParticipants().add(p07); // Jacqueline
 
-        // COUPE DE LA LIGUE 
-        f09.getParticipants().add(p08); // Gardiens de but
-        f09.getParticipants().add(p09);
-        f10.getParticipants().add(p10); // Defenseurs
-        f10.getParticipants().add(p11);
-        f11.getParticipants().add(p12); // Millieu de terrain
-        f11.getParticipants().add(p13);
-        f12.getParticipants().add(p14); // Attaquants
-        f12.getParticipants().add(p15);
-        f13.getParticipants().add(p16); // Entraineurs
-        f13.getParticipants().add(p17);
+            // COUPE DE LA LIGUE 
+            f09.getParticipants().add(p08); // Gardiens de but
+            f09.getParticipants().add(p09);
+            f10.getParticipants().add(p10); // Defenseurs
+            f10.getParticipants().add(p11);
+            f11.getParticipants().add(p12); // Millieu de terrain
+            f11.getParticipants().add(p13);
+            f12.getParticipants().add(p14); // Attaquants
+            f12.getParticipants().add(p15);
+            f13.getParticipants().add(p16); // Entraineurs
+            f13.getParticipants().add(p17);
 
-        // Disney sur Glace
-        f14.getParticipants().add(p18); // Anna
-        f15.getParticipants().add(p19); // Elsa
-        f16.getParticipants().add(p20); // Olaf
-        f17.getParticipants().add(p21); // Kristoff
-        f18.getParticipants().add(p22); // Sven
-        f19.getParticipants().add(p23); // Hans
-        f23.getParticipants().add(p24); // Participant 07
-        f24.getParticipants().add(p24); // Participant 07
+            // Disney sur Glace
+            f14.getParticipants().add(p18); // Anna
+            f15.getParticipants().add(p19); // Elsa
+            f16.getParticipants().add(p20); // Olaf
+            f17.getParticipants().add(p21); // Kristoff
+            f18.getParticipants().add(p22); // Sven
+            f19.getParticipants().add(p23); // Hans
+            f23.getParticipants().add(p24); // Participant 07
+            f24.getParticipants().add(p24); // Participant 07
 
-        //===================GROUPES/FONCTIONS====================
-        // Marroon 5
-        f01.setGroupe(g01);
-        f02.setGroupe(g01);
-        f03.setGroupe(g01);
-        f04.setGroupe(g01);
-        f05.setGroupe(g01);
-        f06.setGroupe(g01);
-        f07.setGroupe(g01);
+            //===================GROUPES/FONCTIONS====================
+            // Marroon 5
+            f01.setGroupe(g01);
+            f02.setGroupe(g01);
+            f03.setGroupe(g01);
+            f04.setGroupe(g01);
+            f05.setGroupe(g01);
+            f06.setGroupe(g01);
+            f07.setGroupe(g01);
 
-        // JEFF
-        f20.setGroupe(g02);
-        f21.setGroupe(g02);
-        f22.setGroupe(g02);
+            // JEFF
+            f20.setGroupe(g02);
+            f21.setGroupe(g02);
+            f22.setGroupe(g02);
 
-        // CDL MONACO
-        f09.setGroupe(g03);
-        f10.setGroupe(g03);
-        f11.setGroupe(g03);
-        f12.setGroupe(g03);
-        f13.setGroupe(g03);
+            // CDL MONACO
+            f09.setGroupe(g03);
+            f10.setGroupe(g03);
+            f11.setGroupe(g03);
+            f12.setGroupe(g03);
+            f13.setGroupe(g03);
 
-        // CDL PSG
-        f09.setGroupe(g04);
-        f10.setGroupe(g04);
-        f11.setGroupe(g04);
-        f12.setGroupe(g04);
-        f13.setGroupe(g04);
+            // CDL PSG
+            f09.setGroupe(g04);
+            f10.setGroupe(g04);
+            f11.setGroupe(g04);
+            f12.setGroupe(g04);
+            f13.setGroupe(g04);
 
-        //Disney
-        f14.setGroupe(g05);
-        f15.setGroupe(g05);
-        f16.setGroupe(g05);
-        f17.setGroupe(g05);
-        f18.setGroupe(g05);
-        f19.setGroupe(g05);
-        f23.setGroupe(g05);
-        f24.setGroupe(g05);
+            //Disney
+            f14.setGroupe(g05);
+            f15.setGroupe(g05);
+            f16.setGroupe(g05);
+            f17.setGroupe(g05);
+            f18.setGroupe(g05);
+            f19.setGroupe(g05);
+            f23.setGroupe(g05);
+            f24.setGroupe(g05);
 
-        //===========================PERSISTANCE=======================
-        // Persistance des fonctions
-        em.persist(p01);
-        em.persist(f01);
-        em.persist(f02);
-        em.persist(f03);
-        em.persist(f04);
-        em.persist(f05);
-        em.persist(f06);
-        em.persist(f07);
+            // Association d'un spectacle à des groupes
+            g01.setSpectacle(spctmaroon6);
+
+            //===========================PERSISTANCE=======================
+            // Persistance des fonctions
+            em.persist(p01);
+            em.persist(f01);
+            em.persist(f02);
+            em.persist(f03);
+            em.persist(f04);
+            em.persist(f05);
+            em.persist(f06);
+            em.persist(f07);
 //        em.persist(f08);
-        em.persist(f09);
-        em.persist(f10);
-        em.persist(f11);
-        em.persist(f12);
-        em.persist(f13);
-        em.persist(f14);
-        em.persist(f15);
-        em.persist(f16);
-        em.persist(f17);
-        em.persist(f18);
-        em.persist(f19);
-        em.persist(f20);
-        em.persist(f21);
-        em.persist(f22);
-        em.persist(f23);
-        em.persist(f24);
+            em.persist(f09);
+            em.persist(f10);
+            em.persist(f11);
+            em.persist(f12);
+            em.persist(f13);
+            em.persist(f14);
+            em.persist(f15);
+            em.persist(f16);
+            em.persist(f17);
+            em.persist(f18);
+            em.persist(f19);
+            em.persist(f20);
+            em.persist(f21);
+            em.persist(f22);
+            em.persist(f23);
+            em.persist(f24);
         // Yoan
 
-        // Valérian
+            // Valérian
 //================================== THEME =====================================        
-        //Theme t01 = new Theme("Musique");
-        Theme t02 = new Theme("Arts & Spectacles");
-        Theme t03 = new Theme("Sport");
-        Theme t04 = new Theme("Famille & Loisirs");
+            //Theme t01 = new Theme("Musique");
+            Theme t02 = new Theme("Arts & Spectacles");
+            Theme t03 = new Theme("Sport");
+            Theme t04 = new Theme("Famille & Loisirs");
 //============================== SOUS THEME ====================================
-        //   Musique
-        SousTheme st01 = concert;//new SousTheme("Concert");
-        SousTheme st02 = new SousTheme("Festival");
-        SousTheme st03 = new SousTheme("Classique et Opéra");
-        SousTheme st04 = new SousTheme("Spectacle et Comédie Musicale");
-        //   Arts & Spectacles
+            //   Musique
+            SousTheme st01 = concert;//new SousTheme("Concert");
+            SousTheme st02 = new SousTheme("Festival");
+            SousTheme st03 = new SousTheme("Classique et Opéra");
+            SousTheme st04 = new SousTheme("Spectacle et Comédie Musicale");
+            //   Arts & Spectacles
 
-        SousTheme st06 = new SousTheme("Humour");
-        SousTheme st07 = new SousTheme("Exposition et Musée");
-        SousTheme st08 = new SousTheme("Théâtre");
+            SousTheme st06 = new SousTheme("Humour");
+            SousTheme st07 = new SousTheme("Exposition et Musée");
+            SousTheme st08 = new SousTheme("Théâtre");
 
-        SousTheme st10 = new SousTheme("Famille / Enfants");
-        SousTheme st11 = new SousTheme("Danse");
-        SousTheme st12 = new SousTheme("Cabaret");
-        //    Sport
-        SousTheme st13 = football;//new SousTheme("Football");
-        SousTheme st14 = new SousTheme("Rugby");
-        SousTheme st15 = new SousTheme("Basket");
-        SousTheme st16 = new SousTheme("Handball");
-        SousTheme st17 = new SousTheme("Volley");
-        SousTheme st18 = new SousTheme("Hockey");
-        SousTheme st19 = new SousTheme("Auto");
-        SousTheme st20 = new SousTheme("Moto");
-        SousTheme st21 = new SousTheme("Tennis");
-        SousTheme st22 = new SousTheme("Combat");
-        SousTheme st23 = new SousTheme("Athlétiste");
-        SousTheme st24 = new SousTheme("Autre");
-        //    Famille & loisirs
-        SousTheme st25 = new SousTheme("Parc");
-        SousTheme st26 = new SousTheme("Salon");
+            SousTheme st10 = new SousTheme("Famille / Enfants");
+            SousTheme st11 = new SousTheme("Danse");
+            SousTheme st12 = new SousTheme("Cabaret");
+            //    Sport
+            SousTheme st13 = football;//new SousTheme("Football");
+            SousTheme st14 = new SousTheme("Rugby");
+            SousTheme st15 = new SousTheme("Basket");
+            SousTheme st16 = new SousTheme("Handball");
+            SousTheme st17 = new SousTheme("Volley");
+            SousTheme st18 = new SousTheme("Hockey");
+            SousTheme st19 = new SousTheme("Auto");
+            SousTheme st20 = new SousTheme("Moto");
+            SousTheme st21 = new SousTheme("Tennis");
+            SousTheme st22 = new SousTheme("Combat");
+            SousTheme st23 = new SousTheme("Athlétiste");
+            SousTheme st24 = new SousTheme("Autre");
+            //    Famille & loisirs
+            SousTheme st25 = new SousTheme("Parc");
+            SousTheme st26 = new SousTheme("Salon");
 
-        SousTheme st28 = new SousTheme("Monuments / Lieux Touristiques");
+            SousTheme st28 = new SousTheme("Monuments / Lieux Touristiques");
 
-        SousTheme st30 = cirque;//new SousTheme("Cirque");
-        SousTheme st31 = new SousTheme("Loisirs et Tourisme");
+            SousTheme st30 = cirque;//new SousTheme("Cirque");
+            SousTheme st31 = new SousTheme("Loisirs et Tourisme");
 
 //============================ EVENEMENT =======================================
-        Evenement ev01 = new Evenement("Championnat du monde hockey");
-        Evenement ev02 = new Evenement("Salon international de l'agriculture");
-        Evenement ev03 = new Evenement("Jeux Olympique 2016");
-        Evenement ev04 = new Evenement("Jeux Olympique 2020");
-        Evenement ev05 = new Evenement("Euro");
-        Evenement ev06 = new Evenement("Fête de la musique 2017");
-        Evenement ev07 = new Evenement("Summer Break");
-        Evenement ev08 = new Evenement("Solde Parc");
+            Evenement ev01 = new Evenement("Championnat du monde hockey");
+            Evenement ev02 = new Evenement("Salon international de l'agriculture");
+            Evenement ev03 = new Evenement("Jeux Olympique 2016");
+            Evenement ev04 = new Evenement("Jeux Olympique 2020");
+            Evenement ev05 = new Evenement("Euro");
+            Evenement ev06 = new Evenement("Fête de la musique 2017");
+            Evenement ev07 = new Evenement("Summer Break");
+            Evenement ev08 = new Evenement("Solde Parc");
 //=============================  COMMANDE ======================================  
-        Commande co01 = new Commande(new BigDecimal("3.3"), StatutCommande.LIVREE, new GregorianCalendar(2017, 1, 3).getTime());
-        Commande co02 = new Commande(new BigDecimal("6.35"), StatutCommande.ANNULEE, new GregorianCalendar(2017, 2, 17).getTime());
-        Commande co03 = new Commande(new BigDecimal("0"), StatutCommande.COMMANDEE, new GregorianCalendar(2017, 1, 20).getTime());
-        Commande co04 = new Commande(new BigDecimal("0"), StatutCommande.PAYEE, new GregorianCalendar(2017, 2, 10).getTime());
-        Commande co05 = new Commande(new BigDecimal("14.5"), StatutCommande.LIVREE, new GregorianCalendar(2017, 1, 28).getTime());
+            Commande co01 = new Commande(new BigDecimal("3.3"), StatutCommande.LIVREE, new GregorianCalendar(2017, 1, 3).getTime());
+            Commande co02 = new Commande(new BigDecimal("6.35"), StatutCommande.ANNULEE, new GregorianCalendar(2017, 2, 17).getTime());
+            Commande co03 = new Commande(new BigDecimal("0"), StatutCommande.COMMANDEE, new GregorianCalendar(2017, 1, 20).getTime());
+            Commande co04 = new Commande(new BigDecimal("0"), StatutCommande.PAYEE, new GregorianCalendar(2017, 2, 10).getTime());
+            Commande co05 = new Commande(new BigDecimal("14.5"), StatutCommande.LIVREE, new GregorianCalendar(2017, 1, 28).getTime());
 //============================= LIGNE COMMANDE =================================        
-        //LigneCommande lc01 = new LigneCommande(new BigDecimal("44"), 0.2f, 0);
-        LigneCommande lc02 = new LigneCommande(new BigDecimal("22"), 0.2f, 0.1f);
-        LigneCommande lc03 = new LigneCommande(new BigDecimal("30"), 0.2f, 0);
-        LigneCommande lc04 = new LigneCommande(new BigDecimal("25"), 0.2f, 0.1f);
-        LigneCommande lc05 = new LigneCommande(new BigDecimal("49.99"), 0.2f, 0);
+            //LigneCommande lc01 = new LigneCommande(new BigDecimal("44"), 0.2f, 0);
+            LigneCommande lc02 = new LigneCommande(new BigDecimal("22"), 0.2f, 0.1f);
+            LigneCommande lc03 = new LigneCommande(new BigDecimal("30"), 0.2f, 0);
+            LigneCommande lc04 = new LigneCommande(new BigDecimal("25"), 0.2f, 0.1f);
+            LigneCommande lc05 = new LigneCommande(new BigDecimal("49.99"), 0.2f, 0);
 
 //============================ PAIEMENT ========================================
-        Paiement paie01 = new Paiement(new BigDecimal("69.3"), ModePaiement.CB, new GregorianCalendar(2017, 1, 3).getTime());
-        Paiement paie02 = new Paiement(new BigDecimal("25"), ModePaiement.CHEQUE, new GregorianCalendar(2017, 2, 16).getTime());
-        Paiement paie03 = new Paiement(new BigDecimal("10"), ModePaiement.CHEQUE_CULTURE, new GregorianCalendar(2017, 2, 4).getTime());
-        Paiement paie04 = new Paiement(new BigDecimal("20"), ModePaiement.CB, new GregorianCalendar(2017, 1, 28).getTime());
+            Paiement paie01 = new Paiement(new BigDecimal("69.3"), ModePaiement.CB, new GregorianCalendar(2017, 1, 3).getTime());
+            Paiement paie02 = new Paiement(new BigDecimal("25"), ModePaiement.CHEQUE, new GregorianCalendar(2017, 2, 16).getTime());
+            Paiement paie03 = new Paiement(new BigDecimal("10"), ModePaiement.CHEQUE_CULTURE, new GregorianCalendar(2017, 2, 4).getTime());
+            Paiement paie04 = new Paiement(new BigDecimal("20"), ModePaiement.CB, new GregorianCalendar(2017, 1, 28).getTime());
 //================================= MODE EXPEDITION ============================
-        ModeExpedition me01 = new ModeExpedition("Courrier Simple", new BigDecimal("3.30"), "Envoi postal par lettre simple. Cet envoi n'est pas proposé si les billets sont non numérotés.", StatutModeExpedition.ACTIF);
-        ModeExpedition me02 = new ModeExpedition("Recommandé", new BigDecimal("6.35"), "Possibilité de tracer en temps réel sur internet où ce situe votre pli.", StatutModeExpedition.ACTIF);
-        ModeExpedition me03 = new ModeExpedition("Retrait Magasin", new BigDecimal("0"), "Les billets sont à retirer uniquement dans les magasins participants.", StatutModeExpedition.ACTIF);
-        ModeExpedition me04 = new ModeExpedition("Recommandé Etrangé", new BigDecimal("14.50"), "Possibilité de tracer en temps réel sur internet où ce situe votre pli.", StatutModeExpedition.ACTIF);
+            ModeExpedition me01 = new ModeExpedition("Courrier Simple", new BigDecimal("3.30"), "Envoi postal par lettre simple. Cet envoi n'est pas proposé si les billets sont non numérotés.", StatutModeExpedition.ACTIF);
+            ModeExpedition me02 = new ModeExpedition("Recommandé", new BigDecimal("6.35"), "Possibilité de tracer en temps réel sur internet où ce situe votre pli.", StatutModeExpedition.ACTIF);
+            ModeExpedition me03 = new ModeExpedition("Retrait Magasin", new BigDecimal("0"), "Les billets sont à retirer uniquement dans les magasins participants.", StatutModeExpedition.ACTIF);
+            ModeExpedition me04 = new ModeExpedition("Recommandé Etrangé", new BigDecimal("14.50"), "Possibilité de tracer en temps réel sur internet où ce situe votre pli.", StatutModeExpedition.ACTIF);
 
-        co01.setModeExpedition(me01);
-        co02.setModeExpedition(me02);
-        co03.setModeExpedition(me03);
-        co04.setModeExpedition(me03);
-        co05.setModeExpedition(me04);
+            co01.setModeExpedition(me01);
+            co02.setModeExpedition(me02);
+            co03.setModeExpedition(me03);
+            co04.setModeExpedition(me03);
+            co05.setModeExpedition(me04);
 //============================== PAIEMENT COMMANDE =============================
-        paie01.setCommande(co01);
-        paie02.setCommande(co04);
-        paie03.setCommande(co05);
-        paie04.setCommande(co05);
+            paie01.setCommande(co01);
+            paie02.setCommande(co04);
+            paie03.setCommande(co05);
+            paie04.setCommande(co05);
 //============================= COMMANDE// LIGNE ===============================
-        lc01.setCommande(co01);
-        lc02.setCommande(co02);
-        lc03.setCommande(co03);
-        lc04.setCommande(co04);
-        lc03.setCommande(co05);
-        lc02.setCommande(co01);
-        lc04.setCommande(co02);
-        lc05.setCommande(co03);
+            lc01.setCommande(co01);
+            lc02.setCommande(co02);
+            lc03.setCommande(co03);
+            lc04.setCommande(co04);
+            lc03.setCommande(co05);
+            lc02.setCommande(co01);
+            lc04.setCommande(co02);
+            lc05.setCommande(co03);
 
 //============================= Assos THEME/SOUSTHEME ==========================   
-        st01.setTheme(t01);
-        st02.setTheme(t01);
-        st03.setTheme(t01);
-        st04.setTheme(t01);
-        st06.setTheme(t02);
-        st07.setTheme(t02);
-        st08.setTheme(t02);
-        st10.setTheme(t02);
-        st11.setTheme(t02);
-        st12.setTheme(t02);
-        st13.setTheme(t03);
-        st14.setTheme(t03);
-        st15.setTheme(t03);
-        st16.setTheme(t03);
-        st17.setTheme(t03);
-        st18.setTheme(t03);
-        st19.setTheme(t03);
-        st20.setTheme(t03);
-        st21.setTheme(t03);
-        st22.setTheme(t03);
-        st23.setTheme(t03);
-        st24.setTheme(t03);
+            st01.setTheme(t01);
+            st02.setTheme(t01);
+            st03.setTheme(t01);
+            st04.setTheme(t01);
+            st06.setTheme(t02);
+            st07.setTheme(t02);
+            st08.setTheme(t02);
+            st10.setTheme(t02);
+            st11.setTheme(t02);
+            st12.setTheme(t02);
+            st13.setTheme(t03);
+            st14.setTheme(t03);
+            st15.setTheme(t03);
+            st16.setTheme(t03);
+            st17.setTheme(t03);
+            st18.setTheme(t03);
+            st19.setTheme(t03);
+            st20.setTheme(t03);
+            st21.setTheme(t03);
+            st22.setTheme(t03);
+            st23.setTheme(t03);
+            st24.setTheme(t03);
 
-        st25.setTheme(t04);
-        st26.setTheme(t04);
+            st25.setTheme(t04);
+            st26.setTheme(t04);
 
-        st28.setTheme(t04);
+            st28.setTheme(t04);
 
-        st30.setTheme(t04);
-        st31.setTheme(t04);
+            st30.setTheme(t04);
+            st31.setTheme(t04);
 //==================================== PERSIST =================================        
-        em.persist(st01);
-        em.persist(st02);
-        em.persist(st03);
-        em.persist(st04);
-        em.persist(st06);
-        em.persist(st07);
-        em.persist(st08);
-        em.persist(st10);
-        em.persist(st11);
-        em.persist(st12);
-        em.persist(st13);
-        em.persist(st14);
-        em.persist(st15);
-        em.persist(st16);
-        em.persist(st17);
-        em.persist(st18);
-        em.persist(st19);
-        em.persist(st20);
-        em.persist(st23);
-        em.persist(st24);
-        em.persist(st25);
-        em.persist(st26);
-        em.persist(st28);
-        em.persist(st30);
-        em.persist(st31);
+            em.persist(st01);
+            em.persist(st02);
+            em.persist(st03);
+            em.persist(st04);
+            em.persist(st06);
+            em.persist(st07);
+            em.persist(st08);
+            em.persist(st10);
+            em.persist(st11);
+            em.persist(st12);
+            em.persist(st13);
+            em.persist(st14);
+            em.persist(st15);
+            em.persist(st16);
+            em.persist(st17);
+            em.persist(st18);
+            em.persist(st19);
+            em.persist(st20);
+            em.persist(st23);
+            em.persist(st24);
+            em.persist(st25);
+            em.persist(st26);
+            em.persist(st28);
+            em.persist(st30);
+            em.persist(st31);
 
-        em.persist(ev01);
-        em.persist(ev02);
-        em.persist(ev03);
-        em.persist(ev04);
-        em.persist(ev05);
-        em.persist(ev06);
-        em.persist(ev07);
-        em.persist(ev08);
+            em.persist(ev01);
+            em.persist(ev02);
+            em.persist(ev03);
+            em.persist(ev04);
+            em.persist(ev05);
+            em.persist(ev06);
+            em.persist(ev07);
+            em.persist(ev08);
 
-        em.persist(lc01);
-        em.persist(lc02);
-        em.persist(lc03);
-        em.persist(lc04);
-        em.persist(lc05);
+            em.persist(lc01);
+            em.persist(lc02);
+            em.persist(lc03);
+            em.persist(lc04);
+            em.persist(lc05);
 
-        em.persist(p01);
-        em.persist(p02);
-        em.persist(p03);
-        em.persist(p04);
+            em.persist(p01);
+            em.persist(p02);
+            em.persist(p03);
+            em.persist(p04);
 // Valérian
 
-        // Inna
-        try {
+            // Inna
             //-----------------------[ DATES ]----------------------------
-
             sdf.setLenient(false);
 
-            Date d20 = sdf.parse("13/03/2017 18:00:00");
+            Date d20_ = sdf.parse("13/03/2017 18:00:00");
             Date d21 = sdf.parse("14/03/2017 18:00:00");
             Date d22 = sdf.parse("15/03/2017 18:00:00");
             Date d23 = sdf.parse("25/03/2017 18:00:00");
@@ -768,30 +768,30 @@ public class TestData implements TestDataLocal {
             Lieu parc2 = new Lieu("HIPPODROME DE SENE", null, "VANNES - FRANCE");
 
 //-----------------------[ SEANCES ]------------------------------------------
-            Seance s06 = new Seance(d20, StatutSeance.ACTIF, spctMozart);
+            Seance s06_ = new Seance(d20_, StatutSeance.ACTIF, spctMozart);
             s06.setLieu(madelaine);
-            Seance s07 = new Seance(d21, StatutSeance.ACTIF, spctMozart);
+            Seance s07_ = new Seance(d21, StatutSeance.ACTIF, spctMozart);
             s07.setLieu(madelaine);
-            Seance s08 = new Seance(d22, StatutSeance.ACTIF, spctMozart);
+            Seance s08_ = new Seance(d22, StatutSeance.ACTIF, spctMozart);
             s08.setLieu(madelaine);
-            Seance s09 = new Seance(d23, StatutSeance.ACTIF, spctMozart);
+            Seance s09_ = new Seance(d23, StatutSeance.ACTIF, spctMozart);
             s09.setLieu(madelaine);
 
-            Seance s10 = new Seance(d24, StatutSeance.ACTIF, spctBach);
+            Seance s10_ = new Seance(d24, StatutSeance.ACTIF, spctBach);
             s10.setLieu(madelaine);
-            Seance s11 = new Seance(d25, StatutSeance.ACTIF, spctBach);
+            Seance s11_ = new Seance(d25, StatutSeance.ACTIF, spctBach);
             s11.setLieu(madelaine);
-            Seance s12 = new Seance(d26, StatutSeance.ACTIF, spctBach);
+            Seance s12_ = new Seance(d26, StatutSeance.ACTIF, spctBach);
             s12.setLieu(madelaine);
-            Seance s13 = new Seance(d27, StatutSeance.ACTIF, spctBach);
+            Seance s13_ = new Seance(d27, StatutSeance.ACTIF, spctBach);
             s13.setLieu(madelaine);
-            Seance s14 = new Seance(d28, StatutSeance.ANNULE, spctBach);
+            Seance s14_ = new Seance(d28, StatutSeance.ANNULE, spctBach);
             s14.setLieu(madelaine);
 
-            Seance s15 = new Seance(d29, StatutSeance.ACTIF, spctFoot1);
+            Seance s15_ = new Seance(d29, StatutSeance.ACTIF, spctFoot1);
             s15.setLieu(stadeLyon);
 
-            Seance s16 = new Seance(d26, StatutSeance.ACTIF, spctFoot2);
+            Seance s16_ = new Seance(d26, StatutSeance.ACTIF, spctFoot2);
             s16.setLieu(stadeMarceille);
 
             Seance s17 = new Seance(d30, StatutSeance.ACTIF, spctCirque1);
@@ -802,7 +802,7 @@ public class TestData implements TestDataLocal {
 
             Seance s19 = new Seance(d30, StatutSeance.ACTIF, spctCirque2);
             s19.setLieu(parc1);
-            Seance s20 = new Seance(d20, StatutSeance.ACTIF, spctCirque2);
+            Seance s20 = new Seance(d20_, StatutSeance.ACTIF, spctCirque2);
             s20.setLieu(parc1);
 
             Seance s21 = new Seance(d21, StatutSeance.ACTIF, spctCirque2);
@@ -814,17 +814,17 @@ public class TestData implements TestDataLocal {
             Seance s23 = new Seance(d23, StatutSeance.ACTIF, spctCirque2);
             s23.setLieu(parc1);
 
-            em.persist(s06);
-            em.persist(s07);
-            em.persist(s08);
-            em.persist(s09);
-            em.persist(s10);
-            em.persist(s11);
-            em.persist(s12);
-            em.persist(s13);
-            em.persist(s14);
-            em.persist(s15);
-            em.persist(s16);
+            em.persist(s06_);
+            em.persist(s07_);
+            em.persist(s08_);
+            em.persist(s09_);
+            em.persist(s10_);
+            em.persist(s11_);
+            em.persist(s12_);
+            em.persist(s13_);
+            em.persist(s14_);
+            em.persist(s15_);
+            em.persist(s16_);
             em.persist(s17);
             em.persist(s18);
             em.persist(s19);
@@ -833,10 +833,10 @@ public class TestData implements TestDataLocal {
             em.persist(s22);
             em.persist(s23);
 
+            // Inna
         } catch (ParseException ex) {
             Logger.getLogger(TestData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // Inna
 
     }
 }

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.SpectacleGestionLocal;
@@ -26,17 +27,20 @@ public class ShowDisplayController implements SubControllerInterface {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         int id;
+        Spectacle show;
         try {
             id = Integer.parseInt(request.getParameter("id"));
-        } catch (NumberFormatException ex) {
-            request.setAttribute("message", "Bad ID");
+            show = spectacleGestion.selectById(id);
+            if (show == null) {
+                throw new IllegalArgumentException("Spectacle inexistant");
+            }
+        } catch (IllegalArgumentException ex) {
+            request.setAttribute("message", ex.getMessage());
             return "includes/store/show-error";
         }
-
-        Spectacle show = spectacleGestion.selectById(id);
         request.setAttribute("show", show);
-
         return "includes/store/show-display";
+
     }
 
     private SpectacleGestionLocal lookupSpectacleGestionLocal() {

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -13,18 +15,29 @@ import javax.persistence.ManyToOne;
 public class Fonction implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    private String nom;
-    
-    // les assiociations de table
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}) //
-    private Groupe groupe;
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    private Collection<Participant> participants;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nom;
+
+    // les assiociations de table
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) //
+    private Groupe groupe;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Collection<Participant> participants;
 
     public Fonction() {
         participants = new ArrayList<>();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Fonction(String nom) {
@@ -56,7 +69,6 @@ public class Fonction implements Serializable {
         this.participants = participants;
     }
 
-    
     @Override
     public String toString() {
         return "entities.Role[ nom=" + nom + " ]";
