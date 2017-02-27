@@ -21,15 +21,8 @@ public class ClientGestion implements ClientGestionLocal {
     
     @Override
     public Client selectByEmailPwd(String email, String mdp) {
-        Query qr = em.createNamedQuery("entities.Client.selectByEmailPwd");
-        qr.setParameter("paramEmail", email);
-        qr.setParameter("paramHashMotPasse", mdp);
-        try {
-            Client c = (Client) qr.getSingleResult();
-            return c;
-        } catch (NoResultException ex) {
-            return null;
-        }
+        Client c = selectByEmail(email);
+        return c != null && c.checkMotPasse(mdp) ? c : null;
     }
 
     @Override

@@ -1,4 +1,3 @@
-
 package entities;
 
 import enums.CiviliteClient;
@@ -21,13 +20,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.mindrot.jbcrypt.BCrypt;
 
-
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "entities.Client.selectByEmailPwd", query = "select c from Client c where c.email = :paramEmail and c.hashMotPasse = :paramHashMotPasse"),
     @NamedQuery(name = "entities.Client.selectByCode", query = "select c from Client c where c.code = :paramCode"),
-    @NamedQuery(name = "entities.Client.selectByEmail", query = "select c from Client c where c.email = :paramEmail"),
-      
+    @NamedQuery(name = "entities.Client.selectByEmail", query = "select c from Client c where c.email = :paramEmail")
 })
 public class Client implements Serializable {
 
@@ -56,13 +52,13 @@ public class Client implements Serializable {
         listeCoordonneesLivraison = new ArrayList<>();
     }
 
-    public Client(CiviliteClient civilite, String nom, String prenom, String email, String hashMotPasse, Date dateNaissance, StatutClient statut, String commentaire) {
+    public Client(CiviliteClient civilite, String nom, String prenom, String email, String motPasse, Date dateNaissance, StatutClient statut, String commentaire) {
         this();
         setCivilite(civilite);
         setNom(nom);
         setPrenom(prenom);
         setEmail(email);
-        setHashMotPasse(hashMotPasse);
+        setMotPasse(motPasse);
         setDateNaissance(dateNaissance);
         setStatut(statut);
         setCommentaire(commentaire);
@@ -99,7 +95,7 @@ public class Client implements Serializable {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    
+
     public String getNomComplet() {
         return String.format("%s %s", prenom, nom);
     }
@@ -116,12 +112,16 @@ public class Client implements Serializable {
         return hashMotPasse;
     }
 
-    private void setHashMotPasse(String hashMotPasse) {
+    public void setHashMotPasse(String hashMotPasse) {
         this.hashMotPasse = hashMotPasse;
     }
-    
+
     public void setMotPasse(String motPasse) {
         setHashMotPasse(BCrypt.hashpw(motPasse, BCrypt.gensalt()));
+    }
+
+    public boolean checkMotPasse(String motPasse) {
+        return BCrypt.checkpw(motPasse, getHashMotPasse());
     }
 
     public Date getDateNaissance() {
