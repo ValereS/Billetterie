@@ -7,10 +7,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entities.Theme.selectAll", query = "SELECT t FROM Theme t")
+})
 public class Theme implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id   

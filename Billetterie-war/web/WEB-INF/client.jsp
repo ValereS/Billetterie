@@ -19,10 +19,13 @@
             <form action="FrontController" method="POST">
                 <input type="hidden" name="section" value="client" />
                 <input type="hidden" name="action" value="manage" />
-                <input type="text" name="nom" value="${client.nom}" /><br>
-                <input type="text" name="nom" value="${client.prenom}" /><br>
-                <input type="text" name="nom" value="${client.email}" /><br>
-                <input type="password" name="nom" ${client.hashMotPasse} /><br>
+                <label>Civilité:</label>${client.civilite}<br>
+                <label>Nom:</label><input type="text" name="nom" value="${client.nom}" /><br>
+                <label>Prenom:</label><input type="text" name="prenom" value="${client.prenom}" /><br>
+                <label>Mail:</label><input type="text" name="mail" value="${client.email}" /><br>
+                <label>Mot de passe:</label><input type="password" name="motDePasse" ${client.hashMotPasse} /><br>
+                <label>Date de Naissance:</label><input type="date" name="dateNaissance" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" title="JJ/MM/AAAA" ${client.dateNaissance} /><br>
+                <label>Statut:</label> ${client.statut}<br>
                 
                 <input type="submit" value="OK" name="doIt" />
             </form>

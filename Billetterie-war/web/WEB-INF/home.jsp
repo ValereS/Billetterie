@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <c:url value="/css/style.css" var="url01" />
         <link href="${url01}" rel="stylesheet" type="text/css"/>
-        <c:url value="/bootstrap/css/bootstrap.min.css" var="urlBootstrap" />
+        <c:url value="/bootstrap/css/bootstrap.css" var="urlBootstrap" />
         <link href="${urlBootstrap}" rel="stylesheet" type="text/css"/>
         <title>Billet Ti - Home</title>
     </head>
@@ -24,5 +24,8 @@
                 ${message}
             </p>
         </div>
+        <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
+        <script src="${urlBootStrapJS}">
+        </script>
     </body>
 </html>

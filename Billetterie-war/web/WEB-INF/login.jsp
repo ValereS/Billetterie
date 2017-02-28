@@ -18,8 +18,8 @@
         <hr />
         <div>
             <form action="FrontController" method="POST">
-                <label>Retpoŝto:</label><input type="text" name="email" value="" /><br/>
-                <label>Pasvorto:</label><input type="password" name="mdp" value="" /><br/>
+                <label>Login:</label><input type="text" name="email" value="" /><br/>
+                <label>Password:</label><input type="password" name="mdp" value="" /><br/>
                 <input type="hidden" name="section" value="client">
                 <input type="hidden" name="action" value="login">
                 <input type="submit" value="Se connecter" />

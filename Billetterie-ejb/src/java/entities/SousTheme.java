@@ -10,9 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entities.SousTheme.selectByTheme", query = "SELECT st FROM SousTheme st where st.theme = :paramTheme")
+})
 public class SousTheme implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,6 +53,14 @@ public class SousTheme implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Collection<Spectacle> getSpectacles() {
+        return spectacles;
+    }
+
+    public void setSpectacles(Collection<Spectacle> spectacles) {
+        this.spectacles = spectacles;
     }
 
     @Override

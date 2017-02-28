@@ -1,8 +1,11 @@
 package service;
 
+import entities.SousTheme;
 import entities.Spectacle;
+import entities.Theme;
 import java.util.List;
 import javax.ejb.Local;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -22,5 +25,11 @@ public interface SpectacleGestionLocal {
 
     long countBySearch(String paramSearch);
 
-    
+    public long countBySubTheme(String sousThemeNom);
+
+    public List<Spectacle> selectBySubTheme(int pageNumber, int maxResults, String sousThemeNom);
+
+    public long countByTheme(String themeNom);
+
+    public List<Spectacle> selectByTheme(int pageNumber, int maxResults, String themeNom);
 }
