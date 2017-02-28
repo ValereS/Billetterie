@@ -16,17 +16,27 @@
         <c:url value="FrontController?section=search" var="url03" />
         <c:import url="${url03}" />
         <hr />
-        <div>
-            <form action="FrontController" method="POST">
-                <label>Login:</label><input type="text" name="email" value="" /><br/>
-                <label>Password:</label><input type="password" name="mdp" value="" /><br/>
-                <input type="hidden" name="section" value="client">
-                <input type="hidden" name="action" value="login">
-                <input type="submit" value="Se connecter" />
-            </form>
-            <p class="error" style="color: red">
-                ${errorMessage}
-            </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                    <form action="FrontController" method="POST">
+                        <div class="col-md-4">
+                            <label>Login:</label><input type="text" name="email" value="" /><br/>
+                            <label>Password:</label><input type="password" name="mdp" value="" /><br/>
+                            <input type="hidden" name="section" value="client">
+                            <input type="hidden" name="action" value="login">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Se connecter" id="buttonConnection"/>
+                            
+                        </div>
+                    </form>
+                <div class="col-md-2">
+                    <p class="error" style="color: red">
+                        ${errorMessage}
+                    </p>
+                    </div>
+            </div>
         </div>
     </body>
 </html>
