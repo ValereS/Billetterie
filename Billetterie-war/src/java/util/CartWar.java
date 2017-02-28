@@ -17,11 +17,11 @@ import service.PanierGestionLocal;
  *
  * @author cdi505
  */
-public class PanierWar implements Serializable {
+public class CartWar implements Serializable {
 
     private final PanierGestionLocal panierGestion;
 
-    public PanierWar() {
+    public CartWar() {
         panierGestion = lookupPanierGestionLocal();
     }
 
