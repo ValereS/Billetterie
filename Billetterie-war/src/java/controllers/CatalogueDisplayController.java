@@ -48,18 +48,18 @@ public class CatalogueDisplayController implements SubControllerInterface {
 
         List<Spectacle> shows;
         long count;
-        if (paramThemeNom != null) {
+        if (paramThemeNom != null && !paramThemeNom.trim().isEmpty()) {
             count = spectacleGestion.countByTheme(paramThemeNom);
             shows = spectacleGestion.selectByTheme(pageNumber, maxResults, paramThemeNom);
-        }else if (paramSubThemeNom != null) {
+        }else if (paramSubThemeNom != null && !paramSubThemeNom.trim().isEmpty()) {
             count = spectacleGestion.countBySubTheme(paramSubThemeNom);
             shows = spectacleGestion.selectBySubTheme(pageNumber, maxResults, paramSubThemeNom);
-        } else if (paramSearch == null || paramSearch.trim().isEmpty()) {
-            count = spectacleGestion.count();
-            shows = spectacleGestion.select(pageNumber, maxResults);
-        } else {
+        } else if (paramSearch != null && !paramSearch.trim().isEmpty()) {
             count = spectacleGestion.countBySearch(paramSearch);
             shows = spectacleGestion.selectBySearch(pageNumber, maxResults, paramSearch);
+        } else {
+            count = spectacleGestion.count();
+            shows = spectacleGestion.select(pageNumber, maxResults);
         }
 
         long numPages = (long) Math.ceil((double) count / maxResults);
@@ -73,6 +73,8 @@ public class CatalogueDisplayController implements SubControllerInterface {
         request.setAttribute("maxResults", maxResults);
         request.setAttribute("pageNumbers", pageNumbers);
         request.setAttribute("paramSearch", paramSearch);
+        request.setAttribute("paramThemeNom", paramThemeNom);
+        request.setAttribute("paramSubThemeNom", paramSubThemeNom);
         return "includes/store/catalogue-display";
     }
 

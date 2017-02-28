@@ -46,7 +46,10 @@
         <ul class="tier_theme">
             <c:forEach var="theme" items="${themes}">
                 <li>
-                    <c:url var="urlTheme" value="FrontController?section=catalogue&paramThemeNom=${theme.nom}" />
+                    <c:url var="urlTheme" value="FrontController">
+                        <c:param name="section" value="catalogue"/>
+                        <c:param name="paramThemeNom" value="${theme.nom}"/>
+                    </c:url>
                     <a href="${urlTheme}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                         ${theme.nom}
                         <span class="caret"></span>
