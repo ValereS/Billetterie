@@ -36,7 +36,7 @@ public class Seance implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Spectacle spectacle;
     
-    @ManyToMany(cascade = {})
+    @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Collection<Categorie> categories;
     
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})

@@ -21,7 +21,7 @@ public class Categorie implements Serializable {
     @Column(nullable = false)
     private String nom;
 //--------------------------------------------------
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Collection<Zone> zones;
     
     @OneToMany(mappedBy = "categorie")
@@ -29,6 +29,7 @@ public class Categorie implements Serializable {
     
     @ManyToMany(mappedBy = "categories")
     private Collection<Seance> Seances;
+
     
     public Categorie() {
         tarifs = new ArrayList<>();
@@ -39,7 +40,7 @@ public class Categorie implements Serializable {
         this();
         this.nom = nom;
     }
-
+ 
     
     public Categorie(String nom, Collection<Tarif> tarifs) {
         this();
@@ -83,6 +84,14 @@ public class Categorie implements Serializable {
 
     public void setTarifs(Collection<Tarif> tarifs) {
         this.tarifs = tarifs;
+    }
+
+    public Collection<Seance> getSeances() {
+        return Seances;
+    }
+
+    public void setSeances(Collection<Seance> Seances) {
+        this.Seances = Seances;
     }
     
 }
