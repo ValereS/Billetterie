@@ -40,21 +40,19 @@
         </ul>
     </div>
     <div>
-        <ul class="nav navbar-nav" >
+        <ul class="tier_theme">
             <c:forEach var="theme" items="${themes}">
-                <li class="dropdown">
-                    <a href="FrontController?section=catalogue&action=manage" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                <li>
+                    <a href="FrontController?section=catalogue&paramSearch=" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                         ${theme.nom}
                         <span class="caret"></span>
-                        <%-- ul class="dropdown-menu"--%>
-                        <ul class="" role="menu" data-toggle="dropdown">
+                        <ul class="tier_subtheme">
                             <c:forEach items="${theme.sousThemes}" var="sousTheme">
-                                <li><a href="">${sousTheme.nom}</a></li>
-                            </c:forEach>
+                                <li><a href="FrontController?section=catalogue&paramSearch=">${sousTheme.nom}</a></li>
+                                </c:forEach>
                         </ul>
-                    </a>
                 </li>
             </c:forEach>
-        </ul>    
+        </ul>
     </div>
 </nav>

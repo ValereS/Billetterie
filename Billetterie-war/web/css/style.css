@@ -1,9 +1,40 @@
-ul#menu-main li, #navigation-main, #menu-main, #search {
-    display: inline;
+ul#menu-main li, #navigation-main, #menu-main, #search, ul.tier_theme {
+    display: inline-block;
 }
 
 label {
     display: inline-block;
     width: 140px;
     text-align: right;
+}
+
+/*------------------ menu deroulant -----------------------*/
+.tier_theme, .tier_theme ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.tier_theme {
+    text-align: center;
+}
+.tier_theme li {
+    display: inline-block;
+}
+.tier_theme ul li {
+    display: inherit;
+    background-color: fuchsia;
+}
+.tier_theme a {
+    text-decoration: none;
+    display: block;
+	color:#000;
+}
+.tier_theme ul {
+    position: absolute;
+    left: -999em;
+    text-align: left;
+    z-index: 1000;
+}
+.tier_theme li:hover ul {
+    left: auto;
 }
