@@ -6,12 +6,15 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -37,8 +40,12 @@ public class Coordonnees implements Serializable {
     
     @ManyToOne(cascade = CascadeType.ALL)
     private Ville ville;
+    
+    @OneToMany(mappedBy = "coordonnees")
+    private Collection<Lieu> lieux;
 
     public Coordonnees() {        
+        lieux = new ArrayList<>();
     }
 
     public Coordonnees(String nom, String prenom, String entreprise, String numeroVoie, String typeVoie, String nomVoie, String telephone, String telephoneMobile, Ville ville) {
@@ -54,6 +61,7 @@ public class Coordonnees implements Serializable {
         this.ville = ville;
     }
 
+    
     public Long getId() {
         return id;
     }
@@ -161,6 +169,14 @@ public class Coordonnees implements Serializable {
     @Override
     public String toString() {
         return "entities.Coordonnees[ id=" + id + " ]";
+    }
+
+    public Collection<Lieu> getLieux() {
+        return lieux;
+    }
+
+    public void setLieux(Collection<Lieu> lieux) {
+        this.lieux = lieux;
     }
 
 }

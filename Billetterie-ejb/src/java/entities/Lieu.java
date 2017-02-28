@@ -33,6 +33,9 @@ public class Lieu implements Serializable {
     
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Coordonnees coordonnees;
+    
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Image image;
 
     public Lieu() {
         zones = new ArrayList<>();
@@ -47,7 +50,7 @@ public class Lieu implements Serializable {
     }
     
     // getters & setters
-    
+
     
     public Long getId() {
         return id;
@@ -109,6 +112,14 @@ public class Lieu implements Serializable {
 
     public void setCoordonnees(Coordonnees coordonnee) {
         this.coordonnees = coordonnee;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
     
 }

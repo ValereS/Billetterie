@@ -100,6 +100,16 @@ public class Spectacle implements Serializable {
         this.seances = seances;
     }
 
+    public Spectacle(String titre, String description, StatutSpectacle statut, SousTheme sousTheme, Evenement evenement) {
+        this.titre = titre;
+        this.description = description;
+        this.statut = statut;
+        this.sousTheme = sousTheme;
+        this.evenement = evenement;
+    }
+    
+    
+
     public Spectacle(String titre, String description, StatutSpectacle statut) {
         this();
         this.titre = titre;

@@ -61,7 +61,7 @@ public class Commande implements Serializable {
         this.date = date;
     }
 
- 
+    
 
     public BigDecimal getFrais() {
         return frais;
@@ -114,6 +114,30 @@ public class Commande implements Serializable {
     @Override
     public String toString() {
         return "Commande{" + "id=" + id + ", frais=" + frais + ", statut=" + statut + ", date=" + date + ", paiements=" + paiements + ", lignesCommandes=" + lignesCommandes + ", client=" + client + ", modeExpedition=" + modeExpedition + ", adresseFacturation=" + adresseFacturation + ", adresseLivraison=" + adresseLivraison + '}';
+    }
+
+    public Collection<LigneCommande> getLignesCommandes() {
+        return lignesCommandes;
+    }
+
+    public void setLignesCommandes(Collection<LigneCommande> lignesCommandes) {
+        this.lignesCommandes = lignesCommandes;
+    }
+
+    public Coordonnees getAdresseFacturation() {
+        return adresseFacturation;
+    }
+
+    public void setAdresseFacturation(Coordonnees adresseFacturation) {
+        this.adresseFacturation = adresseFacturation;
+    }
+
+    public Coordonnees getAdresseLivraison() {
+        return adresseLivraison;
+    }
+
+    public void setAdresseLivraison(Coordonnees adresseLivraison) {
+        this.adresseLivraison = adresseLivraison;
     }
 
 

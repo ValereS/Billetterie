@@ -38,6 +38,13 @@ public class Groupe implements Serializable {
         this.nom = nom;
     }
 
+    public Groupe(String nom, Spectacle spectacle) {
+        this.nom = nom;
+        this.spectacle = spectacle;
+    }
+    
+    
+
     public Collection<Fonction> getFonctions() {
         return fonctions;
     }

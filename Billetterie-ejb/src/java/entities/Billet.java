@@ -3,8 +3,6 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -50,6 +48,17 @@ public class Billet implements Serializable {
         this.seance = seance;
         this.categorie = categorie;
     }
+
+    public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place) {
+        this.numero = numero;
+        this.tva = tva;
+        this.typeBillet = typeBillet;
+        this.seance = seance;
+        this.categorie = categorie;
+        this.place = place;
+    }
+    
+    
     
     
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place, LigneCommande ligneCommande) {
