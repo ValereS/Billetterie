@@ -16,14 +16,18 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "entities.Spectacle.selectById", query = "select s from Spectacle s where s.id = :paramId"),        
+    @NamedQuery(name = "entities.Spectacle.selectById", query = "select s from Spectacle s where s.id = :paramId"),
     @NamedQuery(name = "entities.Spectacle.selectSeancesBySpectacle", query = "select s from Seance s where s.spectacle = :paramSpectacle ORDER BY s.date"),
     @NamedQuery(name = "entities.Spectacle.selectGroupeBySpectacle", query = "select g from Groupe g where g.spectacle =:paramSpectacle"),
     @NamedQuery(name = "entities.Spectacle.select", query = "SELECT s FROM Spectacle s WHERE s.statut = :paramStatut ORDER BY s.titre"),
     @NamedQuery(name = "entities.Spectacle.count", query = "SELECT COUNT(s) FROM Spectacle s WHERE s.statut = :paramStatut"),
     @NamedQuery(name = "entities.Spectacle.countAll", query = "SELECT COUNT(s) FROM Spectacle s"),
     @NamedQuery(name = "entities.Spectacle.selectBySearch", query = "SELECT s FROM Spectacle s LEFT JOIN s.evenement e WHERE s.statut = :paramStatut AND (s.titre LIKE :paramSearch OR s.description LIKE :paramSearch OR e.nom LIKE :paramSearch) ORDER BY s.titre"),
-    @NamedQuery(name = "entities.Spectacle.countBySearch", query = "SELECT COUNT(s) FROM Spectacle s LEFT JOIN s.evenement e WHERE s.statut = :paramStatut AND (s.titre LIKE :paramSearch OR s.description LIKE :paramSearch OR e.nom LIKE :paramSearch)")
+    @NamedQuery(name = "entities.Spectacle.countBySearch", query = "SELECT COUNT(s) FROM Spectacle s LEFT JOIN s.evenement e WHERE s.statut = :paramStatut AND (s.titre LIKE :paramSearch OR s.description LIKE :paramSearch OR e.nom LIKE :paramSearch)"),
+    @NamedQuery(name = "entities.Spectacle.selectBySubTheme", query = "SELECT s FROM Spectacle s where s.sousTheme.nom = :paramSubThemeNom and s.statut = :paramStatut"),
+    @NamedQuery(name = "entities.Spectacle.countBySubTheme", query = "select Count(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.nom = :paramSubThemeNom"),
+    @NamedQuery(name = "entities.Spectacle.selectByTheme", query = "SELECT s FROM Spectacle s where s.sousTheme.theme.nom = :paramThemeNom and s.statut = :paramStatut"),
+    @NamedQuery(name = "entities.Spectacle.countByTheme", query = "select Count(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.theme.nom = :paramThemeNom")
 })
 public class Spectacle implements Serializable {
 
@@ -35,26 +39,24 @@ public class Spectacle implements Serializable {
     private String titre;
     private String description;
     private StatutSpectacle statut;
-    
-//--------------------------------------------------------------------------------------
 
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+//--------------------------------------------------------------------------------------
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Image image;
-    
+
     @OneToMany(mappedBy = "spectacle")
     private Collection<Seance> seances;
-    
+
     @OneToMany(mappedBy = "spectacle")
     private Collection<Groupe> groupes;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private SousTheme sousTheme;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Evenement evenement;
-    
+
 //---------------------------------------------------------------------------------------
-            
     public Long getId() {
         return id;
     }
@@ -146,8 +148,7 @@ public class Spectacle implements Serializable {
     public void setEvenement(Evenement evenement) {
         this.evenement = evenement;
     }
-    
-    
+
     @Override
     public String toString() {
         return "entities.Spectacle[ id=" + id + " ]" + "titre : " + titre;

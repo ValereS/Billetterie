@@ -38,3 +38,13 @@ label {
 .tier_theme li:hover ul {
     left: auto;
 }
+
+.tier_theme a:hover {
+    color: fuchsia;
+    text-decoration: none;
+}
+.tier_subtheme a:hover{
+    text-decoration: none;
+    background-color: fuchsia;
+    color: white;
+}

@@ -1,6 +1,8 @@
 package service;
 
+import entities.SousTheme;
 import entities.Spectacle;
+import entities.Theme;
 import enums.StatutSpectacle;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -68,5 +70,46 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         qr.setParameter("paramSearch", "%" + paramSearch + "%");
         return (long) qr.getSingleResult();
     }
+
+    @Override
+    public List<Spectacle> selectBySubTheme(int pageNumber, int maxResults, String sousThemeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.selectBySubTheme");
+        qr.setParameter("paramSubThemeNom", sousThemeNom);
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        int firstResult = (pageNumber - 1) * maxResults;
+        qr.setFirstResult(firstResult);
+        qr.setMaxResults(maxResults);
+        return qr.getResultList();
+    }
+    
+
+    @Override
+    public long countBySubTheme(String sousThemeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.countBySubTheme");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        qr.setParameter("paramSubThemeNom", sousThemeNom);
+        return (long) qr.getSingleResult();
+    }
+    
+        @Override
+    public List<Spectacle> selectByTheme(int pageNumber, int maxResults, String themeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.selectByTheme");
+        qr.setParameter("paramThemeNom", themeNom);
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        int firstResult = (pageNumber - 1) * maxResults;
+        qr.setFirstResult(firstResult);
+        qr.setMaxResults(maxResults);
+        return qr.getResultList();
+    }
+    
+
+    @Override
+    public long countByTheme(String themeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.countByTheme");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        qr.setParameter("paramThemeNom", themeNom);
+        return (long) qr.getSingleResult();
+    }
+
 
 }

@@ -29,6 +29,8 @@ public class CatalogueDisplayController implements SubControllerInterface {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String paramSearch = request.getParameter("paramSearch");
+        String paramSubThemeNom = request.getParameter("paramSubThemeNom");
+        String paramThemeNom = request.getParameter("paramThemeNom");
 
         int pageNumber;
         try {
@@ -46,8 +48,13 @@ public class CatalogueDisplayController implements SubControllerInterface {
 
         List<Spectacle> shows;
         long count;
-
-        if (paramSearch == null || paramSearch.trim().isEmpty()) {
+        if (paramThemeNom != null) {
+            count = spectacleGestion.countByTheme(paramThemeNom);
+            shows = spectacleGestion.selectByTheme(pageNumber, maxResults, paramThemeNom);
+        }else if (paramSubThemeNom != null) {
+            count = spectacleGestion.countBySubTheme(paramSubThemeNom);
+            shows = spectacleGestion.selectBySubTheme(pageNumber, maxResults, paramSubThemeNom);
+        } else if (paramSearch == null || paramSearch.trim().isEmpty()) {
             count = spectacleGestion.count();
             shows = spectacleGestion.select(pageNumber, maxResults);
         } else {

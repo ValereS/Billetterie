@@ -43,12 +43,12 @@
         <ul class="tier_theme">
             <c:forEach var="theme" items="${themes}">
                 <li>
-                    <a href="FrontController?section=catalogue&paramSearch=" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                    <a href="FrontController?section=catalogue&paramThemeNom=${theme.nom}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                         ${theme.nom}
                         <span class="caret"></span>
                         <ul class="tier_subtheme">
                             <c:forEach items="${theme.sousThemes}" var="sousTheme">
-                                <li><a href="FrontController?section=catalogue&paramSearch=">${sousTheme.nom}</a></li>
+                                <li><a href="FrontController?section=catalogue&paramSubThemeNom=${sousTheme.nom}">${sousTheme.nom}</a></li>
                                 </c:forEach>
                         </ul>
                 </li>
