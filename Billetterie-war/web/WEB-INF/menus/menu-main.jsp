@@ -22,9 +22,12 @@
                 <a href="${url02}">Catalogue</a>
             </li>|
             <li>
-                <c:url value="FrontController?section=signup" var="url03" />
-                <a href="${url03}">S'inscrire</a>
-            </li>|
+                <c:if test="${empty client}">
+                    <c:url value="FrontController?section=signup" var="url03" />
+                    <a href="${url03}">S'inscrire</a>
+                    |
+                </c:if>
+            </li>
             <li>
                 <c:if test="${empty client}">
                     <c:url value="FrontController?section=login" var="url04" />
@@ -43,12 +46,17 @@
         <ul class="tier_theme">
             <c:forEach var="theme" items="${themes}">
                 <li>
-                    <a href="FrontController?section=catalogue&paramThemeNom=${theme.nom}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                    <c:url var="urlTheme" value="FrontController">
+                        <c:param name="section" value="catalogue"/>
+                        <c:param name="paramThemeNom" value="${theme.nom}"/>
+                    </c:url>
+                    <a href="${urlTheme}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                         ${theme.nom}
                         <span class="caret"></span>
                         <ul class="tier_subtheme">
                             <c:forEach items="${theme.sousThemes}" var="sousTheme">
-                                <li><a href="FrontController?section=catalogue&paramSubThemeNom=${sousTheme.nom}">${sousTheme.nom}</a></li>
+                                <c:url var="urlSubTheme" value="FrontController?section=catalogue&paramSubThemeNom=${sousTheme.nom}" />
+                                <li><a href="${urlSubTheme}">${sousTheme.nom}</a></li>
                                 </c:forEach>
                         </ul>
                 </li>

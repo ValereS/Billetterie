@@ -9,6 +9,8 @@
                     <c:param name="pageNumber" value="${currentPageNumber}" />
                     <c:param name="maxResults" value="${maxResults}" />
                     <c:param name="paramSearch" value="${paramSearch}" />
+                    <c:param name="paramThemeNom" value="${paramThemeNom}" />
+                    <c:param name="paramSubThemeNom" value="${paramSubThemeNom}" />
                 </c:url>
                 <a href="${url}">${currentPageNumber}</a>
             </c:when>

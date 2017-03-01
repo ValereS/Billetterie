@@ -41,7 +41,7 @@
                 </li>
                     <img src="${seance.lieu.image.url}" width="250" height="250"/>
                 <li>
-                    <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target=\"_blank">${seance.lieu.coordonnees.adresse} </a>
+                    <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse} </a>
                 </li>
             </ul>
         </li>

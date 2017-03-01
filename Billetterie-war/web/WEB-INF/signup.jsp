@@ -19,6 +19,7 @@
         <hr />
         <div class="container">
             <div class="row">
+                <div class="col-lg-3"></div>
                 <div class="col-md-5">
                     <form action="FrontController" method="POST">
                         <div class="row">
@@ -30,12 +31,17 @@
                                 <label for="radioMme" style="width: 80px"><input type="radio" name="civilite" value="MME" id="radioMme" />Madame</label>
                             </div>
                             <br/><br/>
-                            <div class='col-md-5'><label>Nom</label></div><div class='col-md-7'><input type="text" name="nom" placeholder="Long" pattern="[A-Za-z 1-9]{2,150}" required="required" /></div>
+                            <div class='col-md-5'><label>Nom</label></div><div class='col-md-7'><input type="text" name="nom" placeholder="Long" pattern="[A-Za-z 1-9-_¨^èé'ùàç]{2,150}" required="required" /></div>
                             <br/><br/>
-                            <div class='col-md-5'><label>Prénom</label></div><div class='col-md-7'><input type="text" name="prenom" placeholder="Phi" pattern="[A-Za-z 1-9]{2,150}" /></div>
+                            <div class='col-md-5'><label>Prénom</label></div><div class='col-md-7'><input type="text" name="prenom" placeholder="Phi" pattern="[A-Za-z 1-9-_¨^èé'ùàçz]{2,150}" /></div>
                             <br/><br/>
                             <div class='col-md-5'><label>Email</label></div><div class='col-md-7'><input type="text" name="email" value="" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter email" required="required"/></div>
-                            <br/><br/>
+                            <div class='col-md-5'></div><div class='col-md-7'>
+                                <p class="error" style="color: red">
+                                    ${errorMessage}
+                                </p></div>
+                                <br/><br/><br>
+                                
                             <div class='col-md-5'><label>Mot de passe</label></div><div class='col-md-7'><input type="password" name="mdp" value="" pattern=".{4,30}" required="required" /></div>
                             <br/><br/>
                             <div class='col-md-5'><label>Mot de passe</label></div><div class='col-md-7'><input type="password" name="mdp" value="" pattern=".{4,30}" required="required" /></div>
@@ -45,9 +51,9 @@
                             <input type="hidden" name="action" value="signup">
                             <div class='col-md-5'></div><div class='col-md-7'><input type="submit" value="S'inscrire" /></div>
                     </form>
-                    <p class="error" style="color: red">
-                        ${errorMessage}
-                    </p>
+                    <div class='col-md-5'></div>
+
+
                 </div>
             </div>
         </div>
