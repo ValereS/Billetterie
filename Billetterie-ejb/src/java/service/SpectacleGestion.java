@@ -39,6 +39,11 @@ public class SpectacleGestion implements SpectacleGestionLocal {
             qr = em.createNamedQuery("entities.Spectacle.selectGroupeBySpectacle");
             qr.setParameter("paramSpectacle", show);
             show.setGroupes(qr.getResultList());
+            
+            // C'est une collection et je dois retrouver un objet en fonction de ce qu'il sera choisi dans la comboBox
+//            qr = em.createNamedQuery("entities.Spectacle.selectCategorie"); 
+//            qr.setParameter("paramSeance", show.getSeances());
+//            show.getSeances().addAll(qr.getResultList());
             return show;
         } catch (NoResultException ex) {
             return null;

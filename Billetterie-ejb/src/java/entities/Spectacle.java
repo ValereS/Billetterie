@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
     @NamedQuery(name = "entities.Spectacle.selectById", query = "select s from Spectacle s where s.id = :paramId"),
     @NamedQuery(name = "entities.Spectacle.selectSeancesBySpectacle", query = "select s from Seance s where s.spectacle = :paramSpectacle ORDER BY s.date"),
     @NamedQuery(name = "entities.Spectacle.selectGroupeBySpectacle", query = "select g from Groupe g where g.spectacle =:paramSpectacle"),
+    @NamedQuery(name = "entities.Spectacle.selectCategorie", query = "select c from Categorie c where c.Seances=:paramSeance"),
     @NamedQuery(name = "entities.Spectacle.select", query = "SELECT s FROM Spectacle s WHERE s.statut = :paramStatut ORDER BY s.titre"),
     @NamedQuery(name = "entities.Spectacle.count", query = "SELECT COUNT(s) FROM Spectacle s WHERE s.statut = :paramStatut"),
     @NamedQuery(name = "entities.Spectacle.countAll", query = "SELECT COUNT(s) FROM Spectacle s"),

@@ -18,9 +18,7 @@
             <c:import url="${url03}" />
         </div>
         <hr />
-        <div class="container">
             <c:url value="FrontController?section=show-display" var="url04" />
             <c:import url="${url04}" />
-        </div>
     </body>
 </html>
