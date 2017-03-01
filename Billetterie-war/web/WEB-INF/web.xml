@@ -12,8 +12,8 @@
             <param-value>controllers.DefaultController</param-value>
         </init-param>
         <init-param>
-            <param-name>cart</param-name>
-            <param-value>controllers.DefaultController</param-value>
+            <param-name>cart-header</param-name>
+            <param-value>controllers.CartController</param-value>
         </init-param>
         <init-param>
             <param-name>data</param-name>

@@ -27,8 +27,8 @@
                         <label>Nom:&nbsp;</label><input type="text" name="nom" value="${client.nom}" /><br>
                         <label>Prenom:&nbsp;</label><input type="text" name="prenom" value="${client.prenom}" /><br>
                         <label>Mail:&nbsp;</label><input type="text" name="mail" value="${client.email}" /><br>
-                        <label>Mot de passe:&nbsp;</label><input type="password" name="motDePasse"${client.hashMotPasse} /><br>
-                        <label>Date de Naissance:&nbsp;</label><input type="date" name="dateNaissance" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" title="JJ/MM/AAAA"${client.dateNaissance}/><br>
+                        <label>Mot de passe:&nbsp;</label><input type="password" name="motDePasse" /><br>
+                        <label>Date de Naissance:&nbsp;</label><input type="date" name="dateNaissance" value="${client.dateNaissance}" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" title="JJ/MM/AAAA"/><br>
                         <label>Statut:&nbsp;</label>${client.statut}<br>
                     </div>
                     <div class="col-md-2">
