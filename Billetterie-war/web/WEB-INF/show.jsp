@@ -11,12 +11,14 @@
         <title>Billet Ti - Home</title>
     </head>
     <body>
-        <c:url value="FrontController?section=navigation" var="url02" />
-        <c:import url="${url02}" />
-        <c:url value="FrontController?section=search" var="url03" />
-        <c:import url="${url03}" />
+        <div class="jumbotron">
+            <c:url value="FrontController?section=navigation" var="url02" />
+            <c:import url="${url02}" />
+            <c:url value="FrontController?section=search" var="url03" />
+            <c:import url="${url03}" />
+        </div>
         <hr />
-        <div>
+        <div class="container">
             <c:url value="FrontController?section=show-display" var="url04" />
             <c:import url="${url04}" />
         </div>
