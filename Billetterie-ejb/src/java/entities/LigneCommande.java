@@ -131,4 +131,8 @@ public class LigneCommande implements Serializable {
     private BigDecimal roundPrice(BigDecimal price) {
         return price.setScale(2, RoundingMode.HALF_UP);
     }
+    
+    public int getQuantiteBillets(){
+        return getBillets().size();
+    }
 }
