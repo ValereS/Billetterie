@@ -5,8 +5,6 @@
  */
 package classes;
 
-import entities.Categorie;
-import entities.Tarif;
 import java.util.Objects;
 
 /**
@@ -15,27 +13,27 @@ import java.util.Objects;
  */
 public class CartKey {
 
-    private final Categorie category;
-    private final Tarif rate;
+    private final int categoryId;
+    private final int rateId;
 
-    public CartKey(Categorie category, Tarif rate) {
-        this.category = category;
-        this.rate = rate;
+    public CartKey(int categoryId, int rateId) {
+        this.categoryId = categoryId;
+        this.rateId = rateId;
     }
 
-    public Categorie getCategory() {
-        return category;
+    public int getCategory() {
+        return categoryId;
     }
 
-    public Tarif getRate() {
-        return rate;
+    public int getRate() {
+        return rateId;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.category);
-        hash = 83 * hash + Objects.hashCode(this.rate);
+        hash = 83 * hash + Objects.hashCode(this.categoryId);
+        hash = 83 * hash + Objects.hashCode(this.rateId);
         return hash;
     }
 
@@ -48,10 +46,10 @@ public class CartKey {
             return false;
         }
         final CartKey other = (CartKey) obj;
-        if (!Objects.equals(this.category, other.category)) {
+        if (!Objects.equals(this.categoryId, other.categoryId)) {
             return false;
         }
-        if (!Objects.equals(this.rate, other.rate)) {
+        if (!Objects.equals(this.rateId, other.rateId)) {
             return false;
         }
         return true;

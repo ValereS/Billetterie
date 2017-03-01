@@ -6,6 +6,7 @@
 package service;
 
 import entities.LigneCommande;
+import exceptions.CartError;
 import java.math.BigDecimal;
 import java.util.Collection;
 import javax.ejb.Local;
@@ -17,16 +18,18 @@ import javax.ejb.Local;
 @Local
 public interface PanierGestionLocal {
 
-    void addOrderLine(LigneCommande orderLine);
+    void addOrderLine(int categoryId, int rateId, LigneCommande orderLine);
 
-    boolean removeOrderLine(LigneCommande orderLine);
+    LigneCommande removeOrderLine(int categoryId, int rateId);
 
     Collection<LigneCommande> getOrderLines();
 
     void clear();
 
-    BigDecimal getTotalHT();
+    BigDecimal getTotalPrice();
 
-    BigDecimal getTotalTTC();
-    
+    BigDecimal getTotalPriceATI();
+
+    LigneCommande createOrderLine(int showingId, int categoryId, int rateId, int quantity) throws CartError;
+
 }
