@@ -47,6 +47,10 @@
             <param-name>query</param-name>
             <param-value>controllers.QueryController</param-value>
         </init-param>
+        <init-param>
+            <param-name>cart</param-name>
+            <param-value>controllers.DefaultController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
