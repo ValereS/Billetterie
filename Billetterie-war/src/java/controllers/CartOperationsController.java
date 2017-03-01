@@ -54,7 +54,9 @@ public class CartOperationsController implements SubControllerInterface {
 
         if ("add".equalsIgnoreCase(action)) {
             try {
+                System.out.println("before<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
                 LigneCommande orderLine = panierGestion.createOrderLine(showingId, categoryId, rateId, quantity);
+                System.out.println("after<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
                 panierGestion.addOrderLine(categoryId, rateId, orderLine);
             } catch (CartError ex) {
                 request.setAttribute("message", ex.getMessage());

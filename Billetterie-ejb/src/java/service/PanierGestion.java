@@ -98,7 +98,6 @@ public class PanierGestion implements PanierGestionLocal {
         if (rate == null) {
             throw new CartError("Invalid rate ID");
         }
-        
 
         Query qr = em.createNamedQuery("entities.Billet.selectBySeanceCategorieTarif");
         qr.setParameter("paramShowing", showing);
@@ -106,8 +105,9 @@ public class PanierGestion implements PanierGestionLocal {
         qr.setParameter("paramRate", rate);
 
         List<Billet> tickets = qr.getResultList();
-        tickets = tickets.subList(0, quantity);
-        if (tickets.size() < quantity) {
+        try {
+            tickets = tickets.subList(0, quantity);
+        } catch (IndexOutOfBoundsException ex) {
             throw new CartError("Not enough tickets");
         }
         Billet ticket = tickets.get(0);
