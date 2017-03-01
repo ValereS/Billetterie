@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.CascadeType;
@@ -15,12 +16,13 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class LigneCommande implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable=false, scale = 2, precision = 10)
+
+    @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal prix;
     @Column(nullable = false)
     private float tauxTva;
@@ -29,10 +31,10 @@ public class LigneCommande implements Serializable {
     @Column(nullable = false)
     private int quantite;
 //--------------------------------------------------
-    
-    @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Commande commande;
-    
+
     @OneToMany(mappedBy = "ligneCommande")
     private Collection<Billet> billets;
 
@@ -94,8 +96,7 @@ public class LigneCommande implements Serializable {
     public void setBillets(Collection<Billet> billets) {
         this.billets = billets;
     }
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -108,5 +109,26 @@ public class LigneCommande implements Serializable {
     public String toString() {
         return "entities.LigneCommande[ id=" + id + " ]";
     }
+
+    public BigDecimal getTotalPrice() {
+        BigDecimal price = getPrix().multiply(new BigDecimal(getBillets().size()));
+        return roundPrice(price);
+    }
+
+    public BigDecimal getTotalPriceATI() {
+        BigDecimal price = getTotalPrice().multiply(getPromotionMultiplier()).multiply(getVATMultiplier());
+        return roundPrice(price);
+    }
+
+    private BigDecimal getPromotionMultiplier() {
+        return new BigDecimal(1 - getTauxPromo());
+    }
+
+    private BigDecimal getVATMultiplier() {
+        return new BigDecimal(1 + getTauxTva());
+    }
     
+    private BigDecimal roundPrice(BigDecimal price) {
+        return price.setScale(2, RoundingMode.HALF_UP);
+    }
 }

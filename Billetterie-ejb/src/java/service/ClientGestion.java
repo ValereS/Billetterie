@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 @Stateless
 public class ClientGestion implements ClientGestionLocal {
-
+    
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
