@@ -18,7 +18,7 @@
         <hr />
         <div>
             
-            <jsp:include page="WEB-INF/includes/store/show-error.jsp" flush="true" />
+            <jsp:include page="includes/store/show-error.jsp" flush="true" />
 
         </div>
         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />

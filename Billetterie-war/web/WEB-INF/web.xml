@@ -59,6 +59,10 @@
             <param-name>cart</param-name>
             <param-value>controllers.DefaultController</param-value>
         </init-param>
+        <init-param>
+            <param-name>cart-operations</param-name>
+            <param-value>controllers.CartOperationsController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -131,6 +135,12 @@
     </ejb-local-ref>
     <ejb-local-ref>
         <ejb-ref-name>PanierGestion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.PanierGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#PanierGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>PanierGestion1</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.PanierGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#PanierGestion</ejb-link>
