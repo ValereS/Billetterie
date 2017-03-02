@@ -20,6 +20,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -111,11 +113,10 @@ public class PanierGestion implements PanierGestionLocal {
             throw new CartError("Not enough tickets");
         }
         Billet ticket = tickets.get(0);
-        BigDecimal price = rate.getPrix();
         float vatRate = ticket.getTva().getTaux();
         float promotionRate = category.getPromotion() != null ? category.getPromotion().getTaux() : 0;
 
-        LigneCommande orderLine = new LigneCommande(price, vatRate, promotionRate);
+        LigneCommande orderLine = new LigneCommande(rate, vatRate, promotionRate);
         orderLine.setBillets(tickets);
 
         return orderLine;

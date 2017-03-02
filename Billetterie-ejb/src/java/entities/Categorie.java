@@ -10,11 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Categorie implements Serializable {
+@NamedQueries({
+    @NamedQuery(name = "entities.Categorie.selectBySeance", query = "SELECT DISTINCT c FROM Categorie c JOIN c.billets b JOIN b.seance s WHERE b.seance = :paramSeance")
+})
+public class Categorie implements Serializable, Comparable<Categorie> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,9 +40,13 @@ public class Categorie implements Serializable {
     @OneToOne
     private Promotion promotion;
 
+    @OneToMany(mappedBy = "categorie")
+    private Collection<Billet> billets;
+
     public Categorie() {
         tarifs = new ArrayList<>();
         zones = new ArrayList<>();
+        billets = new ArrayList<>();
     }
 
     public Categorie(String nom) {
@@ -102,6 +111,19 @@ public class Categorie implements Serializable {
 
     public void setPromotion(Promotion promotion) {
         this.promotion = promotion;
+    }
+
+    public Collection<Billet> getBillets() {
+        return billets;
+    }
+
+    public void setBillets(Collection<Billet> billets) {
+        this.billets = billets;
+    }
+
+    @Override
+    public int compareTo(Categorie o) {
+        return getNom().compareTo(o.getNom());
     }
 
 }

@@ -1,11 +1,8 @@
 package service;
 
-import entities.SousTheme;
 import entities.Spectacle;
-import entities.Theme;
 import java.util.List;
 import javax.ejb.Local;
-import javax.persistence.NoResultException;
 
 /**
  *
@@ -15,7 +12,7 @@ import javax.persistence.NoResultException;
 public interface SpectacleGestionLocal {
 
 
-    Spectacle selectById(int id);
+    Spectacle selectById(long id);
 
     List<Spectacle> select(int pageNumber, int maxResults);
 

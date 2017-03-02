@@ -28,7 +28,7 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     }
 
     @Override
-    public Spectacle selectById(int id) {
+    public Spectacle selectById(long id) {
         Query qr = em.createNamedQuery("entities.Spectacle.selectById");
         qr.setParameter("paramId", id);
         try {
@@ -39,7 +39,7 @@ public class SpectacleGestion implements SpectacleGestionLocal {
             qr = em.createNamedQuery("entities.Spectacle.selectGroupeBySpectacle");
             qr.setParameter("paramSpectacle", show);
             show.setGroupes(qr.getResultList());
-            
+
             // C'est une collection et je dois retrouver un objet en fonction de ce qu'il sera choisi dans la comboBox
 //            qr = em.createNamedQuery("entities.Spectacle.selectCategorie"); 
 //            qr.setParameter("paramSeance", show.getSeances());
@@ -86,7 +86,6 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         qr.setMaxResults(maxResults);
         return qr.getResultList();
     }
-    
 
     @Override
     public long countBySubTheme(String sousThemeNom) {
@@ -95,8 +94,8 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         qr.setParameter("paramSubThemeNom", sousThemeNom);
         return (long) qr.getSingleResult();
     }
-    
-        @Override
+
+    @Override
     public List<Spectacle> selectByTheme(int pageNumber, int maxResults, String themeNom) {
         Query qr = em.createNamedQuery("entities.Spectacle.selectByTheme");
         qr.setParameter("paramThemeNom", themeNom);
@@ -106,7 +105,6 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         qr.setMaxResults(maxResults);
         return qr.getResultList();
     }
-    
 
     @Override
     public long countByTheme(String themeNom) {
@@ -115,6 +113,5 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         qr.setParameter("paramThemeNom", themeNom);
         return (long) qr.getSingleResult();
     }
-
 
 }

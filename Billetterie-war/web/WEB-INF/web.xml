@@ -140,9 +140,15 @@
         <ejb-link>Billetterie-ejb.jar#PanierGestion</ejb-link>
     </ejb-local-ref>
     <ejb-local-ref>
-        <ejb-ref-name>PanierGestion1</ejb-ref-name>
+        <ejb-ref-name>SeanceGestion</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>service.PanierGestionLocal</local>
-        <ejb-link>Billetterie-ejb.jar#PanierGestion</ejb-link>
+        <local>service.SeanceGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#SeanceGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>CategorieGestion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.CategorieGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#CategorieGestion</ejb-link>
     </ejb-local-ref>
 </web-app>

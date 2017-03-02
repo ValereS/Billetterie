@@ -40,16 +40,31 @@
 
     </ul>    
     <br>
-    <select>
-        <c:forEach var="seance" items="${show.seances}" > 
-            ${seance.statut} 
-            <option value="id seance">${seance.date}-${seance.lieu.nom}-${seance.lieu.salle}-${seance.lieu.description}</option>
-            <%--
-            <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse} </a>
-            <img src="${seance.lieu.image.url}" width="250" height="250"/>   
-            --%>
-        </c:forEach>
-    </select>    
+    <form action="FrontController" method="GET">
+        <input type="hidden" name="section" value="show" />
+        <input type="hidden" name="id" value="${show.id}" />
+        <select name="seanceId">
+            <c:forEach var="seance" items="${show.seances}" >
+                <c:choose>
+                    <c:when test="${seanceId == seance.id}">
+                        <option selected value="${seance.id}">${seance.date}-${seance.lieu.nom}-${seance.lieu.salle}-${seance.lieu.description}</option>
+                    </c:when>
+                    <c:otherwise>
+                        <option value="${seance.id}">${seance.date}-${seance.lieu.nom}-${seance.lieu.salle}-${seance.lieu.description}</option>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </select>
+        <input type="submit" name="doIt" value="OK" />
+    </form>
+
+
+        
+
+    <%--
+<a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse} </a>
+<img src="${seance.lieu.image.url}" width="250" height="250"/>   
+    --%>
     <%--   
        <ul>
            <c:forEach var="categorie" items="${show.seance.categorie}" >

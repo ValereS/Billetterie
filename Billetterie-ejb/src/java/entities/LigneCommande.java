@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +22,8 @@ public class LigneCommande implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    private String nom;
     @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal prix;
     @Column(nullable = false)
@@ -36,7 +38,7 @@ public class LigneCommande implements Serializable {
     private Commande commande;
 
     @OneToMany(mappedBy = "ligneCommande")
-    private Collection<Billet> billets;
+    private List<Billet> billets;
 
     public LigneCommande() {
         billets = new ArrayList<>();
@@ -47,6 +49,22 @@ public class LigneCommande implements Serializable {
         this.prix = prixUnitaireHt;
         this.tauxTva = tauxTva;
         this.tauxPromo = tauxPromo;
+    }
+
+    public LigneCommande(Tarif tarif, float tauxTva, float tauxPromo) {
+        this();
+        this.nom = tarif.getNom();
+        this.prix = tarif.getPrix();
+        this.tauxTva = tauxTva;
+        this.tauxPromo = tauxPromo;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public BigDecimal getPrix() {
@@ -89,11 +107,11 @@ public class LigneCommande implements Serializable {
         this.commande = commande;
     }
 
-    public Collection<Billet> getBillets() {
+    public List<Billet> getBillets() {
         return billets;
     }
 
-    public void setBillets(Collection<Billet> billets) {
+    public void setBillets(List<Billet> billets) {
         this.billets = billets;
     }
 
@@ -127,12 +145,21 @@ public class LigneCommande implements Serializable {
     private BigDecimal getVATMultiplier() {
         return new BigDecimal(1 + getTauxTva());
     }
-    
+
     private BigDecimal roundPrice(BigDecimal price) {
         return price.setScale(2, RoundingMode.HALF_UP);
     }
-    
-    public int getQuantiteBillets(){
+
+    public int getQuantiteBillets() {
         return getBillets().size();
     }
+
+    public Seance getSeance() {
+        return getBillets().get(0).getSeance();
+    }
+
+    public Categorie getCategorie() {
+        return getBillets().get(0).getCategorie();
+    }
+
 }
