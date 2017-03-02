@@ -20,6 +20,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -119,6 +121,27 @@ public class PanierGestion implements PanierGestionLocal {
         orderLine.setBillets(tickets);
 
         return orderLine;
+    }
+
+    public Seance getSeance(LigneCommande orderLine) {
+        return orderLine.getBillets().get(0).getSeance();
+    }
+
+    public Categorie getCategorie(LigneCommande orderLine) {
+        return orderLine.getBillets().get(0).getCategorie();
+    }
+
+    public Tarif getTarif(LigneCommande orderLine) {
+        Query qr = em.createNamedQuery("entities.Tarif.selectByCategoriePrix");
+        qr.setParameter("paramCategorie", getCategorie(orderLine));
+        qr.setParameter("paramPrix", orderLine.getPrix());
+        Tarif tarif;
+        try {
+            tarif = (Tarif) qr.getSingleResult();
+        } catch (NoResultException | NonUniqueResultException ex) {
+            tarif = null;
+        }
+        return tarif;
     }
 
 }
