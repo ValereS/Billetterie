@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
                         <label>Prenom:&nbsp;</label><input type="text" name="prenom" value="${client.prenom}" /><br>
                         <label>Mail:&nbsp;</label><input type="text" name="mail" value="${client.email}" /><br>
                         <label>Mot de passe:&nbsp;</label><input type="password" name="motDePasse" /><br>
-                        <label>Date de Naissance:&nbsp;</label><input type="date" name="dateNaissance" value="${client.dateNaissance}" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" title="JJ/MM/AAAA"/><br>
+                        <label>Date de Naissance:&nbsp;</label><input type="date" name="dateNaissance" value="<fmt:formatDate value="${client.dateNaissance}" pattern="yyyy-MM-dd" />" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" title="JJ/MM/AAAA"/><br>
 
                     </div>
                     <div class="col-md-2">
