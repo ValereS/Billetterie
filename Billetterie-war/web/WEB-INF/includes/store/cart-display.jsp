@@ -1,6 +1,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<p>mon panier</p>
-<c:forEach var="orderLine" items="${orderLines}">
-    ${orderLine.quantiteBillets}
-</c:forEach>
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <tr>
+                <th>Qte</th>
+                <th>Spectacle</th>
+                <th>Séance</th>
+                <th>Catégorie</th>
+                <th>Tarif</th>
+                <th></th>
+            </tr>
+            <c:forEach var="orderLine" items="${orderLines}">
+                <tr>
+                    <td>${orderLine.quantiteBillets}</td>
+                    <td> <%-- ${orderLine.billets.seance.spectacle} --%> </td>
+                    <td> <%-- ${orderLine.billets.seance} --%> </td>
+                    <td> <%-- ${orderLine.billets.categorie.nom} --%> </td>
+                    <td> <%-- ${orderLine.billets.categorie.tarif.prix} --%> </td>
+                    <c:url var="urlDelete" value="FrontController">
+                        <c:param name="section" value="cart-operations" />
+                        <c:param name="action" value="remove" />
+                        <c:param name="categoryId" value="categorie.id" />
+                        <c:param name="rateId" value="tarif.id" />
+                    </c:url>
+                    <td><a href='${urlDelete}'>X</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-7"></div>
+        <div class="col-md-3">
+            <label>Total: ${totalPrice} &euro;</label>
+        </div>
+        <div class="col-md-2">
+            <button class="btn">Payer</button>
+        </div>
+    </div>
+</div>
 

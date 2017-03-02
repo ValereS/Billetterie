@@ -21,7 +21,7 @@
                 <div class="col-md-2"></div>
                     <form action="FrontController" method="POST">
                         <div class="col-md-4">
-                            <label>Email:</label><input type="text" name="email" value="" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" /><br/>
+                            <label>Email:</label><input type="email" name="email" value="" /><br/>
                             <label>Password:</label><input type="password" name="mdp" value="" pattern=".{4,30}"/><br/>
                             <input type="hidden" name="section" value="client">
                             <input type="hidden" name="action" value="login">

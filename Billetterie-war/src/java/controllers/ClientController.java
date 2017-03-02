@@ -51,6 +51,11 @@ public class ClientController implements SubControllerInterface {
                     String prenom = request.getParameter("prenom");
                     email = request.getParameter("email");
                     String mdp = request.getParameter("mdp");
+                    String mdp2 = request.getParameter("mdp2");
+                    if (!mdp.equals(mdp2)){
+                        request.setAttribute("errorMessage", "mots de passes non identiques");
+                        return "signup";
+                    }
                     String date = request.getParameter("dateNaissance");
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     sdf.setLenient(true);

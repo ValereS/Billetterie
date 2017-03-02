@@ -3,5 +3,4 @@
 <c:url var="urlPanier" value="FrontController">
     <c:param name="section" value="cart" />
 </c:url>
-<a href="${urlPanier}">Panier</a>
-
+<a href="${urlPanier}">Panier - ${totalPrice} &euro;</a>
