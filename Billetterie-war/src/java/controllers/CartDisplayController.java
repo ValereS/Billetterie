@@ -16,8 +16,6 @@ public class CartDisplayController implements SubControllerInterface {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        // TODO        
-        
         return "includes/store/cart-display";
     }
     

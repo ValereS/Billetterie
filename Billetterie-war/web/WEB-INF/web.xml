@@ -12,8 +12,8 @@
             <param-value>controllers.DefaultController</param-value>
         </init-param>
         <init-param>
-            <param-name>cart</param-name>
-            <param-value>controllers.DefaultController</param-value>
+            <param-name>cart-header</param-name>
+            <param-value>controllers.CartController</param-value>
         </init-param>
         <init-param>
             <param-name>data</param-name>
@@ -54,6 +54,14 @@
         <init-param>
             <param-name>query</param-name>
             <param-value>controllers.QueryController</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cart</param-name>
+            <param-value>controllers.DefaultController</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cart-operations</param-name>
+            <param-value>controllers.CartOperationsController</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
@@ -148,5 +156,9 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.SeanceGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#SeanceGestion</ejb-link>
+        <ejb-ref-name>PanierGestion1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.PanierGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#PanierGestion</ejb-link>
     </ejb-local-ref>
 </web-app>

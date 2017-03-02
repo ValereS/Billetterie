@@ -18,9 +18,9 @@ import javax.ejb.Local;
 @Local
 public interface PanierGestionLocal {
 
-    void addOrderLine(int categoryId, int rateId, LigneCommande orderLine);
+    void addOrderLine(Long categoryId, Long rateId, LigneCommande orderLine);
 
-    LigneCommande removeOrderLine(int categoryId, int rateId);
+    LigneCommande removeOrderLine(Long categoryId, Long rateId);
 
     Collection<LigneCommande> getOrderLines();
 
@@ -30,6 +30,6 @@ public interface PanierGestionLocal {
 
     BigDecimal getTotalPriceATI();
 
-    LigneCommande createOrderLine(int showingId, int categoryId, int rateId, int quantity) throws CartError;
+    LigneCommande createOrderLine(Long showingId, Long categoryId, Long rateId, int quantity) throws CartError;
 
 }

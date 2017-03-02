@@ -15,6 +15,8 @@
         <c:import url="${url02}" />
         <c:url value="FrontController?section=search" var="url03" />
         <c:import url="${url03}" />
+        <c:url value="FrontController?section=cart-header" var="urlCart" />
+        <c:import url="${urlCart}" />
         <hr />
         <div>
             <p>

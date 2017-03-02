@@ -17,10 +17,8 @@
         <c:import url="${url03}" />
         <hr />
         <div>
-
-            <c:url value="FrontController?section=cart-display" var="url04" />
-            <c:import url="${url04}" />
-
+            <c:url value="FrontController?section=cart-display" var="urlCart" />
+            <c:import url="${urlCart}" />
         </div>
         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
         <script src="${urlBootStrapJS}">

@@ -20,6 +20,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -41,13 +43,13 @@ public class PanierGestion implements PanierGestionLocal {
     }
 
     @Override
-    public void addOrderLine(int categoryId, int rateId, LigneCommande orderLine) {
+    public void addOrderLine(Long categoryId, Long rateId, LigneCommande orderLine) {
         CartKey cartKey = new CartKey(categoryId, rateId);
         cart.put(cartKey, orderLine);
     }
 
     @Override
-    public LigneCommande removeOrderLine(int categoryId, int rateId) {
+    public LigneCommande removeOrderLine(Long categoryId, Long rateId) {
         CartKey cartKey = new CartKey(categoryId, rateId);
         return cart.remove(cartKey);
     }
@@ -81,13 +83,13 @@ public class PanierGestion implements PanierGestionLocal {
     }
 
     @Override
-    public LigneCommande createOrderLine(int showingId, int categoryId, int rateId, int quantity) throws CartError {
+    public LigneCommande createOrderLine(Long showingId, Long categoryId, Long rateId, int quantity) throws CartError {
         if (quantity < 1) {
             throw new CartError("Quantity must be > 0");
         }
 
-        Seance seance = em.find(Seance.class, showingId);
-        if (seance == null) {
+        Seance showing = em.find(Seance.class, showingId);
+        if (showing == null) {
             throw new CartError("Invalid showing ID");
         }
         Categorie category = em.find(Categorie.class, categoryId);
@@ -100,21 +102,21 @@ public class PanierGestion implements PanierGestionLocal {
         }
 
         Query qr = em.createNamedQuery("entities.Billet.selectBySeanceCategorieTarif");
-        qr.setParameter("paramShowing", seance);
+        qr.setParameter("paramShowing", showing);
         qr.setParameter("paramCategory", category);
         qr.setParameter("paramRate", rate);
 
         List<Billet> tickets = qr.getResultList();
-        tickets = tickets.subList(0, quantity);
-        if (tickets.size() < quantity) {
+        try {
+            tickets = tickets.subList(0, quantity);
+        } catch (IndexOutOfBoundsException ex) {
             throw new CartError("Not enough tickets");
         }
         Billet ticket = tickets.get(0);
-        BigDecimal price = rate.getPrix();
         float vatRate = ticket.getTva().getTaux();
-        float promotionRate = category.getPromotion().getTaux();
+        float promotionRate = category.getPromotion() != null ? category.getPromotion().getTaux() : 0;
 
-        LigneCommande orderLine = new LigneCommande(price, vatRate, promotionRate);
+        LigneCommande orderLine = new LigneCommande(rate, vatRate, promotionRate);
         orderLine.setBillets(tickets);
 
         return orderLine;

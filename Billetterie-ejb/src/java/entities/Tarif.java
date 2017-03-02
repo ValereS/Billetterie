@@ -14,14 +14,17 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "entities.Tarif.selectByCategorie", query = "SELECT t FROM Tarif t WHERE t.categorie = :paramCategorie ORDER BY t.prix DESC")
+    @NamedQuery(name = "entities.Tarif.selectByCategorie", query = "SELECT t FROM Tarif t WHERE t.categorie = :paramCategorie ORDER BY t.prix DESC"),
+    @NamedQuery(name = "entities.Tarif.selectByCategoriePrix", query = "SELECT t FROM Tarif t WHERE t.categorie = :paramCategorie AND t.prix = :paramPrix")
+
 })
 public class Tarif implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable=false, scale = 2, precision = 10)
+    @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal prix;
     private String nom;
 //--------------------------------------------------
@@ -35,7 +38,7 @@ public class Tarif implements Serializable {
         this.prix = prix;
         this.nom = nom;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -72,5 +75,5 @@ public class Tarif implements Serializable {
     public String toString() {
         return "entities.Tarif[ id=" + id + " ]";
     }
-    
+
 }

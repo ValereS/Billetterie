@@ -13,19 +13,19 @@ import java.util.Objects;
  */
 public class CartKey {
 
-    private final int categoryId;
-    private final int rateId;
+    private final Long categoryId;
+    private final Long rateId;
 
-    public CartKey(int categoryId, int rateId) {
+    public CartKey(Long categoryId, Long rateId) {
         this.categoryId = categoryId;
         this.rateId = rateId;
     }
 
-    public int getCategory() {
+    public Long getCategory() {
         return categoryId;
     }
 
-    public int getRate() {
+    public Long getRate() {
         return rateId;
     }
 

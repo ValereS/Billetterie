@@ -5,10 +5,13 @@
  */
 package exceptions;
 
+import javax.ejb.ApplicationException;
+
 /**
  *
  * @author cdi505
  */
+@ApplicationException
 public class CartError extends Exception {
 
     /**
