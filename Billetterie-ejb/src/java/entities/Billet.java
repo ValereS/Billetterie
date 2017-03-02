@@ -10,7 +10,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "entities.Billet.selectBySeanceCategorieTarif", query = "SELECT DISTINCT b FROM Billet b JOIN b.seance s JOIN b.categorie c JOIN c.tarifs t WHERE s = :paramShowing AND c = :paramCategory AND t = :paramRate ORDER BY b.numero")
+    @NamedQuery(name = "entities.Billet.selectBySeanceCategorieTarif", query = "SELECT DISTINCT b FROM Billet b JOIN b.seance s JOIN b.categorie c JOIN c.tarifs t WHERE s = :paramShowing AND c = :paramCategory AND t = :paramRate ORDER BY b.numero"),
+    @NamedQuery(name = "entities.Billet.selectBySeance", query = "SELECT b FROM Billet b WHERE b.seance = :paramSeance")
 })
 public class Billet implements Serializable {
     private static final long serialVersionUID = 1L;

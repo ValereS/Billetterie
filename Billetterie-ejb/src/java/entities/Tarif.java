@@ -9,8 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entities.Tarif.selectByCategorie", query = "SELECT t FROM Tarif t WHERE t.categorie = :paramCategorie ORDER BY t.prix DESC")
+})
 public class Tarif implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

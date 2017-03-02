@@ -5,15 +5,20 @@
  */
 package controllers;
 
+import entities.Categorie;
+import entities.Seance;
 import entities.Spectacle;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import service.CategorieGestionLocal;
+import service.SeanceGestionLocal;
 import service.SpectacleGestionLocal;
 
 /**
@@ -21,11 +26,16 @@ import service.SpectacleGestionLocal;
  * @author cdi505
  */
 public class ShowDisplayController implements SubControllerInterface {
-
+    SeanceGestionLocal seanceGestion = lookupSeanceGestionLocal();
+    CategorieGestionLocal categorieGestion = lookupCategorieGestionLocal();
     SpectacleGestionLocal spectacleGestion = lookupSpectacleGestionLocal();
+    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+//        String action = request.getParameter("action");
+        long seanceId = Long.parseLong(request.getParameter("seanceId"));
         int id;
         Spectacle show;
         try {
@@ -39,8 +49,17 @@ public class ShowDisplayController implements SubControllerInterface {
             return "includes/store/show-error";
         }
         request.setAttribute("show", show);
-        return "includes/store/show-display";
+        request.setAttribute("seanceId", seanceId);
+        
+        Seance seance = seanceGestion.getById(seanceId);
+        
+        if (seance != null) {
+            List<Categorie> categories = seanceGestion.getCategoriesFromBillets(seance.getBillets());
+            request.setAttribute("seance", seance);
+            request.setAttribute("categories", categories);
+        }
 
+        return "includes/store/show-display";
     }
 
     private SpectacleGestionLocal lookupSpectacleGestionLocal() {
@@ -53,4 +72,23 @@ public class ShowDisplayController implements SubControllerInterface {
         }
     }
 
+    private CategorieGestionLocal lookupCategorieGestionLocal() {
+        try {
+            Context c = new InitialContext();
+            return (CategorieGestionLocal) c.lookup("java:global/Billetterie/Billetterie-ejb/CategorieGestion!service.CategorieGestionLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private SeanceGestionLocal lookupSeanceGestionLocal() {
+        try {
+            Context c = new InitialContext();
+            return (SeanceGestionLocal) c.lookup("java:global/Billetterie/Billetterie-ejb/SeanceGestion!service.SeanceGestionLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
 }
