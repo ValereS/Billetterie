@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container">
     <div class="row">
@@ -7,16 +8,17 @@
                 <th>Spectacle</th>
                 <th>Séance</th>
                 <th>Catégorie</th>
+                <th>Tarif Nom
                 <th>Tarif</th>
                 <th></th>
             </tr>
             <c:forEach var="orderLine" items="${orderLines}">
                 <tr>
                     <td>${orderLine.quantiteBillets}</td>
-                    <td>  ${orderLine.seance.spectacle} <%-- --%> </td>
-                    <td>  ${orderLine.seance} <%-- --%> </td>
-                    <td>  ${orderLine.categorie.nom} <%-- --%> </td>
-                    <td>  ${orderLine.prix} <%-- --%> </td>
+                    <td>${orderLine.seance.spectacle.titre}</td>
+                    <td><fmt:formatDate value="${orderLine.seance.date}" pattern="HH:mm EE dd MMMM yyyy" /></td>
+                    <td>${orderLine.categorie.nom}</td>
+                    <td>${orderLine.totalPriceATI}</td>
                     <c:url var="urlDelete" value="FrontController">
                         <c:param name="section" value="cart-operations" />
                         <c:param name="action" value="remove" />
