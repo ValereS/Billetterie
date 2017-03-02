@@ -26,20 +26,21 @@ import service.SpectacleGestionLocal;
  * @author cdi505
  */
 public class ShowDisplayController implements SubControllerInterface {
+
     SeanceGestionLocal seanceGestion = lookupSeanceGestionLocal();
     CategorieGestionLocal categorieGestion = lookupCategorieGestionLocal();
     SpectacleGestionLocal spectacleGestion = lookupSpectacleGestionLocal();
-    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
 //        String action = request.getParameter("action");
-        long seanceId = Long.parseLong(request.getParameter("seanceId"));
-        int id;
+        long id;
+        long seanceId;
         Spectacle show;
+        Seance seance;
         try {
-            id = Integer.parseInt(request.getParameter("id"));
+            id = Long.parseLong(request.getParameter("id"));
             show = spectacleGestion.selectById(id);
             if (show == null) {
                 throw new IllegalArgumentException("Spectacle inexistant");
@@ -49,10 +50,15 @@ public class ShowDisplayController implements SubControllerInterface {
             return "includes/store/show-error";
         }
         request.setAttribute("show", show);
-        request.setAttribute("seanceId", seanceId);
-        
-        Seance seance = seanceGestion.getById(seanceId);
-        
+
+        try {
+            seanceId = Long.parseLong(request.getParameter("seanceId"));
+            seance = seanceGestion.getById(seanceId);
+            request.setAttribute("seanceId", seanceId);
+        } catch (IllegalArgumentException ex) {
+            seance = null;
+        }
+
         if (seance != null) {
             List<Categorie> categories = seanceGestion.getCategoriesFromBillets(seance.getBillets());
             request.setAttribute("seance", seance);
