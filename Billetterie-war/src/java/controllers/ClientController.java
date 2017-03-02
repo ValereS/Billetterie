@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import service.ClientGestionLocal;
 
-/**
- *
- * @author cdi515
- */
+
 public class ClientController implements SubControllerInterface {
 
     ClientGestionLocal clientGestion = lookupClientGestionLocal();
@@ -54,6 +51,11 @@ public class ClientController implements SubControllerInterface {
                     String prenom = request.getParameter("prenom");
                     email = request.getParameter("email");
                     String mdp = request.getParameter("mdp");
+                    String mdp2 = request.getParameter("mdp2");
+                    if (!mdp.equals(mdp2)){
+                        request.setAttribute("errorMessage", "mots de passes non identiques");
+                        return "signup";
+                    }
                     String date = request.getParameter("dateNaissance");
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     sdf.setLenient(true);
@@ -79,6 +81,7 @@ public class ClientController implements SubControllerInterface {
 
         if ("manage".equalsIgnoreCase(action)) {
             Client client = (Client) session.getAttribute("client");
+            System.out.println(">>>>>> " + client.getListeCoordonneesLivraison()); 
             if (client == null) {
                 return "login";
             }

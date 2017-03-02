@@ -1,9 +1,63 @@
-ul#menu-main li, #navigation-main, #menu-main, #search {
-    display: inline;
+ul#menu-main li, #navigation-main, #menu-main, #search, ul.tier_theme {
+    display: inline-block;
 }
 
 label {
     display: inline-block;
     width: 140px;
     text-align: right;
+}
+
+#buttonConnection{
+    width: 200px;
+    height: 50px;
+}
+
+/*------------------ menu deroulant -----------------------*/
+.tier_theme, .tier_theme ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.tier_theme {
+    text-align: center;
+}
+.tier_theme li {
+    display: inline-block;
+
+}
+.tier_theme ul li {
+    display: inherit;
+
+
+}
+.tier_theme a {
+    text-decoration: none;
+    display: block;
+    color: rgb(51, 122, 183);
+
+}
+.tier_theme ul {
+    padding: 20px 10px 0 10px;
+    background-color: white;
+    position: absolute;
+    left: -999em;
+    text-align: left;
+    z-index: 1000;
+}
+.tier_theme li:hover ul {
+    left: auto;
+}
+
+.tier_theme a:hover {
+    text-decoration: none;
+    color: #23527c;
+}
+.tier_subtheme a:hover{
+    text-decoration: none;
+
+}
+.tier_subtheme {
+    
+    border : rgb(51, 122, 183) solid 1px;
 }

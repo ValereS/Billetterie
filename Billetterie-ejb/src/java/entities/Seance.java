@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -36,7 +38,7 @@ public class Seance implements Serializable {
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Spectacle spectacle;
     
-    @ManyToMany(cascade = {})
+    @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Collection<Categorie> categories;
     
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})

@@ -3,12 +3,16 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entities.Billet.selectBySeanceCategorieTarif", query = "SELECT DISTINCT b FROM Billet b JOIN b.seance s JOIN b.categorie c JOIN c.tarifs t WHERE s = :paramShowing AND c = :paramCategory AND t = :paramRate ORDER BY b.numero"),
+    @NamedQuery(name = "entities.Billet.selectBySeance", query = "SELECT b FROM Billet b WHERE b.seance = :paramSeance")
+})
 public class Billet implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -50,6 +54,17 @@ public class Billet implements Serializable {
         this.seance = seance;
         this.categorie = categorie;
     }
+
+    public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place) {
+        this.numero = numero;
+        this.tva = tva;
+        this.typeBillet = typeBillet;
+        this.seance = seance;
+        this.categorie = categorie;
+        this.place = place;
+    }
+    
+    
     
     
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place, LigneCommande ligneCommande) {

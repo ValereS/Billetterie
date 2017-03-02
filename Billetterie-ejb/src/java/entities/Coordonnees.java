@@ -1,22 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-/**
- *
- * @author cdi505
- */
+
 @Entity
 public class Coordonnees implements Serializable {
 
@@ -37,8 +33,12 @@ public class Coordonnees implements Serializable {
     
     @ManyToOne(cascade = CascadeType.ALL)
     private Ville ville;
+    
+    @OneToMany(mappedBy = "coordonnees")
+    private Collection<Lieu> lieux;
 
     public Coordonnees() {        
+        lieux = new ArrayList<>();
     }
 
     public Coordonnees(String nom, String prenom, String entreprise, String numeroVoie, String typeVoie, String nomVoie, String telephone, String telephoneMobile, Ville ville) {
@@ -54,6 +54,7 @@ public class Coordonnees implements Serializable {
         this.ville = ville;
     }
 
+    
     public Long getId() {
         return id;
     }
@@ -161,6 +162,14 @@ public class Coordonnees implements Serializable {
     @Override
     public String toString() {
         return "entities.Coordonnees[ id=" + id + " ]";
+    }
+
+    public Collection<Lieu> getLieux() {
+        return lieux;
+    }
+
+    public void setLieux(Collection<Lieu> lieux) {
+        this.lieux = lieux;
     }
 
 }

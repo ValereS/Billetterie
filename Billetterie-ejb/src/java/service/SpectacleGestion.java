@@ -1,6 +1,8 @@
 package service;
 
+import entities.SousTheme;
 import entities.Spectacle;
+import entities.Theme;
 import enums.StatutSpectacle;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -26,7 +28,7 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     }
 
     @Override
-    public Spectacle selectById(int id) {
+    public Spectacle selectById(long id) {
         Query qr = em.createNamedQuery("entities.Spectacle.selectById");
         qr.setParameter("paramId", id);
         try {
@@ -37,6 +39,11 @@ public class SpectacleGestion implements SpectacleGestionLocal {
             qr = em.createNamedQuery("entities.Spectacle.selectGroupeBySpectacle");
             qr.setParameter("paramSpectacle", show);
             show.setGroupes(qr.getResultList());
+
+            // C'est une collection et je dois retrouver un objet en fonction de ce qu'il sera choisi dans la comboBox
+//            qr = em.createNamedQuery("entities.Spectacle.selectCategorie"); 
+//            qr.setParameter("paramSeance", show.getSeances());
+//            show.getSeances().addAll(qr.getResultList());
             return show;
         } catch (NoResultException ex) {
             return null;
@@ -66,6 +73,44 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         Query qr = em.createNamedQuery("entities.Spectacle.countBySearch");
         qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
         qr.setParameter("paramSearch", "%" + paramSearch + "%");
+        return (long) qr.getSingleResult();
+    }
+
+    @Override
+    public List<Spectacle> selectBySubTheme(int pageNumber, int maxResults, String sousThemeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.selectBySubTheme");
+        qr.setParameter("paramSubThemeNom", sousThemeNom);
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        int firstResult = (pageNumber - 1) * maxResults;
+        qr.setFirstResult(firstResult);
+        qr.setMaxResults(maxResults);
+        return qr.getResultList();
+    }
+
+    @Override
+    public long countBySubTheme(String sousThemeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.countBySubTheme");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        qr.setParameter("paramSubThemeNom", sousThemeNom);
+        return (long) qr.getSingleResult();
+    }
+
+    @Override
+    public List<Spectacle> selectByTheme(int pageNumber, int maxResults, String themeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.selectByTheme");
+        qr.setParameter("paramThemeNom", themeNom);
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        int firstResult = (pageNumber - 1) * maxResults;
+        qr.setFirstResult(firstResult);
+        qr.setMaxResults(maxResults);
+        return qr.getResultList();
+    }
+
+    @Override
+    public long countByTheme(String themeNom) {
+        Query qr = em.createNamedQuery("entities.Spectacle.countByTheme");
+        qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
+        qr.setParameter("paramThemeNom", themeNom);
         return (long) qr.getSingleResult();
     }
 

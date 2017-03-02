@@ -11,22 +11,15 @@
         <title>Billet Ti - Home</title>
     </head>
     <body>
-        <div class="jumbotron"><h1>Tickey Tousse</h1>
-        <c:url value="FrontController?section=search" var="url03" />
-        <c:import url="${url03}" />
-        </div>
         <c:url value="FrontController?section=navigation" var="url02" />
         <c:import url="${url02}" />
-        <c:url value="FrontController?section=cart-header" var="urlCart" />
-        <c:import url="${urlCart}" />
+        <c:url value="FrontController?section=search" var="url03" />
+        <c:import url="${url03}" />
         <hr />
         <div>
-            <p>
-                Welcome to Billet Ti
-            </p>
-            <p>
-                ${message}
-            </p>
+            
+            <jsp:include page="includes/store/show-error.jsp" flush="true" />
+
         </div>
         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
         <script src="${urlBootStrapJS}">

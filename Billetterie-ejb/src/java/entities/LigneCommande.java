@@ -2,8 +2,9 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +16,15 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class LigneCommande implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable=false, scale = 2, precision = 10)
+
+    @Column
+    private String nom;
+    @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal prix;
     @Column(nullable = false)
     private float tauxTva;
@@ -29,12 +33,12 @@ public class LigneCommande implements Serializable {
     @Column(nullable = false)
     private int quantite;
 //--------------------------------------------------
-    
-    @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Commande commande;
-    
+
     @OneToMany(mappedBy = "ligneCommande")
-    private Collection<Billet> billets;
+    private List<Billet> billets;
 
     public LigneCommande() {
         billets = new ArrayList<>();
@@ -45,6 +49,22 @@ public class LigneCommande implements Serializable {
         this.prix = prixUnitaireHt;
         this.tauxTva = tauxTva;
         this.tauxPromo = tauxPromo;
+    }
+
+    public LigneCommande(Tarif tarif, float tauxTva, float tauxPromo) {
+        this();
+        this.nom = tarif.getNom();
+        this.prix = tarif.getPrix();
+        this.tauxTva = tauxTva;
+        this.tauxPromo = tauxPromo;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public BigDecimal getPrix() {
@@ -87,15 +107,14 @@ public class LigneCommande implements Serializable {
         this.commande = commande;
     }
 
-    public Collection<Billet> getBillets() {
+    public List<Billet> getBillets() {
         return billets;
     }
 
-    public void setBillets(Collection<Billet> billets) {
+    public void setBillets(List<Billet> billets) {
         this.billets = billets;
     }
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -108,5 +127,39 @@ public class LigneCommande implements Serializable {
     public String toString() {
         return "entities.LigneCommande[ id=" + id + " ]";
     }
-    
+
+    public BigDecimal getTotalPrice() {
+        BigDecimal price = getPrix().multiply(new BigDecimal(getBillets().size()));
+        return roundPrice(price);
+    }
+
+    public BigDecimal getTotalPriceATI() {
+        BigDecimal price = getTotalPrice().multiply(getPromotionMultiplier()).multiply(getVATMultiplier());
+        return roundPrice(price);
+    }
+
+    private BigDecimal getPromotionMultiplier() {
+        return new BigDecimal(1 - getTauxPromo());
+    }
+
+    private BigDecimal getVATMultiplier() {
+        return new BigDecimal(1 + getTauxTva());
+    }
+
+    private BigDecimal roundPrice(BigDecimal price) {
+        return price.setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public int getQuantiteBillets() {
+        return getBillets().size();
+    }
+
+    public Seance getSeance() {
+        return getBillets().get(0).getSeance();
+    }
+
+    public Categorie getCategorie() {
+        return getBillets().get(0).getCategorie();
+    }
+
 }

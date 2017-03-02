@@ -8,23 +8,26 @@
             <li>
                 <c:url value="FrontController?section=data&action=create" var="url01" />
                 <a href="${url01}" style='text-decoration:none;color:graytext'>Créer le jeu d’essais</a>
-            </li>|
+            |</li>
             <li>
                 <c:url value="FrontController?section=query" var="urlQuery" />
                 <a href="${urlQuery}" style='text-decoration:none;color:graytext'>Exécuter des requêtes</a>
-            </li>|
+            |</li>
             <li>
                 <c:url value="FrontController?section=home" var="urlHome" />
                 <a href="${urlHome}">Accueil</a>
-            </li>|
+            |</li>
             <li>
                 <c:url value="FrontController?section=catalogue" var="url02" />
                 <a href="${url02}">Catalogue</a>
-            </li>|
+            |</li>
             <li>
-                <c:url value="FrontController?section=signup" var="url03" />
-                <a href="${url03}">S'inscrire</a>
-            </li>|
+                <c:if test="${empty client}">
+                    <c:url value="FrontController?section=signup" var="url03" />
+                    <a href="${url03}">S'inscrire</a>
+                    |
+                </c:if>
+            </li>
             <li>
                 <c:if test="${empty client}">
                     <c:url value="FrontController?section=login" var="url04" />
@@ -40,21 +43,24 @@
         </ul>
     </div>
     <div>
-        <ul class="nav navbar-nav" >
+        <ul class="tier_theme">
             <c:forEach var="theme" items="${themes}">
-                <li class="dropdown">
-                    <a href="FrontController?section=catalogue&action=manage" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                <li>
+                    <c:url var="urlTheme" value="FrontController">
+                        <c:param name="section" value="catalogue"/>
+                        <c:param name="paramThemeNom" value="${theme.nom}"/>
+                    </c:url>
+                    <a href="${urlTheme}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                         ${theme.nom}
                         <span class="caret"></span>
-                        <%-- ul class="dropdown-menu"--%>
-                        <ul class="" role="menu" data-toggle="dropdown">
+                        <ul class="tier_subtheme">
                             <c:forEach items="${theme.sousThemes}" var="sousTheme">
-                                <li><a href="">${sousTheme.nom}</a></li>
-                            </c:forEach>
+                                <c:url var="urlSubTheme" value="FrontController?section=catalogue&paramSubThemeNom=${sousTheme.nom}" />
+                                <li><a href="${urlSubTheme}">${sousTheme.nom}</a></li>
+                                </c:forEach>
                         </ul>
-                    </a>
                 </li>
             </c:forEach>
-        </ul>    
+        </ul>
     </div>
 </nav>
