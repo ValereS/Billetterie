@@ -13,10 +13,10 @@
             <c:forEach var="orderLine" items="${orderLines}">
                 <tr>
                     <td>${orderLine.quantiteBillets}</td>
-                    <td> <%-- ${orderLine.billets.seance.spectacle} --%> </td>
-                    <td> <%-- ${orderLine.billets.seance} --%> </td>
-                    <td> <%-- ${orderLine.billets.categorie.nom} --%> </td>
-                    <td> <%-- ${orderLine.billets.categorie.tarif.prix} --%> </td>
+                    <td>  ${orderLine.seance.spectacle} <%-- --%> </td>
+                    <td>  ${orderLine.seance} <%-- --%> </td>
+                    <td>  ${orderLine.categorie.nom} <%-- --%> </td>
+                    <td>  ${orderLine.prix} <%-- --%> </td>
                     <c:url var="urlDelete" value="FrontController">
                         <c:param name="section" value="cart-operations" />
                         <c:param name="action" value="remove" />

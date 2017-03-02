@@ -8,19 +8,19 @@
             <li>
                 <c:url value="FrontController?section=data&action=create" var="url01" />
                 <a href="${url01}" style='text-decoration:none;color:graytext'>Créer le jeu d’essais</a>
-            </li>|
+            |</li>
             <li>
                 <c:url value="FrontController?section=query" var="urlQuery" />
                 <a href="${urlQuery}" style='text-decoration:none;color:graytext'>Exécuter des requêtes</a>
-            </li>|
+            |</li>
             <li>
                 <c:url value="FrontController?section=home" var="urlHome" />
                 <a href="${urlHome}">Accueil</a>
-            </li>|
+            |</li>
             <li>
                 <c:url value="FrontController?section=catalogue" var="url02" />
                 <a href="${url02}">Catalogue</a>
-            </li>|
+            |</li>
             <li>
                 <c:if test="${empty client}">
                     <c:url value="FrontController?section=signup" var="url03" />
