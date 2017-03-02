@@ -113,35 +113,13 @@ public class PanierGestion implements PanierGestionLocal {
             throw new CartError("Not enough tickets");
         }
         Billet ticket = tickets.get(0);
-        BigDecimal price = rate.getPrix();
         float vatRate = ticket.getTva().getTaux();
         float promotionRate = category.getPromotion() != null ? category.getPromotion().getTaux() : 0;
 
-        LigneCommande orderLine = new LigneCommande(price, vatRate, promotionRate);
+        LigneCommande orderLine = new LigneCommande(rate, vatRate, promotionRate);
         orderLine.setBillets(tickets);
 
         return orderLine;
-    }
-
-    public Seance getSeance(LigneCommande orderLine) {
-        return orderLine.getBillets().get(0).getSeance();
-    }
-
-    public Categorie getCategorie(LigneCommande orderLine) {
-        return orderLine.getBillets().get(0).getCategorie();
-    }
-
-    public Tarif getTarif(LigneCommande orderLine) {
-        Query qr = em.createNamedQuery("entities.Tarif.selectByCategoriePrix");
-        qr.setParameter("paramCategorie", getCategorie(orderLine));
-        qr.setParameter("paramPrix", orderLine.getPrix());
-        Tarif tarif;
-        try {
-            tarif = (Tarif) qr.getSingleResult();
-        } catch (NoResultException | NonUniqueResultException ex) {
-            tarif = null;
-        }
-        return tarif;
     }
 
 }

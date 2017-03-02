@@ -22,6 +22,8 @@ public class LigneCommande implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    private String nom;
     @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal prix;
     @Column(nullable = false)
@@ -47,6 +49,22 @@ public class LigneCommande implements Serializable {
         this.prix = prixUnitaireHt;
         this.tauxTva = tauxTva;
         this.tauxPromo = tauxPromo;
+    }
+
+    public LigneCommande(Tarif tarif, float tauxTva, float tauxPromo) {
+        this();
+        this.nom = tarif.getNom();
+        this.prix = tarif.getPrix();
+        this.tauxTva = tauxTva;
+        this.tauxPromo = tauxPromo;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public BigDecimal getPrix() {
@@ -134,6 +152,14 @@ public class LigneCommande implements Serializable {
 
     public int getQuantiteBillets() {
         return getBillets().size();
+    }
+
+    public Seance getSeance() {
+        return getBillets().get(0).getSeance();
+    }
+
+    public Categorie getCategorie() {
+        return getBillets().get(0).getCategorie();
     }
 
 }
