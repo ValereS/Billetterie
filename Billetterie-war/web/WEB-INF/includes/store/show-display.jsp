@@ -52,15 +52,25 @@
                     </c:choose>
                 </c:forEach>
             </select>
-            <input type="submit" name="doIt" value="OK" 
+            <input type="submit" name="doIt" value="OK" >
         </form>
+
+        <c:choose>
+            <c:when test="${seance.lieu.image.url != null}">
+                <img src="${seance.lieu.image.url}" width="250" height="250"/>  
+                <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse} </a>
+            </c:when>
+            <c:otherwise>
+                <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse} </a>
+            </c:otherwise>
+        </c:choose>
     </div>
-            <br>
+    <br>
     <div class="row">  
         <div class="col-md-1"
 
              <br>
-            <table style="background-color: #269abc" >
+            <table style="background-color: #269abc" class="tableShowDisplayCat">
                 <tr>
                     <td style="background-color: #2aabd2">
                         Catégorie
@@ -78,11 +88,26 @@
                 </tr>
             </table>
         </div>
+        <c:forEach var="cat" items="${categories}"> 
+            <div class="col-md-1" >
+                <table class="tableShowDisplayCat">
+                    <tr>
+                        <td style="background-color: #2aabd2" >
+                            ${cat.nom}
+                        </td>
+                    </tr>
+                    <c:forEach var="tarif" items="${cat.tarifs}">
+                        <tr>
+                            <td>
+                                ${tarif.prix}
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table> 
+            </div>
+        </c:forEach>
     </div>
-    <%--
-<a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse} </a>
-<img src="${seance.lieu.image.url}" width="250" height="250"/>   
-    --%>
+
     <%--   
        <ul>
            <c:forEach var="categorie" items="${show.seance.categorie}" >
