@@ -57,7 +57,7 @@
                                 <h1>Adresse Facturation:&nbsp;</h1>
                                 <label>Prenom:&nbsp;</label><input type="text" name="prenom" value="${client.coordonneesFacturation.prenom}"/><br>
                                 <label>Nom:&nbsp;</label><input type="text" name="nom" value="${client.coordonneesFacturation.nom}"/><br>
-                                <label>Nom de l'Entreprise:&nbsp;</label><input type="text" name="entreprise" value="${client.coordonneesFacturation.entreprise}"/><br>
+                                <label>Entreprise:&nbsp;</label><input type="text" name="entreprise" value="${client.coordonneesFacturation.entreprise}"/><br>
                                 <label>N°:&nbsp;</label><input type="text" name="numeroVoie" value="${client.coordonneesFacturation.numeroVoie}"/><br>
                                 <label>Type de voie:&nbsp;</label><input type="text" name="typeVoie" value="${client.coordonneesFacturation.typeVoie}"/><br>
                                 <label>Nom de la voie:&nbsp;</label><input type="text" name="nomVoie" value="${client.coordonneesFacturation.nomVoie}"/><br>
@@ -90,7 +90,7 @@
                                 </select>
                                 <label>Prenom:&nbsp;</label><input type="text" name="prenom" value="${i.prenom}"/><br>
                                 <label>Nom:&nbsp;</label><input type="text" name="nom" value="${i.nom}"/><br>
-                                <label>Nom de l'Entreprise:&nbsp;</label><input type="text" name="entreprise" value="${i.entreprise}"/><br>
+                                <label>Entreprise:&nbsp;</label><input type="text" name="entreprise" value="${i.entreprise}"/><br>
                                 <label>N°:&nbsp;</label><input type="text" name="numeroVoie" value="${i.numeroVoie}"/><br>
                                 <label>Type de voie:&nbsp;</label><input type="text" name="typeVoie" value="${i.typeVoie}"/><br>
                                 <label>Nom de la voie:&nbsp;</label><input type="text" name="nomVoie" value="${i.nomVoie}"/><br>
