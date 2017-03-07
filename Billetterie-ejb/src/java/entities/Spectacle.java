@@ -16,19 +16,19 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "entities.Spectacle.selectById", query = "select s from Spectacle s where s.id = :paramId"),
-    @NamedQuery(name = "entities.Spectacle.selectSeancesBySpectacle", query = "select s from Seance s where s.spectacle = :paramSpectacle ORDER BY s.date"),
-    @NamedQuery(name = "entities.Spectacle.selectGroupeBySpectacle", query = "select g from Groupe g where g.spectacle =:paramSpectacle"),
-    @NamedQuery(name = "entities.Spectacle.selectCategorie", query = "select c from Categorie c where c.Seances=:paramSeance"),
+    @NamedQuery(name = "entities.Spectacle.selectById", query = "SELECT s FROM Spectacle s WHERE s.id = :paramId"), // no need for this query: should just use find
+    @NamedQuery(name = "entities.Spectacle.selectSeancesBySpectacle", query = "SELECT s FROM Seance s WHERE s.spectacle = :paramSpectacle ORDER BY s.date"), // shouldn't be here: belongs to Seance
+    @NamedQuery(name = "entities.Spectacle.selectGroupeBySpectacle", query = "SELECT g FROM Groupe g WHERE g.spectacle = :paramSpectacle"), // shouldn't be here: belongs to Groupe
+    @NamedQuery(name = "entities.Spectacle.selectCategorie", query = "SELECT c FROM Categorie c WHERE c.Seances = :paramSeance"), // shouldn't be here: beelongs to Categorie
     @NamedQuery(name = "entities.Spectacle.select", query = "SELECT s FROM Spectacle s WHERE s.statut = :paramStatut ORDER BY s.titre"),
     @NamedQuery(name = "entities.Spectacle.count", query = "SELECT COUNT(s) FROM Spectacle s WHERE s.statut = :paramStatut"),
     @NamedQuery(name = "entities.Spectacle.countAll", query = "SELECT COUNT(s) FROM Spectacle s"),
-    @NamedQuery(name = "entities.Spectacle.selectBySearch", query = "SELECT s FROM Spectacle s LEFT JOIN s.evenement e WHERE s.statut = :paramStatut AND (s.titre LIKE :paramSearch OR s.description LIKE :paramSearch OR e.nom LIKE :paramSearch) ORDER BY s.titre"),
-    @NamedQuery(name = "entities.Spectacle.countBySearch", query = "SELECT COUNT(s) FROM Spectacle s LEFT JOIN s.evenement e WHERE s.statut = :paramStatut AND (s.titre LIKE :paramSearch OR s.description LIKE :paramSearch OR e.nom LIKE :paramSearch)"),
-    @NamedQuery(name = "entities.Spectacle.selectBySubTheme", query = "SELECT s FROM Spectacle s where s.sousTheme.nom = :paramSubThemeNom and s.statut = :paramStatut"),
-    @NamedQuery(name = "entities.Spectacle.countBySubTheme", query = "select Count(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.nom = :paramSubThemeNom"),
-    @NamedQuery(name = "entities.Spectacle.selectByTheme", query = "SELECT s FROM Spectacle s where s.sousTheme.theme.nom = :paramThemeNom and s.statut = :paramStatut"),
-    @NamedQuery(name = "entities.Spectacle.countByTheme", query = "select Count(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.theme.nom = :paramThemeNom")
+    @NamedQuery(name = "entities.Spectacle.selectBySearch", query = "SELECT DISTINCT s FROM Spectacle s LEFT JOIN s.evenement e LEFT JOIN s.groupes g LEFT JOIN g.fonctions f LEFT JOIN f.participants p WHERE s.statut = :paramStatut AND (s.titre LIKE :paramTitle OR s.description LIKE :paramDescription OR e.nom LIKE :paramEventName OR p.nom LIKE :paramParticipantName) ORDER BY s.titre"),
+    @NamedQuery(name = "entities.Spectacle.countBySearch", query = "SELECT COUNT(DISTINCT s) FROM Spectacle s LEFT JOIN s.evenement e LEFT JOIN s.groupes g LEFT JOIN g.fonctions f LEFT JOIN f.participants p WHERE s.statut = :paramStatut AND (s.titre LIKE :paramTitle OR s.description LIKE :paramDescription OR e.nom LIKE :paramEventName OR p.nom LIKE :paramParticipantName)"),
+    @NamedQuery(name = "entities.Spectacle.selectBySubTheme", query = "SELECT s FROM Spectacle s WHERE s.sousTheme.nom = :paramSubThemeNom and s.statut = :paramStatut"),
+    @NamedQuery(name = "entities.Spectacle.countBySubTheme", query = "SELECT COUNT(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.nom = :paramSubThemeNom"),
+    @NamedQuery(name = "entities.Spectacle.selectByTheme", query = "SELECT s FROM Spectacle s WHERE s.sousTheme.theme.nom = :paramThemeNom and s.statut = :paramStatut"),
+    @NamedQuery(name = "entities.Spectacle.countByTheme", query = "SELECT COUNT(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.theme.nom = :paramThemeNom")
 })
 public class Spectacle implements Serializable {
 

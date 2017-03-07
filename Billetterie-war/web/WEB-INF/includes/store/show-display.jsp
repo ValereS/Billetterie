@@ -67,7 +67,7 @@
     </div>
     <br>
     <div class="row">  
-        <div class="col-md-1"
+        <div class="col-md-1">
 
              <br>
             <table style="background-color: #269abc" class="tableShowDisplayCat">

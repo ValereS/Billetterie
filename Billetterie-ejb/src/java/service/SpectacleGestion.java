@@ -61,7 +61,10 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     public List<Spectacle> selectBySearch(int pageNumber, int maxResults, String paramSearch) {
         Query qr = em.createNamedQuery("entities.Spectacle.selectBySearch");
         qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
-        qr.setParameter("paramSearch", "%" + paramSearch + "%");
+        qr.setParameter("paramTitle", "%" + paramSearch + "%");
+        qr.setParameter("paramDescription", "%" + paramSearch + "%");
+        qr.setParameter("paramEventName", "%" + paramSearch + "%");
+        qr.setParameter("paramParticipantName", "%" + paramSearch + "%");
         int firstResult = (pageNumber - 1) * maxResults;
         qr.setFirstResult(firstResult);
         qr.setMaxResults(maxResults);
@@ -72,8 +75,12 @@ public class SpectacleGestion implements SpectacleGestionLocal {
     public long countBySearch(String paramSearch) {
         Query qr = em.createNamedQuery("entities.Spectacle.countBySearch");
         qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
-        qr.setParameter("paramSearch", "%" + paramSearch + "%");
-        return (long) qr.getSingleResult();
+        qr.setParameter("paramTitle", "%" + paramSearch + "%");
+        qr.setParameter("paramDescription", "%" + paramSearch + "%");
+        qr.setParameter("paramEventName", "%" + paramSearch + "%");
+        qr.setParameter("paramParticipantName", "%" + paramSearch + "%");
+        long count = (long) qr.getSingleResult();
+        return count;
     }
 
     @Override
