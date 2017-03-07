@@ -5,10 +5,10 @@
     <div class="col-md-10"></div>
     <jsp:include page="pagination.jsp" />
 </div>
-<ul class="list-group">
-    <div class="row">
-        <div class="col-md-1 col-sd-0"></div>
-        <div class="col-md-10 col-sd-12">
+<div class="row">
+    <div class="col-md-1 col-sd-0"></div>
+    <div class="col-md-10 col-sd-12">
+        <ul class="list-group">
             <c:forEach var="show" items="${shows}">
                 <li class="list-group-item" style="height:120px">
                     <c:url var="url" value="FrontController?section=show&id=${show.id}" />
@@ -21,15 +21,14 @@
                             <p>${show.description}</p>
                         </div>
                         <div class="col-md-1 col-sd-1" >
-                        <button class="btn-default" style="height: 100px">Réserver</button>
+                            <button class="btn-default" style="height: 100px">Réserver</button>
                         </div>
                     </a>
                 </li>
-                <br/>
             </c:forEach>
-        </div>
+        </ul>
     </div>
-</ul>
+</div>
 <div class="row">
     <div class="col-md-10"></div>
     <jsp:include page="pagination.jsp" />
