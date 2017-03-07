@@ -275,11 +275,16 @@ public class TestData implements TestDataLocal {
             // test valérian afficher un lieu pour une séance ( SHOWDISPLAY )
             Lieu l01 = new Lieu("Grosse salle", "Carto", "Cette salle est grosse");
             s01.setLieu(l01);
-            Ville hsm = new Ville("Hannogne saint martin", "08160");
-            Coordonnees testCo = new Coordonnees("", "", "v", "4", "rue", "de la cour", "03", "06", hsm);
+            
+            Ville reims = new Ville("Reims", "51100");
+            Coordonnees testCo = new Coordonnees("", "", "v", "84", "rue", "du Dr Lemoine", "03", "06", reims);
             l01.setCoordonnees(testCo);
+            Image imageCarto = new Image("http://bonnesadressesremoises.fr/wp-content/uploads/2014/02/cartonnerie-reims-credit-collectif_marge_noire.jpg");
+            l01.setImage(imageCarto);
 
             Seance s02 = new Seance(d02, StatutSeance.ACTIF, spctmaroon6);
+            s02.getCategories().add(cat03);
+            s02.getCategories().add(cat02);
             Seance s03 = new Seance(d10, StatutSeance.ACTIF, spctDisneyLando);
             Seance s04 = new Seance(d05, StatutSeance.ACTIF, spctlaibach);
             Seance s05 = new Seance(d05, StatutSeance.ACTIF, spctPSJMonaco);

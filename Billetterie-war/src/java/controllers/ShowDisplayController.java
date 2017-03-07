@@ -61,6 +61,7 @@ public class ShowDisplayController implements SubControllerInterface {
 
         if (seance != null) {
             List<Categorie> categories = seanceGestion.getCategoriesFromBillets(seance.getBillets());
+            
             request.setAttribute("seance", seance);
             request.setAttribute("categories", categories);
         }

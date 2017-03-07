@@ -61,3 +61,13 @@ label {
     
     border : rgb(51, 122, 183) solid 1px;
 }
+
+.tableShowDisplayCat td, tr {
+    padding: 20px 10px;
+    width: 80px;
+    text-align: center;
+}
+
+.tableShowDisplayCat {
+    font-weight: bolder;
+}
