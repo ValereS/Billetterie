@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div class="container" >
     <div class="row" >
@@ -57,7 +57,9 @@
 
         <c:choose>
             <c:when test="${seance.lieu.image.url != null}">
-                <img src="${seance.lieu.image.url}" width="250" height="250"/>  
+                <div class="col-md-4">
+                    <img src="${seance.lieu.image.url}" width="250" height="250"/> 
+                </div>
                 <a href="https://maps.google.fr/maps/place/${seance.lieu.coordonnees.adresse}" target="_blank">${seance.lieu.coordonnees.adresse} </a>
             </c:when>
             <c:otherwise>
@@ -66,57 +68,50 @@
         </c:choose>
     </div>
     <br>
-    <div class="row">  
-        <div class="col-md-1"
 
-             <br>
-            <table style="background-color: #269abc" class="tableShowDisplayCat">
+
+    <c:if test="${not empty seance}">
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td style="background-color: #2aabd2">
-                        Catégorie
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Tarif
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Tarif
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <c:forEach var="cat" items="${categories}"> 
-            <div class="col-md-1" >
-                <table class="tableShowDisplayCat">
-                    <tr>
-                        <td style="background-color: #2aabd2" >
-                            ${cat.nom}
-                        </td>
-                    </tr>
-                    <c:forEach var="tarif" items="${cat.tarifs}">
-                        <tr>
-                            <td>
-                                ${tarif.prix}
-                            </td>
-                        </tr>
+                    <th>
+                        
+                    </th>
+
+                    <c:forEach var="categorie" items="${categories}">
+                        <th>
+                            ${categorie.nom}
+                        </th>
                     </c:forEach>
-                </table> 
-            </div>
-        </c:forEach>
-    </div>
 
-    <%--   
-       <ul>
-           <c:forEach var="categorie" items="${show.seance.categorie}" >
-               <li>
-                   ${categorie.nom}
-               </li>
-           </c:forEach>
-       </ul>
-    --%>
+                </tr>
+            </thead>
+            <tbody>
+
+                <c:forEach var="tarifNom" items="${tarifsNom}">
+                    <tr>
+                        <th>
+                            ${tarifNom}
+                        </th>
+
+                        <c:forEach var="categorie" items="${categories}">
+                            <td>
+                                <c:if test="${not empty mapTarifs[categorie][tarifNom]}">
+                                    ${mapTarifs[categorie][tarifNom].prix} (${fn:length(categorie.billets)})
+                                </c:if>
+                            </td>
+                        </c:forEach>
+
+                    </tr>
+                </c:forEach>
+
+
+            </tbody>
+        </table>
+    </c:if>
+
+
+
 </div>
 
 

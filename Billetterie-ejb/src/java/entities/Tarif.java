@@ -18,7 +18,7 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "entities.Tarif.selectByCategoriePrix", query = "SELECT t FROM Tarif t WHERE t.categorie = :paramCategorie AND t.prix = :paramPrix")
 
 })
-public class Tarif implements Serializable {
+public class Tarif implements Serializable, Comparable<Tarif> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -74,6 +74,11 @@ public class Tarif implements Serializable {
     @Override
     public String toString() {
         return "entities.Tarif[ id=" + id + " ]";
+    }
+
+    @Override
+    public int compareTo(Tarif o) {
+        return -getPrix().compareTo(o.getPrix());
     }
 
 }

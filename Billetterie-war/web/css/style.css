@@ -63,9 +63,19 @@ label {
 }
 
 .tableShowDisplayCat td, tr {
-    padding: 20px 10px;
-    width: 80px;
+
     text-align: center;
+}
+.tableShowDisplayCat td {
+    height: 60px;
+    width: 200px;
+    border-left: 1px #269abc solid;
+    border-right: 1px #269abc solid;
+    border-top: 1px #269abc solid;
+}
+
+.tableShowDisplayCat td, tr  {
+    background-color: #269abc;
 }
 
 .tableShowDisplayCat {

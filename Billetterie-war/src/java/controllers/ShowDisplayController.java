@@ -8,9 +8,16 @@ package controllers;
 import entities.Categorie;
 import entities.Seance;
 import entities.Spectacle;
+import entities.Tarif;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -61,7 +68,11 @@ public class ShowDisplayController implements SubControllerInterface {
 
         if (seance != null) {
             List<Categorie> categories = seanceGestion.getCategoriesFromBillets(seance.getBillets());
-            
+            List<String> tarifsNom = seanceGestion.getTarifsNomFromCategories(categories);
+            Map<Categorie, Map<String, Tarif>> mapTarifs = seanceGestion.getMapTarifsFromCategories(categories);
+
+            request.setAttribute("mapTarifs", mapTarifs);
+            request.setAttribute("tarifsNom", tarifsNom);
             request.setAttribute("seance", seance);
             request.setAttribute("categories", categories);
         }
