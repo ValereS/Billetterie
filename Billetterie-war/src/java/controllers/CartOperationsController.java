@@ -40,6 +40,7 @@ public class CartOperationsController implements SubControllerInterface {
             Long rateId;
             int quantity;
             int numAdds = 0;
+            String message = null;
 
             try {
                 showingId = Long.parseLong(request.getParameter("showingId"));
@@ -63,6 +64,7 @@ public class CartOperationsController implements SubControllerInterface {
                                 panierGestion.addOrderLine(categoryId, rateId, orderLine);
                                 ++numAdds;
                             } catch (CartError ex) {
+                                message = "Tous vos billets n'ont pas pu être réservés pour cause de manque de stock.";
 //                                request.setAttribute("message", ex.getMessage());
 //                                return "error";
                             }
@@ -92,6 +94,7 @@ public class CartOperationsController implements SubControllerInterface {
             }
 
             request.setAttribute("orderLines", panierGestion.getOrderLines());
+            request.setAttribute("message", message);
         }
 
         if ("remove".equalsIgnoreCase(action)) {
