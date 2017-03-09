@@ -25,7 +25,7 @@ public interface SeanceGestionLocal {
 
     public List<Categorie> getCategoriesFromBillets(Collection<Billet> billets);
 
-    public List<String> getTarifsNomFromCategories(List<Categorie> categories);
+    public List<String> getTarifNomsFromCategories(List<Categorie> categories);
 
     public Map<Categorie, Map<String, Tarif>> getMapTarifsFromCategories(List<Categorie> categories);
 

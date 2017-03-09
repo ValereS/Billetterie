@@ -89,7 +89,7 @@
             </thead>
             <tbody>
 
-                <c:forEach var="tarifNom" items="${tarifsNom}">
+                <c:forEach var="tarifNom" items="${tarifNoms}">
                     <tr>
                         <th style="width: 20%">
                             ${tarifNom}
@@ -101,7 +101,7 @@
                                     <fmt:formatNumber type="currency" currencySymbol="€" value="${mapTarifs[categorie][tarifNom].prix}" />
                                     
                                     <br/>
-                                    <select name="choixBillets${categorie.nom}${tarifNom}" style="">
+                                    <select name="choixBillets,${categorie.nom},${tarifNom}" style="">
                                         <c:forEach var="i" items="${nombreBillets}" end="${fn:length(categorie.billets)}" >
                                             <option>${i}</option>
                                         </c:forEach>

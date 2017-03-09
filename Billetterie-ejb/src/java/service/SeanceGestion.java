@@ -68,7 +68,7 @@ public class SeanceGestion implements SeanceGestionLocal {
     }
 
     @Override
-    public List<String> getTarifsNomFromCategories(List<Categorie> categories) {
+    public List<String> getTarifNomsFromCategories(List<Categorie> categories) {
         Set<Tarif> tarifsSet = new HashSet<>();
 
         for (Categorie categorie : categories) {

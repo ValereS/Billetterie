@@ -68,7 +68,7 @@ public class ShowDisplayController implements SubControllerInterface {
 
         if (seance != null) {
             List<Categorie> categories = seanceGestion.getCategoriesFromBillets(seance.getBillets());
-            List<String> tarifsNom = seanceGestion.getTarifsNomFromCategories(categories);
+            List<String> tarifNoms = seanceGestion.getTarifNomsFromCategories(categories);
             Map<Categorie, Map<String, Tarif>> mapTarifs = seanceGestion.getMapTarifsFromCategories(categories);
             List<Integer> nombreBillets = new ArrayList();
             for (int i = 0; i <= 20; ++i) {
@@ -77,7 +77,7 @@ public class ShowDisplayController implements SubControllerInterface {
 
             request.setAttribute("nombreBillets", nombreBillets);
             request.setAttribute("mapTarifs", mapTarifs);
-            request.setAttribute("tarifsNom", tarifsNom);
+            request.setAttribute("tarifNoms", tarifNoms);
             request.setAttribute("seance", seance);
             request.setAttribute("categories", categories);
         }
