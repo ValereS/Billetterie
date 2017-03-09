@@ -11,7 +11,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "entities.Billet.selectBySeanceCategorieTarif", query = "SELECT DISTINCT b FROM Billet b JOIN b.seance s JOIN b.categorie c JOIN c.tarifs t WHERE s = :paramShowing AND c = :paramCategory AND t = :paramRate ORDER BY b.numero"),
-    @NamedQuery(name = "entities.Billet.selectBySeance", query = "SELECT b FROM Billet b WHERE b.seance = :paramSeance")
+    @NamedQuery(name = "entities.Billet.selectBySeance", query = "SELECT b FROM Billet b WHERE b.seance = :paramSeance"),
+    @NamedQuery(name = "entities.Billet.selectReleasable", query = "SELECT b FROM Billet b WHERE b.ligneCommande IS NULL AND b.statut = :paramStatut")
 })
 public class Billet implements Serializable {
 

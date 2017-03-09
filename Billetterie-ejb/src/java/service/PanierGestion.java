@@ -120,4 +120,15 @@ public class PanierGestion implements PanierGestionLocal {
         return orderLine;
     }
 
+    @Override
+    public void releaseTickets() {
+        Query qr = em.createNamedQuery("entities.Billet.selectReleasable");
+        qr.setParameter("paramStatut", StatutBillet.RESERVE);
+        List<Billet> tickets = qr.getResultList();
+        for (Billet ticket : tickets) {
+            ticket.setStatut(StatutBillet.DISPONIBLE);
+            em.persist(ticket);
+        }
+    }
+
 }
