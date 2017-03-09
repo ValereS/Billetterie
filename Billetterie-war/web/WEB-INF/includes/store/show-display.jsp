@@ -69,12 +69,13 @@
     </div>
     <br>
 
-
+    <div class="row">
+        <div class="col-md-12">
     <c:if test="${not empty seance}">
-        <table class="table table-bordered">
+        <table class="table tableShowDisplayCat" >
             <thead>
                 <tr>
-                    <th>
+                    <th style="background-color: #ffffff">
                         
                     </th>
 
@@ -90,14 +91,22 @@
 
                 <c:forEach var="tarifNom" items="${tarifsNom}">
                     <tr>
-                        <th>
+                        <th style="width: 20%">
                             ${tarifNom}
                         </th>
 
                         <c:forEach var="categorie" items="${categories}">
                             <td>
                                 <c:if test="${not empty mapTarifs[categorie][tarifNom]}">
-                                    ${mapTarifs[categorie][tarifNom].prix} (${fn:length(categorie.billets)})
+                                    <fmt:formatNumber type="currency" currencySymbol="€" value="${mapTarifs[categorie][tarifNom].prix}" />
+                                    
+                                    <br/>
+                                    <select name="choixBillets${categorie.nom}${tarifNom}" style="">
+                                        <c:forEach var="i" items="${nombreBillets}" end="${fn:length(categorie.billets)}" >
+                                            <option>${i}</option>
+                                        </c:forEach>
+                                            
+                                    </select>
                                 </c:if>
                             </td>
                         </c:forEach>
@@ -108,6 +117,9 @@
 
             </tbody>
         </table>
+                    
+        </div>
+    </div>
     </c:if>
 
 

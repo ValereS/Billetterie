@@ -58,26 +58,38 @@ label {
 
 }
 .tier_subtheme {
-    
+
     border : rgb(51, 122, 183) solid 1px;
 }
 
-.tableShowDisplayCat td, tr {
 
+.tableShowDisplayCat table {
     text-align: center;
-}
-.tableShowDisplayCat td {
-    height: 60px;
-    width: 200px;
+    padding: 100%;
     border-left: 1px #269abc solid;
     border-right: 1px #269abc solid;
     border-top: 1px #269abc solid;
 }
 
-.tableShowDisplayCat td, tr  {
+.tableShowDisplayCat td, tr{
+    border: #ffffff solid 1px;
+    text-align: center;
+    padding: 10px 100px 50px 0px;
     background-color: #269abc;
 }
 
+.tableShowDisplayCat th {
+    text-align: center;
+    background-color: #6666ff;
+    border: #ffffff solid 1px;
+    text-align: center;
+}
+
 .tableShowDisplayCat {
+    text-align: center;
     font-weight: bolder;
+}
+
+.table-bordered td{
+    background-color: fuchsia
 }
