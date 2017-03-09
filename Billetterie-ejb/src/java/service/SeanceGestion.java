@@ -9,6 +9,7 @@ import entities.Billet;
 import entities.Categorie;
 import entities.Seance;
 import entities.Tarif;
+import enums.StatutBillet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ public class SeanceGestion implements SeanceGestionLocal {
         Seance seance = em.find(Seance.class, id);
         Query qr = em.createNamedQuery("entities.Billet.selectBySeance");
         qr.setParameter("paramSeance", seance);
+        qr.setParameter("paramStatut", StatutBillet.DISPONIBLE);
         List<Billet> billets = qr.getResultList();
         seance.setBillets(billets);
         return seance;

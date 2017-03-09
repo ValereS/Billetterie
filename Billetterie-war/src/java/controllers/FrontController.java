@@ -9,17 +9,25 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import service.PanierGestionLocal;
 
 /**
  *
  * @author cdi505
  */
 public class FrontController extends HttpServlet {
+
+    PanierGestionLocal panierGestion = lookupPanierGestionLocal();
 
     private Map<String, SubControllerInterface> map;
 
@@ -40,6 +48,8 @@ public class FrontController extends HttpServlet {
                 System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
             }
         }
+        
+        panierGestion.releaseTickets();
     }
 
     /**
@@ -111,5 +121,15 @@ public class FrontController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private PanierGestionLocal lookupPanierGestionLocal() {
+        try {
+            Context c = new InitialContext();
+            return (PanierGestionLocal) c.lookup("java:global/Billetterie/Billetterie-ejb/PanierGestion!service.PanierGestionLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
 
 }

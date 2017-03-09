@@ -11,6 +11,7 @@ import entities.Categorie;
 import entities.LigneCommande;
 import entities.Seance;
 import entities.Tarif;
+import enums.StatutBillet;
 import exceptions.CartError;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -44,12 +45,27 @@ public class PanierGestion implements PanierGestionLocal {
     public void addOrderLine(Long categoryId, Long rateId, LigneCommande orderLine) {
         CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
         cart.put(cartKey, orderLine);
+        List<Billet> tickets = orderLine.getBillets();
+        for (int i = 0; i < tickets.size(); ++i) {
+            Billet ticket = tickets.get(i);
+            ticket.setStatut(StatutBillet.RESERVE);
+            ticket = em.merge(ticket);
+            tickets.set(i, ticket);
+        }
     }
 
     @Override
     public LigneCommande removeOrderLine(Long categoryId, Long rateId) {
         CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
-        return cart.remove(cartKey);
+        LigneCommande orderLine = cart.remove(cartKey);
+        List<Billet> tickets = orderLine.getBillets();
+        for (int i = 0; i < tickets.size(); ++i) {
+            Billet ticket = tickets.get(i);
+            ticket.setStatut(StatutBillet.DISPONIBLE);
+            ticket = em.merge(ticket);
+            tickets.set(i, ticket);
+        }
+        return orderLine;
     }
 
     @Override
@@ -109,6 +125,7 @@ public class PanierGestion implements PanierGestionLocal {
         qr.setParameter("paramShowing", showing);
         qr.setParameter("paramCategory", category);
         qr.setParameter("paramRate", rate);
+        qr.setParameter("paramStatut", StatutBillet.DISPONIBLE);
 
         List<Billet> tickets = qr.getResultList();
         try {
@@ -127,17 +144,20 @@ public class PanierGestion implements PanierGestionLocal {
     }
 
     @Override
+    public Tarif getRateFromId(long id) {
+        Tarif tarif = em.find(Tarif.class, id);
+        return tarif;
+    }
+
+    @Override
     public void releaseTickets() {
         Query qr = em.createNamedQuery("entities.Billet.selectReleasable");
         qr.setParameter("paramStatut", StatutBillet.RESERVE);
         List<Billet> tickets = qr.getResultList();
         for (Billet ticket : tickets) {
             ticket.setStatut(StatutBillet.DISPONIBLE);
-            em.persist(ticket);
+            ticket = em.merge(ticket);
         }
-    public Tarif getRateFromId(long id) {
-        Tarif tarif = em.find(Tarif.class, id);
-        return tarif;
     }
 
 }

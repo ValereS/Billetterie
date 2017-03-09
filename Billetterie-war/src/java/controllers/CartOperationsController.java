@@ -63,8 +63,8 @@ public class CartOperationsController implements SubControllerInterface {
                                 panierGestion.addOrderLine(categoryId, rateId, orderLine);
                                 ++numAdds;
                             } catch (CartError ex) {
-                                request.setAttribute("message", ex.getMessage());
-                                return "error";
+//                                request.setAttribute("message", ex.getMessage());
+//                                return "error";
                             }
                         }
                     }
