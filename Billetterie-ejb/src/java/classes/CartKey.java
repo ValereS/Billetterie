@@ -14,26 +14,26 @@ import java.util.Objects;
 public class CartKey {
 
     private final Long categoryId;
-    private final Long rateId;
+    private final String rateName;
 
-    public CartKey(Long categoryId, Long rateId) {
+    public CartKey(Long categoryId, String rateName) {
         this.categoryId = categoryId;
-        this.rateId = rateId;
+        this.rateName = rateName;
     }
 
     public Long getCategory() {
         return categoryId;
     }
 
-    public Long getRate() {
-        return rateId;
+    public String getRateName() {
+        return rateName;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 83 * hash + Objects.hashCode(this.categoryId);
-        hash = 83 * hash + Objects.hashCode(this.rateId);
+        hash = 83 * hash + Objects.hashCode(this.rateName);
         return hash;
     }
 
@@ -49,7 +49,7 @@ public class CartKey {
         if (!Objects.equals(this.categoryId, other.categoryId)) {
             return false;
         }
-        if (!Objects.equals(this.rateId, other.rateId)) {
+        if (!Objects.equals(this.rateName, other.rateName)) {
             return false;
         }
         return true;

@@ -96,8 +96,8 @@ public class CartOperationsController implements SubControllerInterface {
 
         if ("remove".equalsIgnoreCase(action)) {
             long categoryId = Long.parseLong(request.getParameter("categoryId"));
-            long rateId = Long.parseLong(request.getParameter("rateId"));
-            panierGestion.removeOrderLine(categoryId, rateId);
+            String rateName = request.getParameter("rateName");
+            panierGestion.removeOrderLine(categoryId, rateName);
             request.setAttribute("orderLines", panierGestion.getOrderLines());
         }
 
