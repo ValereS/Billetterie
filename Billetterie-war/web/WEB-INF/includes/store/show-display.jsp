@@ -52,7 +52,7 @@
                     </c:choose>
                 </c:forEach>
             </select>
-            <input type="submit" name="doIt" value="OK" >
+            <input type="submit" value="OK" >
         </form>
 
         <c:choose>
@@ -69,60 +69,63 @@
     </div>
     <br>
 
-    <div class="row">
-        <div class="col-md-12">
-            <c:if test="${not empty seance}">
-                <table class="table tableShowDisplayCat" >
-                    <thead>
-                        <tr>
-                            <th style="background-color: #ffffff">
-
-                            </th>
-
-                            <c:forEach var="categorie" items="${categories}">
-                                <th>
-                                    ${categorie.nom}
-                                </th>
-                            </c:forEach>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <c:forEach var="tarifNom" items="${tarifNoms}">
+    <c:if test="${not empty seance}">
+        <form action="FrontController" method="GET">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="section" value="cart-operations" />
+                    <input type="hidden" name="action" value="add" />
+                    <input type="hidden" name="showingId" value="${seance.id}" />
+                    <table class="table tableShowDisplayCat">
+                        <thead>
                             <tr>
-                                <th style="width: 20%">
-                                    ${tarifNom}
+                                <th style="background-color: #ffffff">
+
                                 </th>
 
                                 <c:forEach var="categorie" items="${categories}">
-                                    <td>
-                                        <c:if test="${not empty mapTarifs[categorie][tarifNom]}">
-                                            <fmt:formatNumber type="currency" currencySymbol="€" value="${mapTarifs[categorie][tarifNom].prix}" />
-
-                                            <br/>
-                                            <select name="choixBillets,${categorie.id},${mapTarifs[categorie][tarifNom].id}" style="">
-                                                <c:forEach var="i" items="${nombreBillets}" end="${fn:length(categorie.billets)}" >
-                                                    <option>${i}</option>
-                                                </c:forEach>
-
-                                            </select>
-                                        </c:if>
-                                    </td>
+                                    <th>
+                                        ${categorie.nom}
+                                    </th>
                                 </c:forEach>
 
                             </tr>
-                        </c:forEach>
+                        </thead>
+                        <tbody>
+
+                            <c:forEach var="tarifNom" items="${tarifNoms}">
+                                <tr>
+                                    <th style="width: 20%">
+                                        ${tarifNom}
+                                    </th>
+
+                                    <c:forEach var="categorie" items="${categories}">
+                                        <td>
+                                            <c:if test="${not empty mapTarifs[categorie][tarifNom]}">
+                                                <fmt:formatNumber type="currency" currencySymbol="€" value="${mapTarifs[categorie][tarifNom].prix}" />
+
+                                                <br/>
+                                                <select name="choixBillets,${categorie.id},${mapTarifs[categorie][tarifNom].id}" style="">
+                                                    <c:forEach var="i" items="${nombreBillets}" end="${fn:length(categorie.billets)}" >
+                                                        <option>${i}</option>
+                                                    </c:forEach>
+
+                                                </select>
+                                            </c:if>
+                                        </td>
+                                    </c:forEach>
+
+                                </tr>
+                            </c:forEach>
 
 
-                    </tbody>
-                </table>
-
+                        </tbody>
+                    </table>
+                    <input type="submit" value="Ajouter au panier" />
+                </div>
             </div>
-        </div>
+        </form>
     </c:if>
-
-
 
 </div>
 

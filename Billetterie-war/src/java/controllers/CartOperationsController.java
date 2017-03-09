@@ -7,6 +7,7 @@ package controllers;
 
 import entities.LigneCommande;
 import exceptions.CartError;
+import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,32 +33,70 @@ public class CartOperationsController implements SubControllerInterface {
         PanierGestionLocal panierGestion = cartWar.getPanierGestion();
         String action = request.getParameter("action");
 
-        Long showingId;
-        Long categoryId;
-        Long rateId;
-        int quantity;
-        try {
-            showingId = Long.parseLong(request.getParameter("showingId"));
-            categoryId = Long.parseLong(request.getParameter("categoryId"));
-            rateId = Long.parseLong(request.getParameter("rateId"));
-            quantity = Integer.parseInt(request.getParameter("quantity"));
-        } catch (NumberFormatException ex) {
-            request.setAttribute("message", ex.getMessage());
-            return "error";
-        }
-
         if ("add".equalsIgnoreCase(action)) {
+
+            Long showingId;
+            Long categoryId;
+            Long rateId;
+            int quantity;
+            int numAdds = 0;
+
             try {
-                LigneCommande orderLine = panierGestion.createOrderLine(showingId, categoryId, rateId, quantity);
-                panierGestion.addOrderLine(categoryId, rateId, orderLine);
-            } catch (CartError ex) {
+                showingId = Long.parseLong(request.getParameter("showingId"));
+            } catch (NumberFormatException ex) {
                 request.setAttribute("message", ex.getMessage());
                 return "error";
             }
+
+            try {
+                Enumeration<String> names = request.getParameterNames();
+                while (names.hasMoreElements()) {
+                    String name = names.nextElement();
+                    if (name.startsWith("choixBillet")) {
+                        String[] params = name.split(",");
+                        categoryId = Long.parseLong(params[1]);
+                        rateId = Long.parseLong(params[2]);
+                        quantity = Integer.parseInt(request.getParameter(name));
+                        if (quantity > 0) {
+                            try {
+                                LigneCommande orderLine = panierGestion.createOrderLine(showingId, categoryId, rateId, quantity);
+                                panierGestion.addOrderLine(categoryId, rateId, orderLine);
+                                ++numAdds;
+                            } catch (CartError ex) {
+                                request.setAttribute("message", ex.getMessage());
+                                return "error";
+                            }
+                        }
+                    }
+                }
+            } catch (NumberFormatException ex) {
+            }
+
+            if (numAdds == 0) {
+                try {
+                    categoryId = Long.parseLong(request.getParameter("categoryId"));
+                    rateId = Long.parseLong(request.getParameter("rateId"));
+                    quantity = Integer.parseInt(request.getParameter("quantity"));
+                } catch (NumberFormatException ex) {
+                    request.setAttribute("message", ex.getMessage());
+                    return "error";
+                }
+
+                try {
+                    LigneCommande orderLine = panierGestion.createOrderLine(showingId, categoryId, rateId, quantity);
+                    panierGestion.addOrderLine(categoryId, rateId, orderLine);
+                } catch (CartError ex) {
+                    request.setAttribute("message", ex.getMessage());
+                    return "error";
+                }
+            }
+
             request.setAttribute("orderLines", panierGestion.getOrderLines());
         }
 
         if ("remove".equalsIgnoreCase(action)) {
+            long categoryId = Long.parseLong(request.getParameter("categoryId"));
+            long rateId = Long.parseLong(request.getParameter("rateId"));
             panierGestion.removeOrderLine(categoryId, rateId);
             request.setAttribute("orderLines", panierGestion.getOrderLines());
         }
