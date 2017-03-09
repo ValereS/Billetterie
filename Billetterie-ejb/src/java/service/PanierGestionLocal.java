@@ -34,6 +34,7 @@ public interface PanierGestionLocal {
     LigneCommande createOrderLine(Long showingId, Long categoryId, Long rateId, int quantity) throws CartError;
 
     void releaseTickets();
+    
     Tarif getRateFromId(long id);
 
     LigneCommande removeOrderLine(Long categoryId, Long rateId);

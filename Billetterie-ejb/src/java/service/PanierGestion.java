@@ -19,6 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,17 +42,20 @@ public class PanierGestion implements PanierGestionLocal {
         cart = new LinkedHashMap<>();
     }
 
+    @PreDestroy
+    public void preDestroy() {
+        for (LigneCommande orderLine : getOrderLines()) {
+            List<Billet> tickets = orderLine.getBillets();
+            changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
+        }
+    }
+
     @Override
     public void addOrderLine(Long categoryId, Long rateId, LigneCommande orderLine) {
         CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
         cart.put(cartKey, orderLine);
         List<Billet> tickets = orderLine.getBillets();
-        for (int i = 0; i < tickets.size(); ++i) {
-            Billet ticket = tickets.get(i);
-            ticket.setStatut(StatutBillet.RESERVE);
-            ticket = em.merge(ticket);
-            tickets.set(i, ticket);
-        }
+        changeTicketStatuses(tickets, StatutBillet.RESERVE);
     }
 
     @Override
@@ -59,12 +63,7 @@ public class PanierGestion implements PanierGestionLocal {
         CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
         LigneCommande orderLine = cart.remove(cartKey);
         List<Billet> tickets = orderLine.getBillets();
-        for (int i = 0; i < tickets.size(); ++i) {
-            Billet ticket = tickets.get(i);
-            ticket.setStatut(StatutBillet.DISPONIBLE);
-            ticket = em.merge(ticket);
-            tickets.set(i, ticket);
-        }
+        changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
         return orderLine;
     }
 
@@ -145,8 +144,7 @@ public class PanierGestion implements PanierGestionLocal {
 
     @Override
     public Tarif getRateFromId(long id) {
-        Tarif tarif = em.find(Tarif.class, id);
-        return tarif;
+        return em.find(Tarif.class, id);
     }
 
     @Override
@@ -154,9 +152,15 @@ public class PanierGestion implements PanierGestionLocal {
         Query qr = em.createNamedQuery("entities.Billet.selectReleasable");
         qr.setParameter("paramStatut", StatutBillet.RESERVE);
         List<Billet> tickets = qr.getResultList();
-        for (Billet ticket : tickets) {
-            ticket.setStatut(StatutBillet.DISPONIBLE);
+        changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
+    }
+
+    private void changeTicketStatuses(List<Billet> tickets, StatutBillet status) {
+        for (int i = 0; i < tickets.size(); ++i) {
+            Billet ticket = tickets.get(i);
+            ticket.setStatut(status);
             ticket = em.merge(ticket);
+            tickets.set(i, ticket);
         }
     }
 
