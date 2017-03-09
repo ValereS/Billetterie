@@ -37,6 +37,8 @@ public class ShowDisplayController implements SubControllerInterface {
     SeanceGestionLocal seanceGestion = lookupSeanceGestionLocal();
     CategorieGestionLocal categorieGestion = lookupCategorieGestionLocal();
     SpectacleGestionLocal spectacleGestion = lookupSpectacleGestionLocal();
+    
+    private final int MAX_NUM_TICKETS = 20;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -71,7 +73,7 @@ public class ShowDisplayController implements SubControllerInterface {
             List<String> tarifNoms = seanceGestion.getTarifNomsFromCategories(categories);
             Map<Categorie, Map<String, Tarif>> mapTarifs = seanceGestion.getMapTarifsFromCategories(categories);
             List<Integer> nombreBillets = new ArrayList();
-            for (int i = 0; i <= 20; ++i) {
+            for (int i = 0; i <= MAX_NUM_TICKETS; ++i) {
                 nombreBillets.add(i);
             }
 
