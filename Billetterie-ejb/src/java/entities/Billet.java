@@ -1,5 +1,6 @@
 package entities;
 
+import enums.StatutBillet;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ public class Billet implements Serializable {
 
     @Id
     private String numero;
+    private StatutBillet statut;
 //--------------------------------------------------
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Tva tva;
@@ -39,9 +41,11 @@ public class Billet implements Serializable {
     private LigneCommande ligneCommande;
 
     public Billet() {
+        statut = StatutBillet.DISPONIBLE;
     }
 
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Categorie categorie) {
+        this();
         this.numero = numero;
         this.tva = tva;
         this.typeBillet = typeBillet;
@@ -49,6 +53,7 @@ public class Billet implements Serializable {
     }
 
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie) {
+        this();
         this.numero = numero;
         this.tva = tva;
         this.typeBillet = typeBillet;
@@ -57,6 +62,7 @@ public class Billet implements Serializable {
     }
 
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place) {
+        this();
         this.numero = numero;
         this.tva = tva;
         this.typeBillet = typeBillet;
@@ -66,6 +72,7 @@ public class Billet implements Serializable {
     }
 
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place, LigneCommande ligneCommande) {
+        this();
         this.numero = numero;
         this.tva = tva;
         this.typeBillet = typeBillet;
@@ -135,4 +142,14 @@ public class Billet implements Serializable {
     public void setPlace(Place place) {
         this.place = place;
     }
+
+    public StatutBillet getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutBillet statut) {
+        this.statut = statut;
+    }
+    
+    
 }
