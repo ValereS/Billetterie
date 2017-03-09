@@ -42,14 +42,6 @@ public class PanierGestion implements PanierGestionLocal {
         cart = new LinkedHashMap<>();
     }
 
-    @PreDestroy
-    public void preDestroy() {
-        for (LigneCommande orderLine : getOrderLines()) {
-            List<Billet> tickets = orderLine.getBillets();
-            changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
-        }
-    }
-
     @Override
     public void addOrderLine(Long categoryId, Long rateId, LigneCommande orderLine) {
         CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
@@ -80,6 +72,10 @@ public class PanierGestion implements PanierGestionLocal {
 
     @Override
     public void clear() {
+        for (LigneCommande orderLine : getOrderLines()) {
+            List<Billet> tickets = orderLine.getBillets();
+            changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
+        }
         cart.clear();
     }
 
