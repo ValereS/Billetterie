@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.io.Serializable;
@@ -12,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Coordonnees implements Serializable {
 
@@ -20,7 +18,7 @@ public class Coordonnees implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String prenom;
     private String nom;
     private String entreprise;
@@ -29,15 +27,14 @@ public class Coordonnees implements Serializable {
     private String nomVoie;
     private String telephone;
     private String telephoneMobile;
-    
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Ville ville;
-    
+
     @OneToMany(mappedBy = "coordonnees")
     private Collection<Lieu> lieux;
 
-    public Coordonnees() {        
+    public Coordonnees() {
         lieux = new ArrayList<>();
     }
 
@@ -54,7 +51,6 @@ public class Coordonnees implements Serializable {
         this.ville = ville;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -134,7 +130,7 @@ public class Coordonnees implements Serializable {
     public void setVille(Ville ville) {
         this.ville = ville;
     }
-    
+
     public String getAdresse() {
         return String.format("%s %s %s, %s %s", getNumeroVoie(), getTypeVoie(), getNomVoie(), getVille().getCodePostal(), getVille().getNom());
     }

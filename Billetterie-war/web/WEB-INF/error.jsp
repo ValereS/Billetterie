@@ -17,7 +17,7 @@
         <c:import url="${url03}" />
         <hr />
         <div>
-            
+
             <jsp:include page="includes/store/show-error.jsp" flush="true" />
 
         </div>

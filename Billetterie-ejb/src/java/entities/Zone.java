@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.io.Serializable;
@@ -14,9 +13,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Zone implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +23,13 @@ public class Zone implements Serializable {
     private String nom;
     private String entree;
     private String description;
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Lieu lieu;
-    
+
     @OneToMany(mappedBy = "zone")
     private Collection<Place> places;
     @ManyToMany(mappedBy = "zones")
     private List<Categorie> categories;
-    
 
     public Zone() {
         places = new ArrayList<>();
@@ -43,7 +41,7 @@ public class Zone implements Serializable {
         this.entree = entree;
         this.description = description;
     }
-    
+
     //getters & setters
     public Long getId() {
         return id;
@@ -76,8 +74,7 @@ public class Zone implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
- 
-    
+
     @Override
     public String toString() {
         return "entities.Zone[ id=" + id + " ]";
@@ -98,5 +95,5 @@ public class Zone implements Serializable {
     public void setPlaces(Collection<Place> places) {
         this.places = places;
     }
-    
+
 }

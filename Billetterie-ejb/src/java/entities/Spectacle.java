@@ -110,8 +110,6 @@ public class Spectacle implements Serializable {
         this.sousTheme = sousTheme;
         this.evenement = evenement;
     }
-    
-    
 
     public Spectacle(String titre, String description, StatutSpectacle statut) {
         this();

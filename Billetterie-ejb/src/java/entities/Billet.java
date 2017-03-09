@@ -14,27 +14,28 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "entities.Billet.selectBySeance", query = "SELECT b FROM Billet b WHERE b.seance = :paramSeance")
 })
 public class Billet implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     private String numero;
 //--------------------------------------------------
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Tva tva;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private TypeBillet typeBillet;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Seance seance;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Categorie categorie;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Place place;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private LigneCommande ligneCommande;
 
     public Billet() {
@@ -63,10 +64,7 @@ public class Billet implements Serializable {
         this.categorie = categorie;
         this.place = place;
     }
-    
-    
-    
-    
+
     public Billet(String numero, Tva tva, TypeBillet typeBillet, Seance seance, Categorie categorie, Place place, LigneCommande ligneCommande) {
         this.numero = numero;
         this.tva = tva;
@@ -76,7 +74,7 @@ public class Billet implements Serializable {
         this.place = place;
         this.ligneCommande = ligneCommande;
     }
-    
+
     public String getNumero() {
         return numero;
     }
@@ -116,8 +114,7 @@ public class Billet implements Serializable {
     public void setLigneCommande(LigneCommande ligneCommande) {
         this.ligneCommande = ligneCommande;
     }
-    
-    
+
     @Override
     public String toString() {
         return "entities.Billet[ id=" + numero + " ]";

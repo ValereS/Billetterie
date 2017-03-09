@@ -97,7 +97,7 @@ public class TestData implements TestDataLocal {
             Image imgMaroon5 = new Image("http://www.kiss985.com/sites/g/files/giy656/f/styles/delta__775x515/public/Events/Maroon5.jpg?itok=O2fZP3eD&c=a540186afedfbae631a6b24b5f8304d9");
             Image imgLaibach = new Image("http://www.lagrosseradio.com/webzine/images/11215.jpg");
             Image imgPsjMonaco = new Image("http://resize-football.ladmedia.fr/r/920,/crop/920,512/img/images/media/ligue-1/articles/rennes-monaco-les-notes/rennes-monaco-notes/5497562-1-fre-FR/rennes-monaco-notes.png");
- //================================== ZONE ======================================
+            //================================== ZONE ======================================
             Zone z01 = new Zone("A1", "1", "Tribune est");
             Zone z02 = new Zone("B1", "2", "Tribune sud");
             Zone z03 = new Zone("C1", "3", "Tribune nord");
@@ -106,11 +106,10 @@ public class TestData implements TestDataLocal {
             Zone z06 = new Zone("C2", "3", "Tribune ouest");
             Zone z07 = new Zone("A3", "4", "Fosse");
             Zone z08 = new Zone("B3", "3", "Fosse");
-            Zone entreeParc = new Zone(null,null,"Libre");
-            Zone balcond = new Zone("VIP","Entrée A","balcon droit");
-            Zone balcong = new Zone("VIP","Entrée B","balcon gauche");
-            
-            
+            Zone entreeParc = new Zone(null, null, "Libre");
+            Zone balcond = new Zone("VIP", "Entrée A", "balcon droit");
+            Zone balcong = new Zone("VIP", "Entrée B", "balcon gauche");
+
 //-----------------------[ CATEGORIE ]----------------------------
             Categorie cat01 = new Categorie("A");
             Categorie cat02 = new Categorie("B");
@@ -118,7 +117,7 @@ public class TestData implements TestDataLocal {
             Categorie catParcAttraction01 = new Categorie("AAA");
             Categorie catPlaceDebout = new Categorie("Fosse");
             Categorie catPlaceAssise = new Categorie("Balcon");
-            
+
             catPlaceAssise.getZones().add(balcond);
             catPlaceAssise.getZones().add(balcong);
             catPlaceDebout.getZones().add(z07);
@@ -132,14 +131,13 @@ public class TestData implements TestDataLocal {
             cat03.getZones().add(z03);
             cat03.getZones().add(z06);
             catParcAttraction01.getZones().add(entreeParc);
-            
+
             em.persist(cat01);
             em.persist(cat02);
             em.persist(cat03);
             em.persist(catParcAttraction01);
             em.persist(catPlaceDebout);
             em.persist(catPlaceAssise);
-
 
 //-------------------[ TARIF SET CATEGORIE ]------------------------
             tf01J.setCategorie(cat01);
@@ -255,18 +253,18 @@ public class TestData implements TestDataLocal {
             Evenement ev05 = new Evenement("Euro");
             Evenement ev06 = new Evenement("Fête de la musique 2017");
             Evenement ev07 = new Evenement("Summer Break");
-            Evenement ev08 = new Evenement("Solde Parc");            
+            Evenement ev08 = new Evenement("Solde Parc");
 //-----------------------[ SPECTACLES ]----------------------------
 
-            Spectacle spctPSJMonaco = new Spectacle("PSJ - Monaco", "125ème représentation sportive", StatutSpectacle.ACTIF,st13,ev05);
+            Spectacle spctPSJMonaco = new Spectacle("PSJ - Monaco", "125ème représentation sportive", StatutSpectacle.ACTIF, st13, ev05);
             spctPSJMonaco.setImage(imgLaibach);
-            Spectacle spctDisneyLando = new Spectacle("DisneyLandoCadrissian", "Il est ou mickey ?", StatutSpectacle.ACTIF,st25,ev08);
+            Spectacle spctDisneyLando = new Spectacle("DisneyLandoCadrissian", "Il est ou mickey ?", StatutSpectacle.ACTIF, st25, ev08);
             spctPSJMonaco.setImage(imgPsjMonaco);
             spctDisneyLando.setImage(imgDisneyLando);
-            spctmaroon6 = new Spectacle("Maroon 6", "Maroon 5 est un groupe américain de pop rock, originaire de Los Angeles, en Californie.", StatutSpectacle.ACTIF,null,ev06);
+            spctmaroon6 = new Spectacle("Maroon 6", "Maroon 5 est un groupe américain de pop rock, originaire de Los Angeles, en Californie.", StatutSpectacle.ACTIF, null, ev06);
             spctmaroon6.setImage(imgMaroon5);
             spctmaroon6.setSousTheme(concert);
-            Spectacle spctlaibach = new Spectacle("Laibach", "Lalilalilaloum", StatutSpectacle.ACTIF,null,ev06);
+            Spectacle spctlaibach = new Spectacle("Laibach", "Lalilalilaloum", StatutSpectacle.ACTIF, null, ev06);
             spctlaibach.setImage(imgLaibach);
             spctlaibach.setSousTheme(concert);
 
@@ -275,7 +273,7 @@ public class TestData implements TestDataLocal {
             // test valérian afficher un lieu pour une séance ( SHOWDISPLAY )
             Lieu l01 = new Lieu("Grosse salle", "Carto", "Cette salle est grosse");
             s01.setLieu(l01);
-            
+
             Ville reims = new Ville("Reims", "51100");
             Coordonnees testCo = new Coordonnees("", "", "v", "84", "rue", "du Dr Lemoine", "03", "06", reims);
             l01.setCoordonnees(testCo);
@@ -300,9 +298,7 @@ public class TestData implements TestDataLocal {
             Seance s15 = new Seance(d15, StatutSeance.ACTIF);
             Seance s16 = new Seance(d16, StatutSeance.ACTIF);
 
-
         /////////////////////////////// stop Valère !!!!
-
             // Phi-Long
             Pays paysFrance = new Pays("France");
             Pays paysSuisse = new Pays("Suisse");
@@ -322,9 +318,7 @@ public class TestData implements TestDataLocal {
             Coordonnees coord03 = new Coordonnees("LEGENDRE", "Yoann", null, "33", "rue", "du Marché", "+33445159498", null, villeMarseille);
             Coordonnees coord04 = new Coordonnees("MARIE", "Stéphanie", null, "8", "rue", "Voltaire", "+4145649548", null, villeGeneve);
             Coordonnees coordPointRetrait = new Coordonnees(null, null, "Billetterie", "6-8", "rue", "Georges et Maï Politzer", "+33174564894", null, villeParis);
-            
-            
-            
+
             Client client01 = new Client(CiviliteClient.M, "VU", "Jean", "jean.vu@gmail.com", "toto", new GregorianCalendar(1980, 9, 22).getTime(), StatutClient.ACTIF, "");
             client01.setCoordonneesFacturation(coord01);
 
@@ -341,7 +335,6 @@ public class TestData implements TestDataLocal {
         // Phi-Long
 
             // Yoan
-
             //---------------------------- ROLES -----------------------------------
             Fonction f01 = new Fonction("basse");
             Fonction f02 = new Fonction("chant");
@@ -454,8 +447,6 @@ public class TestData implements TestDataLocal {
             f23.getParticipants().add(p24); // Participant 07
             f24.getParticipants().add(p24); // Participant 07
 
-
-
             //===========================PERSISTANCE=======================
             // Persistance des fonctions
             em.persist(p01);
@@ -486,7 +477,6 @@ public class TestData implements TestDataLocal {
         // Yoan
 
             // Valérian
-       
 //================================== PLACE =====================================
             Place pl01 = new Place("0321", "1", "Numérotée");
             Place pl02 = new Place("5468", "1", "Numérotée");
@@ -500,7 +490,7 @@ public class TestData implements TestDataLocal {
             Place pl10 = new Place("0881", "1", "Numérotée");
             Place pl11 = new Place("3541", "1", "Numérotée");
             Place pl12 = new Place("4591", "1", "Numérotée");
-            
+
             pl01.setZone(z01);
             pl02.setZone(z02);
             pl03.setZone(z03);
@@ -513,7 +503,7 @@ public class TestData implements TestDataLocal {
             pl10.setZone(z02);
             pl11.setZone(z03);
             pl12.setZone(z04);
-            
+
             em.persist(pl01);
             em.persist(pl02);
             em.persist(pl03);
@@ -526,8 +516,7 @@ public class TestData implements TestDataLocal {
             em.persist(pl10);
             em.persist(pl11);
             em.persist(pl12);
-            
-            
+
 //================================== THEME =====================================        
             //Theme t01 = new Theme("Musique");
             Theme t02 = new Theme("Arts & Spectacles");
@@ -540,7 +529,7 @@ public class TestData implements TestDataLocal {
             Commande co03 = new Commande(new BigDecimal("0"), StatutCommande.COMMANDEE, new GregorianCalendar(2017, 1, 20).getTime());
             Commande co04 = new Commande(new BigDecimal("0"), StatutCommande.PAYEE, new GregorianCalendar(2017, 2, 10).getTime());
             Commande co05 = new Commande(new BigDecimal("14.5"), StatutCommande.LIVREE, new GregorianCalendar(2017, 1, 28).getTime());
-            
+
             co01.setClient(client02);
             co02.setClient(client01);
             co03.setClient(client02);
@@ -693,35 +682,35 @@ public class TestData implements TestDataLocal {
             Date d31 = sdf.parse("025/04/2017 21:00:00");
 
 //-----------------------[ SPECTACLES ]---------------------------------------
-            Spectacle spctMozart = new Spectacle("REQUIEM DE MOZART", " WOLFGANG AMADEUS MOZART", StatutSpectacle.ACTIF,st03,null);
+            Spectacle spctMozart = new Spectacle("REQUIEM DE MOZART", " WOLFGANG AMADEUS MOZART", StatutSpectacle.ACTIF, st03, null);
             spctMozart.setImage(new Image("http://lechoeurderiom.free.fr/Medias/affiches/requiem_mozart.JPG"));
-            Spectacle spctBach = new Spectacle("PASSION SELON SAINT JEAN FRANCOIS DEJARDIN", "JOHANN SEBASTIAN BACH", StatutSpectacle.ACTIF,st04,null);
+            Spectacle spctBach = new Spectacle("PASSION SELON SAINT JEAN FRANCOIS DEJARDIN", "JOHANN SEBASTIAN BACH", StatutSpectacle.ACTIF, st04, null);
             spctBach.setImage(new Image("http://www.harmoniamundi.com/__media/document/1808/901748.49_G.jpg"));
-            Spectacle spctFoot1 = new Spectacle("FINALE COUPE DE LA LIGUE", "J'adore courir après la baballe", StatutSpectacle.ACTIF,football,ev05);
+            Spectacle spctFoot1 = new Spectacle("FINALE COUPE DE LA LIGUE", "J'adore courir après la baballe", StatutSpectacle.ACTIF, football, ev05);
             spctFoot1.setImage(new Image("http://www.francebillet.com/static/0/visuel/600/347/FINALE-COUPE-DE-LA-LIGUE-2017_3476961719077401827.jpg?1478605101000"));
-            Spectacle spctFoot2 = new Spectacle("OLYMPIQUE DE MARSEILLE / PSG", " PARIS SAINT-GERMAIN, OLYMPIQUE DE MARSEILLE", StatutSpectacle.ACTIF,football,null);
+            Spectacle spctFoot2 = new Spectacle("OLYMPIQUE DE MARSEILLE / PSG", " PARIS SAINT-GERMAIN, OLYMPIQUE DE MARSEILLE", StatutSpectacle.ACTIF, football, null);
             spctFoot2.setImage(new Image("http://france3-regions.francetvinfo.fr/auvergne-rhone-alpes/sites/regions_france3/files/styles/top_big/public/assets/images/2015/09/20/pronostic-om-ol.jpg?itok=b_iM2Y2C"));
-            Spectacle spctCirque1 = new Spectacle("GRAND CIRQUE ST PETERSBOURG", "CIRQUE TRADITIONNEL", StatutSpectacle.ACTIF,st30,null);
+            Spectacle spctCirque1 = new Spectacle("GRAND CIRQUE ST PETERSBOURG", "CIRQUE TRADITIONNEL", StatutSpectacle.ACTIF, st30, null);
             spctCirque1.setImage(new Image("http://static2.digitick.com/commun/images/upload/evenements/aff_Affiche2A4StPET_640.jpg"));
-            Spectacle spctCirque2 = new Spectacle("GRAND CIRQUE MEDRANO", "CIRQUE TRADITIONNEL", StatutSpectacle.ACTIF,st30,ev07);
+            Spectacle spctCirque2 = new Spectacle("GRAND CIRQUE MEDRANO", "CIRQUE TRADITIONNEL", StatutSpectacle.ACTIF, st30, ev07);
             spctCirque2.setImage(new Image("https://pbs.twimg.com/profile_images/524480611856044034/vpZ8iIFw.jpeg"));
-            
+
             //------------------------- GROUPES -----------------------------------
             // MUSIQUE
             Groupe g01 = new Groupe("Maroon 5");
             Groupe g001 = new Groupe("Orchestre", spctMozart);
             // ARTS & SPECTACLES
-            Groupe g02 = new Groupe("Jeff Panacloc",spctlaibach);
+            Groupe g02 = new Groupe("Jeff Panacloc", spctlaibach);
             // SPORT ( FINALE DE LA COUPE DE LA LIGUE)
-            Groupe g03 = new Groupe("AS Monaco",spctPSJMonaco);
-            Groupe g04 = new Groupe("Paris Saint-Germain",spctPSJMonaco);
-            Groupe g041 = new Groupe("L'Olympique de Marseille",spctFoot2);
+            Groupe g03 = new Groupe("AS Monaco", spctPSJMonaco);
+            Groupe g04 = new Groupe("Paris Saint-Germain", spctPSJMonaco);
+            Groupe g041 = new Groupe("L'Olympique de Marseille", spctFoot2);
 //            spctFoot2.getGroupes().add(g04);
             //FAMILLE & LOISIRS
-            Groupe g05 = new Groupe("Disney sur glace",spctDisneyLando);
+            Groupe g05 = new Groupe("Disney sur glace", spctDisneyLando);
             // CIRQUE
-            Groupe g06 = new Groupe("La troupe Semianyki Express",spctCirque1);
-            Groupe g07 = new Groupe("La troupe Kadavresky",spctCirque2);      
+            Groupe g06 = new Groupe("La troupe Semianyki Express", spctCirque1);
+            Groupe g07 = new Groupe("La troupe Kadavresky", spctCirque2);
             //===================GROUPES/FONCTIONS====================
             // Marroon 5
             f01.setGroupe(g01);
@@ -762,7 +751,7 @@ public class TestData implements TestDataLocal {
             f24.setGroupe(g05);
 
             // Association d'un spectacle à des groupes
-            g01.setSpectacle(spctmaroon6);            
+            g01.setSpectacle(spctmaroon6);
 
 //-----------------------[ LIEU ]------------------------------------------
             Lieu madelaine = new Lieu("Eglise de la Madeleine", "salle01", "Eglise satanique");
@@ -772,8 +761,8 @@ public class TestData implements TestDataLocal {
             Lieu stadeMarceille = new Lieu("ORANGE VELODROME - MARSEILLE", null, "ce stade est petit");
             Lieu parc1 = new Lieu("PARC DES EXPOS- BVD KENNEDY", "salle02", "Les ponneys sont grands et beaux");
             Lieu parc2 = new Lieu("HIPPODROME DE SENE", "stade01", "Les cheveaux sont petits et laids");
-            
-                        // Association
+
+            // Association
             s03.setLieu(l01);
             s04.setLieu(madelaine);
             s05.setLieu(stadeMarceille);
@@ -788,14 +777,13 @@ public class TestData implements TestDataLocal {
             s14.setLieu(stadeLyon);
             s15.setLieu(parc1);
             s16.setLieu(parc2);
-            
-            
+
             madelaine.setImage(imadelaine);
             stadeLyon.setImage(istadeLyon);
             stadeMarceille.setImage(istadeLyon);
             parc1.setImage(istadeLyon);
             parc2.setImage(istadeLyon);
-            
+
             z01.setLieu(madelaine);
             z02.setLieu(stadeLyon);
             z03.setLieu(stadeMarceille);
@@ -804,7 +792,7 @@ public class TestData implements TestDataLocal {
             z06.setLieu(parc1);
             z07.setLieu(parc2);
             z08.setLieu(stadeMarceille);
-            
+
             madelaine.setCoordonnees(coord01);
             stadeLyon.setCoordonnees(coord02);
             stadeMarceille.setCoordonnees(coord03);
@@ -876,60 +864,60 @@ public class TestData implements TestDataLocal {
             em.persist(s21);
             em.persist(s22);
             em.persist(s23);
-            
+
 //-----------------------[ BILLET ]----------------------------
-            Billet b01 = new Billet("AA001", tva5v5p, tbPlacesNumerotees, s01, cat01,pl01);
-            Billet b02 = new Billet("AA002", tva5v5p, tbPlacesNumerotees, s01, cat02,pl02);
-            Billet b03 = new Billet("AA003", tva5v5p, tbPlaceLibre, s01, cat03,pl09);
-            Billet b04 = new Billet("AA004", tva5v5p, tbPlacesNumerotees, s01, cat02,pl03,lc01);
-            Billet b05 = new Billet("AA005", tva5v5p, tbPlacesNumerotees, s01, cat01,pl04);
-            Billet b06 = new Billet("AA006", tva5v5p, tbPlaceLibre, s01, cat03,pl09);
+            Billet b01 = new Billet("AA001", tva5v5p, tbPlacesNumerotees, s01, cat01, pl01);
+            Billet b02 = new Billet("AA002", tva5v5p, tbPlacesNumerotees, s01, cat02, pl02);
+            Billet b03 = new Billet("AA003", tva5v5p, tbPlaceLibre, s01, cat03, pl09);
+            Billet b04 = new Billet("AA004", tva5v5p, tbPlacesNumerotees, s01, cat02, pl03, lc01);
+            Billet b05 = new Billet("AA005", tva5v5p, tbPlacesNumerotees, s01, cat01, pl04);
+            Billet b06 = new Billet("AA006", tva5v5p, tbPlaceLibre, s01, cat03, pl09);
 
-            Billet b07 = new Billet("AA007", tva5v5p, tbPlaceLibre, s02, cat03,pl09);
-            Billet b08 = new Billet("AA008", tva5v5p, tbPlaceLibre, s02, cat03,pl10);
-            Billet b09 = new Billet("AA009", tva5v5p, tbPlaceLibre, s02, cat03,pl11);
-            Billet b10 = new Billet("AA010", tva5v5p, tbPlaceLibre, s02, cat03,pl12);
+            Billet b07 = new Billet("AA007", tva5v5p, tbPlaceLibre, s02, cat03, pl09);
+            Billet b08 = new Billet("AA008", tva5v5p, tbPlaceLibre, s02, cat03, pl10);
+            Billet b09 = new Billet("AA009", tva5v5p, tbPlaceLibre, s02, cat03, pl11);
+            Billet b10 = new Billet("AA010", tva5v5p, tbPlaceLibre, s02, cat03, pl12);
 
-            Billet b11 = new Billet("01BT0A011", tva10p, tbPlaceLibre, s03, catParcAttraction01,pl09);
-            Billet b12 = new Billet("01BT0A012", tva10p, tbPlaceLibre, s03, catParcAttraction01,pl10,lc02);
-            Billet b13 = new Billet("01BT0A013", tva10p, tbPlaceLibre, s03, catParcAttraction01,pl11);
-            Billet b14 = new Billet("02BT0A014", tva10p, tbPlaceLibre, s03, catParcAttraction01,pl12);
-            Billet b15 = new Billet("02BT0A015", tva10p, tbPlaceLibre, s03, catParcAttraction01,pl09);
-            Billet b16 = new Billet("02BT0A016", tva10p, tbPlaceLibre, s03, catParcAttraction01,pl10);
+            Billet b11 = new Billet("01BT0A011", tva10p, tbPlaceLibre, s03, catParcAttraction01, pl09);
+            Billet b12 = new Billet("01BT0A012", tva10p, tbPlaceLibre, s03, catParcAttraction01, pl10, lc02);
+            Billet b13 = new Billet("01BT0A013", tva10p, tbPlaceLibre, s03, catParcAttraction01, pl11);
+            Billet b14 = new Billet("02BT0A014", tva10p, tbPlaceLibre, s03, catParcAttraction01, pl12);
+            Billet b15 = new Billet("02BT0A015", tva10p, tbPlaceLibre, s03, catParcAttraction01, pl09);
+            Billet b16 = new Billet("02BT0A016", tva10p, tbPlaceLibre, s03, catParcAttraction01, pl10);
 
-            Billet b17 = new Billet("01LGBT0A017", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl01);
-            Billet b18 = new Billet("01LGBT0A018", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl02);
-            Billet b19 = new Billet("01LGBT0A019", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl03);
-            Billet b20 = new Billet("01LGBT0A020", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl04);
-            Billet b21 = new Billet("01LGBT0A021", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl05);
-            Billet b22 = new Billet("01LGBT0A022", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl06);
-            Billet b23 = new Billet("01LGBT0A023", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl07,lc03);
-            Billet b24 = new Billet("01LGBT0A024", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl08);
-            Billet b25 = new Billet("01LGBT0A025", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl01);
-            Billet b26 = new Billet("01LGBT0A026", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl02);
-            Billet b27 = new Billet("01LGBT0A027", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl03);
-            Billet b28 = new Billet("01LGBT0A028", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl04,lc04);
-            Billet b29 = new Billet("01LGBT0A029", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl05);
-            Billet b30 = new Billet("01LGBT0A030", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl06);
-            Billet b31 = new Billet("01LGBT0A031", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl07);
-            Billet b32 = new Billet("01LGBT0A032", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl08);
-            Billet b33 = new Billet("01LGBT0A033", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl01);
-            Billet b34 = new Billet("01LGBT0A034", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl02);
-            Billet b35 = new Billet("01LGBT0A035", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl03);
-            Billet b36 = new Billet("01LGBT0A036", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl04);
-            Billet b37 = new Billet("01LGBT0A037", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl05);
-            Billet b38 = new Billet("01LGBT0A038", tva5v5p, tbPlaceLibre, s04, catPlaceDebout,pl06);
+            Billet b17 = new Billet("01LGBT0A017", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl01);
+            Billet b18 = new Billet("01LGBT0A018", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl02);
+            Billet b19 = new Billet("01LGBT0A019", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl03);
+            Billet b20 = new Billet("01LGBT0A020", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl04);
+            Billet b21 = new Billet("01LGBT0A021", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl05);
+            Billet b22 = new Billet("01LGBT0A022", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl06);
+            Billet b23 = new Billet("01LGBT0A023", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl07, lc03);
+            Billet b24 = new Billet("01LGBT0A024", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl08);
+            Billet b25 = new Billet("01LGBT0A025", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl01);
+            Billet b26 = new Billet("01LGBT0A026", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl02);
+            Billet b27 = new Billet("01LGBT0A027", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl03);
+            Billet b28 = new Billet("01LGBT0A028", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl04, lc04);
+            Billet b29 = new Billet("01LGBT0A029", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl05);
+            Billet b30 = new Billet("01LGBT0A030", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl06);
+            Billet b31 = new Billet("01LGBT0A031", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl07);
+            Billet b32 = new Billet("01LGBT0A032", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl08);
+            Billet b33 = new Billet("01LGBT0A033", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl01);
+            Billet b34 = new Billet("01LGBT0A034", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl02);
+            Billet b35 = new Billet("01LGBT0A035", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl03);
+            Billet b36 = new Billet("01LGBT0A036", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl04);
+            Billet b37 = new Billet("01LGBT0A037", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl05);
+            Billet b38 = new Billet("01LGBT0A038", tva5v5p, tbPlaceLibre, s04, catPlaceDebout, pl06);
 
-            Billet b39 = new Billet("02LGBT0A001", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise,pl01);
-            Billet b40 = new Billet("02LGBT0A002", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise,pl02,lc05);
-            Billet b41 = new Billet("02LGBT0A003", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise,pl03);
-            Billet b42 = new Billet("02LGBT0A004", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise,pl04);
-            Billet b43 = new Billet("02LGBT0A005", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise,pl05);
+            Billet b39 = new Billet("02LGBT0A001", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise, pl01);
+            Billet b40 = new Billet("02LGBT0A002", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise, pl02, lc05);
+            Billet b41 = new Billet("02LGBT0A003", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise, pl03);
+            Billet b42 = new Billet("02LGBT0A004", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise, pl04);
+            Billet b43 = new Billet("02LGBT0A005", tva5v5p, tbPlacesNumerotees, s04, catPlaceAssise, pl05);
 
-            Billet b44 = new Billet("HGD01", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise,pl06);
-            Billet b45 = new Billet("HGD02", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise,pl07,lc05);
-            Billet b46 = new Billet("HGD03", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise,pl08);
-            Billet b47 = new Billet("HGD04", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise,pl01);
+            Billet b44 = new Billet("HGD01", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise, pl06);
+            Billet b45 = new Billet("HGD02", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise, pl07, lc05);
+            Billet b46 = new Billet("HGD03", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise, pl08);
+            Billet b47 = new Billet("HGD04", tva5v5p, tbPlacesNumerotees, s05, catPlaceAssise, pl01);
 
 //-----------------------[ PLACE ]----------------------------
             em.persist(b01);
@@ -980,7 +968,7 @@ public class TestData implements TestDataLocal {
             em.persist(b46);
             em.persist(b47);
 
-            em.persist(lc01);            
+            em.persist(lc01);
 
             // Inna
         } catch (ParseException ex) {

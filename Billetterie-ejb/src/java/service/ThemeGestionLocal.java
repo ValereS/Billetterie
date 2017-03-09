@@ -20,5 +20,5 @@ public interface ThemeGestionLocal {
     List<Theme> selectAll();
 
     public List<SousTheme> selectSousThemeByTheme(Theme theme);
-    
+
 }

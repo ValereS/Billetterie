@@ -40,8 +40,8 @@
                                 <p class="error" style="color: red">
                                     ${errorMessage}
                                 </p></div>
-                                <br/><br/><br>
-                                
+                            <br/><br/><br>
+
                             <div class='col-md-5'><label>Mot de passe</label></div><div class='col-md-7'><input type="password" name="mdp" value="" pattern=".{4,30}" required="required" /></div>
                             <br/><br/>
                             <div class='col-md-5'><label>Mot de passe</label></div><div class='col-md-7'><input type="password" name="mdp2" value="" pattern=".{4,30}" required="required" /></div>

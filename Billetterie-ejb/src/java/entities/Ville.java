@@ -28,7 +28,7 @@ public class Ville implements Serializable {
     @Column(name = "VILLENOM")
     private String nom;
     @Id
-    private String codePostal;    
+    private String codePostal;
 
     @OneToMany(mappedBy = "ville")
     private Collection<Coordonnees> coordonnees;

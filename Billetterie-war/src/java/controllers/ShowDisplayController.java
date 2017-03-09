@@ -37,7 +37,7 @@ public class ShowDisplayController implements SubControllerInterface {
     SeanceGestionLocal seanceGestion = lookupSeanceGestionLocal();
     CategorieGestionLocal categorieGestion = lookupCategorieGestionLocal();
     SpectacleGestionLocal spectacleGestion = lookupSpectacleGestionLocal();
-    
+
     private final int MAX_NUM_TICKETS = 20;
 
     @Override

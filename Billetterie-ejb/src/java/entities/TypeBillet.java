@@ -10,11 +10,12 @@ import javax.persistence.Id;
 
 @Entity
 public class TypeBillet implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @Column(nullable = false, length = 200)
     private String description;
 //-------------------------------------------------
@@ -25,7 +26,7 @@ public class TypeBillet implements Serializable {
     public TypeBillet(String description) {
         this.description = description;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -46,5 +47,5 @@ public class TypeBillet implements Serializable {
     public String toString() {
         return "entities.TypeBillet[ id=" + id + " ]";
     }
-    
+
 }

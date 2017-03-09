@@ -11,7 +11,7 @@
         <link href="${urlBootstrap}" rel="stylesheet" type="text/css"/>
         <title>Billet Ti - Client</title>
     </head>
-    
+
     <body>
         <c:url value="FrontController?section=navigation" var="url02" />
         <c:import url="${url02}" />
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                            
+
                 <div class="col-sm-7 col-md-5">
                     <div class="thumbnail">
                         <div class="caption">

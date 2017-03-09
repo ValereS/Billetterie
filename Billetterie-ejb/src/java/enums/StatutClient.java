@@ -10,6 +10,7 @@ package enums;
  * @author cdi505
  */
 public enum StatutClient {
+
     ACTIF,
     INACTIF,
     SUPPRIME;

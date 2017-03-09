@@ -10,6 +10,7 @@ package enums;
  * @author cdi501
  */
 public enum StatutSpectacle {
+
     ACTIF,
-    ANNULE;    
+    ANNULE;
 }

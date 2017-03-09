@@ -18,5 +18,5 @@ public class CartDisplayController implements SubControllerInterface {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         return "includes/store/cart-display";
     }
-    
+
 }

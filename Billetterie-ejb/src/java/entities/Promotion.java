@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.io.Serializable;
@@ -10,21 +9,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-
 @Entity
 public class Promotion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private float taux;
-    
-    @OneToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Categorie categorie;
-    
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Seance seance;
-    
+
     public Promotion() {
     }
 
@@ -40,7 +39,7 @@ public class Promotion implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public float getTaux() {
         return taux;
     }

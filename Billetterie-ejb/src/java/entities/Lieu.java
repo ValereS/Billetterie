@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.io.Serializable;
@@ -15,6 +14,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Lieu implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,18 +23,17 @@ public class Lieu implements Serializable {
     private String nom;
     private String salle;
     private String description;
-    
-    
+
     @OneToMany(mappedBy = "lieu")
     private Collection<Zone> zones;
-    
+
     @OneToMany(mappedBy = "lieu")
     private List<Seance> seances;
-    
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Coordonnees coordonnees;
-    
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Image image;
 
     public Lieu() {
@@ -48,10 +47,8 @@ public class Lieu implements Serializable {
         this.salle = salle;
         this.description = description;
     }
-    
-    // getters & setters
 
-    
+    // getters & setters
     public Long getId() {
         return id;
     }
@@ -83,7 +80,6 @@ public class Lieu implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
 
     @Override
     public String toString() {
@@ -121,5 +117,5 @@ public class Lieu implements Serializable {
     public void setImage(Image image) {
         this.image = image;
     }
-    
+
 }

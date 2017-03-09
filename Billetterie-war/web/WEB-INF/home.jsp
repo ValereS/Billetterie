@@ -12,8 +12,8 @@
     </head>
     <body>
         <div class="jumbotron"><h1>Tickey Tousse</h1>
-        <c:url value="FrontController?section=search" var="url03" />
-        <c:import url="${url03}" />
+            <c:url value="FrontController?section=search" var="url03" />
+            <c:import url="${url03}" />
         </div>
         <c:url value="FrontController?section=navigation" var="url02" />
         <c:import url="${url02}" />

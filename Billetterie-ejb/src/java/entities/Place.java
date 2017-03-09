@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.io.Serializable;
@@ -12,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Place implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,26 +21,23 @@ public class Place implements Serializable {
     private String numero;
     private String rang;
     private String description;
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Zone zone;
-    
+
     @OneToMany(mappedBy = "place")
     private Collection<Billet> billets;
-    
 
     public Place() {
         billets = new ArrayList<>();
     }
 
-    public Place( String numero, String rang, String description) {
+    public Place(String numero, String rang, String description) {
         this();
         this.numero = numero;
         this.rang = rang;
         this.description = description;
     }
 
-    
-    
     public Long getId() {
         return id;
     }
@@ -73,7 +69,6 @@ public class Place implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
 
     @Override
     public String toString() {
@@ -95,5 +90,5 @@ public class Place implements Serializable {
     public void setBillets(Collection<Billet> billets) {
         this.billets = billets;
     }
-    
+
 }

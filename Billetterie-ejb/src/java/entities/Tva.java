@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Tva implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +26,11 @@ public class Tva implements Serializable {
     public Tva(float taux) {
         this.taux = taux;
     }
-    
-    
+
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -40,13 +40,14 @@ public class Tva implements Serializable {
     }
 
     public void setTaux(float taux) {
-        if (taux>=0)
+        if (taux >= 0) {
             this.taux = taux;
+        }
     }
-    
+
     @Override
     public String toString() {
         return "entities.Tva[ id=" + id + " ]";
     }
-    
+
 }

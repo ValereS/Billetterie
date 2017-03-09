@@ -71,55 +71,55 @@
 
     <div class="row">
         <div class="col-md-12">
-    <c:if test="${not empty seance}">
-        <table class="table tableShowDisplayCat" >
-            <thead>
-                <tr>
-                    <th style="background-color: #ffffff">
-                        
-                    </th>
+            <c:if test="${not empty seance}">
+                <table class="table tableShowDisplayCat" >
+                    <thead>
+                        <tr>
+                            <th style="background-color: #ffffff">
 
-                    <c:forEach var="categorie" items="${categories}">
-                        <th>
-                            ${categorie.nom}
-                        </th>
-                    </c:forEach>
+                            </th>
 
-                </tr>
-            </thead>
-            <tbody>
+                            <c:forEach var="categorie" items="${categories}">
+                                <th>
+                                    ${categorie.nom}
+                                </th>
+                            </c:forEach>
 
-                <c:forEach var="tarifNom" items="${tarifNoms}">
-                    <tr>
-                        <th style="width: 20%">
-                            ${tarifNom}
-                        </th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                        <c:forEach var="categorie" items="${categories}">
-                            <td>
-                                <c:if test="${not empty mapTarifs[categorie][tarifNom]}">
-                                    <fmt:formatNumber type="currency" currencySymbol="€" value="${mapTarifs[categorie][tarifNom].prix}" />
-                                    
-                                    <br/>
-                                    <select name="choixBillets,${categorie.nom},${tarifNom}" style="">
-                                        <c:forEach var="i" items="${nombreBillets}" end="${fn:length(categorie.billets)}" >
-                                            <option>${i}</option>
-                                        </c:forEach>
-                                            
-                                    </select>
-                                </c:if>
-                            </td>
+                        <c:forEach var="tarifNom" items="${tarifNoms}">
+                            <tr>
+                                <th style="width: 20%">
+                                    ${tarifNom}
+                                </th>
+
+                                <c:forEach var="categorie" items="${categories}">
+                                    <td>
+                                        <c:if test="${not empty mapTarifs[categorie][tarifNom]}">
+                                            <fmt:formatNumber type="currency" currencySymbol="€" value="${mapTarifs[categorie][tarifNom].prix}" />
+
+                                            <br/>
+                                            <select name="choixBillets,${categorie.id},${mapTarifs[categorie][tarifNom].id}" style="">
+                                                <c:forEach var="i" items="${nombreBillets}" end="${fn:length(categorie.billets)}" >
+                                                    <option>${i}</option>
+                                                </c:forEach>
+
+                                            </select>
+                                        </c:if>
+                                    </td>
+                                </c:forEach>
+
+                            </tr>
                         </c:forEach>
 
-                    </tr>
-                </c:forEach>
 
+                    </tbody>
+                </table>
 
-            </tbody>
-        </table>
-                    
+            </div>
         </div>
-    </div>
     </c:if>
 
 

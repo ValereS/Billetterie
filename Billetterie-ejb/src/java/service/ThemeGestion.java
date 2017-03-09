@@ -14,18 +14,19 @@ import javax.persistence.Query;
  */
 @Stateless
 public class ThemeGestion implements ThemeGestionLocal {
+
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
 
     @Override
     public List<Theme> selectAll() {
-        Query qr =em.createNamedQuery("entities.Theme.selectAll");
+        Query qr = em.createNamedQuery("entities.Theme.selectAll");
         List<Theme> themes = qr.getResultList();
-        
+
         for (Theme theme : themes) {
             theme.setSousThemes(selectSousThemeByTheme(theme));
         }
-        
+
         return themes;
     }
 

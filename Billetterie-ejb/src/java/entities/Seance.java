@@ -1,4 +1,3 @@
-
 package entities;
 
 import enums.StatutSeance;
@@ -18,36 +17,35 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
-
 @Entity
 public class Seance implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
     private StatutSeance statut;
-    
+
 //------------------------------------------------------------------------------
-    
     @OneToMany(mappedBy = "seance")
     private Collection<Billet> billets;
-    
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Spectacle spectacle;
-    
-    @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<Categorie> categories;
-    
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Lieu lieu;
-    
+
 //------------------------------------------------------------------------------    
     public Seance() {
-        billets=new ArrayList<>();
-        categories=new ArrayList<>();
+        billets = new ArrayList<>();
+        categories = new ArrayList<>();
     }
 
     public Seance(Date date, StatutSeance statut) {
@@ -62,7 +60,6 @@ public class Seance implements Serializable {
         this.statut = statut;
         this.spectacle = spectacle;
     }
-    
 
     public Seance(Date date, StatutSeance statut, Collection<Billet> billets) {
         this();
@@ -96,11 +93,12 @@ public class Seance implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     @Override
     public String toString() {
         return "entities.Seance[ id=" + id + " ]" + "Date : " + date;
     }
-    
+
     public Date getDate() {
         return date;
     }
@@ -148,6 +146,5 @@ public class Seance implements Serializable {
     public void setLieu(Lieu lieu) {
         this.lieu = lieu;
     }
-    
-    
+
 }

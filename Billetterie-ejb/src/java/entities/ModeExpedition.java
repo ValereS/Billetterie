@@ -9,23 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class ModeExpedition implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     private String nom;
-    @Column(nullable=false, scale = 2, precision = 10)
+    @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal frais;
-    
+
     private String Description;
-    
+
     private StatutModeExpedition statutModeExpedition;
 
-    @OneToMany (mappedBy = "modeExpedition")
+    @OneToMany(mappedBy = "modeExpedition")
     private Collection<Commande> commandes;
-    
+
     public ModeExpedition() {
     }
 
@@ -80,7 +79,5 @@ public class ModeExpedition implements Serializable {
     public String toString() {
         return "ModeExpedition{" + "nom=" + nom + ", frais=" + frais + ", Description=" + Description + ", statutModeExpedition=" + statutModeExpedition + '}';
     }
-    
-    
-    
+
 }

@@ -12,15 +12,16 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Evenement implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String nom;
-    
+
     private StatutEvenement statut;
-    
+
     @OneToMany(mappedBy = "evenement")
     private Collection<Spectacle> spectacles;
 
@@ -33,7 +34,6 @@ public class Evenement implements Serializable {
         this.nom = nom;
     }
 
-    
     public Long getId() {
         return id;
     }

@@ -11,19 +11,19 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-
 @Entity
 @NamedQueries({
     @NamedQuery(name = "entities.Theme.selectAll", query = "SELECT t FROM Theme t")
 })
 public class Theme implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id   
-    @Column (nullable = false,length = 150)
+    @Id
+    @Column(nullable = false, length = 150)
     private String nom;
-    
+
     //@OneToMany (mappedBy = "soustheme",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
-    @OneToMany(mappedBy = "theme",cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "theme", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<SousTheme> sousThemes;
 
     public Theme() {
@@ -34,7 +34,6 @@ public class Theme implements Serializable {
         this();
         this.nom = nom;
     }
-    
 
     public String getNom() {
         return nom;
@@ -51,7 +50,7 @@ public class Theme implements Serializable {
     public void setSousThemes(Collection<SousTheme> sousThemes) {
         this.sousThemes = sousThemes;
     }
-   
+
     @Override
     public String toString() {
         return "entities.Theme{" + "nom=" + nom + '}';

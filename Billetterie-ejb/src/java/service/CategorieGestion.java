@@ -10,11 +10,12 @@ import javax.persistence.Query;
 
 @Stateless
 public class CategorieGestion implements CategorieGestionLocal {
+
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
-    
+
     @Override
-        public List<Categorie> selectCategorieBySeance(Seance seance){
+    public List<Categorie> selectCategorieBySeance(Seance seance) {
         Query qr = em.createNamedQuery("entities.Categorie.selectBySeance");
         qr.setParameter("paramSeance", seance);
         return qr.getResultList();

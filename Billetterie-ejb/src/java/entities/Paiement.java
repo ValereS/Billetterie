@@ -20,15 +20,15 @@ public class Paiement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable=false, scale = 2, precision = 10)
+    @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal montant;
-    
+
     private ModePaiement modePaiement;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
-    
-    @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Commande commande;
 
     public Paiement() {
@@ -84,6 +84,5 @@ public class Paiement implements Serializable {
     public String toString() {
         return "Paiement{" + "id=" + id + ", montant=" + montant + ", modePaiement=" + modePaiement + ", date=" + date + '}';
     }
-    
-    
+
 }

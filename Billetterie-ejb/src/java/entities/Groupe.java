@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.io.Serializable;
@@ -12,20 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Groupe implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    
-    
-    @OneToMany(mappedBy = "groupe",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+
+    @OneToMany(mappedBy = "groupe", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Collection<Fonction> fonctions;
-    
-    
+
     @ManyToOne()
     private Spectacle spectacle;
 
@@ -42,8 +39,6 @@ public class Groupe implements Serializable {
         this.nom = nom;
         this.spectacle = spectacle;
     }
-    
-    
 
     public Collection<Fonction> getFonctions() {
         return fonctions;
@@ -81,5 +76,5 @@ public class Groupe implements Serializable {
     public String toString() {
         return "entities.Groupe[ id=" + id + " ]";
     }
-    
+
 }

@@ -11,7 +11,6 @@ import javax.ejb.Local;
 @Local
 public interface SpectacleGestionLocal {
 
-
     Spectacle selectById(long id);
 
     List<Spectacle> select(int pageNumber, int maxResults);

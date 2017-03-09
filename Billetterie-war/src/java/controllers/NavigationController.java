@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.ThemeGestionLocal;
 
-
 public class NavigationController implements SubControllerInterface {
+
     ThemeGestionLocal themeGestion = lookupThemeGestionLocal();
 
     @Override

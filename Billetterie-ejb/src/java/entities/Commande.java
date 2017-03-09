@@ -18,39 +18,39 @@ import javax.persistence.Temporal;
 
 @Entity
 public class Commande implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  
-    @Column(nullable=false, scale = 2, precision = 10)
+    private Long id;
+    @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal frais;
-    
+
     private StatutCommande statut;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
-    
+
     @OneToMany(mappedBy = "commande")
     private Collection<Paiement> paiements;
-    
+
     @OneToMany(mappedBy = "commande")
     private Collection<LigneCommande> lignesCommandes;
-    
-    @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
-    private Client client;
-    
-    @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.PERSIST})
-    private ModeExpedition modeExpedition;
 
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Client client;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private ModeExpedition modeExpedition;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Coordonnees adresseFacturation;
-    
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Coordonnees adresseLivraison;
-    
+
     public Commande() {
-        paiements = new ArrayList<>();   
+        paiements = new ArrayList<>();
         lignesCommandes = new ArrayList<>();
     }
 
@@ -60,8 +60,6 @@ public class Commande implements Serializable {
         this.statut = statut;
         this.date = date;
     }
-
-    
 
     public BigDecimal getFrais() {
         return frais;
@@ -139,6 +137,5 @@ public class Commande implements Serializable {
     public void setAdresseLivraison(Coordonnees adresseLivraison) {
         this.adresseLivraison = adresseLivraison;
     }
-
 
 }

@@ -51,7 +51,7 @@ public class CatalogueDisplayController implements SubControllerInterface {
         if (paramThemeNom != null && !paramThemeNom.trim().isEmpty()) {
             count = spectacleGestion.countByTheme(paramThemeNom);
             shows = spectacleGestion.selectByTheme(pageNumber, maxResults, paramThemeNom);
-        }else if (paramSubThemeNom != null && !paramSubThemeNom.trim().isEmpty()) {
+        } else if (paramSubThemeNom != null && !paramSubThemeNom.trim().isEmpty()) {
             count = spectacleGestion.countBySubTheme(paramSubThemeNom);
             shows = spectacleGestion.selectBySubTheme(pageNumber, maxResults, paramSubThemeNom);
         } else if (paramSearch != null && !paramSearch.trim().isEmpty()) {

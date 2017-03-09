@@ -18,5 +18,5 @@ import javax.ejb.Local;
 public interface CategorieGestionLocal {
 
     public List<Categorie> selectCategorieBySeance(Seance seance);
-    
+
 }

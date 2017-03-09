@@ -19,26 +19,27 @@ import javax.persistence.OneToMany;
     @NamedQuery(name = "entities.SousTheme.selectByTheme", query = "SELECT st FROM SousTheme st where st.theme = :paramTheme")
 })
 public class SousTheme implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @Column (nullable = false, length = 150)
+    @Column(nullable = false, length = 150)
     private String nom;
-    
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Theme theme;
-    
+
     @OneToMany(mappedBy = "sousTheme")
     private Collection<Spectacle> spectacles;
 
     public SousTheme() {
-       spectacles = new ArrayList<>();
+        spectacles = new ArrayList<>();
     }
 
     public SousTheme(String nom) {
         this();
         this.nom = nom;
     }
-    
+
     public Theme getTheme() {
         return theme;
     }
