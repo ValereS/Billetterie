@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import java.math.BigDecimal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,7 +31,9 @@ public class CartDisplayController implements SubControllerInterface {
 
         PanierGestionLocal panierGestion = cartWar.getPanierGestion();
         String action = request.getParameter("action");
+        BigDecimal totalPriceATI = panierGestion.getTotalPriceATI();
         request.setAttribute("orderLines", panierGestion.getOrderLines());
+        request.setAttribute("totalPrice", totalPriceATI);
         return "includes/store/cart-display";
     }
 

@@ -19,8 +19,8 @@ public class CartController implements SubControllerInterface {
             session.setAttribute("cartWar", cartWar);
         }
         PanierGestionLocal panierGestion = cartWar.getPanierGestion();
-        BigDecimal totalPrice = panierGestion.getTotalPriceATI();
-        session.setAttribute("totalPrice", totalPrice);
+        BigDecimal totalPriceATI = panierGestion.getTotalPriceATI();
+        session.setAttribute("totalPrice", totalPriceATI);
 
         return "includes/cart-header";
     }
