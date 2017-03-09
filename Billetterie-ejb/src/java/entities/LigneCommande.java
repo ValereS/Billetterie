@@ -23,7 +23,7 @@ public class LigneCommande implements Serializable {
     private Long id;
 
     @Column
-    private String nom;
+    private String nomTarif;
     @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal prix;
     @Column(nullable = false)
@@ -53,18 +53,18 @@ public class LigneCommande implements Serializable {
 
     public LigneCommande(Tarif tarif, float tauxTva, float tauxPromo) {
         this();
-        this.nom = tarif.getNom();
+        this.nomTarif = tarif.getNom();
         this.prix = tarif.getPrix();
         this.tauxTva = tauxTva;
         this.tauxPromo = tauxPromo;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNomTarif() {
+        return nomTarif;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNomTarif(String nomTarif) {
+        this.nomTarif = nomTarif;
     }
 
     public BigDecimal getPrix() {

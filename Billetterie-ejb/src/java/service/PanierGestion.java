@@ -42,13 +42,19 @@ public class PanierGestion implements PanierGestionLocal {
 
     @Override
     public void addOrderLine(Long categoryId, Long rateId, LigneCommande orderLine) {
-        CartKey cartKey = new CartKey(categoryId, rateId);
+        CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
         cart.put(cartKey, orderLine);
     }
 
     @Override
     public LigneCommande removeOrderLine(Long categoryId, Long rateId) {
-        CartKey cartKey = new CartKey(categoryId, rateId);
+        CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
+        return cart.remove(cartKey);
+    }
+
+    @Override
+    public LigneCommande removeOrderLine(Long categoryId, String rateName) {
+        CartKey cartKey = new CartKey(categoryId, rateName);
         return cart.remove(cartKey);
     }
 
@@ -129,6 +135,9 @@ public class PanierGestion implements PanierGestionLocal {
             ticket.setStatut(StatutBillet.DISPONIBLE);
             em.persist(ticket);
         }
+    public Tarif getRateFromId(long id) {
+        Tarif tarif = em.find(Tarif.class, id);
+        return tarif;
     }
 
 }

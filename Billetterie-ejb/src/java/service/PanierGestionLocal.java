@@ -6,6 +6,7 @@
 package service;
 
 import entities.LigneCommande;
+import entities.Tarif;
 import exceptions.CartError;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -20,7 +21,7 @@ public interface PanierGestionLocal {
 
     void addOrderLine(Long categoryId, Long rateId, LigneCommande orderLine);
 
-    LigneCommande removeOrderLine(Long categoryId, Long rateId);
+    LigneCommande removeOrderLine(Long categoryId, String rateName);
 
     Collection<LigneCommande> getOrderLines();
 
@@ -33,5 +34,8 @@ public interface PanierGestionLocal {
     LigneCommande createOrderLine(Long showingId, Long categoryId, Long rateId, int quantity) throws CartError;
 
     void releaseTickets();
+    Tarif getRateFromId(long id);
+
+    LigneCommande removeOrderLine(Long categoryId, Long rateId);
 
 }
