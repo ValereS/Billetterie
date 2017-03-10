@@ -19,7 +19,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -72,7 +71,7 @@ public class PanierGestion implements PanierGestionLocal {
 
     @Override
     public void clear() {
-        for (LigneCommande orderLine : getOrderLines()) {
+        for (LigneCommande orderLine : cart.values()) {
             List<Billet> tickets = orderLine.getBillets();
             changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
         }
