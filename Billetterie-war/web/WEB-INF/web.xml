@@ -24,6 +24,10 @@
             <param-value>controllers.NavigationController</param-value>
         </init-param>
         <init-param>
+            <param-name>themes</param-name>
+            <param-value>controllers.ThemesController</param-value>
+        </init-param>
+        <init-param>
             <param-name>login</param-name>
             <param-value>controllers.DefaultController</param-value>
         </init-param>

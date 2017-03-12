@@ -1,66 +1,13 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<nav id="navigation-main">
-    <div>
-        <ul id="menu-main">
-            <li>
-                <c:url value="FrontController?section=data&action=create" var="url01" />
-                <a href="${url01}" style='text-decoration:none;color:graytext'>Créer le jeu d’essais</a>
-                |</li>
-            <li>
-                <c:url value="FrontController?section=query" var="urlQuery" />
-                <a href="${urlQuery}" style='text-decoration:none;color:graytext'>Exécuter des requêtes</a>
-                |</li>
-            <li>
-                <c:url value="FrontController?section=home" var="urlHome" />
-                <a href="${urlHome}">Accueil</a>
-                |</li>
-            <li>
-                <c:url value="FrontController?section=catalogue" var="url02" />
-                <a href="${url02}">Catalogue</a>
-                |</li>
-            <li>
-                <c:if test="${empty client}">
-                    <c:url value="FrontController?section=signup" var="url03" />
-                    <a href="${url03}">S'inscrire</a>
-                    |
-                </c:if>
-            </li>
-            <li>
-                <c:if test="${empty client}">
-                    <c:url value="FrontController?section=login" var="url04" />
-                    <a href="${url04}">Connexion</a>
-                </c:if>
-                <c:if test="${not empty client}">
-                    <c:url value="FrontController?section=client&action=manage" var="url05" />
-                    <a href="${url05}">Bonjour, ${client.nomComplet} !</a>
-                    <c:url value="FrontController?section=client&action=logout" var="url06" />
-                    <a href="${url06}">Déconnexion</a>
-                </c:if>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <ul class="tier_theme">
-            <c:forEach var="theme" items="${themes}">
-                <li>
-                    <c:url var="urlTheme" value="FrontController">
-                        <c:param name="section" value="catalogue"/>
-                        <c:param name="paramThemeNom" value="${theme.nom}"/>
-                    </c:url>
-                    <a href="${urlTheme}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                        ${theme.nom}
-                        <span class="caret"></span>
-                        <ul class="tier_subtheme">
-                            <c:forEach items="${theme.sousThemes}" var="sousTheme">
-                                <c:url var="urlSubTheme" value="FrontController?section=catalogue&paramSubThemeNom=${sousTheme.nom}" />
-                                <li><a href="${urlSubTheme}">${sousTheme.nom}</a></li>
-                                </c:forEach>
-                        </ul>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
-</nav>
+<div class="jumbotron"><h1>Billetterie</h1>
+    <c:url value="FrontController?section=navigation" var="url02" />
+    <c:import url="${url02}" />|
+    <c:url value="FrontController?section=cart-header" var="urlCart" />
+    <c:import url="${urlCart}" />    
+    <c:url value="FrontController?section=search" var="url03" />
+    <c:import url="${url03}" />
+    <c:url value="FrontController?section=themes" var="urlThemes" />
+    <c:import url="${urlThemes}" />
+</div>

@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,28 +8,21 @@
         <link href="${url01}" rel="stylesheet" type="text/css"/>
         <c:url value="/bootstrap/css/bootstrap.css" var="urlBootstrap" />
         <link href="${urlBootstrap}" rel="stylesheet" type="text/css"/>
-        <title>Billet Ti - Home</title>
+        <title>Billetterie - Accueil</title>
     </head>
     <body>
-        <div class="jumbotron"><h1>Tickey Tousse</h1>
-            <c:url value="FrontController?section=search" var="url03" />
-            <c:import url="${url03}" />
-        </div>
-        <c:url value="FrontController?section=navigation" var="url02" />
-        <c:import url="${url02}" />
-        <c:url value="FrontController?section=cart-header" var="urlCart" />
-        <c:import url="${urlCart}" />
-        <hr />
+        <jsp:include page="menus/menu-main.jsp" />
         <div>
             <p>
-                Welcome to Billet Ti
+                Welcome to Billetterie
             </p>
             <p>
                 ${message}
             </p>
         </div>
         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
-        <script src="${urlBootStrapJS}">
-        </script>
+        <script src="${urlBootStrapJS}"></script>
+        <c:url var="scriptUrl" value="/javascript/script.js" />
+        <script src="${scriptUrl}" type="text/javascript"></script>
     </body>
 </html>

@@ -1,24 +1,18 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <c:url value="/css/style.css" var="url01" />
         <link href="${url01}" rel="stylesheet" type="text/css"/>
-        <c:url value="/bootstrap/css/bootstrap.min.css" var="urlBootstrap" />
+        <c:url value="/bootstrap/css/bootstrap.css" var="urlBootstrap" />
         <link href="${urlBootstrap}" rel="stylesheet" type="text/css"/>
-        <title>Billet Ti - Client</title>
+        <title>Billetterie - Client</title>
     </head>
-
     <body>
-        <c:url value="FrontController?section=navigation" var="url02" />
-        <c:import url="${url02}" />
-        <c:url value="FrontController?section=search" var="url03" />
-        <c:import url="${url03}" />
-        <hr />
-
+        <jsp:include page="menus/menu-main.jsp" />
         <div class="container">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -101,6 +95,14 @@
                     </div>
                 </div>
             </div>        
-        </div>
+        </div>        <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
+        <script src="${urlBootStrapJS}"></script>
+        <c:url var="scriptUrl" value="/javascript/script.js" />
+        <script src="${scriptUrl}" type="text/javascript"></script>
     </body>
 </html>
+
+
+
+
+v

@@ -38,6 +38,7 @@ public class ClientController implements SubControllerInterface {
         }
         if ("logout".equalsIgnoreCase(action)) {
             session.removeAttribute("client");
+            return "home";
         }
         if ("signup".equalsIgnoreCase(action)) {
             String email = request.getParameter("email");
