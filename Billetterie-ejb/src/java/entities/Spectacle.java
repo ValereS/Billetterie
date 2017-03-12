@@ -25,9 +25,9 @@ import javax.persistence.OneToMany;
     @NamedQuery(name = "entities.Spectacle.countAll", query = "SELECT COUNT(s) FROM Spectacle s"),
     @NamedQuery(name = "entities.Spectacle.selectBySearch", query = "SELECT DISTINCT s FROM Spectacle s LEFT JOIN s.evenement e LEFT JOIN s.groupes g LEFT JOIN g.fonctions f LEFT JOIN f.participants p WHERE s.statut = :paramStatut AND (s.titre LIKE :paramTitle OR s.description LIKE :paramDescription OR e.nom LIKE :paramEventName OR p.nom LIKE :paramParticipantName) ORDER BY s.titre"),
     @NamedQuery(name = "entities.Spectacle.countBySearch", query = "SELECT COUNT(DISTINCT s) FROM Spectacle s LEFT JOIN s.evenement e LEFT JOIN s.groupes g LEFT JOIN g.fonctions f LEFT JOIN f.participants p WHERE s.statut = :paramStatut AND (s.titre LIKE :paramTitle OR s.description LIKE :paramDescription OR e.nom LIKE :paramEventName OR p.nom LIKE :paramParticipantName)"),
-    @NamedQuery(name = "entities.Spectacle.selectBySubTheme", query = "SELECT s FROM Spectacle s WHERE s.sousTheme.nom = :paramSubThemeNom and s.statut = :paramStatut"),
+    @NamedQuery(name = "entities.Spectacle.selectBySubTheme", query = "SELECT s FROM Spectacle s WHERE s.sousTheme.nom = :paramSubThemeNom AND s.statut = :paramStatut ORDER BY s.titre"),
     @NamedQuery(name = "entities.Spectacle.countBySubTheme", query = "SELECT COUNT(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.nom = :paramSubThemeNom"),
-    @NamedQuery(name = "entities.Spectacle.selectByTheme", query = "SELECT s FROM Spectacle s WHERE s.sousTheme.theme.nom = :paramThemeNom and s.statut = :paramStatut"),
+    @NamedQuery(name = "entities.Spectacle.selectByTheme", query = "SELECT s FROM Spectacle s WHERE s.sousTheme.theme.nom = :paramThemeNom AND s.statut = :paramStatut ORDER BY s.titre"),
     @NamedQuery(name = "entities.Spectacle.countByTheme", query = "SELECT COUNT(s) FROM Spectacle s WHERE s.statut = :paramStatut AND s.sousTheme.theme.nom = :paramThemeNom")
 })
 public class Spectacle implements Serializable {

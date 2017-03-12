@@ -48,7 +48,7 @@ public class FrontController extends HttpServlet {
                 System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
             }
         }
-        
+
         panierGestion.releaseTickets();
     }
 
@@ -67,10 +67,10 @@ public class FrontController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String url;
         String section = request.getParameter("section");
-        SubControllerInterface pc = map.get(section);
+        SubControllerInterface subController = map.get(section);
 
-        if (pc != null) {
-            url = pc.execute(request, response);
+        if (subController != null) {
+            url = subController.execute(request, response);
         } else {
             url = "home";
         }

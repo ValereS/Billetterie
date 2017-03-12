@@ -12,13 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 @Entity
-public class Seance implements Serializable {
+public class Seance implements Serializable, Comparable<Seance> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -145,6 +143,11 @@ public class Seance implements Serializable {
 
     public void setLieu(Lieu lieu) {
         this.lieu = lieu;
+    }
+
+    @Override
+    public int compareTo(Seance o) {
+        return date.compareTo(o.date);
     }
 
 }

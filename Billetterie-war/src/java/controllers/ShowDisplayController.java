@@ -5,19 +5,10 @@
  */
 package controllers;
 
-import entities.Categorie;
 import entities.Seance;
 import entities.Spectacle;
-import entities.Tarif;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -34,11 +25,8 @@ import service.SpectacleGestionLocal;
  */
 public class ShowDisplayController implements SubControllerInterface {
 
-    SeanceGestionLocal seanceGestion = lookupSeanceGestionLocal();
     CategorieGestionLocal categorieGestion = lookupCategorieGestionLocal();
     SpectacleGestionLocal spectacleGestion = lookupSpectacleGestionLocal();
-
-    private final int MAX_NUM_TICKETS = 20;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -62,26 +50,12 @@ public class ShowDisplayController implements SubControllerInterface {
 
         try {
             seanceId = Long.parseLong(request.getParameter("seanceId"));
-            seance = seanceGestion.getById(seanceId);
             request.setAttribute("seanceId", seanceId);
         } catch (IllegalArgumentException ex) {
-            seance = null;
-        }
-
-        if (seance != null) {
-            List<Categorie> categories = seanceGestion.getCategoriesFromBillets(seance.getBillets());
-            List<String> tarifNoms = seanceGestion.getTarifNomsFromCategories(categories);
-            Map<Categorie, Map<String, Tarif>> mapTarifs = seanceGestion.getMapTarifsFromCategories(categories);
-            List<Integer> nombreBillets = new ArrayList();
-            for (int i = 0; i <= MAX_NUM_TICKETS; ++i) {
-                nombreBillets.add(i);
+            if (!show.getSeances().isEmpty()) {
+                seance = show.getSeances().iterator().next();
+                request.setAttribute("seanceId", seance.getId());
             }
-
-            request.setAttribute("nombreBillets", nombreBillets);
-            request.setAttribute("mapTarifs", mapTarifs);
-            request.setAttribute("tarifNoms", tarifNoms);
-            request.setAttribute("seance", seance);
-            request.setAttribute("categories", categories);
         }
 
         return "includes/store/show-display";

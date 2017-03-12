@@ -1,2 +1,2 @@
-${message}
-<h1>ALORS ENCULE T'AS ESSAYE DE NOUS DOUBLER HEIN ?????????</h1>
+<h1>ERREUR</h1>
+<p>message = ${message}</p>

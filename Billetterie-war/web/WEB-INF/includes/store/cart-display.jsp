@@ -16,7 +16,7 @@
                 <tr>
                     <td>${orderLine.quantiteBillets}</td>
                     <td>${orderLine.seance.spectacle.titre}</td>
-                    <td><fmt:formatDate value="${orderLine.seance.date}" pattern="HH:mm EE dd MMMM yyyy" /></td>
+                    <td><fmt:formatDate value="${orderLine.seance.date}" pattern="EEEE d MMMM yyyy à HH 'h' mm" /></td>
                     <td>${orderLine.categorie.nom}</td>
                     <td>${orderLine.nomTarif}</td>
                     <td>${orderLine.totalPriceATI}</td>
