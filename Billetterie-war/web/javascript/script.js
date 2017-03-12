@@ -16,7 +16,7 @@ function getXhr() {
     return xhr;
 }
 
-function updateShowingDisplay(x) {
+function updateShowingDisplay() {
     var xhr = getXhr();
     var e = document.getElementById("seanceId");
     var seanceId = e.options[e.selectedIndex].value;
@@ -24,13 +24,12 @@ function updateShowingDisplay(x) {
 //    alert(url);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var texte = xhr.responseText;
-//            alert(texte);
+            var text = xhr.responseText;
+//            alert(text);
             var elem = document.getElementById("showing-display");
-            elem.innerHTML = texte;
+            elem.innerHTML = text;
         }
     };
     xhr.open("GET", url, true);
     xhr.send(null);
 }
-
