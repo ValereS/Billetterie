@@ -20,5 +20,7 @@
         <hr />
         <c:url value="FrontController?section=show-display" var="url04" />
         <c:import url="${url04}" />
+        <c:url value="/javascript/script.js" var="scriptUrl" />
+        <script src="${scriptUrl}" type="text/javascript"></script>
     </body>
 </html>

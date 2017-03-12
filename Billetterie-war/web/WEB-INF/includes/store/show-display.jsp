@@ -40,7 +40,7 @@
         <form action="FrontController" method="GET">
             <input type="hidden" name="section" value="show" />
             <input type="hidden" name="id" value="${show.id}" />
-            <select name="seanceId">
+            <select name="seanceId" id="seanceId" onchange="updateShowingDisplay(); return false;">
                 <c:forEach var="s" items="${show.seances}" >
                     <c:choose>
                         <c:when test="${seanceId == s.id}">
@@ -57,7 +57,7 @@
     </div>
     <br>
 
-    <div name="showing">
+    <div id="showing-display">
         <c:if test="${not empty seanceId}">
             <c:url var="showingUrl" value="FrontController">
                 <c:param name="section" value="showing-display" />
