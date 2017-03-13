@@ -51,17 +51,16 @@ public class PanierGestion implements PanierGestionLocal {
 
     @Override
     public LigneCommande removeOrderLine(Long categoryId, Long rateId) {
-        CartKey cartKey = new CartKey(categoryId, getRateFromId(rateId).getNom());
-        LigneCommande orderLine = cart.remove(cartKey);
-        List<Billet> tickets = orderLine.getBillets();
-        changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
-        return orderLine;
+        return removeOrderLine(categoryId, getRateFromId(rateId).getNom());
     }
 
     @Override
     public LigneCommande removeOrderLine(Long categoryId, String rateName) {
         CartKey cartKey = new CartKey(categoryId, rateName);
-        return cart.remove(cartKey);
+        LigneCommande orderLine = cart.remove(cartKey);
+        List<Billet> tickets = orderLine.getBillets();
+        changeTicketStatuses(tickets, StatutBillet.DISPONIBLE);
+        return orderLine;
     }
 
     @Override
