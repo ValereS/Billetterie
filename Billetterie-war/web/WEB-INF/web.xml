@@ -12,6 +12,10 @@
             <param-value>controllers.DefaultController</param-value>
         </init-param>
         <init-param>
+            <param-name>orders</param-name>
+            <param-value>controllers.DefaultController</param-value>
+        </init-param>
+        <init-param>
             <param-name>cart-header</param-name>
             <param-value>controllers.CartController</param-value>
         </init-param>
@@ -50,6 +54,10 @@
         <init-param>
             <param-name>cart-display</param-name>
             <param-value>controllers.CartDisplayController</param-value>
+        </init-param>
+        <init-param>
+            <param-name>orders-display</param-name>
+            <param-value>controllers.OrdersDisplayController</param-value>
         </init-param>
         <init-param>
             <param-name>client</param-name>

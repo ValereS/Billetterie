@@ -13,10 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entities.Commande.getByClient", query = "SELECT DISTINCT c FROM Commande c JOIN c.lignesCommande lc JOIN lc.billets b WHERE c.client = :paramClient and b.seance.date >= :paramDate ORDER BY c.date DESC")
+})
 public class Commande implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +40,7 @@ public class Commande implements Serializable {
     private Collection<Paiement> paiements;
 
     @OneToMany(mappedBy = "commande")
-    private Collection<LigneCommande> lignesCommandes;
+    private Collection<LigneCommande> lignesCommande;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Client client;
@@ -51,7 +56,7 @@ public class Commande implements Serializable {
 
     public Commande() {
         paiements = new ArrayList<>();
-        lignesCommandes = new ArrayList<>();
+        lignesCommande = new ArrayList<>();
     }
 
     public Commande(BigDecimal frais, StatutCommande statut, Date date) {
@@ -111,15 +116,15 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "Commande{" + "id=" + id + ", frais=" + frais + ", statut=" + statut + ", date=" + date + ", paiements=" + paiements + ", lignesCommandes=" + lignesCommandes + ", client=" + client + ", modeExpedition=" + modeExpedition + ", adresseFacturation=" + adresseFacturation + ", adresseLivraison=" + adresseLivraison + '}';
+        return "Commande{" + "id=" + id + ", frais=" + frais + ", statut=" + statut + ", date=" + date + ", paiements=" + paiements + ", lignesCommande=" + lignesCommande + ", client=" + client + ", modeExpedition=" + modeExpedition + ", adresseFacturation=" + adresseFacturation + ", adresseLivraison=" + adresseLivraison + '}';
     }
 
-    public Collection<LigneCommande> getLignesCommandes() {
-        return lignesCommandes;
+    public Collection<LigneCommande> getLignesCommande() {
+        return lignesCommande;
     }
 
-    public void setLignesCommandes(Collection<LigneCommande> lignesCommandes) {
-        this.lignesCommandes = lignesCommandes;
+    public void setLignesCommande(Collection<LigneCommande> lignesCommande) {
+        this.lignesCommande = lignesCommande;
     }
 
     public Coordonnees getAdresseFacturation() {
