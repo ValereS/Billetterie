@@ -1,13 +1,14 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container">
     <div class="row">
         <table class="table table-bordered">
             <tr >
                 <th>Qte</th>
                 <th>Spectacle</th>
-                <th>Séance</th>
-                <th>Catégorie</th>
+                <th>SÃ©ance</th>
+                <th>CatÃ©gorie</th>
                 <th>Tarif Nom</th>
                 <th>Tarif</th>
                 <th></th>
@@ -23,12 +24,14 @@
                             <c:param name="seanceId" value="${orderLine.seance.id}" />
                         </c:url>
                         <a href="${urlSeance}">
-                            <fmt:formatDate value="${orderLine.seance.date}" pattern="EEEE d MMMM yyyy à HH 'h' mm" />
+                            <fmt:formatDate value="${orderLine.seance.date}" pattern="EEEE d MMMM yyyy Ã  HH 'h' mm" />
                         </a>
                     </td>
                     <td>${orderLine.categorie.nom}</td>
                     <td>${orderLine.nomTarif}</td>
-                    <td>${orderLine.totalPriceATI}</td>
+                    <td>
+                        <fmt:formatNumber type="currency" currencySymbol="â‚¬" value="${orderLine.totalPriceATI}" />                        
+                    </td>
                     <c:url var="urlDelete" value="FrontController">
                         <c:param name="section" value="cart-operations" />
                         <c:param name="action" value="remove" />
@@ -43,7 +46,7 @@
     <div class="row">
         <div class="col-md-7"></div>
         <div class="col-md-3">
-            <label>Total: ${totalPrice} &euro;</label>
+            <label>Total: <fmt:formatNumber type="currency" currencySymbol="â‚¬" value="${totalPrice}" /></label>
         </div>
         <label>${message}</label>
         <div class="col-md-2">
