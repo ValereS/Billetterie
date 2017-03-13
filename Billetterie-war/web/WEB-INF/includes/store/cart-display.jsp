@@ -16,7 +16,16 @@
                 <tr>
                     <td>${orderLine.quantiteBillets}</td>
                     <td>${orderLine.seance.spectacle.titre}</td>
-                    <td><fmt:formatDate value="${orderLine.seance.date}" pattern="EEEE d MMMM yyyy à HH 'h' mm" /></td>
+                    <td>
+                        <c:url var="urlSeance" value="FrontController">
+                            <c:param name="section" value="show" />
+                            <c:param name="id" value="${orderLine.seance.spectacle.id}" />
+                            <c:param name="seanceId" value="${orderLine.seance.id}" />
+                        </c:url>
+                        <a href="${urlSeance}">
+                            <fmt:formatDate value="${orderLine.seance.date}" pattern="EEEE d MMMM yyyy à HH 'h' mm" />
+                        </a>
+                    </td>
                     <td>${orderLine.categorie.nom}</td>
                     <td>${orderLine.nomTarif}</td>
                     <td>${orderLine.totalPriceATI}</td>
