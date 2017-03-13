@@ -33,3 +33,6 @@ function updateShowingDisplay() {
     xhr.open("GET", url, true);
     xhr.send(null);
 }
+
+var elem = document.getElementById("seanceOK");
+elem.outerHTML = "";

@@ -50,7 +50,13 @@
         </div>
         <label>${message}</label>
         <div class="col-md-2">
-            <button class="btn">Payer</button>
+            <c:url var="urlPayer" value="FrontController">
+                <c:param name="section" value="order" />
+                <c:param name="action" value="checkOut" />
+            </c:url>
+            <form action="${urlPayer}">
+                <button class="btn">Payer</button>
+            </form>
         </div>
     </div>
 </div>
