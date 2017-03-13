@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -162,6 +163,16 @@ public class Client implements Serializable {
 
     public void setListeCoordonneesLivraison(Collection<Coordonnees> listeCoordonneesLivraison) {
         this.listeCoordonneesLivraison = listeCoordonneesLivraison;
+    }
+
+    public void setCoordonneesLivraison(Coordonnees coord) {
+        List<Coordonnees> liste = new ArrayList();
+        liste.add(coord);
+        setListeCoordonneesLivraison(liste);
+    }
+
+    public Coordonnees getCoordonneesLivraison() {
+        return listeCoordonneesLivraison.size() > 0 ? listeCoordonneesLivraison.iterator().next() : null;
     }
 
     @Override

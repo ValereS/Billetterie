@@ -42,7 +42,7 @@
             <label>Adresse de Facturation = Livraison</label><input type="checkbox" name="manage" value="ON" checked="checked" />
 
             <div class="row">
-                <%--ADRESSE DE LIVRAISON --%>
+                <%--ADRESSE DE FACTURATION --%>
                 <div class="col-sm-7 col-md-5">
                     <div class="thumbnail">
                         <div class="caption">
@@ -60,7 +60,7 @@
                             </form> 
                             <br>
                         </div>
-                    </div>
+                    </div><button type="button" >Ajouter une nouvelle adresse</button>
                 </div>
 
                 <div class="col-sm-7 col-md-5">

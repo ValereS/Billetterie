@@ -1,6 +1,7 @@
 package controllers;
 
 import entities.Client;
+import entities.Coordonnees;
 import enums.CiviliteClient;
 import enums.StatutClient;
 import java.text.ParseException;
@@ -81,7 +82,7 @@ public class ClientController implements SubControllerInterface {
 
         if ("manage".equalsIgnoreCase(action)) {
             Client client = (Client) session.getAttribute("client");
-            System.out.println(">>>>>> " + client.getListeCoordonneesLivraison());
+            //System.out.println(">>>>>> " + client.getListeCoordonneesLivraison());
             if (client == null) {
                 return "login";
             }
@@ -102,15 +103,38 @@ public class ClientController implements SubControllerInterface {
 
                 client.setDateNaissance(d);
 
-                Client newClient = clientGestion.updateClient(client);
+                Client cl = clientGestion.updateClient(client);
                 //session.setAttribute("client", newClient);
                 request.setAttribute("message", "Modification de compte valider !");
-            } else {
-
-            }
+            } 
             return "client";
         }
+        
+        if("newAddress".equalsIgnoreCase(action)){
+        
+        Client cl = (Client) session.getAttribute("client");
+        String doIt = request.getParameter("doIt");
+            
+        if(doIt!=null){
+            
+            Coordonnees cc = new Coordonnees();
+            cc.setNom(request.getParameter("nom"));
+            cc.setPrenom(request.getParameter("prenom"));
+            cc.setEntreprise(request.getParameter("entreprise"));
+            cc.setNumeroVoie(request.getParameter("numero"));
+            cc.setNomVoie(request.getParameter("nomVoie"));
+            cc.setTypeVoie(request.getParameter("typeVoie"));
+            cc.setTelephone(request.getParameter("telephone"));
+            cc.setTelephoneMobile(request.getParameter("mobile"));
+        }
+        
+            
+        
+        
+        }
         return "login";
+        
+        
 
     }
 
