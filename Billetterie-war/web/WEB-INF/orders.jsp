@@ -40,8 +40,8 @@
                     </td>
                     <td>
                         <c:url var="urlOrder" value="FrontController">
-                            <c:param name="section" value="order" />
-                            <c:param name="id" value="${order.numero}" />
+                            <c:param name="section" value="display-order" />
+                            <c:param name="number" value="${order.numero}" />
                         </c:url>
                         <a href="${urlOrder}">
                             Détails

@@ -16,6 +16,10 @@
             <param-value>controllers.OrdersController</param-value>
         </init-param>
         <init-param>
+            <param-name>display-order</param-name>
+            <param-value>controllers.DisplayOrderController</param-value>
+        </init-param>
+        <init-param>
             <param-name>cart-header</param-name>
             <param-value>controllers.CartController</param-value>
         </init-param>
@@ -171,6 +175,12 @@
     </ejb-local-ref>
     <ejb-local-ref>
         <ejb-ref-name>CommandeGestion</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.CommandeGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#CommandeGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>CommandeGestion1</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.CommandeGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#CommandeGestion</ejb-link>

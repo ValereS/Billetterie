@@ -5,8 +5,10 @@
  */
 package service;
 
+import entities.Billet;
 import entities.Client;
 import entities.Commande;
+import entities.LigneCommande;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +23,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class CommandeGestion implements CommandeGestionLocal {
-    
+
     private static final int DEFAULT_MONTHS_AMOUNT = 36;
 
     @PersistenceContext(unitName = "Billetterie-ejbPU")
@@ -36,13 +38,48 @@ public class CommandeGestion implements CommandeGestionLocal {
         Query qr = em.createNamedQuery("entities.Commande.getByClient");
         qr.setParameter("paramClient", client);
         qr.setParameter("paramDate", date);
-        List<Commande> commandes = qr.getResultList();
-        return commandes;
+        List<Commande> orders = qr.getResultList();
+
+        for (Commande order : orders) {
+            retrieveOrderLines(order);
+        }
+
+        return orders;
     }
 
     @Override
     public List<Commande> getCommandesByClient(Client client) {
         return getCommandesByClient(client, DEFAULT_MONTHS_AMOUNT);
+    }
+
+    @Override
+    public Commande getCommandeByNumero(long number) {
+        Commande order = em.find(Commande.class, number);
+        retrieveOrderLines(order);
+        return order;
+    }
+
+    @Override
+    public Commande getCommandeByNumero(long number, Client client) {
+        Commande order = getCommandeByNumero(number);
+        return order.getClient().equals(client) ? order : null;
+    }
+
+    private void retrieveOrderLines(Commande order) {
+        Query qrOrder = em.createNamedQuery("entities.LigneCommande.getByCommande");
+        qrOrder.setParameter("paramCommande", order);
+        List<LigneCommande> orderLines = qrOrder.getResultList();
+        order.setLignesCommande(orderLines);
+        for (LigneCommande orderLine : orderLines) {
+            retrieveTickets(orderLine);
+        }
+    }
+
+    private void retrieveTickets(LigneCommande orderLine) {
+        Query qrOrderLine = em.createNamedQuery("entities.Billet.selectByLigneCommande");
+        qrOrderLine.setParameter("paramLigneCommande", orderLine);
+        List<Billet> tickets = qrOrderLine.getResultList();
+        orderLine.setBillets(tickets);
     }
 
 }
