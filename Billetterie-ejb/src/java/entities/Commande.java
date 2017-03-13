@@ -27,7 +27,7 @@ public class Commande implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long numero;
     @Column(nullable = false, scale = 2, precision = 10)
     private BigDecimal frais;
 
@@ -64,6 +64,14 @@ public class Commande implements Serializable {
         this.frais = frais;
         this.statut = statut;
         this.date = date;
+    }
+
+    public Long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Long numero) {
+        this.numero = numero;
     }
 
     public BigDecimal getFrais() {
@@ -116,7 +124,7 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "Commande{" + "id=" + id + ", frais=" + frais + ", statut=" + statut + ", date=" + date + ", paiements=" + paiements + ", lignesCommande=" + lignesCommande + ", client=" + client + ", modeExpedition=" + modeExpedition + ", adresseFacturation=" + adresseFacturation + ", adresseLivraison=" + adresseLivraison + '}';
+        return "Commande{" + "id=" + numero + ", frais=" + frais + ", statut=" + statut + ", date=" + date + ", paiements=" + paiements + ", lignesCommande=" + lignesCommande + ", client=" + client + ", modeExpedition=" + modeExpedition + ", adresseFacturation=" + adresseFacturation + ", adresseLivraison=" + adresseLivraison + '}';
     }
 
     public Collection<LigneCommande> getLignesCommande() {
@@ -141,6 +149,22 @@ public class Commande implements Serializable {
 
     public void setAdresseLivraison(Coordonnees adresseLivraison) {
         this.adresseLivraison = adresseLivraison;
+    }
+
+    public BigDecimal getTotalPrice() {
+        BigDecimal total = getFrais();
+        for (LigneCommande orderLine : lignesCommande) {
+            total = total.add(orderLine.getTotalPrice());
+        }
+        return total;
+    }
+
+    public BigDecimal getTotalPriceATI() {
+        BigDecimal total = getFrais();
+        for (LigneCommande orderLine : lignesCommande) {
+            total = total.add(orderLine.getTotalPriceATI());
+        }
+        return total;
     }
 
 }
