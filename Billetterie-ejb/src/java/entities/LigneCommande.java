@@ -12,9 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "entities.LigneCommande.getByCommande", query = "SELECT DISTINCT lc FROM LigneCommande lc JOIN lc.billets b WHERE lc.commande = :paramCommande ORDER BY b.seance.date")
+})
 public class LigneCommande implements Serializable {
 
     private static final long serialVersionUID = 1L;
