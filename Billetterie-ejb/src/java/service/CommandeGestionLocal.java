@@ -19,5 +19,9 @@ public interface CommandeGestionLocal {
 
     List<Commande> getCommandesByClient(Client client);
     List<Commande> getCommandesByClient(Client client, int monthsAmount);
+
+    Commande getCommandeByNumero(long number);
+
+    Commande getCommandeByNumero(long number, Client client);
     
 }

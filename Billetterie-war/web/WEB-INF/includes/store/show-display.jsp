@@ -3,7 +3,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<div class="container" >
+<div class="container">
     <div class="row" >
         <h1>${show.titre}</h1>
     </div>
