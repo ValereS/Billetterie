@@ -27,8 +27,12 @@ public class Place implements Serializable {
     @OneToMany(mappedBy = "place")
     private Collection<Billet> billets;
 
+    @OneToMany
+    private Collection<Place> placesContigues;
+
     public Place() {
         billets = new ArrayList<>();
+        placesContigues = new ArrayList<>();
     }
 
     public Place(String numero, String rang, String description) {
@@ -89,6 +93,18 @@ public class Place implements Serializable {
 
     public void setBillets(Collection<Billet> billets) {
         this.billets = billets;
+    }
+
+    public Collection<Place> getPlacesContigues() {
+        return placesContigues;
+    }
+
+    public void setPlacesContigues(Collection<Place> placesContigues) {
+        this.placesContigues = placesContigues;
+    }
+    
+    public boolean isContigu(Place place) {
+        return placesContigues.contains(place);
     }
 
 }
