@@ -3,6 +3,8 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,11 +30,11 @@ public class Place implements Serializable {
     private Collection<Billet> billets;
 
     @OneToMany
-    private Collection<Place> placesContigues;
+    private Set<Place> placesContigues;
 
     public Place() {
         billets = new ArrayList<>();
-        placesContigues = new ArrayList<>();
+        placesContigues = new HashSet<>();
     }
 
     public Place(String numero, String rang, String description) {
@@ -99,11 +101,16 @@ public class Place implements Serializable {
         return placesContigues;
     }
 
-    public void setPlacesContigues(Collection<Place> placesContigues) {
+    public void setPlacesContigues(Set<Place> placesContigues) {
         this.placesContigues = placesContigues;
     }
-    
-    public boolean isContigu(Place place) {
+
+    public void setContiguous(Place other) {
+        placesContigues.add(other);
+        other.getPlacesContigues().add(this);
+    }
+
+    public boolean isContiguous(Place place) {
         return placesContigues.contains(place);
     }
 
