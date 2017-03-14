@@ -56,6 +56,10 @@ public class ClientController implements SubControllerInterface {
                     String mdp2 = request.getParameter("mdp2");
                     if (!mdp.equals(mdp2)) {
                         request.setAttribute("errorMessage", "mots de passes non identiques");
+                        request.setAttribute("nom", request.getParameter("nom"));
+                        request.setAttribute("prenom", request.getParameter("prenom"));
+                        request.setAttribute("email", request.getParameter("email"));
+                        request.setAttribute("dateNaissance", request.getParameter("dateNaissance"));
                         return "signup";
                     }
                     String date = request.getParameter("dateNaissance");
@@ -71,12 +75,20 @@ public class ClientController implements SubControllerInterface {
                     clientGestion.create(client);
                 } catch (IllegalArgumentException ex) {
                     request.setAttribute("errorMessage", "mauvaise civilité !:" + civilite);
+                    request.setAttribute("nom", request.getParameter("nom"));
+                    request.setAttribute("prenom", request.getParameter("prenom"));
+                    request.setAttribute("email", request.getParameter("email"));
+                    request.setAttribute("dateNaissance", request.getParameter("dateNaissance"));
                     return "signup";
                 }
                 session.setAttribute("client", client);
                 return "home";
             } else {
                 request.setAttribute("errorMessage", "cet email est déjà utilisé !");
+                request.setAttribute("nom", request.getParameter("nom"));
+                request.setAttribute("prenom", request.getParameter("prenom"));
+                request.setAttribute("email", request.getParameter("email"));
+                request.setAttribute("dateNaissance", request.getParameter("dateNaissance"));
                 return "signup";
             }
         }
@@ -89,7 +101,6 @@ public class ClientController implements SubControllerInterface {
             }
             String doIt = request.getParameter("doIt");
             if (doIt != null) {
-
                 client.setNom(request.getParameter("nom"));
                 client.setPrenom(request.getParameter("prenom"));
                 client.setEmail(request.getParameter("mail"));
@@ -107,7 +118,7 @@ public class ClientController implements SubControllerInterface {
                 Client cl = clientGestion.updateClient(client);
                 //session.setAttribute("client", newClient);
                 request.setAttribute("message", "Modification de compte valider !");
-            } 
+            }
             return "client";
         }
         

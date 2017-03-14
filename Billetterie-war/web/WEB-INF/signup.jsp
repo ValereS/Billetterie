@@ -26,11 +26,11 @@
                                 <label for="radioMme" style="width: 80px"><input type="radio" name="civilite" value="MME" id="radioMme" checked="checked" />Madame</label>
                             </div>
                             <br/><br/>
-                            <div class='col-md-5'><label>Nom</label></div><div class='col-md-7'><input type="text" name="nom" placeholder="Long" pattern="[A-Za-z 1-9-_¨^èé'ùàç]{2,150}" required="required" /></div>
+                            <div class='col-md-5'><label>Nom</label></div><div class='col-md-7'><input type="text" name="nom" placeholder="Long" pattern="[A-Za-z 1-9-_¨^èé'ùàç]{2,150}" required="required" value="${nom}" /></div>
                             <br/><br/>
-                            <div class='col-md-5'><label>Prénom</label></div><div class='col-md-7'><input type="text" name="prenom" placeholder="Phi" pattern="[A-Za-z 1-9-_¨^èé'ùàçz]{2,150}" /></div>
+                            <div class='col-md-5'><label>Prénom</label></div><div class='col-md-7'><input type="text" name="prenom" placeholder="Phi" pattern="[A-Za-z 1-9-_¨^èé'ùàçz]{2,150}" value="${prenom}" /></div>
                             <br/><br/>
-                            <div class='col-md-5'><label>Email</label></div><div class='col-md-7'><input type="email" name="email" value="" placeholder="Enter email" required="required"/></div>
+                            <div class='col-md-5'><label>Email</label></div><div class='col-md-7'><input type="email" name="email" value="" placeholder="Enter email" required="required" value="${email}" /></div>
                             <div class='col-md-5'></div><div class='col-md-7'>
                                 <p class="error" style="color: red">
                                     ${errorMessage}
@@ -41,7 +41,7 @@
                             <br/><br/>
                             <div class='col-md-5'><label>Mot de passe</label></div><div class='col-md-7'><input type="password" name="mdp2" value="" pattern=".{4,30}" required="required" /></div>
                             <br/><br/>
-                            <div class='col-md-5'><label>Date de naissance</label></div><div class='col-md-7'><input type="date" name="dateNaissance" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" /></div><br/><br/>
+                            <div class='col-md-5'><label>Date de naissance</label></div><div class='col-md-7'><input type="date" name="dateNaissance" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" value="${dateNaissance}" /></div><br/><br/>
                             <input type="hidden" name="section" value="client">
                             <input type="hidden" name="action" value="signup">
                             <div class='col-md-5'></div><div class='col-md-7'><input type="submit" value="S'inscrire" /></div>
@@ -52,8 +52,11 @@
                 </div>
             </div>
         </div>
-    </div>        <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
+    </div>
+
+    <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
     <script src="${urlBootStrapJS}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <c:url var="scriptUrl" value="/javascript/script.js" />
     <script src="${scriptUrl}" type="text/javascript"></script>
 </body>

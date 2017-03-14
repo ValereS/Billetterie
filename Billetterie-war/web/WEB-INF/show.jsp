@@ -13,9 +13,11 @@
     <body>
         <jsp:include page="menus/menu-main.jsp" />
         <c:url value="FrontController?section=show-display" var="url04" />
+        
         <c:import url="${url04}" />
         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
         <script src="${urlBootStrapJS}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <c:url var="scriptUrl" value="/javascript/script.js" />
         <script src="${scriptUrl}" type="text/javascript"></script>
     </body>

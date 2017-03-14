@@ -11,6 +11,7 @@
                 <th>Catégorie</th>
                 <th>Tarif Nom</th>
                 <th>Tarif</th>
+                <th>Type de place</th>
                 <th></th>
             </tr>
             <c:forEach var="orderLine" items="${orderLines}">
@@ -32,6 +33,7 @@
                     <td>
                         <fmt:formatNumber type="currency" currencySymbol="€" value="${orderLine.totalPriceATI}" />                        
                     </td>
+                    <td>${orderLine.typeBillet.description}</td>
                     <c:url var="urlDelete" value="FrontController">
                         <c:param name="section" value="cart-operations" />
                         <c:param name="action" value="remove" />
@@ -50,7 +52,13 @@
         </div>
         <label>${message}</label>
         <div class="col-md-2">
-            <button class="btn">Payer</button>
+            <c:url var="urlPayer" value="FrontController">
+                <c:param name="section" value="order" />
+                <c:param name="action" value="checkOut" />
+            </c:url>
+            <form action="${urlPayer}">
+                <button class="btn">Payer</button>
+            </form>
         </div>
     </div>
 </div>

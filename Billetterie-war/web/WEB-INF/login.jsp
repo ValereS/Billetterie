@@ -33,8 +33,10 @@
                 </div>
             </div>
         </div>
-         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
+                    
+        <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
         <script src="${urlBootStrapJS}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <c:url var="scriptUrl" value="/javascript/script.js" />
         <script src="${scriptUrl}" type="text/javascript"></script>
     </body>
