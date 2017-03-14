@@ -15,7 +15,7 @@
         <jsp:include page="menus/menu-main.jsp" />
 
         <div class="container">
-
+            display order!!
         </div>
 
         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />

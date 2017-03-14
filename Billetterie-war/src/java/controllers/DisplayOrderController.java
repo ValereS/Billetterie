@@ -49,7 +49,7 @@ public class DisplayOrderController implements SubControllerInterface {
         
         request.setAttribute("order", order);
 
-        return "order";
+        return "display-order";
     }
 
     private CommandeGestionLocal lookupCommandeGestionLocal() {

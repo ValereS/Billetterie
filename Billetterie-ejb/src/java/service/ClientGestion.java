@@ -1,6 +1,7 @@
 package service;
 
 import entities.Client;
+import entities.Coordonnees;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -39,6 +40,10 @@ public class ClientGestion implements ClientGestionLocal {
     @Override
     public Client updateClient(Client cl) {
         return em.merge(cl);
+    }
+    
+    public void addAddress(Client cl,Coordonnees cc){
+        em.persist(cl);
     }
 
 }
