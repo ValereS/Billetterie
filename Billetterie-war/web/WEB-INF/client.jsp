@@ -13,6 +13,7 @@
     </head>
     <body>
         <jsp:include page="menus/menu-main.jsp" />
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -25,7 +26,7 @@
                         <label>Nom:&nbsp;</label><input type="text" name="nom" value="${client.nom}" /><br>
                         <label>Prenom:&nbsp;</label><input type="text" name="prenom" value="${client.prenom}" /><br>
                         <label>Mail:&nbsp;</label><input type="text" name="mail" value="${client.email}" /><br>
-                        <label>Mot de passe:&nbsp;</label><input type="password" name="motDePasse" /><br>
+                        <label>Mot de passe:&nbsp;</label><input type="password" name="motDePasse" /><br>                        
                         <label>Date de Naissance:&nbsp;</label><input type="date" name="dateNaissance" value="<fmt:formatDate value="${client.dateNaissance}" pattern="yyyy-MM-dd" />" placeholder="JJ/MM/AAAA" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" title="JJ/MM/AAAA"/><br>
                     </div>
                     <div class="col-md-2">
@@ -55,14 +56,16 @@
                                 <label>N°:&nbsp;</label><input type="text" name="numeroVoie" readonly="" value="${client.coordonneesFacturation.numeroVoie}"/><br>
                                 <label>Type de voie:&nbsp;</label><input type="text" name="typeVoie" readonly="" value="${client.coordonneesFacturation.typeVoie}"/><br>
                                 <label>Nom de la voie:&nbsp;</label><input type="text" name="nomVoie" readonly="" value="${client.coordonneesFacturation.nomVoie}"/><br>
+                                <label>Ville:&nbsp;</label><input type="text" name="ville" readonly="" value="${client.coordonneesFacturation.ville.nom}"/><br>
+                                <label>Code Postal:&nbsp;</label><input type="text" name="cp" readonly="" value="${client.coordonneesFacturation.ville.codePostal}"/><br>
                                 <label>Telephone:&nbsp;</label><input type="text" name="telephone" readonly="" value="${client.coordonneesFacturation.telephone}"/><br>
                                 <label>Telephone Mobile:&nbsp;</label><input type="text" name="telephoneMobile" readonly="" value="${client.coordonneesFacturation.telephoneMobile}"/><br>
                             </form> 
                             <br>
                         </div>
-                            <button type="button" name="modifier" >Modifier</button>
+                        <button type="button" name="modifier" >Modifier</button>
                     </div>
-                    
+
                 </div>
 
                 <div class="col-sm-7 col-md-5">
@@ -70,33 +73,41 @@
                         <div class="caption">
                             <h1>Adresse Livraison:&nbsp;</h1>
                             <form action="FrontController" method="POST">
-                                <input type="hidden" name="action" value="manage" />
+                                <input type="hidden" name="section" value="client"/>
+                                <input type="hidden" name="action" value="newAddress" />
                                 <select name="adLivraison">
                                     <c:forEach var="i" items="${client.listeCoordonneesLivraison}">
                                         <option>
-                                            ${i.nom}
                                             ${i.prenom}
-                                            ${i.entreprise}
-                                            ${i.numeroVoie}
-                                            ${i.nomVoie}
+                                            ${i.nom}
+                                            <%--${i.telephone} --%>
                                             ${i.telephone}
-                                            ${i.telephoneMobile}
                                         </option>
-                                    </c:forEach>
-                                </select>
+                                    </c:forEach> 
+                                </select><br>
                                 <label>Prenom:&nbsp;</label><input type="text" name="prenom" /><br>
                                 <label>Nom:&nbsp;</label><input type="text" name="nom" /><br>
                                 <label>Entreprise:&nbsp;</label><input type="text" name="entreprise" /><br>
                                 <label>N°:&nbsp;</label><input type="text" name="numeroVoie" /><br>
                                 <label>Type de voie:&nbsp;</label><input type="text" name="typeVoie" /><br>
-                                <label>Nom de la voie:&nbsp;</label><input type="text" name="nomVoie" /><br>
+                                <label>Nom de voie:&nbsp;</label><input type="text" name="nomVoie" /><br>
+                                <label>Ville:&nbsp;</label><input type="text" name="ville" /><br>
+                                <label>Code Postal:&nbsp;</label><input type="text" name="cp" /><br>
                                 <label>Telephone:&nbsp;</label><input type="text" name="telephone" /><br>
                                 <label>Telephone Mobile:&nbsp;</label><input type="text" name="telephoneMobile"/><br>
+                                
+                                <input type="submit" value="Ajouter une nouvelle adresse" name="add" />
                             </form> 
                         </div>
-                           <button type="button" name="add" >Ajouter une nouvelle adresse</button> 
+                        
+                        
+                        <div class="col-md-6">
+                            <p class="alert-success">
+                                ${message01}
+                            </p>
+                        </div> 
                     </div>
-                    
+
                 </div>
             </div>        
         </div>        <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
@@ -105,8 +116,3 @@
         <script src="${scriptUrl}" type="text/javascript"></script>
     </body>
 </html>
-
-
-
-
-v

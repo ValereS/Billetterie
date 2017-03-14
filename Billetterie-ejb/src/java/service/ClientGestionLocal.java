@@ -1,6 +1,7 @@
 package service;
 
 import entities.Client;
+import entities.Coordonnees;
 import javax.ejb.Local;
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,5 +15,7 @@ public interface ClientGestionLocal {
     Client selectByEmail(String email);
 
     void create(Client client);
+
+    public Client addAddress(Client cl, Coordonnees cc);
 
 }

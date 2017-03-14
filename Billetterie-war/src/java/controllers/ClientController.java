@@ -2,6 +2,7 @@ package controllers;
 
 import entities.Client;
 import entities.Coordonnees;
+import entities.Ville;
 import enums.CiviliteClient;
 import enums.StatutClient;
 import java.text.ParseException;
@@ -111,28 +112,30 @@ public class ClientController implements SubControllerInterface {
         }
         
         if("newAddress".equalsIgnoreCase(action)){
-        
+            System.out.println("=============================>> NOUVELLE ADRESSE");
         Client cl = (Client) session.getAttribute("client");
-        String doIt = request.getParameter("doIt");
-            
-        if(doIt!=null){
-            
-            Coordonnees cc = new Coordonnees();
+        String add = request.getParameter("add");
+           Coordonnees cc = new Coordonnees();
+        if(add!=null){
+ 
             cc.setNom(request.getParameter("nom"));
             cc.setPrenom(request.getParameter("prenom"));
             cc.setEntreprise(request.getParameter("entreprise"));
             cc.setNumeroVoie(request.getParameter("numero"));
             cc.setNomVoie(request.getParameter("nomVoie"));
             cc.setTypeVoie(request.getParameter("typeVoie"));
+            Ville vl = new Ville(request.getParameter("ville"),
+                                 request.getParameter("cp"));
+            
             cc.setTelephone(request.getParameter("telephone"));
             cc.setTelephoneMobile(request.getParameter("mobile"));
+                  
         }
-        
-            
-        
-        
+        clientGestion.addAddress(cl, cc);
+        request.setAttribute("message01", "Nouvelle adresse ajouter !");
+ 
         }
-        return "login";
+        return "client";
         
         
 
