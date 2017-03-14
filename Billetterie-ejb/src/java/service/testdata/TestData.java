@@ -166,7 +166,7 @@ public class TestData implements TestDataLocal {
 
 //-----------------------[ TYPEBILLET ]----------------------------
             TypeBillet tbPlacesNumerotees = new TypeBillet("places numérotées");
-            TypeBillet tbPlaceLibre = new TypeBillet("places non-numérotées");
+            TypeBillet tbPlaceLibre = new TypeBillet("places non numérotées");
 
 //-----------------------[ LIGNECOMMANDE ]----------------------------
             LigneCommande lc01 = new LigneCommande();
