@@ -29,12 +29,12 @@ public class FrontController extends HttpServlet {
 
     PanierGestionLocal panierGestion = lookupPanierGestionLocal();
 
-    private Map<String, SubControllerInterface> map;
+    private final Map<String, SubControllerInterface> map = new HashMap<>();
+    private final SubControllerInterface defaultSubController = new HomeController();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        map = new HashMap<>();
         Enumeration<String> names = config.getInitParameterNames();
 
         while (names.hasMoreElements()) {
@@ -67,14 +67,9 @@ public class FrontController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String url;
         String section = request.getParameter("section");
-        SubControllerInterface subController = map.get(section);
+        SubControllerInterface subController = map.getOrDefault(section, defaultSubController);
 
-        if (subController != null) {
-            url = subController.execute(request, response);
-        } else {
-            url = "home";
-        }
-
+        url = subController.execute(request, response);
         url = String.format("/WEB-INF/%s.jsp", url);
         url = response.encodeURL(url);
 

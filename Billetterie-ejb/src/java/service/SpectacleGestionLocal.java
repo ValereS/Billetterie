@@ -28,4 +28,8 @@ public interface SpectacleGestionLocal {
     public long countByTheme(String themeNom);
 
     public List<Spectacle> selectByTheme(int pageNumber, int maxResults, String themeNom);
+
+    List<Spectacle> selectBestSelling(int maxResults);
+
+    public List<Spectacle> selectBestSelling();
 }

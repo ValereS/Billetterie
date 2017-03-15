@@ -79,6 +79,10 @@
             <param-name>cart-operations</param-name>
             <param-value>controllers.CartOperationsController</param-value>
         </init-param>
+        <init-param>
+            <param-name>home</param-name>
+            <param-value>controllers.HomeController</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -184,5 +188,11 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <local>service.CommandeGestionLocal</local>
         <ejb-link>Billetterie-ejb.jar#CommandeGestion</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>SpectacleGestion1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>service.SpectacleGestionLocal</local>
+        <ejb-link>Billetterie-ejb.jar#SpectacleGestion</ejb-link>
     </ejb-local-ref>
 </web-app>

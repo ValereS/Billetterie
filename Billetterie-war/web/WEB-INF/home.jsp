@@ -14,13 +14,39 @@
         <jsp:include page="menus/menu-main.jsp" />
         <div>
             <p>
-                Welcome to Billetterie
-            </p>
-            <p>
                 ${message}
             </p>
+
+
+            <h2>Meilleures ventes</h2>
+            <div class="row">
+                <div class="col-md-1 col-sd-0"></div>
+                <div class="col-md-10 col-sd-12">
+                    <ul class="list-group">
+                        <c:forEach var="show" items="${shows}">
+                            <li class="list-group-item" style="height:120px">
+                                <c:url var="url" value="FrontController?section=show&id=${show.id}" />
+                                <a href="${url}">
+                                    <div class="col-md-2 col-sd-3" style="text-align: center">
+                                        <img src="${show.image.url}" height="100"  alt="${show.titre}" />
+                                    </div>
+                                    <div class="col-md-9 col-sd-8" >
+                                        <h3>${show.titre}</h3>
+                                        <p>${show.description}</p>
+                                    </div>
+                                    <div class="col-md-1 col-sd-1" >
+                                        <button class="btn-default" style="height: 100px">Réserver</button>
+                                    </div>
+                                </a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
+
+
         </div>
-            
+
         <c:url var="urlBootStrapJS" value="/bootstrap/js/bootstrap.js" />
         <script src="${urlBootStrapJS}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

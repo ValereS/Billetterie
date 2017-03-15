@@ -106,12 +106,14 @@ public class Place implements Serializable {
     }
 
     public void setContiguous(Place other) {
-        placesContigues.add(other);
-        other.getPlacesContigues().add(this);
+        if (!equals(other)) {
+            getPlacesContigues().add(other);
+            other.getPlacesContigues().add(this);
+        }
     }
 
     public boolean isContiguous(Place place) {
-        return placesContigues.contains(place);
+        return getPlacesContigues().contains(place);
     }
 
 }

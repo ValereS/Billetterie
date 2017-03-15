@@ -1,9 +1,8 @@
 package service;
 
-import entities.SousTheme;
 import entities.Spectacle;
-import entities.Theme;
 import enums.StatutSpectacle;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,6 +12,8 @@ import javax.persistence.Query;
 
 @Stateless
 public class SpectacleGestion implements SpectacleGestionLocal {
+
+    public static int DEFAULT_BEST_SELLING_MAX_RESULTS = 5;
 
     @PersistenceContext(unitName = "Billetterie-ejbPU")
     private EntityManager em;
@@ -119,6 +120,18 @@ public class SpectacleGestion implements SpectacleGestionLocal {
         qr.setParameter("paramStatut", StatutSpectacle.ACTIF);
         qr.setParameter("paramThemeNom", themeNom);
         return (long) qr.getSingleResult();
+    }
+
+    @Override
+    public List<Spectacle> selectBestSelling(int maxResults) {
+        Query qr = em.createNamedQuery("entities.Spectacle.selectBestSelling");
+        qr.setMaxResults(maxResults);
+        return qr.getResultList();
+    }
+
+    @Override
+    public List<Spectacle> selectBestSelling() {
+        return selectBestSelling(DEFAULT_BEST_SELLING_MAX_RESULTS);
     }
 
 }

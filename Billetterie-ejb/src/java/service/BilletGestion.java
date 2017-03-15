@@ -6,9 +6,10 @@
 package service;
 
 import entities.Billet;
-import entities.Place;
 import entities.TypeBillet;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.ejb.Stateless;
 
 /**
@@ -24,8 +25,10 @@ public class BilletGestion implements BilletGestionLocal {
             return false;
         }
         
+        Set<Billet> set = new HashSet(tickets);
+        Set<Billet> contiguous = new HashSet();
         
-        
+
         return false;
     }
 }
