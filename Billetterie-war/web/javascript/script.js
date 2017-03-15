@@ -1,4 +1,4 @@
-$("#seanceId").change(function () {
+$("#seanceId").change(function() {
     $.get(
         "FrontController",
         {
