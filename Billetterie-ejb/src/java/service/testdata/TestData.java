@@ -165,8 +165,8 @@ public class TestData implements TestDataLocal {
             tfParc02.setCategorie(catParcAttraction01);
 
 //-----------------------[ TYPEBILLET ]----------------------------
-            TypeBillet tbPlacesNumerotees = new TypeBillet("places numérotées");
-            TypeBillet tbPlaceLibre = new TypeBillet("places non-numérotées");
+            TypeBillet tbPlacesNumerotees = new TypeBillet(TypeBillet.Type.NUMEROTE.getId(), TypeBillet.Type.NUMEROTE.getDescription());
+            TypeBillet tbPlaceLibre = new TypeBillet(TypeBillet.Type.LIBRE.getId(), TypeBillet.Type.LIBRE.getDescription());
 
 //-----------------------[ LIGNECOMMANDE ]----------------------------
             LigneCommande lc01 = new LigneCommande();

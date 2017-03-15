@@ -7,6 +7,7 @@ package service;
 
 import entities.Billet;
 import entities.Place;
+import entities.TypeBillet;
 import java.util.Collection;
 import javax.ejb.Stateless;
 
@@ -19,12 +20,12 @@ public class BilletGestion implements BilletGestionLocal {
 
     @Override
     public boolean checkContiguousSeats(Collection<Billet> tickets) {
-        for (Billet ticket : tickets) {
-            Place seat = ticket.getPlace();
-            if (seat == null) {
-                return false;
-            }
+        if (!tickets.stream().allMatch(ticket -> ticket.getTypeBillet().getId().equals(TypeBillet.Type.NUMEROTE.getId()))) {
+            return false;
         }
+        
+        
+        
         return false;
     }
 }
