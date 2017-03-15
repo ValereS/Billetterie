@@ -2,6 +2,7 @@ package controllers;
 
 import entities.Client;
 import entities.Coordonnees;
+import entities.Ville;
 import enums.CiviliteClient;
 import enums.StatutClient;
 import java.text.ParseException;
@@ -55,6 +56,10 @@ public class ClientController implements SubControllerInterface {
                     String mdp2 = request.getParameter("mdp2");
                     if (!mdp.equals(mdp2)) {
                         request.setAttribute("errorMessage", "mots de passes non identiques");
+                        request.setAttribute("nom", request.getParameter("nom"));
+                        request.setAttribute("prenom", request.getParameter("prenom"));
+                        request.setAttribute("email", request.getParameter("email"));
+                        request.setAttribute("dateNaissance", request.getParameter("dateNaissance"));
                         return "signup";
                     }
                     String date = request.getParameter("dateNaissance");
@@ -70,12 +75,20 @@ public class ClientController implements SubControllerInterface {
                     clientGestion.create(client);
                 } catch (IllegalArgumentException ex) {
                     request.setAttribute("errorMessage", "mauvaise civilité !:" + civilite);
+                    request.setAttribute("nom", request.getParameter("nom"));
+                    request.setAttribute("prenom", request.getParameter("prenom"));
+                    request.setAttribute("email", request.getParameter("email"));
+                    request.setAttribute("dateNaissance", request.getParameter("dateNaissance"));
                     return "signup";
                 }
                 session.setAttribute("client", client);
                 return "home";
             } else {
                 request.setAttribute("errorMessage", "cet email est déjà utilisé !");
+                request.setAttribute("nom", request.getParameter("nom"));
+                request.setAttribute("prenom", request.getParameter("prenom"));
+                request.setAttribute("email", request.getParameter("email"));
+                request.setAttribute("dateNaissance", request.getParameter("dateNaissance"));
                 return "signup";
             }
         }
@@ -88,7 +101,6 @@ public class ClientController implements SubControllerInterface {
             }
             String doIt = request.getParameter("doIt");
             if (doIt != null) {
-
                 client.setNom(request.getParameter("nom"));
                 client.setPrenom(request.getParameter("prenom"));
                 client.setEmail(request.getParameter("mail"));
@@ -106,33 +118,35 @@ public class ClientController implements SubControllerInterface {
                 Client cl = clientGestion.updateClient(client);
                 //session.setAttribute("client", newClient);
                 request.setAttribute("message", "Modification de compte valider !");
-            } 
+            }
             return "client";
         }
         
         if("newAddress".equalsIgnoreCase(action)){
-        
+            System.out.println("=============================>> NOUVELLE ADRESSE");
         Client cl = (Client) session.getAttribute("client");
-        String doIt = request.getParameter("doIt");
-            
-        if(doIt!=null){
-            
-            Coordonnees cc = new Coordonnees();
+        String add = request.getParameter("add");
+           Coordonnees cc = new Coordonnees();
+        if(add!=null){
+ 
             cc.setNom(request.getParameter("nom"));
             cc.setPrenom(request.getParameter("prenom"));
             cc.setEntreprise(request.getParameter("entreprise"));
             cc.setNumeroVoie(request.getParameter("numero"));
             cc.setNomVoie(request.getParameter("nomVoie"));
             cc.setTypeVoie(request.getParameter("typeVoie"));
+            Ville vl = new Ville(request.getParameter("ville"),
+                                 request.getParameter("cp"));
+            
             cc.setTelephone(request.getParameter("telephone"));
             cc.setTelephoneMobile(request.getParameter("mobile"));
+                  
         }
-        
-            
-        
-        
+        clientGestion.addAddress(cl, cc);
+        request.setAttribute("message01", "Nouvelle adresse ajouter !");
+ 
         }
-        return "login";
+        return "client";
         
         
 

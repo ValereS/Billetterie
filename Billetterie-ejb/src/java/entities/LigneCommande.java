@@ -167,4 +167,8 @@ public class LigneCommande implements Serializable {
         return getBillets().get(0).getCategorie();
     }
 
+    public TypeBillet getTypeBillet(){
+        return getBillets().iterator().next().getTypeBillet();
+    }
+    
 }

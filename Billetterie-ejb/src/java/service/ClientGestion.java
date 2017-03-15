@@ -42,8 +42,11 @@ public class ClientGestion implements ClientGestionLocal {
         return em.merge(cl);
     }
     
-    public void addAddress(Client cl,Coordonnees cc){
-        em.persist(cl);
+    @Override
+    public Client addAddress(Client cl,Coordonnees cc){
+        
+        cl.getListeCoordonneesLivraison().add(cc);
+        return em.merge(cl);
     }
 
 }
