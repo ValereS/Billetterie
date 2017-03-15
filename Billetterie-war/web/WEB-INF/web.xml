@@ -82,6 +82,8 @@
         <init-param>
             <param-name>order</param-name>
             <param-value>controllers.OrderController</param-value>
+        </init-param>
+        <init-param>
             <param-name>home</param-name>
             <param-value>controllers.HomeController</param-value>
         </init-param>
