@@ -37,7 +37,9 @@
                     <c:url value="FrontController?section=client&action=manage" var="url05" />
                     <a href="${url05}">Bonjour, ${client.nomComplet} !</a>
                     <c:url value="FrontController?section=client&action=logout" var="url06" />
-                    <a href="${url06}">(déconnexion)</a>
+                    <a href="${url06}">(déconnexion)</a> |
+                    <c:url value="FrontController?section=orders" var="url06" />
+                    <a href="${url06}">Commandes</a>
                 </c:if>
             </li>
         </ul>

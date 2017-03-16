@@ -165,8 +165,8 @@ public class TestData implements TestDataLocal {
             tfParc02.setCategorie(catParcAttraction01);
 
 //-----------------------[ TYPEBILLET ]----------------------------
-            TypeBillet tbPlacesNumerotees = new TypeBillet(TypeBillet.Type.NUMEROTE.getId(), TypeBillet.Type.NUMEROTE.getDescription());
-            TypeBillet tbPlaceLibre = new TypeBillet(TypeBillet.Type.LIBRE.getId(), TypeBillet.Type.LIBRE.getDescription());
+            TypeBillet tbPlacesNumerotees = new TypeBillet(enums.TypeBillet.NUMEROTE.getId(), enums.TypeBillet.NUMEROTE.getDescription());
+            TypeBillet tbPlaceLibre = new TypeBillet(enums.TypeBillet.LIBRE.getId(), enums.TypeBillet.LIBRE.getDescription());
 
 //-----------------------[ LIGNECOMMANDE ]----------------------------
             LigneCommande lc01 = new LigneCommande();
@@ -490,6 +490,10 @@ public class TestData implements TestDataLocal {
             Place pl10 = new Place("0881", "1", "Numérotée");
             Place pl11 = new Place("3541", "1", "Numérotée");
             Place pl12 = new Place("4591", "1", "Numérotée");
+
+            // Contiguous seats
+            pl01.setContiguous(pl04);
+            pl02.setContiguous(pl03);
 
             pl01.setZone(z01);
             pl02.setZone(z02);
@@ -864,9 +868,6 @@ public class TestData implements TestDataLocal {
             em.persist(s21);
             em.persist(s22);
             em.persist(s23);
-
-            pl01.setContiguous(pl02);
-            pl02.setContiguous(pl03);
 
 //-----------------------[ BILLET ]----------------------------
             Billet b01 = new Billet("AA001", tva5v5p, tbPlacesNumerotees, s01, cat01, pl01);

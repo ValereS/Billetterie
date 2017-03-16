@@ -68,26 +68,4 @@ public class TypeBillet implements Serializable {
         return true;
     }
 
-    public static enum Type {
-
-        NUMEROTE(1L, "Placement numéroté"),
-        LIBRE(2L, "Placement libre");
-
-        private final Long id;
-        private final String description;
-
-        Type(Long id, String description) {
-            this.id = id;
-            this.description = description;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-    }
-
 }

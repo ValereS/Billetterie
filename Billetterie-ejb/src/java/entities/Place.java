@@ -31,9 +31,9 @@ public class Place implements Serializable {
     private Collection<Billet> billets;
 
     @OneToMany
-    private Set<Place> placesContigues;
+    private Collection<Place> placesContigues;
 
-    public Place() {
+    public Place() {        
         billets = new ArrayList<>();
         placesContigues = new HashSet<>();
     }
@@ -107,7 +107,7 @@ public class Place implements Serializable {
     }
 
     public void setContiguous(Place other) {
-        if (!equals(other)) {
+        if (this != other) {
             getPlacesContigues().add(other);
             other.getPlacesContigues().add(this);
         }

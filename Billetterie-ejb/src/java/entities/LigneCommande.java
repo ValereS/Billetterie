@@ -176,6 +176,30 @@ public class LigneCommande implements Serializable {
     }
 
     public boolean isContiguous() {
-        return false;
+        if (getBillets() == null || getBillets().isEmpty()) {
+            return false;
+        }
+
+        Set<Billet> set = new HashSet(getBillets());
+        Set<Billet> contiguous = new HashSet();
+        Deque<Billet> deque = new ArrayDeque<>();
+
+        Billet firstTicket = set.iterator().next();
+        contiguous.add(firstTicket);
+        deque.add(firstTicket);
+
+        while (deque.peek() != null) {
+            Billet currentTicket = deque.remove();
+            for (Billet ticket : set) {
+                if (!contiguous.contains(ticket)
+                        && currentTicket.getPlace()
+                        .isContiguous(ticket.getPlace())) {
+                    contiguous.add(ticket);
+                    deque.add(ticket);
+                }
+            }
+        }
+
+        return set.equals(contiguous);
     }
 }

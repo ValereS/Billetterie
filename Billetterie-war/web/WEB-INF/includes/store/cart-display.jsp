@@ -38,10 +38,10 @@
                         <c:if test="${orderLine.typeBillet.id == PLACE_NUMEROTE}">
                             <c:choose>
                                 <c:when test="${orderLine.contiguous}">
-                                    (places contiguës)
+                                    (contiguës)
                                 </c:when>
                                 <c:otherwise>
-                                    (places non contiguës)
+                                    (non contiguës)
                                 </c:otherwise>
                             </c:choose>
                         </c:if>

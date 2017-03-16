@@ -5,8 +5,6 @@
  */
 package controllers;
 
-import entities.LigneCommande;
-import entities.TypeBillet;
 import java.math.BigDecimal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +34,8 @@ public class CartDisplayController implements SubControllerInterface {
         BigDecimal totalPriceATI = panierGestion.getTotalPriceATI();
         request.setAttribute("orderLines", panierGestion.getOrderLines());
         request.setAttribute("totalPrice", totalPriceATI);
-        request.setAttribute("PLACE_NUMEROTE", TypeBillet.Type.NUMEROTE.getId());
-        request.setAttribute("PLACE_LIBRE", TypeBillet.Type.LIBRE.getId());
+        request.setAttribute("PLACE_NUMEROTE", enums.TypeBillet.NUMEROTE.getId());
+        request.setAttribute("PLACE_LIBRE", enums.TypeBillet.LIBRE.getId());
         return "includes/store/cart-display";
     }
 
