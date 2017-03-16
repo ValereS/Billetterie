@@ -298,7 +298,7 @@ public class TestData implements TestDataLocal {
             Seance s15 = new Seance(d15, StatutSeance.ACTIF);
             Seance s16 = new Seance(d16, StatutSeance.ACTIF);
 
-        /////////////////////////////// stop Valère !!!!
+            /////////////////////////////// stop Valère !!!!
             // Phi-Long
             Pays paysFrance = new Pays("France");
             Pays paysSuisse = new Pays("Suisse");
@@ -864,6 +864,9 @@ public class TestData implements TestDataLocal {
             em.persist(s21);
             em.persist(s22);
             em.persist(s23);
+
+            pl01.setContiguous(pl02);
+            pl02.setContiguous(pl03);
 
 //-----------------------[ BILLET ]----------------------------
             Billet b01 = new Billet("AA001", tva5v5p, tbPlacesNumerotees, s01, cat01, pl01);

@@ -3,8 +3,12 @@ package entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -167,8 +171,11 @@ public class LigneCommande implements Serializable {
         return getBillets().get(0).getCategorie();
     }
 
-    public TypeBillet getTypeBillet(){
+    public TypeBillet getTypeBillet() {
         return getBillets().iterator().next().getTypeBillet();
     }
-    
+
+    public boolean isContiguous() {
+        return false;
+    }
 }

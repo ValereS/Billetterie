@@ -33,7 +33,19 @@
                     <td>
                         <fmt:formatNumber type="currency" currencySymbol="€" value="${orderLine.totalPriceATI}" />                        
                     </td>
-                    <td>${orderLine.typeBillet.description}</td>
+                    <td>
+                        ${orderLine.typeBillet.description}
+                        <c:if test="${orderLine.typeBillet.id == PLACE_NUMEROTE}">
+                            <c:choose>
+                                <c:when test="${orderLine.contiguous}">
+                                    (places contiguës)
+                                </c:when>
+                                <c:otherwise>
+                                    (places non contiguës)
+                                </c:otherwise>
+                            </c:choose>
+                        </c:if>
+                    </td>
                     <c:url var="urlDelete" value="FrontController">
                         <c:param name="section" value="cart-operations" />
                         <c:param name="action" value="remove" />
