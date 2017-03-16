@@ -2,6 +2,7 @@ package entities;
 
 import enums.StatutBillet;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,8 +15,7 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "entities.Billet.selectBySeanceCategorieTarif", query = "SELECT DISTINCT b FROM Billet b JOIN b.seance s JOIN b.categorie c JOIN c.tarifs t WHERE s = :paramShowing AND c = :paramCategory AND t = :paramRate AND b.statut = :paramStatut ORDER BY b.numero"),
     @NamedQuery(name = "entities.Billet.selectBySeance", query = "SELECT b FROM Billet b WHERE b.seance = :paramSeance AND b.statut = :paramStatut"),
     @NamedQuery(name = "entities.Billet.selectReleasable", query = "SELECT b FROM Billet b WHERE b.ligneCommande IS NULL AND b.statut = :paramStatut"),
-    @NamedQuery(name = "entities.Billet.selectByLigneCommande", query = "SELECT b FROM Billet b WHERE b.ligneCommande = :paramLigneCommande"),
-})
+    @NamedQuery(name = "entities.Billet.selectByLigneCommande", query = "SELECT b FROM Billet b WHERE b.ligneCommande = :paramLigneCommande"),})
 public class Billet implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -152,6 +152,27 @@ public class Billet implements Serializable {
     public void setStatut(StatutBillet statut) {
         this.statut = statut;
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.numero);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Billet other = (Billet) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
+        return true;
+    }
+
 }

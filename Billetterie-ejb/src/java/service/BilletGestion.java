@@ -7,7 +7,9 @@ package service;
 
 import entities.Billet;
 import entities.TypeBillet;
+import java.util.ArrayDeque;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ejb.Stateless;
@@ -21,14 +23,36 @@ public class BilletGestion implements BilletGestionLocal {
 
     @Override
     public boolean checkContiguousSeats(Collection<Billet> tickets) {
-        if (!tickets.stream().allMatch(ticket -> ticket.getTypeBillet().getId().equals(TypeBillet.Type.NUMEROTE.getId()))) {
+        if (tickets == null || tickets.isEmpty()) {
             return false;
         }
-        
+
+        if (!tickets.stream().allMatch(
+                ticket -> ticket.getTypeBillet().getId()
+                .equals(TypeBillet.Type.NUMEROTE.getId()))) {
+            return false;
+        }
+
         Set<Billet> set = new HashSet(tickets);
         Set<Billet> contiguous = new HashSet();
-        
+        Deque<Billet> deque = new ArrayDeque<>();
 
-        return false;
+        Billet firstTicket = set.iterator().next();
+        contiguous.add(firstTicket);
+        deque.add(firstTicket);
+
+        while (deque.peek() != null) {
+            Billet currentTicket = deque.remove();
+            for (Billet ticket : set) {
+                if (!contiguous.contains(ticket)
+                        && currentTicket.getPlace()
+                        .isContiguous(ticket.getPlace())) {
+                    contiguous.add(ticket);
+                    deque.add(ticket);
+                }
+            }
+        }
+
+        return set.equals(contiguous);
     }
 }
