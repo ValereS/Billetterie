@@ -39,7 +39,7 @@ public class Commande implements Serializable {
     @OneToMany(mappedBy = "commande")
     private Collection<Paiement> paiements;
 
-    @OneToMany(mappedBy = "commande")
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
     private Collection<LigneCommande> lignesCommande;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
